@@ -10,6 +10,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css'
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 
+// Redux
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
 // React Components
 import App from './App';
@@ -27,8 +30,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+// Reducer
+import reducers from './reducers';
 
-
+const store = createStore(reducers, {}, applyMiddleware());
 
 const Root = () => (
     <Router>
@@ -48,4 +53,6 @@ const Root = () => (
   
 
   
-  ReactDOM.render(<Root/>,document.getElementById('root'));
+  ReactDOM.render(
+  <Provider store = {store}> <Root/> </Provider>,
+  document.getElementById('root'));
