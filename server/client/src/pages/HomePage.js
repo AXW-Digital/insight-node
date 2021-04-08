@@ -13,8 +13,7 @@ var Name = 'John Doe'
 export default class HomePage extends Component {
     render() {
         return (
-            <div>
-                
+            <div>                
                 <div id='page-top'></div>
                 <section id="hero" className="d-flex align-items-center">
                     <div className="container">

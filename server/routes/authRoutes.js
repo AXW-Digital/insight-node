@@ -8,11 +8,18 @@ module.exports = app => {
     })
   );
 
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  app.get(
+    '/auth/google/callback', 
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/home');
+    }
+    
+);
 
   app.get('/api/logout', (req, res) => {
     req.logout();
-    res.send(req.user);
+    res.redirect('/');
   });
 
   // test to see if the oauth works with the current user

@@ -11,8 +11,7 @@ import { createSmallActivityCard } from '../components/cards/CardFunctions'
 class ProfilePage extends Component {
     render() {
         return (
-            <div>
-                
+            <div>                
                 <section id='profile' className='bg-light'>
                     <div className='container-fluid'>
                         <div className='row'>

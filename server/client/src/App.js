@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './actions'
+import AOS from 'aos';
 
 //pages
 import LandingPage from './pages/LandingPage'
@@ -17,6 +18,12 @@ import Header from './components/parts/Header'
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
+    
+      AOS.init({
+        duration : 1500,
+        once: true
+      });
+    
 
   };
 
@@ -29,6 +36,7 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={LandingPage} />
+            <Route path = "/home" component={HomePage} />
           </div>
         </BrowserRouter>
       </div>

@@ -7,28 +7,21 @@ import Kasvuvaikkuttajat from './../components/sections/Kasvuvaikkuttajat'
 import Growflow from './../components/sections/Growflow'
 import Voima from './../components/sections/Voima'
 import Footer from './../components/parts/Footer'
-import AOS from 'aos';
+
 
 
 class LandingPage extends Component {
-    componentDidMount(){
-        AOS.init({
-          duration : 1500,
-          once: true
-        })
-      }
-      
+     
     render() {
         return (
-            <React.Fragment>
-
+                <div>
                 <Vaikuttava />
                 <Kukkavoi />
                 <Kasvuvaikkuttajat />
                 <Growflow />
                 <Voima />
                 <Footer />
-            </React.Fragment>
+                </div>
         );
     }
 }
