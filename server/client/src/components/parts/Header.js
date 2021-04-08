@@ -6,16 +6,16 @@ import { connect } from 'react-redux'
 class Header extends React.Component {
     renderContent(){
         console.log(this.props.auth)
-        switch (this.props.auth){                 
+        switch (this.props.auth.auth){                 
             case false:
-                return <div>
+                return (<div>
                 <li><a href="/signin">Kirjaudu</a></li>
                 <li><a href="/signup">Rekisteröidy</a></li>
-                </div>;
+                </div>);
             default:
-                return <div>
+                return (<div>
                 <li><a href="/api/logout">Kirjaudu ulos</a></li>
-                </div>
+                </div>)
         }
     }
     
