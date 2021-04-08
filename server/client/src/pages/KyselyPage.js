@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import KyselyForm from '../components/forms/KyselyForm'
-import Header from '../components/parts/HeaderHome';
+
 import Footer from '../components/parts/Footer'
 import $ from 'jquery';
 
@@ -28,7 +28,7 @@ export default class KyselyPage extends Component {
         console.log(this.props.match.params.id)
         return (
             <div>
-                <Header />
+                
                 <div id='page-top'> </div>
                 <section id='kysely' className='bg-light'>
                     <div className='container'>

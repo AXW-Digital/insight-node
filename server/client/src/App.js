@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from './actions'
 
 //pages
 import LandingPage from './pages/LandingPage'
@@ -9,17 +11,30 @@ import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import KyselyPage from './pages/KyselyPage'
 
-const App = () => {
-  return (
-    <div>
-      <BrowserRouter>
-        <div>
-          <Route exact path = "/" component = {LandingPage} />
-        </div>
-      </BrowserRouter>
-    </div>
-  )
-}
+//parts
+import Header from './components/parts/Header'
 
-export default App;
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+
+  };
+
+
+
+  render() {
+    return (
+      <div>
+        <BrowserRouter>
+          <div>
+            <Header />
+            <Route exact path="/" component={LandingPage} />
+          </div>
+        </BrowserRouter>
+      </div>
+    );
+  }
+};
+
+export default connect(null, actions)(App);
 

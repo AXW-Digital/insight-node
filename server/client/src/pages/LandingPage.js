@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //components
-import Header from './../components/parts/Header';
+
 import Vaikuttava from './../components/sections/Vaikuttava';
 import Kukkavoi from './../components/sections/Kukkavoi'
 import Kasvuvaikkuttajat from './../components/sections/Kasvuvaikkuttajat'
@@ -21,7 +21,7 @@ class LandingPage extends Component {
     render() {
         return (
             <React.Fragment>
-                <Header />
+
                 <Vaikuttava />
                 <Kukkavoi />
                 <Kasvuvaikkuttajat />

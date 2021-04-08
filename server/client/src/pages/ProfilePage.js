@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HeaderHome from '../components/parts/HeaderHome'
+
 import ProfileCard from '../components/cards/ProfileCard'
 import SettingsCard from '../components/cards/SettingsCard'
 import AvatarCard from '../components/cards/AvatarCard'
@@ -12,7 +12,7 @@ class ProfilePage extends Component {
     render() {
         return (
             <div>
-                <HeaderHome />
+                
                 <section id='profile' className='bg-light'>
                     <div className='container-fluid'>
                         <div className='row'>

@@ -13,6 +13,8 @@ import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 // Redux
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+
 
 // React Components
 import App from './App';
@@ -29,7 +31,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 // Reducer
 import reducers from './reducers';
 
-const store = createStore(reducers, {}, applyMiddleware());
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 // const Root = () => (
 //     <Router>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from '../components/parts/HeaderHome';
+
 import Footer from '../components/parts/Footer'
 import { ReactComponent as Ideas } from '../assets/images/ideas.svg'
 import cardvaluelist from '../assets/js/cardvalues'
@@ -14,7 +14,7 @@ export default class HomePage extends Component {
     render() {
         return (
             <div>
-                <Header />
+                
                 <div id='page-top'></div>
                 <section id="hero" className="d-flex align-items-center">
                     <div className="container">
