@@ -8,12 +8,12 @@ class Header extends React.Component {
         console.log(this.props.auth)
         switch (this.props.auth.auth){                 
             case false:
-                return (<div>
-                <li><a href="/signin">Kirjaudu</a></li>
-                <li><a href="/signup">Rekisteröidy</a></li>
+                return (<div className="row mr-2 ">
+                <li className="mr-3" key="1"><a href="/signin">Kirjaudu</a></li>
+                <li key="2"><a href="/signup">Rekisteröidy</a></li>
                 </div>);
             default:
-                return (<div>
+                return (<div className="row mr-2 ">
                 <li><a href="/api/logout">Kirjaudu ulos</a></li>
                 </div>)
         }

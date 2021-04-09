@@ -135,7 +135,17 @@ h3 {
 
 #header .mylinks {
   font-weight: bold;
-  color: #363a59a4;
+  color: #363a59a4 !important;
+}
+
+#header a {
+  font-weight: bold;
+  color: #363a59a4 !important;
+}
+
+
+#header a:hover {
+  text-decoration: none;
 }
 
 

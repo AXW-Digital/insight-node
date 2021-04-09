@@ -3,10 +3,6 @@ import {ReactComponent as Nainen } from '../../assets/images/nainen.svg';
 
 
 class Vaikuttava extends React.Component {
-    
-    greetings = (e) => {
-        alert('get started')
-    }
 
     render() {
         return (

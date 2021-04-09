@@ -5,7 +5,7 @@ export default function PrivateRoute ({component: Component, auth, ...rest}) {
     return (
       <Route
         {...rest}
-        render={(props) => auth !== false || auth !== null
+        render={(props) => auth !== false
           ? <Component {...props} />
           : <Redirect to={{pathname: '/signin', state: {from: props.location}}} />}
       />
