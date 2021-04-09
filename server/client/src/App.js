@@ -19,6 +19,7 @@ import KyselyPage from './pages/KyselyPage'
 import Header from './components/parts/Header'
 
 class App extends Component {
+  
   componentDidMount() {
     this.props.fetchUser();
     
@@ -30,7 +31,7 @@ class App extends Component {
 
   };
 
-
+  
 
   render() {
     return (
@@ -40,6 +41,8 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={LandingPage} />
             <PrivateRoute auth = {this.props.auth.auth} path = "/home" component={HomePage} />
+            <PrivateRoute auth = {this.props.auth.auth} path = "/profile" component={ProfilePage} />
+            <PrivateRoute auth = {this.props.auth.auth} path = "/survey:id" component={KyselyPage} />
             <RedirectRoute auth = {this.props.auth.auth} component={Signin} path="/signin" />
             <RedirectRoute auth = {this.props.auth.auth} component={Signup} path="/signup" />
           </div>
