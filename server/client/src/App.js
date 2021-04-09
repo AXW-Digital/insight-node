@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from './actions'
 import AOS from 'aos';
 import PrivateRoute from './helpers/PrivateRoute'
+import RedirectRoute from './helpers/RedirectRoute'
 
 
 //pages
@@ -39,8 +40,8 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={LandingPage} />
             <PrivateRoute authed = {this.props.auth.auth} path = "/home" component={HomePage} />
-            <Route component={Signin} path="/signin" />
-            <Route component={Signup} path="/signup" />
+            <RedirectRoute authed = {this.props.auth.auth} component={Signin} path="/signin" />
+            <RedirectRoute authed = {this.props.auth.auth} component={Signup} path="/signup" />
           </div>
         </BrowserRouter>
       </div>
