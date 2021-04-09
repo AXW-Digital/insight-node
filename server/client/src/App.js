@@ -3,6 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './actions'
 import AOS from 'aos';
+import PrivateRoute from './helpers/PrivateRoute'
+
 
 //pages
 import LandingPage from './pages/LandingPage'
@@ -36,7 +38,9 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={LandingPage} />
-            <Route path = "/home" component={HomePage} />
+            <PrivateRoute authed = {this.props.auth.auth} path = "/home" component={HomePage} />
+            <Route component={Signin} path="/signin" />
+            <Route component={Signup} path="/signup" />
           </div>
         </BrowserRouter>
       </div>
@@ -44,5 +48,12 @@ class App extends Component {
   }
 };
 
-export default connect(null, actions)(App);
+function mapStateToProps(auth) {
+  return { auth };
+
+}
+
+
+
+export default connect(mapStateToProps, actions)(App);
 
