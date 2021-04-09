@@ -4,7 +4,7 @@ class Signin extends Component {
     render() {
         return (
             <div className='container-fluid d-flex vh-100 vw-100 sign-bg m-0 px-0 pb-5'>
-                <div className="container">
+                <div className="container signin">
                     <div className="row">
                         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
                             <div className="card card-signin my-5">

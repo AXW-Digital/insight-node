@@ -44,7 +44,7 @@ class App extends Component {
             <PrivateRoute auth = {this.props.auth.auth} path = "/profile" component={ProfilePage} />
             <PrivateRoute auth = {this.props.auth.auth} path = "/survey:id" component={KyselyPage} />
             <RedirectRoute auth = {this.props.auth.auth} component={Signin} path="/signin" />
-            <RedirectRoute auth = {this.props.auth.auth} component={Signup} path="/signup" />
+            <Route auth = {this.props.auth.auth} component={Signup} path="/signup" />
           </div>
         </BrowserRouter>
       </div>

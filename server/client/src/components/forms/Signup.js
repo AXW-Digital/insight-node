@@ -4,7 +4,7 @@ class Signin extends Component {
     render() {
         return (
             <div className='container-fluid d-flex vh-100 vw-100 sign-bg m-0 px-0 pb-5'>
-                <div className="container">
+                <div className="container signin">
                     <div className="row sign-bg">
                         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
                             <div className="card card-signin my-5">
@@ -44,7 +44,7 @@ class Signin extends Component {
                                         </div>
                                         <div className='row justify-content-between ml-xl-4 mr-xl-4 ml-2 mr-2'>
                                         <a href="/home"> <i className="fab fa-facebook-f btn-some align-items-center justify-content-center"/></a>
-                                        <a href="/home"> <i  className="fab fa-google btn-some align-items-center justify-content-center"/></a>
+                                        <a href="/auth/google"> <i  className="fab fa-google btn-some align-items-center justify-content-center"/></a>
                                         <a href="/home"> <i  className="fab fa-linkedin btn-some align-items-center justify-content-center"/></a>
                                         <a href="/home"> <i  className="fab fa-twitter btn-some align-items-center justify-content-center"/></a>
                                         </div>

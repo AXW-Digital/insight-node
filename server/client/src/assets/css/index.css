@@ -1225,6 +1225,10 @@ voima ends
 Signin and Signup component css
 -------------------------------------------------- */
 
+.signin {
+  margin-top: var(--header-height)
+}
+
 .bx-sign {
   color: rgb(90 87 123) !important
 }
