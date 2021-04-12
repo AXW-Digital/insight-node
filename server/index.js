@@ -3,7 +3,14 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
+
+// Models
 require('./models/User');
+require('./models/Profile');
+require('./models/Settings');
+require('./models/Surveys');
+
+// Services
 require('./services/passport');
 
 
@@ -20,7 +27,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Routes
 require('./routes/authRoutes')(app);
+require('./routes/surveyRoute')(app);
+require('./routes/settingsRoute')(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
