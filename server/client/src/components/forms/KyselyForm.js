@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FormFunction from './FormFunction'
-import {Form} from 'react-bootstrap'
+import {Form, Button} from 'react-bootstrap'
 import kyselyt from '../../assets/js/kyselyt'
 
 export default class KyselyForm extends Component {
@@ -9,9 +9,10 @@ export default class KyselyForm extends Component {
         return (
             <div>
             <h2>{title}</h2>
-            <Form>
+            <form method="post" action="/api/surveys">
                 <FormFunction question = {this.props.question}/>
-            </Form>
+                <Button type="submit">Submit form</Button>
+            </form>
             </div>
         )
     }

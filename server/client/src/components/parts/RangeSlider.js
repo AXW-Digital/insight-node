@@ -3,6 +3,7 @@ import RangeSlider from 'react-bootstrap-range-slider';
 import { Form, Col, Row } from 'react-bootstrap'
 
 
+
 const SliderDist = () => {
 
     const [value, setValue] = React.useState(50);
@@ -81,12 +82,21 @@ const SliderReview = (props) => {
 
     const [value, setValue] = React.useState(3);
 
+    const [form, setForm] = React.useState({})
+
+    const setField = (field, value) => {
+        setForm({
+            ...form,
+            [field]: value
+        })
+    }
+
     return (
         <Form.Group as={Row}>
             <Col xs="9" md='11'>
                 <RangeSlider
                     value={value}
-                    onChange={e => setValue(e.target.value)}
+                    onChange={e => {setValue(e.target.value); setField(props.key, props.value)}}
                     step={1}
                     min={props.min}
                     max={props.max}
@@ -97,7 +107,7 @@ const SliderReview = (props) => {
                 />
             </Col>
             <Col xs="3" md='1'>
-                <Form.Control value={value} />
+                <Form.Control value={value} name={props.name} />
             </Col>
         </Form.Group>
 
