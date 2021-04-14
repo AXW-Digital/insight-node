@@ -1,8 +1,10 @@
 import React, { Component, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import kyselyt from '../../assets/js/kyselyt';
 import { SliderReview } from '../parts/RangeSlider';
 import Rating from '@material-ui/lab/Rating';
+import axios from 'axios';
+
 
 
 
@@ -18,7 +20,7 @@ function CreateForm(x, q, setField) {
     var choices = kyselyt.map((d) => d.kysymykset)[q]
     var type = choices.map((d) => d.type)[x]
     var group = choices.map((d) => d.group)
-    var min = choices.map((d) => d.min)[x]
+    // var min = choices.map((d) => d.min)[x]
     var max = choices.map((d) => d.max)[x]
     var key = choices.map((d) => d.num)[x]
     var new_group = false
@@ -87,7 +89,6 @@ function CreateKysely(q, setField) {
     for (i = 0; i < kys.length; i++) {
         items.push(CreateForm(i, q, setField));
     }
-    console.log(items)
     return items;
 }
 
@@ -102,11 +103,25 @@ const FormFunction = (props) => {
             [field]: value
         })
     }
+    console.log(form)
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(form)
+        
+        axios.post('/api/surveys', { form })
+            .then(res => {
+            console.log(res);
+            console.log(res.data);
+        })
+      };
         
         return (
-            <div>
+                <form onSubmit={handleSubmit}>
                 {CreateKysely(props.question, setField)}
-            </div>
+                <Button type="submit">Submit form</Button>
+                </form>
+
         )
 };
 
