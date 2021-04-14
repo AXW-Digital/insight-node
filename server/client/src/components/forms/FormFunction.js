@@ -27,8 +27,8 @@ function CreateForm(x, q, setField) {
     if (x === 0 || group[x] !== group[x - 1]) { new_group = true } else { new_group = false }
     if (x !== 0 && new_group === true) { draw_line = true } else { draw_line = false }
 
-    
-    
+
+
 
 
     return (
@@ -43,38 +43,38 @@ function CreateForm(x, q, setField) {
                         key={key + '_2'}
                         as='select'
                         multiple htmlSize={Choices(x, q).length}
-                        onChange={ e => setField(key, Array.from(e.target.selectedOptions, option => option.value)) }
-                        >{Choices(x, q).map(x => <option value= {x}>{x}</option>)}
-                        
+                        onChange={e => setField(key, Array.from(e.target.selectedOptions, option => option.value))}
+                    >{Choices(x, q).map(x => <option value={x}>{x}</option>)}
+
                     </Form.Control> :
-                type === 'single' ?
-                    <Form.Control
-                        key={key + '_2'}
-                        as='select'
-                        onChange={ e => setField(key, e.target.value) }
-                        defaultValue = ''
+                    type === 'single' ?
+                        <Form.Control
+                            key={key + '_2'}
+                            as='select'
+                            onChange={e => setField(key, e.target.value)}
+                            defaultValue=''
                         >
-                        <option className = 'text-muted' value='' disabled >Valitse yksi:</option>
-                        {Choices(x, q).map(x => <option value= {x}>{x}</option>)}
-                    </Form.Control> :
-                type === 'range' ?
-                    <div className = 'row px-2'>
-                    <Rating
-                        name= {"rating" + key} 
-                        defaultValue={0} 
-                        key={key + '_2'}
-                        max={max}
-                        size="large"
-                        onChange={ e => setField(key, e.target.value)} 
-                    />
-                    </div>
-                :
-                    <Form.Control 
-                        as='textarea' 
-                        key={key + '_2'}
-                        onChange={ e => setField(key, e.target.value) } 
-                        >
-                    </Form.Control>
+                            <option className='text-muted' value='' disabled >Valitse yksi:</option>
+                            {Choices(x, q).map(x => <option value={x}>{x}</option>)}
+                        </Form.Control> :
+                        type === 'range' ?
+                            <div className='row px-2'>
+                                <Rating
+                                    name={"rating" + key}
+                                    defaultValue={0}
+                                    key={key + '_2'}
+                                    max={max}
+                                    size="large"
+                                    onChange={e => setField(key, e.target.value)}
+                                />
+                            </div>
+                            :
+                            <Form.Control
+                                as='textarea'
+                                key={key + '_2'}
+                                onChange={e => setField(key, e.target.value)}
+                            >
+                            </Form.Control>
             }
         </Form.Group>
 
@@ -106,8 +106,8 @@ const FormFunction = (props) => {
     }
     console.log(form)
 
-    const formData = (id, form) => { 
-        
+    const formData = (id, form) => {
+
         const data = {
             id,
             formData: form,
@@ -118,28 +118,34 @@ const FormFunction = (props) => {
 
         return data
     }
-    
+
 
     const id = props.question
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(form)
-        
-        axios.post('/api/surveys',  formData(id, form) )
-            .then(res => {
-            console.log(res);
-            console.log(res.data);
-        })
-      };
-        
-        return (
-                <form onSubmit={handleSubmit}>
-                {CreateKysely(props.question, setField)}
-                <Button type="submit">Submit form</Button>
-                </form>
 
-        )
+        axios.post('/api/surveys', formData(id, form))
+            .then(res => {
+                const status = res.status;
+                if (status === 200) {
+                    window.location = "/home"
+                }
+            })
+            .catch(e => {
+                console.error(e);
+            })
+
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            {CreateKysely(props.question, setField)}
+            <Button type="submit">Submit form</Button>
+        </form>
+
+    )
 };
 
 
