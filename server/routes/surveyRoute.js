@@ -4,24 +4,45 @@ const requireLogin = require("../middlewares/requireLogin");
 const Survey = mongoose.model('survey');
 
 module.exports = app => {
-    app.post('/api/surveys', (req, res) => {
+    app.post('/api/surveys', async (req, res) => {
 
-        console.log(req.body);
-        res.send('Thanks!')
-        res.redirect('/home')
-        // const { id,
-        //         tyyppi,
-        //         kyselyTitle,
-        //         kysymykset} = req.body;
-        
-        // const survey = new Survey({
-        //     id,
-        //     tyyppi,
-        //     kyselyTitle,
-        //     kysymykset,
-        //     _user: req.user.id,
-        //     dateSent: Date.now(),
-        //     responded: true
-        // });
+        const {
+            id,
+            responded,
+            dateSent,
+            kyselyTitle,
+            formData
+        } = req.body;
+
+        const survey = new Survey({
+            id,
+            kyselyTitle,
+            _user: req.user.id,
+            responded,
+            dateSent,
+            formData
+        });
+
+        const updateSurvey = {
+            dateSent,
+            formData
+        };
+
+
+        const filter = { id: id, _user: req.user.id }
+        const surveyExists = await Survey.findOne(filter);
+
+        if (!surveyExists) {
+            await survey.save();
+            console.log('survey saved')
+        }
+
+        else {
+            await Survey.findOneAndUpdate(filter, updateSurvey, {
+                new: true
+            });
+            console.log('survey updated')
+        }
+
     });
 };

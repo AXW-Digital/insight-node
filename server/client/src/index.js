@@ -20,8 +20,7 @@ import reduxThunk from 'redux-thunk';
 import App from './App';
 
 
-// RouterDOM
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 
 
 // Font-awesome
@@ -32,21 +31,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import reducers from './reducers';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
-
-// const Root = () => (
-//     <Router>
-//         <React.Fragment>
-//                 <Switch>
-//                     <Route component={App} exact path="/" />
-//                     <Route component={Signin} path="/signin" />
-//                     <Route component={Signup} path="/signup" />
-//                     <Route component={HomePage} path = "/home" />
-//                     <Route component={ProfilePage} path='/profile' />
-//                     <Route component={KyselyPage} path = '/survey:id'/>
-//                 </Switch>
-//         </React.Fragment>
-//     </Router>
-//   )
   
 
 const Root = () => (

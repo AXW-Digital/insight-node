@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import KyselyForm from '../components/forms/KyselyForm'
 
 import Footer from '../components/parts/Footer'
-import $ from 'jquery';
+// import $ from 'jquery';
 
 
 

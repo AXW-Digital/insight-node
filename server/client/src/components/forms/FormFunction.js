@@ -1,7 +1,6 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import kyselyt from '../../assets/js/kyselyt';
-import { SliderReview } from '../parts/RangeSlider';
 import Rating from '@material-ui/lab/Rating';
 import axios from 'axios';
 
@@ -53,13 +52,15 @@ function CreateForm(x, q, setField) {
                         key={key + '_2'}
                         as='select'
                         onChange={ e => setField(key, e.target.value) }
+                        defaultValue = ''
                         >
-                        <option className = 'text-muted' value='' disabled selected>Valitse yksi:</option>
+                        <option className = 'text-muted' value='' disabled >Valitse yksi:</option>
                         {Choices(x, q).map(x => <option value= {x}>{x}</option>)}
                     </Form.Control> :
                 type === 'range' ?
                     <div className = 'row px-2'>
-                    <Rating 
+                    <Rating
+                        name= {"rating" + key} 
                         defaultValue={0} 
                         key={key + '_2'}
                         max={max}
@@ -105,11 +106,27 @@ const FormFunction = (props) => {
     }
     console.log(form)
 
+    const formData = (id, form) => { 
+        
+        const data = {
+            id,
+            formData: form,
+            responded: true,
+            dateSent: Date.now(),
+            kyselyTitle: kyselyt.map((d) => d.kyselyTitle)[id]
+        }
+
+        return data
+    }
+    
+
+    const id = props.question
+
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(form)
         
-        axios.post('/api/surveys', { form })
+        axios.post('/api/surveys',  formData(id, form) )
             .then(res => {
             console.log(res);
             console.log(res.data);

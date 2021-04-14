@@ -6,9 +6,8 @@ const surveysSchema = new Schema({
     responded: { type: Boolean, default: false},
     dateSent: Date,
     id: String,
-    tyyppi: String,
     kyselyTitle: String,
-    kysymykset: [Schema.Types.Mixed]
+    formData: [Schema.Types.Mixed]
 }, {strict: false});
 
 module.exports = mongoose.model('survey', surveysSchema);
