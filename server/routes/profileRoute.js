@@ -65,27 +65,28 @@ module.exports = app => {
             phone,
             address,
             addrNum,
-            city,
-            profileCreated,
-            lastLogin,
-            rank } = req.body;
-
-        const updateProfile = new Profile({
+            city } = req.body;
+            
+        var updateProfile = {
             fName,
             sName,
             email,
             phone,
             address,
             addrNum,
-            city,
-            profileCreated,
-            lastLogin,
+            city};
+
+        var o = Object.entries(updateProfile).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
+
+        const filter = {_user: req.user.id}
         
-        });
+        updateProfile = o
+
+        console.log(updateProfile)
 
         const profile = await Profile.findOneAndUpdate(filter, updateProfile, {
             new: true
         });
-        console.log(profile)
+       
     });
 };
