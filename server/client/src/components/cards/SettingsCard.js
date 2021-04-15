@@ -19,10 +19,14 @@ class SettingsCard extends Component {
                                             <hr />
                                         </div>
                                         <div className='col-12 '>
-                                            <SliderDist />
+                                            <SliderDist
+                                                maxdist = {this.props.maxdist}
+                                            />
                                         </div>
                                         <div className='col-12 '>
-                                            <SliderPrice />
+                                            <SliderPrice 
+                                                maxprice = {this.props.maxprice}
+                                            />
                                         </div>
                                         <div className='col-12 setting-col'>
                                             <small className="text-muted"> Sähköposti-ilmoitukset </small>
@@ -30,27 +34,42 @@ class SettingsCard extends Component {
                                         </div>
                                         <div className='col-md-4'>
                                             <div className="custom-control custom-checkbox mb-3">
-                                                <input type="checkbox" className="custom-control-input" id="checkMail" />
-                                                <label className="custom-control-label" for="checkMail">Menutestit</label>
+                                                <input 
+                                                type="checkbox" 
+                                                className="custom-control-input" 
+                                                id="checkMail" 
+                                                defaultChecked = {this.props.emailTest}
+                                                />
+                                                <label className="custom-control-label" htmlFor="checkMail">Menutestit</label>
                                             </div>
                                         </div>
                                         <div className='col-md-4'>
                                             <div className="custom-control custom-checkbox mb-3">
-                                                <input type="checkbox" className="custom-control-input" id="checkMailKysely" />
-                                                <label className="custom-control-label" for="checkMailKysely">Kyselyt</label>
+                                                <input 
+                                                type="checkbox" 
+                                                className="custom-control-input" 
+                                                id="checkMailKysely" 
+                                                defaultChecked = {this.props.emailSurvey}
+                                                />
+                                                <label className="custom-control-label" htmlFor="checkMailKysely">Kyselyt</label>
                                             </div>
                                         </div>
                                         <div className='col-md-4'>
                                             <div className="custom-control custom-checkbox mb-3">
-                                                <input type="checkbox" className="custom-control-input" id="checkMailNews" />
-                                                <label className="custom-control-label" for="checkMailNews">Newsletter</label>
+                                                <input 
+                                                type="checkbox" 
+                                                className="custom-control-input" 
+                                                id="checkMailNews" 
+                                                defaultChecked = {this.props.emailNews}
+                                                />
+                                                <label className="custom-control-label" htmlFor="checkMailNews">Newsletter</label>
                                             </div>
                                         </div>
                                         <div className='col-12 setting-col-n'>
                                             <hr />
                                         </div>
                                         <div className='col-md-3 ml-auto'>
-                                            <a href="/api/settings/update" class="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
+                                            <a href="/api/settings/update" className="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
                                         </div>
 
                                     </div>
@@ -110,7 +129,7 @@ class SettingsCard extends Component {
                                             </div>
                                         </div>
                                         <div className='col-md-3 ml-auto mt-3'>
-                                            <a href="/api/settings/update" class="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
+                                            <a href="/api/settings/update" className="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
                                         </div>
 
                                     </div>
@@ -126,23 +145,23 @@ class SettingsCard extends Component {
                                         <div className='col-12'>
                                             <div className="form-label-group">
                                                 <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-                                                <label for="inputPassword">Nykyinen salasana</label>
+                                                <label htmlFor="inputPassword">Nykyinen salasana</label>
                                             </div>
                                         </div>
                                         <div className='col-12'>
                                             <div className="form-label-group">
-                                                <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-                                                <label for="inputPassword">Uusi salasana</label>
+                                                <input type="password" id="inputPasswordNew" className="form-control" placeholder="Password" required />
+                                                <label htmlFor="inputPasswordNew">Uusi salasana</label>
                                             </div>
                                         </div>
                                         <div className='col-12'>
                                             <div className="form-label-group">
-                                                <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-                                                <label for="inputPassword">Salasana uudelleen</label>
+                                                <input type="password" id="inputPasswordNewAgain" className="form-control" placeholder="Password" required />
+                                                <label htmlFor="inputPasswordNewAgain">Salasana uudelleen</label>
                                             </div>
                                         </div>
                                         <div className='col-md-3 mb-3 ml-auto mt-3'>
-                                            <a href="/api/settings/update" class="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
+                                            <a href="/api/settings/update" className="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
                                         </div>
                                         <div className='col-12 setting-col'>
                                             <small className="text-muted ">Käyttäjähallinta: </small>
@@ -157,7 +176,7 @@ class SettingsCard extends Component {
                                             </div>
                                         </div>
                                         <div className = 'col-md-3 ml-auto'>
-                                        <a href="/api/settings/update" class="btn btn-lg btn-block text-uppercase btn-danger">Poista</a>
+                                        <a href="/api/settings/update" className="btn btn-lg btn-block text-uppercase btn-danger">Poista</a>
                                         </div>
 
 

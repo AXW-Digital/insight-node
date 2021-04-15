@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import ProfileCard from '../components/cards/ProfileCard'
 import SettingsCard from '../components/cards/SettingsCard'
 import AvatarCard from '../components/cards/AvatarCard'
@@ -43,6 +43,11 @@ class ProfilePage extends Component {
                             <div className='col-lg-8'>
                                 <SettingsCard
                                     cardTitle='Asetukset'
+                                    maxdist={50}
+                                    maxprice={20}
+                                    emailNews={true}
+                                    emailTest={false}
+                                    emailSurvey={false}
                                 />
                             </div>
                         </div>
@@ -53,4 +58,9 @@ class ProfilePage extends Component {
     }
 }
 
-export default ProfilePage;
+function mapStateToProps(data) {
+    return { data };
+
+}
+
+export default connect(mapStateToProps)(ProfilePage);

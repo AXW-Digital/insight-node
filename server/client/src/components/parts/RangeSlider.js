@@ -4,9 +4,9 @@ import { Form, Col, Row } from 'react-bootstrap'
 
 
 
-const SliderDist = () => {
+const SliderDist = (props) => {
 
-    const [value, setValue] = React.useState(50);
+    const [value, setValue] = React.useState(props.maxdist);
 
     return (
         <Form>
@@ -29,7 +29,12 @@ const SliderDist = () => {
                     />
                 </Col>
                 <Col xs="5" md='2'>
-                    <Form.Control value={value + ` km`} className='range-dist' />
+                    <Form.Control
+                    type='text'
+                    value={value + ` km`} 
+                    className='range-dist' 
+                    readOnly={true}
+                    />
                 </Col>
             </Form.Group>
         </Form>
@@ -39,21 +44,21 @@ const SliderDist = () => {
 export { SliderDist }
 
 
-const SliderPrice = () => {
+const SliderPrice = (props) => {
 
-    const [value, setValue] = React.useState(15);
+    const [value, setValue] = React.useState(props.maxprice);
 
     return (
         <Form>
             <Form.Label>
                 <p>
-
                     Annosten maksimihinta
                 </p>
             </Form.Label>
             <Form.Group as={Row}>
                 <Col xs="7" md='10'>
                     <RangeSlider
+                        defaultValue={props.maxprice}
                         value={value}
                         onChange={e => setValue(e.target.value)}
                         step={2.5}
@@ -65,7 +70,12 @@ const SliderPrice = () => {
                     />
                 </Col>
                 <Col xs="5" md='2'>
-                    <Form.Control value={value + ` €`} className='range-dist' />
+                    <Form.Control
+                    type='text'
+                    value={value + ` €`} 
+                    className='range-dist' 
+                    readOnly={true}
+                    />
                 </Col>
             </Form.Group>
         </Form>
