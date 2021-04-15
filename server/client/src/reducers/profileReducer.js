@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { FETCH_PROFILE } from '../actions/types';
 
 export default function(state = null, action) {

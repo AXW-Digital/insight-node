@@ -129,7 +129,7 @@ class SettingsCard extends Component {
                                             </div>
                                         </div>
                                         <div className='col-md-3 ml-auto mt-3'>
-                                            <a href="/api/settings/update" className="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
+                                            <a href="../api/profile/update" className="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
                                         </div>
 
                                     </div>

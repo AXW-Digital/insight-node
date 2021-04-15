@@ -11,9 +11,9 @@ export default class AvatarCard extends Component {
                                 <div className="profile-image mr-md-auto ml-sm-auto"> <img src="/img/burgerking.jpeg" alt=""/> </div>
                             </div>
                             <div className="col-xl-7 col-md-9 col-12">
-                                <h4 className="mt-3 mt-5-sm mb-3 mr-auto"><strong>John</strong> Doe</h4>
-                                <span className="job_post">Food enthusiast</span>
-                                <p>Helsinki</p>
+                                <h4 className="mt-3 mt-5-sm mb-3 mr-auto"><strong>{this.props.fName + ' '}</strong>{this.props.sName}</h4>
+                                <span className="job_post">{this.props.rank}</span>
+                                <p>{this.props.city}</p>
                             </div>
                                             
                         </div>

@@ -6,55 +6,74 @@ import AvatarCard from '../components/cards/AvatarCard'
 import cardvaluelist from '../assets/js/cardvalues'
 import { createSmallActivityCard } from '../components/cards/CardFunctions'
 
-
+// add a switch to wait for data until render
 
 class ProfilePage extends Component {
+
+
+
     render() {
-        return (
-            <div>                
-                <section id='profile' className='bg-light'>
-                    <div className='container-fluid'>
-                        <div className='row'>
-                            
+
+        const profile = this.props.data.profile
+        const settings = this.props.data.settings
+
+        switch (profile) {
+            case null:
+                return null
+            default:
+                console.log(profile)
+
+                return (
+                    <div>
+                        <section id='profile' className='bg-light'>
                             <div className='container-fluid'>
-                                <div className='row align-items-center counts counts-profile '>
-                                    <div className = 'col-xl-4'>
-                                <AvatarCard />
+                                <div className='row'>
+
+                                    <div className='container-fluid'>
+                                        <div className='row align-items-center counts counts-profile '>
+                                            <div className='col-xl-4'>
+                                                <AvatarCard
+                                                    fName={profile.fName}
+                                                    sName={profile.sName}
+                                                    city={profile.city}
+                                                    rank={profile.rank}
+                                                />
+                                            </div>
+                                            {cardvaluelist.filter(value => value.tyyppi === 'Activity').map(createSmallActivityCard)}
+                                        </div>
+                                    </div>
                                 </div>
-                                    {cardvaluelist.filter(value => value.tyyppi === 'Activity').map(createSmallActivityCard)}
+                                <div className='row '>
+                                    <div className='col-lg-4 '>
+                                        <ProfileCard
+                                            cardTitle='Profiili'
+                                            birthDate='01.01.1990'
+                                            forename={profile.fName}
+                                            surname={profile.sName}
+                                            emailAddress={profile.email}
+                                            phoneNumber={`+358` + profile.phone}
+                                            memberSince={profile.profileCreated}
+                                            lastLogin={profile.lastLogin}
+                                            homeCity={profile.city}
+                                            homeAddress={profile.address + ' ' + profile.addrNum}
+                                        />
+                                    </div>
+                                    <div className='col-lg-8'>
+                                        <SettingsCard
+                                            cardTitle='Asetukset'
+                                            maxdist={settings.maxdist}
+                                            maxprice={settings.maxprice}
+                                            emailNews={settings.emailNews}
+                                            emailTest={settings.emailTest}
+                                            emailSurvey={settings.emailSurvey}
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='row '>
-                            <div className='col-lg-4 '>
-                                <ProfileCard
-                                    cardTitle='Profiili'
-                                    birthDate='01.01.1990'
-                                    forename='John'
-                                    surname='Doe'
-                                    emailAddress='john.doe@email.com'
-                                    phoneNumber='+358 40 123 4567'
-                                    memberSince='01.03.2021'
-                                    lastLogin='Tänään'
-                                    homeCity='Helsinki'
-                                    homeAddress='Vilhonvuorenkatu 12B'
-                                />
-                            </div>
-                            <div className='col-lg-8'>
-                                <SettingsCard
-                                    cardTitle='Asetukset'
-                                    maxdist={50}
-                                    maxprice={20}
-                                    emailNews={true}
-                                    emailTest={false}
-                                    emailSurvey={false}
-                                />
-                            </div>
-                        </div>
+                        </section>
                     </div>
-                </section>
-            </div>
-        );
+                );
+        }
     }
 }
 

@@ -7,7 +7,11 @@ module.exports = app => {
 
     app.get('/api/profile', requireLogin, async (req, res) => {
 
-        const profile = await Profile.findOne({ _user: req.user.id })
+        const filter = {_user: req.user.id}
+        const update = {lastLogin: Date.now()}
+        const profile = await Profile.findOneAndUpdate(filter, update, {
+            new: true
+        });
         console.log(profile)
 
         if (!profile) {
@@ -53,7 +57,7 @@ module.exports = app => {
 
     
     
-    app.post('/api/profile/update', requireLogin, (req, res) => {
+    app.post('/api/profile/update', requireLogin, async (req, res) => {
         const {
             fName,
             sName,
@@ -76,6 +80,12 @@ module.exports = app => {
             city,
             profileCreated,
             lastLogin,
+        
         });
+
+        const profile = await Profile.findOneAndUpdate(filter, updateProfile, {
+            new: true
+        });
+        console.log(profile)
     });
 };
