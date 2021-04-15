@@ -22,6 +22,7 @@ class App extends Component {
   
   componentDidMount() {
     this.props.fetchUser();
+    this.props.fetchSettings();
     
       AOS.init({
         duration : 1500,
@@ -41,7 +42,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={LandingPage} />
             <PrivateRoute auth = {this.props.auth.auth} path = "/home" component={HomePage} />
-            <PrivateRoute auth = {this.props.auth.auth} path = "/profile" component={ProfilePage} />
+            <PrivateRoute auth = {this.props.auth.auth} settings = {this.props.settings} path = "/profile" component={ProfilePage} />
             <PrivateRoute auth = {this.props.auth.auth} path = "/survey:id" component={KyselyPage} />
             <RedirectRoute auth = {this.props.auth.auth} component={Signin} path="/signin" />
             <Route auth = {this.props.auth.auth} component={Signup} path="/signup" />
@@ -52,8 +53,8 @@ class App extends Component {
   }
 };
 
-function mapStateToProps(auth) {
-  return { auth };
+function mapStateToProps(auth, settings) {
+  return { auth, settings };
 
 }
 

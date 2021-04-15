@@ -50,7 +50,7 @@ class SettingsCard extends Component {
                                             <hr />
                                         </div>
                                         <div className='col-md-3 ml-auto'>
-                                            <a href="/signin" class="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
+                                            <a href="/api/settings/update" class="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
                                         </div>
 
                                     </div>
@@ -110,7 +110,7 @@ class SettingsCard extends Component {
                                             </div>
                                         </div>
                                         <div className='col-md-3 ml-auto mt-3'>
-                                            <a href="/signin" class="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
+                                            <a href="/api/settings/update" class="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
                                         </div>
 
                                     </div>
@@ -142,7 +142,7 @@ class SettingsCard extends Component {
                                             </div>
                                         </div>
                                         <div className='col-md-3 mb-3 ml-auto mt-3'>
-                                            <a href="/signin" class="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
+                                            <a href="/api/settings/update" class="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
                                         </div>
                                         <div className='col-12 setting-col'>
                                             <small className="text-muted ">Käyttäjähallinta: </small>
@@ -157,7 +157,7 @@ class SettingsCard extends Component {
                                             </div>
                                         </div>
                                         <div className = 'col-md-3 ml-auto'>
-                                        <a href="/signin" class="btn btn-lg btn-block text-uppercase btn-danger">Poista</a>
+                                        <a href="/api/settings/update" class="btn btn-lg btn-block text-uppercase btn-danger">Poista</a>
                                         </div>
 
 

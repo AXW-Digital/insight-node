@@ -43,11 +43,6 @@ class ProfilePage extends Component {
                             <div className='col-lg-8'>
                                 <SettingsCard
                                     cardTitle='Asetukset'
-                                    birthDate='01.01.1990'
-                                    forename='John'
-                                    surname='Doe'
-                                    emailAddress='john.doe@email.com'
-                                    phoneNumber='+358 40 123 4567'
                                 />
                             </div>
                         </div>
