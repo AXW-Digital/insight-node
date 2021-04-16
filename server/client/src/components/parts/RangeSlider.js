@@ -1,7 +1,7 @@
 import React from 'react'
 import RangeSlider from 'react-bootstrap-range-slider';
-import { Form, Col, Row } from 'react-bootstrap'
-
+import { Form, Col, Row } from 'react-bootstrap';
+import { dataService } from '../cards/SettingsCard';
 
 
 const SliderDist = (props) => {
@@ -19,7 +19,7 @@ const SliderDist = (props) => {
                 <Col xs="7" md='10'>
                     <RangeSlider
                         value={value}
-                        onChange={e => setValue(e.target.value)}
+                        onChange={e => {setValue(e.target.value); dataService.setData({'maxdist': e.target.value})}}
                         step={10}
                         min={20}
                         max={300}
@@ -60,7 +60,7 @@ const SliderPrice = (props) => {
                     <RangeSlider
                         defaultValue={props.maxprice}
                         value={value}
-                        onChange={e => setValue(e.target.value)}
+                        onChange={e => {setValue(e.target.value); dataService.setData({'maxprice': e.target.value})}}
                         step={2.5}
                         min={5}
                         max={50}

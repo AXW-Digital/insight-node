@@ -3,6 +3,33 @@ import { Tabs, Tab } from 'react-bootstrap';
 import { SliderDist, SliderPrice } from '../parts/RangeSlider';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { Subject } from 'rxjs';
+
+const subject = new Subject();
+
+const dataService = {
+    setData: d => subject.next({ value: d }),
+    clearData: () => subject.next(),
+    getData: () => subject.asObservable()
+};
+
+export { dataService }
+
+var settingsData = {
+    'maxprice': null, 
+    'maxdist': null,
+    'emailTest': null,
+    'emailSurvey': null,
+    'emailNews': null
+}
+
+
+dataService.getData().subscribe(message => {
+    var key = Object.keys(message.value)
+    settingsData[key] = message.value[key]
+    console.log(settingsData);
+});
+
 
 const SettingsCard = (props) => {
 
@@ -22,6 +49,12 @@ const SettingsCard = (props) => {
             alert(res.data)
         }
     });
+
+    const updateSettings = async values => {
+        const res = await axios.post('../api/settings/update', values)
+        alert(res.data)
+    }
+
 
 
     return (
@@ -59,6 +92,7 @@ const SettingsCard = (props) => {
                                                 className="custom-control-input"
                                                 id="checkMail"
                                                 defaultChecked={props.emailTest}
+                                                onChange={e => dataService.setData({'emailTest': e.target.checked})}
                                             />
                                             <label className="custom-control-label" htmlFor="checkMail">Menutestit</label>
                                         </div>
@@ -70,6 +104,7 @@ const SettingsCard = (props) => {
                                                 className="custom-control-input"
                                                 id="checkMailKysely"
                                                 defaultChecked={props.emailSurvey}
+                                                onChange={e => dataService.setData({'emailSurvey': e.target.checked})}
                                             />
                                             <label className="custom-control-label" htmlFor="checkMailKysely">Kyselyt</label>
                                         </div>
@@ -81,6 +116,7 @@ const SettingsCard = (props) => {
                                                 className="custom-control-input"
                                                 id="checkMailNews"
                                                 defaultChecked={props.emailNews}
+                                                onChange={e => dataService.setData({'emailNews': e.target.checked})}
                                             />
                                             <label className="custom-control-label" htmlFor="checkMailNews">Newsletter</label>
                                         </div>
@@ -89,7 +125,12 @@ const SettingsCard = (props) => {
                                         <hr />
                                     </div>
                                     <div className='col-md-3 ml-auto'>
-                                        <a href="/api/settings/update" className="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
+                                    <button
+                                            className="btn btn-lg btn-block text-uppercase btn-update-settings"
+                                            onClick={() => updateSettings(settingsData)}
+                                        >
+                                            Päivitä
+                                        </button>
                                     </div>
 
                                 </div>

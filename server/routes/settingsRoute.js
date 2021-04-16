@@ -26,8 +26,9 @@ module.exports = app => {
             res.send(settings)
         };
     });
+    
 
-    app.post('/api/settings/update', requireLogin, (req, res) => {
+    app.post('/api/settings/update', requireLogin, async (req, res) => {
         const {
             maxdist,
             maxprice,
@@ -35,13 +36,23 @@ module.exports = app => {
             emailSurvey,
             emailNews } = req.body;
 
-        const settings = new Settings({
+        var updateSettings = {
             maxdist,
             maxprice,
             emailTest,
             emailSurvey,
             emailNews,
             _user: req.user.id
+        };
+
+        updateSettings = Object.entries(updateSettings).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
+        const filter = {_user: req.user.id}
+
+        const settings = await Settings.findOneAndUpdate(filter, updateSettings, {
+            new: true
         });
+
+        res.send('Settings updated succesfully!')
+
     });
 };
