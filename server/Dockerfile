@@ -2,10 +2,10 @@
 FROM node:alpine
 
 # set the working dir for container
-WORKDIR /frontend
+WORKDIR /server
 
 # copy the json file first
-COPY ./package.json /frontend
+COPY ./package.json /server
 COPY package-lock.json ./
 
 # install npm dependencies
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # build the folder
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev" ]

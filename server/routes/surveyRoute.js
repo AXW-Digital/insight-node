@@ -30,15 +30,18 @@ module.exports = app => {
 
         const filter = { id: id, _user: req.user.id };
         const surveyExists = await Survey.findOne(filter);
+        var redir = {redirect: '/home'};
 
         if (!surveyExists) {
             await survey.save();
             console.log('survey saved');
+            return res.send(200, redir);
         } else {
             await Survey.findOneAndUpdate(filter, updateSurvey, {
                 new: true
             });
-            console.log('survey updated');           
+            console.log('survey updated');
+            return res.send(200, redir);          
         }
 
     });

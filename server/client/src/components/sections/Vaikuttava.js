@@ -14,16 +14,22 @@ class Vaikuttava extends React.Component {
                     <h1>Olet vaikuttava!</h1>
                     <p>Kasvuvaikuttajana autat luomaan parempaa ymmärrystä elämyspuolen palveluista.
                     Ole mukana muokkaamassa tulevaisuutta!</p>
-                    <a href="/signin"  className="btn-get-started scrollto">Kirjaudu</a>
-                    <a href="/signup"  className="btn-get-rekister scrollto">Rekisteröidy</a>
-                    </div>);
-            default:
-                return (<div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
-                    <h1>Hei {data.profile.fName}, <br/> olet vaikuttava!</h1>
-                    <p>Kasvuvaikuttajana autat luomaan parempaa ymmärrystä elämyspuolen palveluista.
-                    Jatka tästä vaikuttamaan!</p>
-                    <a href="/home" className="btn-get-started scrollto">Jatka</a>
+                    <a href="/signin" className="btn-get-started scrollto">Kirjaudu</a>
+                    <a href="/signup" className="btn-get-rekister scrollto">Rekisteröidy</a>
                 </div>);
+            default:
+                switch (data.profile) {
+                    case null:
+                        return null
+                    default:
+                        return (<div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
+                            <h1>Hei {data.profile.fName}, <br /> olet vaikuttava!</h1>
+                            <p>Kasvuvaikuttajana autat luomaan parempaa ymmärrystä elämyspuolen palveluista.
+                            Jatka tästä vaikuttamaan!</p>
+                            <a href="/home" className="btn-get-started scrollto">Jatka</a>
+                        </div>);
+
+                }
         }
 
     }

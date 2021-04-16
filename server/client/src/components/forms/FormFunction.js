@@ -3,8 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import kyselyt from '../../assets/js/kyselyt';
 import Rating from '@material-ui/lab/Rating';
 import axios from 'axios';
-
-
+import SurveyModal from '../parts/SurveyModal';
 
 
 
@@ -26,9 +25,6 @@ function CreateForm(x, q, setField) {
     var draw_line = false
     if (x === 0 || group[x] !== group[x - 1]) { new_group = true } else { new_group = false }
     if (x !== 0 && new_group === true) { draw_line = true } else { draw_line = false }
-
-
-
 
 
     return (
@@ -130,8 +126,10 @@ const FormFunction = (props) => {
             .then(res => {
                 const status = res.status;
                 if (status === 200) {
-                    window.location = "/home"
+                    setModalShow(true)
                 }
+
+
             })
             .catch(e => {
                 console.error(e);
@@ -139,10 +137,18 @@ const FormFunction = (props) => {
 
     };
 
+    const [modalShow, setModalShow] = React.useState(false);
+    const couponCount = kyselyt.map((d) => d.couponCount)[props.question]
+
     return (
         <form onSubmit={handleSubmit}>
             {CreateKysely(props.question, setField)}
             <Button type="submit">Submit form</Button>
+            <SurveyModal
+               show={modalShow}
+               onHide={() => {setModalShow(false); window.location = "/home"}}
+               couponCount={couponCount} 
+            />
         </form>
 
     )
