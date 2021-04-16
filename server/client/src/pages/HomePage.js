@@ -18,13 +18,11 @@ class HomePage extends Component {
                 return null
             default:
                 console.log(profile)
-                return <h1>Tervetuloa {profile.fName}!</h1>
-                
+                return <h1>Tervetuloa {profile.fName}!</h1>               
 
-        }
-        
-
+        }      
     }
+
     render() {
         return (
             <div>                

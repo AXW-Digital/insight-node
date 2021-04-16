@@ -202,8 +202,7 @@ const SettingsCard = (props) => {
                                                 onChange={formik.handleChange}
                                                 value={formik.values.city}
                                                 className="form-control"
-                                                placeholder="."
-                                                />
+                                                placeholder="."/>
                                             <label htmlFor="city">Paikkakunta</label>
                                         </div>
                                     </div>

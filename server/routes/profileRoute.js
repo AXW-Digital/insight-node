@@ -33,7 +33,8 @@ module.exports = app => {
             city,
             profileCreated,
             lastLogin,
-            rank } = req.body;
+            rank 
+        } = req.body;
 
         const newProfile = new Profile({
             fName,
@@ -54,7 +55,6 @@ module.exports = app => {
         res.redirect('/home');
 
     });
-
     
     
     app.post('/api/profile/update', requireLogin, async (req, res) => {
@@ -66,7 +66,7 @@ module.exports = app => {
             address,
             addrNum,
             city } = req.body;
-            
+
         var updateProfile = {
             fName,
             sName,
@@ -76,14 +76,11 @@ module.exports = app => {
             addrNum,
             city};
 
-        var o = Object.entries(updateProfile).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
-
-        const filter = {_user: req.user.id}
-        
+        var o = Object.entries(updateProfile).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})        
         updateProfile = o
-
         console.log(updateProfile)
 
+        const filter = {_user: req.user.id}
         const profile = await Profile.findOneAndUpdate(filter, updateProfile, {
             new: true
         });
