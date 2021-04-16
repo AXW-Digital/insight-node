@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 //components
 
 import Vaikuttava from './../components/sections/Vaikuttava';
@@ -15,7 +16,7 @@ class LandingPage extends Component {
     render() {
         return (
                 <div>
-                <Vaikuttava />
+                <Vaikuttava data = {this.props.data} />
                 <Kukkavoi />
                 <Kasvuvaikkuttajat />
                 <Growflow />
@@ -26,4 +27,11 @@ class LandingPage extends Component {
     }
 }
 
-export default LandingPage;
+function mapStateToProps(data) {
+    return {data};
+  
+  }
+  
+  
+  
+export default connect(mapStateToProps)(LandingPage);

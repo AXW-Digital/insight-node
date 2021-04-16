@@ -37,18 +37,19 @@ class App extends Component {
   
 
   render() {
+    const authStatus = this.props.auth.auth
     return (
       <div>
         <BrowserRouter>
           <div>
             <Header />
             <Route exact path="/" component={LandingPage} />
-            <PrivateRoute auth = {this.props.auth.auth} path = "/home" component={HomePage} />
-            <PrivateRoute auth = {this.props.auth.auth} settings = {this.props.settings} exact path = "/profile" component={ProfilePage} />
-            <PrivateRoute auth = {this.props.auth.auth} path = "/survey:id" component={KyselyPage} />
-            <RedirectRoute auth = {this.props.auth.auth} component={Signin} path="/signin" />
-            <Route auth = {this.props.auth.auth} component={Signup} path="/signup" />
-            <PrivateRoute auth = {this.props.auth.auth} component={CreateProfile} path="/profile/create" />
+            <PrivateRoute auth = {authStatus} path = "/home" component={HomePage} />
+            <PrivateRoute auth = {authStatus} settings = {this.props.settings} exact path = "/profile" component={ProfilePage} />
+            <PrivateRoute auth = {authStatus} path = "/survey:id" component={KyselyPage} />
+            <RedirectRoute auth = {authStatus} component={Signin} path="/signin" />
+            <Route auth = {authStatus} component={Signup} path="/signup" />
+            <PrivateRoute auth = {authStatus} component={CreateProfile} path="/profile/create" />
 
           </div>
         </BrowserRouter>
