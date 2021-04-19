@@ -4,6 +4,19 @@ const requireLogin = require("../middlewares/requireLogin");
 const Survey = mongoose.model('survey');
 
 module.exports = app => {
+
+    app.get('/api/surveys/count', requireLogin, async (req, res) => {
+
+        const filter = { _user: req.user.id };
+        const selection = 'id -_id'
+        const surveyAns = await Survey.find(filter).select(selection);        
+        let result = surveyAns.map(a => a.id);
+        return res.send(200, result)
+
+
+    }) 
+
+
     app.post('/api/surveys', requireLogin, async (req, res) => {
 
         const {

@@ -1,7 +1,7 @@
 const cardvaluelist = [
     
     {
-        id: 'mcdonalds_1',
+        id: '0',
         name: "McDonald's",
         picUrl: '/img/mcd.jfif',
         formTitle: 'McFeedback™',
@@ -13,7 +13,7 @@ const cardvaluelist = [
     },
 
     {
-        id: 'mcdonalds_2',
+        id: 'mc_d2',
         name: "McDonald's",
         picUrl: '/img/beef.jfif',
         formTitle: 'Menutestaus Helsinki',
@@ -35,7 +35,7 @@ const cardvaluelist = [
     },
 
     {
-        id: 'hese_1',
+        id: '1',
         name: "Hesburger",
         picUrl: '/img/hese.jpg',
         formTitle: 'Kiitä, moiti, kysy tai ehdota',
@@ -60,7 +60,7 @@ const cardvaluelist = [
     },
 
     {
-        id: 'burgerking_1',
+        id: '2',
         name: "Burger King",
         picUrl: '/img/burgerking.jpeg',
         formTitle: 'Oma BK-Kokemukseni',
@@ -84,7 +84,7 @@ const cardvaluelist = [
     },
 
     {
-        id: '1',
+        id: 'a1',
         boxIcon: 'bx bx-message-detail',
         count: 15,
         cardText: 'Vastatut kyselyt',
@@ -94,7 +94,7 @@ const cardvaluelist = [
     },
 
     {
-        id: '2',
+        id: 'a2',
         boxIcon: 'bx bx-coin-stack',
         count: 72,
         cardText: 'Kerrytetty bonus',
@@ -104,7 +104,7 @@ const cardvaluelist = [
     },
 
     {
-        id: '3',
+        id: 'a3',
         boxIcon: 'bx bx-been-here',
         count: 5,
         cardText: 'Menutestiä yhteensä',
@@ -114,7 +114,7 @@ const cardvaluelist = [
     },
 
     {
-        id: '5',
+        id: 'a4',
         boxIcon: 'bx bx-diamond',
         count: 32,
         cardText: 'Arvonta kuponkia',
