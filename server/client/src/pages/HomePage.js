@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import Footer from '../components/parts/Footer'
 import { ReactComponent as Ideas } from '../assets/images/ideas.svg'
 import cardvaluelist from '../assets/js/cardvalues'
-import {createCard} from '../components/cards/CardFunctions'
-import {createActivityCard} from '../components/cards/CardFunctions'
+import { createCard } from '../components/cards/CardFunctions'
+import { createActivityCard } from '../components/cards/CardFunctions'
 import axios from 'axios';
 
 
@@ -20,41 +20,39 @@ class HomePage extends Component {
     componentDidMount() {
         console.debug("After mount! Let's load data from API...");
         axios.get('../api/surveys/count').then(response => {
-          this.setState({ surveyAns: response.data });
-          this.setState({ isLoading: false });
+            this.setState({ surveyAns: response.data });
+            this.setState({ isLoading: false });
         });
     }
-    
-    renderCards() {   
-        const { isLoading, surveyAns } = this.state;     
+
+    renderCards() {
+        const { isLoading, surveyAns } = this.state;
         console.log(surveyAns)
-        switch(isLoading){
+        switch (isLoading) {
             default:
                 return (<div className="row g-4 d-flex">
-                        Loading....
-                        </div>)
+                    Loading....
+                </div>)
             case false:
                 const surveyCount = cardvaluelist.filter(card => card.tyyppi === 'Vastaa' && !surveyAns.includes(card.id)).map(createCard)
-                
+
                 if (surveyCount === undefined || surveyCount.length === 0) {
-                        console.log(surveyCount)
-                        return <div>Olet vastannut kaikkiin kyselihin!</div>
+                    console.log(surveyCount)
+                    return <div>Olet vastannut kaikkiin kyselihin!</div>
                 } else {
                     console.log(surveyCount)
-                        return (                            
-                            <div className="row g-4 d-flex">
+                    return (
+                        <div className="row g-4 d-flex">
                             {cardvaluelist.filter(card => card.tyyppi === 'Vastaa' && !surveyAns.includes(card.id)).map(createCard)
                             }
-                            </div>
-                        )
+                        </div>
+                    )
                 }
-                    
-                        
 
-                }
-                
         }
-    
+
+    }
+
 
 
 
@@ -65,14 +63,14 @@ class HomePage extends Component {
                 return null
             default:
                 console.log(profile)
-                return <h1>Tervetuloa {profile.fName}!</h1>               
+                return <h1>Tervetuloa {profile.fName}!</h1>
 
-        }      
+        }
     }
 
     render() {
         return (
-            <div>                
+            <div>
                 <div id='page-top'></div>
                 <section id="hero" className="d-flex align-items-center">
                     <div className="container">
@@ -81,7 +79,7 @@ class HomePage extends Component {
                                 {this.renderContent()}
                                 <p>Mitä tekstiä tälle sivulle kuuluu? Pystyisikö tähän koostamaan vastaajan aktiivisuutta tai nostamaan viime kyselyn vaikutuksia?</p>                                <div className='counts'>
                                     <div className='row m-4'>
-                                {cardvaluelist.filter(card => card.tyyppi === 'Activity').map(createActivityCard)}
+                                        {cardvaluelist.filter(card => card.tyyppi === 'Activity').map(createActivityCard)}
                                     </div>
                                 </div>
                             </div>
@@ -98,8 +96,8 @@ class HomePage extends Component {
                         <header className="section-header">
                             <h3>Kyselyt</h3>
                             <p>Veritatis et dolores facere numquam et praesentium</p>
-                        </header>                        
-                        {this.renderCards()}                        
+                        </header>
+                        {this.renderCards()}
                     </div>
                 </section>
                 <section id='menutestaus' className="d-flex align-items-center bg-light justify-content-center kysely">
@@ -109,7 +107,7 @@ class HomePage extends Component {
                             <p>Veritatis et dolores facere numquam et praesentium</p>
                         </header>
                         <div className="row g-4 d-flex">
-                        {cardvaluelist.filter(card => card.tyyppi === 'Osallistu').map(createCard)}
+                            {cardvaluelist.filter(card => card.tyyppi === 'Osallistu').map(createCard)}
                         </div>
                     </div>
                 </section>
