@@ -5,11 +5,12 @@ import SettingsCard from '../components/cards/SettingsCard'
 import AvatarCard from '../components/cards/AvatarCard'
 import cardvaluelist from '../assets/js/cardvalues'
 import { createSmallActivityCard } from '../components/cards/CardFunctions'
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 
 // add a switch to wait for data until render
 
 class ProfilePage extends Component {
-
+    
 
 
     render() {
@@ -17,9 +18,13 @@ class ProfilePage extends Component {
         const profile = this.props.data.profile
         const settings = this.props.data.settings
 
+        if (settings === null || profile === null) {
+            <ClimbingBoxLoader size = {150} />
+        }
+
         switch (profile) {
             case null:
-                return null
+                return <ClimbingBoxLoader size = {150} />
             default:
                 console.log(profile)
 
