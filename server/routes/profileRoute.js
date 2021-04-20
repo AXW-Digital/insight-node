@@ -52,7 +52,8 @@ module.exports = app => {
 
         await newProfile.save();
         console.log('user profile created');
-        res.redirect('/home');
+        return res.json({redir: '/home'})
+        
 
     });
     
