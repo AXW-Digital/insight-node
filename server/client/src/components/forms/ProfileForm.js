@@ -1,8 +1,10 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const ProfileForm = () => {
+        const history = useHistory();
     
         const formik = useFormik({
             initialValues: {
@@ -18,9 +20,9 @@ const ProfileForm = () => {
                 rank: 'Vaikuttaja'
 
             },
-            onSubmit: async values =>  {
-                const res = await axios.post('../api/profile/create', values)
-                alert(res.data)
+            onSubmit: async values =>  {                
+                const res = await axios.post('../api/profile/create', values).then(history.push('/home'))
+                
             }
         }); 
 
