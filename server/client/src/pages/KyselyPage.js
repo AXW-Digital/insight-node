@@ -8,7 +8,7 @@ import Footer from '../components/parts/Footer'
 
 
 
-export default class KyselyPage extends Component {
+export default function KyselyPage (props) {
     
     // // This jquery function enables toggle of multiple select forms
     // componentDidMount() {
@@ -24,21 +24,20 @@ export default class KyselyPage extends Component {
 
     
 
-    render() {
-        console.log(this.props.match.params.id)
+
         return (
             <div>
                 
                 <div id='page-top'> </div>
                 <section id='kysely' className='bg-light'>
                     <div className='container'>
-                        <KyselyForm question = {this.props.match.params.id}/>
+                        <KyselyForm question = {props.match.params.id}/>
                     </div>
                 </section>
                 <Footer />
             </div>
             
         )
-    }
+    
 }
 

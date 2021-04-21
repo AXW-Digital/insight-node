@@ -17,8 +17,10 @@ const ProfileForm = () => {
                 city: '',
                 profileCreated: Date.now(),
                 lastLogin: Date.now(),
-                rank: 'Vaikuttaja'
-
+                rank: 'Vaikuttaja',
+                level:0,
+                coupons:0,
+                points:0
             },
             onSubmit: async values =>  {                
                 const res = await axios.post('../api/profile/create', values).then(history.push('/home'))

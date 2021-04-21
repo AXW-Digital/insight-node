@@ -2,11 +2,11 @@ import { Modal, Button } from 'react-bootstrap';
 
 const SurveyModal = (props) => {
     
-    const couponText = (couponCount) => {
-        if (couponCount < 2){
-            return 'Olet ansainnut yhden kupongin.'
+    const pointText = (pointCount) => {
+        if (pointCount < 2){
+            return 'Olet ansainnut yhden pisteen.'
         } else {
-            return 'Olet ansainnut ' + couponCount + ' kuponkia.'
+            return 'Olet ansainnut ' + pointCount + ' pistettä.'
         }        
     }
 
@@ -23,7 +23,7 @@ const SurveyModal = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>{couponText(props.couponCount)} Mahtavaa!</h4>
+          <h4>{pointText(props.pointCount)} Mahtavaa!</h4>
           <p>
             Vastauksesi on tallennettu onnistuneesti.             
             Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja. 

@@ -3,7 +3,7 @@ const kyselyt = [
         id: "1",
         tyyppi: "custom",
         kyselyTitle: "Ravintolakysely",
-        couponCount: 3,
+        pointCount: 3,
         kysymykset: [
             {
                 num: 1,
@@ -217,7 +217,7 @@ const kyselyt = [
         id: "2",
         tyyppi: "daily",
         kyselyTitle: "Päivittäinen ravintola-arvostelu",
-        couponCount: 1,
+        pointCount: 1,
         kysymykset: [
             {
                 num: 1,
@@ -281,7 +281,7 @@ const kyselyt = [
         id: "3",
         tyyppi: "custom",
         kyselyTitle: "Taustakysely",
-        couponCount: 2,
+        pointCount: 2,
         kysymykset: [
             {
                 num: 1,

@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button as Btn } from 'react-bootstrap';
 import kyselyt from '../../assets/js/kyselyt';
 import Rating from '@material-ui/lab/Rating';
 import axios from 'axios';
 import SurveyModal from '../parts/SurveyModal';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import Button from '@material-ui/core/Button';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 1500,
+        flexGrow: 2,
+    },
+});
 
 
 function Choices(n, q) {
@@ -30,8 +41,6 @@ function CreateForm(x, q, setField) {
     return (
 
         <Form.Group key={key} controlId={key}>
-            { draw_line ? <hr className='group-line' /> : null}
-            { new_group ? <h4 className='group-name'>{group[x]}</h4> : null}
             <Form.Label key={key + '_1'}>{kyselyt.map((d) => d.kysymykset)[q].map((y) => y.title)[x]}</Form.Label>
             {
                 type === 'multi' ?
@@ -109,7 +118,8 @@ const FormFunction = (props) => {
             formData: form,
             responded: true,
             dateSent: Date.now(),
-            kyselyTitle: kyselyt.map((d) => d.kyselyTitle)[id]
+            kyselyTitle: kyselyt.map((d) => d.kyselyTitle)[id],
+            points: kyselyt.map((d) => d.pointCount)[id]
         }
 
         return data
@@ -138,17 +148,64 @@ const FormFunction = (props) => {
     };
 
     const [modalShow, setModalShow] = React.useState(false);
-    const couponCount = kyselyt.map((d) => d.couponCount)[props.question]
+    const pointCount = kyselyt.map((d) => d.pointCount)[id]
+    const classes = useStyles();
+    const theme = useTheme();
+    const [activeStep, setActiveStep] = React.useState(0);
+
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+
+    var items = CreateKysely(id, setField)
+    const steps = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.choices).length;
+    var group = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.group)
+
 
     return (
-        <form onSubmit={handleSubmit}>
-            {CreateKysely(props.question, setField)}
-            <Button type="submit">Submit form</Button>
-            <SurveyModal
-               show={modalShow}
-               onHide={() => {setModalShow(false); window.location = "/home"}}
-               couponCount={couponCount} 
+        <form onSubmit={handleSubmit}> 
+        <h2>{props.title}</h2> 
+                                        
+            <MobileStepper
+                variant="progress"
+                steps={steps}
+                position="static"
+                activeStep={activeStep}
+                className={classes.root}
+                nextButton={
+                    <Button size="small" onClick={handleNext} disabled={activeStep === steps-1}>
+                        Next
+                    {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                    </Button>
+                }
+                backButton={
+                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                    {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                        Back
+                    </Button>
+                }
             />
+            <hr className='group-line' /> 
+            <h4 className='group-name'>{group[activeStep]}</h4> 
+            {items[activeStep]}
+            {activeStep === (steps - 1) ?
+            <div>
+            <Btn type="submit">Submit form</Btn>
+            <SurveyModal
+                show={modalShow}
+                onHide={() => { setModalShow(false); window.location = "/home" }}
+                pointCount={pointCount}
+            /> 
+            </div>
+            :
+            null 
+            
+        }
+            
         </form>
 
     )

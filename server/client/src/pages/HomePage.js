@@ -110,7 +110,10 @@ class HomePage extends Component {
                             {this.renderCards()}
                         </div>
                     </section>
-                    <section id='menutestaus' className="d-flex align-items-center bg-light justify-content-center kysely">
+
+                    {/* Menutests commented out due to not being part of current plan */}
+
+                    {/* <section id='menutestaus' className="d-flex align-items-center bg-light justify-content-center kysely">
                         <div className="container card-container" data-aos="fade-up">
                             <header className="section-header">
                                 <h3>Menutestaukset</h3>
@@ -120,7 +123,8 @@ class HomePage extends Component {
                                 {cardvaluelist.filter(card => card.tyyppi === 'Osallistu').map(createCard)}
                             </div>
                         </div>
-                    </section>
+                    </section> */}
+                    
                     <Footer />
                 </div>
             )
