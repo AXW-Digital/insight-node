@@ -87,4 +87,14 @@ module.exports = app => {
         });
        
     });
+
+
+    app.get('/api/profileupdate', requireLogin, async (req, res) => {
+
+        
+        const surveyAns = await Survey.updateAll()
+        return res.send(200, result)
+
+
+    }) 
 };
