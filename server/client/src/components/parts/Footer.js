@@ -15,7 +15,7 @@ const Footer= () => (
                             </p>
                         </div>
 
-                        <div className="col-lg-3 col-md-6 footer-links" data-aos="fade-up" data-aos-delay="200">
+                        {/* <div className="col-lg-3 col-md-6 footer-links" data-aos="fade-up" data-aos-delay="200">
                             <h4>Pikalinkit</h4>
                             <ul>
                             <li> <a href="#kukka">Visio</a></li>
@@ -23,7 +23,7 @@ const Footer= () => (
                             <li><a href="#growflow">Growflow</a></li>
                             <li><a href="#voima">Voima</a></li>
                             </ul>
-                        </div>
+                        </div> */}
 
                        
 
