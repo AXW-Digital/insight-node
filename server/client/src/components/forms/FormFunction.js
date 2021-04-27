@@ -194,8 +194,9 @@ const FormFunction = (props) => {
                     </Button>
                 }
             />
-            <hr className='group-line' /> 
             <h4 className='group-name'>{group[activeStep]}</h4> 
+            <hr className='group-line' /> 
+            
             {items[activeStep]}
             {activeStep === (steps - 1) ?
             <div>

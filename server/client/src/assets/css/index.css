@@ -1892,7 +1892,9 @@ Kysely Page CSS
   color:rgba(63, 61, 86, 1)
 }
 
-
+#kysely h2{
+  text-align: center;
+}
 
 
 #kysely .kyselyTitle {
