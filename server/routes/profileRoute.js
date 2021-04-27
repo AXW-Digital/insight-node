@@ -47,7 +47,10 @@ module.exports = app => {
             profileCreated,
             lastLogin,
             rank,
-            _user: req.user.id
+            _user: req.user.id,
+            level: 1,
+            points: 0,
+            coupons: 0
         })
 
         await newProfile.save();
@@ -96,6 +99,8 @@ module.exports = app => {
         const currentPoints = await Profile.findOne(filter)
         console.log('current points:')
         console.log(currentPoints.points)
+
+        if (currentPoints.points === undefined) currentPoints.points = 0
         
         points += currentPoints.points
         const updatePoints = { points }       

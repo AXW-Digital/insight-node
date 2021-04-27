@@ -58,7 +58,7 @@ class HomePage extends Component {
                         const SurveyResetTime = renewableSurveysList.filter(item => item.id === surveyId).map(a => a.resetHours)[0]
 
                         // check if enough time has passed since survey was ansered
-                        SurveyResetTime < hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
+                        SurveyResetTime <= hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
 
                         // if a renewable survey id is in the list of submitted surveys, check if can be removed and delete from that list 
                         if (renewableSurveysIdList.includes(surveyId) && renewSurvey) {

@@ -18,7 +18,7 @@ class ProfilePage extends Component {
         const profile = this.props.data.profile
         const settings = this.props.data.settings
 
-        if (settings === null || profile === null) {
+        if (settings === null || profile === null || settings === undefined || profile === undefined) {
             <ClimbingBoxLoader size = {150} />
         }
 
