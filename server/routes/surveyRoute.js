@@ -8,9 +8,34 @@ module.exports = app => {
     app.get('/api/surveys/count', requireLogin, async (req, res) => {
 
         const filter = { _user: req.user.id };
-        const selection = 'id -_id'
+        const selection = 'id -_id dateSent'
         const surveyAns = await Survey.find(filter).select(selection);        
         let result = surveyAns.map(a => a.id);
+        let timestamp = surveyAns.map(a => a.dateSent)
+
+        const timeDiff = (timestamp) => {
+            let stamp = new Date(timestamp).getTime()
+            let now = new Date(Date.now()).getTime()
+            difference = now - stamp
+            return difference
+        }
+
+        const diff = timestamp.map(timeDiff)
+        const list = []
+        var i;
+
+        for (i = 0; i < diff.length; i++){
+             list.push({
+                 'id': result[i],
+                 'diff': diff[i]
+             })
+        }
+
+        result = {
+            id: result,
+            timestamp,
+            list
+        }
         return res.send(200, result)
 
 

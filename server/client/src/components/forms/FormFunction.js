@@ -132,18 +132,23 @@ const FormFunction = (props) => {
         event.preventDefault();
         console.log(form)
 
-        axios.post('/api/surveys', formData(id, form))
-            .then(res => {
-                const status = res.status;
-                if (status === 200) {
+        
+        axios.all([
+            axios.post('/api/surveys', formData(id, form)),
+            axios.post('/api/profile/points', formData(id, form))
+        ]).then(axios.spread((res1, res2) => {
+                const status1 = res1.status;
+                const status2 = res2.status;
+                console.log('res1', res1, 'res2', res2)
+                if (status1 === 200) {
                     setModalShow(true)
                 }
-
-
+                if (status2 === 200) {
+                    console.log('points updated')
+                }
             })
-            .catch(e => {
-                console.error(e);
-            })
+            
+        );        
 
     };
 

@@ -36,6 +36,7 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-shimmer-effect": "^1.0.9",
     "react-spinners": "^0.10.6",
     "react-twitter-auth": "0.0.13",
     "redux": "^4.0.5",

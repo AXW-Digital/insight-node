@@ -89,12 +89,21 @@ module.exports = app => {
     });
 
 
-    app.get('/api/profileupdate', requireLogin, async (req, res) => {
-
+    app.post('/api/profile/points', requireLogin, async (req, res) => {
+        var { points } = req.body;
+        const filter = {_user: req.user.id}
         
-        const surveyAns = await Survey.updateAll()
-        return res.send(200, result)
+        const currentPoints = await Profile.findOne(filter)
+        console.log('current points:')
+        console.log(currentPoints.points)
+        
+        points += currentPoints.points
+        const updatePoints = { points }       
+        
+        const profile = await Profile.findOneAndUpdate(filter, updatePoints, {
+            new: true
+        });
 
-
+        return res.send(200) 
     }) 
 };

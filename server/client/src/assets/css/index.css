@@ -197,7 +197,9 @@ h3 {
   margin: 10rem 0 -72px 0;
 }
 
-
+#hero .container{
+  z-index: 1;
+}
 
 #hero h1 {
   margin: 0 0 10px 0;
@@ -1687,6 +1689,9 @@ Kysely Cards CSS
 Activity Cards CSS
 -------------------------------------------------- */
 
+
+
+
 .counts {
   padding: 70px 0 60px;
 }
@@ -1720,6 +1725,39 @@ Activity Cards CSS
 
 }
 
+/**
+ * The "shine" element
+ */
+
+ 
+
+ .glowing::before{
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: -3px;
+  background: linear-gradient(45deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde);
+  background-size: 400%;
+  width: calc(100% + -24px);
+  height: calc(100% + 6px);
+  z-index: -2;
+  animation: glower 40s linear infinite;
+  box-shadow: 0 0 30px 10px rgba(0, 204, 255, 0.603)
+}
+
+@keyframes glower {
+  0% {
+    background-position: 0 0;
+  }
+  
+  50% {
+    background-position: 400% 0;
+  }
+  
+  100% {
+    background-position: 0 0;
+  }
+}
 
 /* -----------------------------------------------
 Profile Page CSS

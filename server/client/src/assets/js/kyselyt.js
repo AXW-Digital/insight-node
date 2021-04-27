@@ -218,6 +218,7 @@ const kyselyt = [
         tyyppi: "daily",
         kyselyTitle: "Päivittäinen ravintola-arvostelu",
         pointCount: 1,
+        resetHours: 3,
         kysymykset: [
             {
                 num: 1,

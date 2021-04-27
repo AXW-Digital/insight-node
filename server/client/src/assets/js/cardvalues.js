@@ -8,7 +8,7 @@ const cardvaluelist = [
         formText: 'Miten meillä meni? Anna palautetta viimeisimmästä ravintolakäynnistäsi ja auta meitä kehittämään toimintaamme.',
         formUrl: '/survey0',
         color: 'blue',
-        minutes: '(3 min)',
+        minutes: '(3 pts)',
         tyyppi: 'Vastaa'
     },
 
@@ -42,8 +42,9 @@ const cardvaluelist = [
         formText: 'Saitko Hesburgerissa erityisen mukavaa palvelua? Huomasitko jossain parantamisen varaa? Haluaisitko valikoimiimme uusia tuotteita? Kaikki palaute on meille arvokasta. ',
         formUrl: '/survey1',
         color: 'green',
-        minutes: '(5 min)',
-        tyyppi: 'Vastaa'
+        minutes: '(5 pts)',
+        tyyppi: 'Vastaa',
+        resetHours: 3
 
     },
 
@@ -67,7 +68,7 @@ const cardvaluelist = [
         formText: 'Tervetuloa Minun BURGER KING® -kokemukseni -kyselyyn. Arvostamme rehellistä palautettasi ja sitä, että käytät aikaasi kyselyyn vastaamiseen.',
         formUrl: '/survey2',
         color: 'red',
-        minutes: '(10 min)',
+        minutes: '(10 pts)',
         tyyppi: 'Vastaa'
 
     },
