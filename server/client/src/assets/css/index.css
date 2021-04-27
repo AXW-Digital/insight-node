@@ -120,7 +120,7 @@ h3 {
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
-  padding: 15px 0;
+  padding: 16px 0;
   background: white;
   box-shadow: 0px 2px 15px #363a59;
   font-weight: bold;
@@ -137,6 +137,8 @@ h3 {
 #header .mylinks {
   font-weight: bold;
   color: #363a59a4 !important;
+  background-color: #ffffff;
+  padding-left: 23px;
 }
 
 #header a {
@@ -161,7 +163,7 @@ h3 {
 
   #header .mylinks {
     font-weight: bold;
-    background-color: #e2b11194;
+    background-color: #effae5c0;
     ;
     color: #363a59;
   }

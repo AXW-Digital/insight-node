@@ -33,7 +33,7 @@ class Header extends React.Component {
                     Growflow Insights
                 </Link>
                 <Navbar.Toggle className="text-danger" aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav ">
+                <Navbar.Collapse id="responsive-navbar-nav">
                     {/* <Nav className="mr-auto">
                         <Nav.Link className="mylinks" href="#kukka">Visio</Nav.Link>
                         <Nav.Link className="mylinks" href="#kasvut">Kasvuvaikuttaja</Nav.Link>
