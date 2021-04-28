@@ -2,8 +2,9 @@ import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux';
 
-const ProfileForm = () => {
+const ProfileForm = (props) => {
         const history = useHistory();
     
         const formik = useFormik({
@@ -28,7 +29,7 @@ const ProfileForm = () => {
             }
         }); 
 
-
+        console.log(props.data)
 
         return (
             <div className='container-fluid d-flex vh-100 vw-100 sign-bg m-0 px-0 pb-5'>
@@ -155,5 +156,12 @@ const ProfileForm = () => {
         );
     }
 
-export default ProfileForm
+function mapStateToProps(data) {
+        return { data };
+    
+    }
+    
+export default connect(mapStateToProps)(ProfileForm);
+
+
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const requireLogin = require("../middlewares/requireLogin");
+const checkProfile = require("../middlewares/checkProfile");
 
 const Profile = mongoose.model('profile');
 
@@ -12,13 +13,11 @@ module.exports = app => {
         const profile = await Profile.findOneAndUpdate(filter, update, {
             new: true
         });
+        
         console.log(profile)
+        res.send(profile)
 
-        if (!profile) {
-            res.redirect('/profile/create')
-        } else {
-            res.send(profile)
-        };
+        
     });
 
     app.post('/api/profile/create', requireLogin, async (req, res) => {

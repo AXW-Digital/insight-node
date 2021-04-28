@@ -5,6 +5,7 @@ import * as actions from './actions'
 import AOS from 'aos';
 import PrivateRoute from './helpers/PrivateRoute'
 import RedirectRoute from './helpers/RedirectRoute'
+import CreateProfileRoute from './helpers/CreateProfileRoute'
 
 
 //pages
@@ -38,18 +39,22 @@ class App extends Component {
 
   render() {
     const authStatus = this.props.auth.auth
+    const profileStatus = this.props.profile
+
+
+
     return (
       <div>
         <BrowserRouter>
           <div>
             <Header />
             <Route exact path="/" component={LandingPage} />
-            <PrivateRoute auth = {authStatus} path = "/home" component={HomePage} />
-            <PrivateRoute auth = {authStatus} settings = {this.props.settings} exact path = "/profile" component={ProfilePage} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/home" component={HomePage} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} settings = {this.props.settings} exact path = "/profile" component={ProfilePage} />
             <PrivateRoute auth = {authStatus} path = "/survey:id" component={KyselyPage} />
             <RedirectRoute auth = {authStatus} component={Signin} path="/signin" />
             <Route auth = {authStatus} component={Signup} path="/signup" />
-            <PrivateRoute auth = {authStatus} component={CreateProfile} path="/profile/create" />
+            <CreateProfileRoute auth = {authStatus} component={CreateProfile} path="/profile/create" />
 
           </div>
         </BrowserRouter>

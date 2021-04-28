@@ -8,6 +8,7 @@ import { createActivityCard } from '../components/cards/CardFunctions'
 import ActivityCardSmall from '../components/cards/ActivityCard'
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 
 
 
@@ -107,7 +108,7 @@ class HomePage extends Component {
         const profile = this.props.data.profile;
         switch (profile) {
             case null:
-                return null
+                return <ClimbingBoxLoader size = {150} />
             default:
                 console.log(profile)
                 return <h1>Tervetuloa {profile.fName}!</h1>
@@ -124,9 +125,9 @@ class HomePage extends Component {
                 const { isProfile } = this.state;
                 switch (isProfile) {
                     case false:
-                        return <Redirect to={'/profile/create'} />
+                        return <ClimbingBoxLoader size = {150} />
                     default:
-                        return <div> Loading profile ....</div>
+                        return <ClimbingBoxLoader size = {150} />
                 }
             default:
                 console.log('profile fetched')
