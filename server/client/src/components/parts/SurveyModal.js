@@ -37,3 +37,42 @@ const SurveyModal = (props) => {
 }
 
 export default SurveyModal
+
+
+const SignupModal = (props) => {
+    
+  const pointText = (pointCount) => {
+      if (pointCount < 2){
+          return 'Olet ansainnut ensimmäisen pisteesi.'
+      } else {
+          return 'Olet ansainnut ensimmäiset ' + pointCount + ' pistettä.'
+      }        
+  }
+
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+           Kiitos rekisteröitymisestä ja tervetuloa vaikuttajien joukkoon.
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h4>{pointText(props.pointCount)} Mahtavaa!</h4>
+        <p>
+          Profiilisi on tallennettu onnistuneesti.             
+          Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja. 
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Jatka</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+export { SignupModal }

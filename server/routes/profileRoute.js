@@ -14,7 +14,6 @@ module.exports = app => {
             new: true
         });
         
-        console.log(profile)
         res.send(profile)
 
         
@@ -54,7 +53,7 @@ module.exports = app => {
 
         await newProfile.save();
         console.log('user profile created');
-        return res.json({redir: '/home'})
+        return res.status(200).end('profile created');
         
 
     });
@@ -81,7 +80,7 @@ module.exports = app => {
 
         var o = Object.entries(updateProfile).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})        
         updateProfile = o
-        console.log(updateProfile)
+
 
         const filter = {_user: req.user.id}
         const profile = await Profile.findOneAndUpdate(filter, updateProfile, {

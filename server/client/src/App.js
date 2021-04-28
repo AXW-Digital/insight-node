@@ -50,11 +50,11 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={LandingPage} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/home" component={HomePage} />
-            <PrivateRoute auth = {authStatus} profile = {profileStatus} settings = {this.props.settings} exact path = "/profile" component={ProfilePage} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/profile" component={ProfilePage} />
             <PrivateRoute auth = {authStatus} path = "/survey:id" component={KyselyPage} />
             <RedirectRoute auth = {authStatus} component={Signin} path="/signin" />
             <Route auth = {authStatus} component={Signup} path="/signup" />
-            <CreateProfileRoute auth = {authStatus} component={CreateProfile} path="/profile/create" />
+            <CreateProfileRoute auth = {authStatus} profile = {profileStatus} component={CreateProfile} path="/profile/create" />
 
           </div>
         </BrowserRouter>
