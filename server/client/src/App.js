@@ -38,8 +38,8 @@ class App extends Component {
   
 
   render() {
-    const authStatus = this.props.auth.auth
-    const profileStatus = this.props.profile
+    const authStatus = this.props.data.auth
+    const profileStatus = this.props.data.profile
 
 
 
@@ -63,8 +63,8 @@ class App extends Component {
   }
 };
 
-function mapStateToProps(auth, settings, profile) {
-  return { auth, settings, profile };
+function mapStateToProps(data) {
+  return { data };
 
 }
 
