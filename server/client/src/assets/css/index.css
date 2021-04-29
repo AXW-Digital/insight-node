@@ -1761,6 +1761,41 @@ Activity Cards CSS
   }
 }
 
+
+.modal-content {
+  z-index: 0;
+}
+.lights:before, .lights:after {
+	content: '';
+	position: absolute;
+	left: 12px;
+	top: -2px;
+	background: linear-gradient(45deg, #01ad43,#ffffff, #01ad43);
+	background-size: 400%;
+	width: calc(100% - 24px);
+	height: calc(100% + 4px);
+	z-index: -1;
+	animation: steam 20s linear infinite;
+  border-radius: 5px;
+}
+
+@keyframes steam {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.lights:after {
+	filter: blur(10px);
+}
+
+
 /* -----------------------------------------------
 Profile Page CSS
 -------------------------------------------------- */

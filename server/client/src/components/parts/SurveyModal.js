@@ -1,52 +1,76 @@
 import { Modal, Button } from 'react-bootstrap';
+import { ActivityCardSmall } from '../../components/cards/ActivityCard'
 
 const SurveyModal = (props) => {
-    
-    const pointText = (pointCount) => {
-        if (pointCount < 2){
-            return 'Olet ansainnut yhden pisteen.'
-        } else {
-            return 'Olet ansainnut ' + pointCount + ' pistettä.'
-        }        
-    }
 
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Kiitos vastauksista! Olet vaikuttaja
+  const pointText = (pointCount) => {
+    if (pointCount < 2) {
+      return 'Olet ansainnut yhden pisteen.'
+    } else {
+      return 'Olet ansainnut ' + pointCount + ' pistettä.'
+    }
+  }
+
+  const points = props.pointCount
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Kiitos vastauksista! Olet vaikuttaja
           </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>{pointText(props.pointCount)} Mahtavaa!</h4>
-          <p>
-            Vastauksesi on tallennettu onnistuneesti.             
-            Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja. 
+      </Modal.Header>
+      <Modal.Body>
+        <div className='row'>
+          <div className='col d-flex justify-content-center'>
+            <ActivityCardSmall
+              key={'a3'}
+              boxIcon={'bx bx-bolt-circle'}
+              count={points}
+              suffix={' pts'}
+              color={'green'}
+              shine={'lights'}
+            />
+          </div>
+        </div>
+        <h4 className='mt-3 modal-heading'>{pointText(props.pointCount)} Mahtavaa!</h4>
+
+        <p>
+          Vastauksesi on tallennettu onnistuneesti.
+          Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
           </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Sulje</Button>
-        </Modal.Footer>
-      </Modal>
-    );
+      </Modal.Body>
+      <Modal.Footer
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div className='row'>
+          <div className='d-flex justify-content-center'>
+            <Button onClick={props.onHide} centered>Sulje</Button>
+          </div>
+        </div>
+      </Modal.Footer>
+    </Modal>
+  );
 }
 
 export default SurveyModal
 
 
 const SignupModal = (props) => {
-    
+
   const pointText = (pointCount) => {
-      if (pointCount < 2){
-          return 'Olet ansainnut ensimmäisen pisteesi.'
-      } else {
-          return 'Olet ansainnut ensimmäiset ' + pointCount + ' pistettä.'
-      }        
+    if (pointCount < 2) {
+      return 'Olet ansainnut ensimmäisen pisteesi.'
+    } else {
+      return 'Olet ansainnut ensimmäiset ' + pointCount + ' pistettä.'
+    }
   }
 
   return (
@@ -58,14 +82,14 @@ const SignupModal = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-           Kiitos rekisteröitymisestä ja tervetuloa vaikuttajien joukkoon.
+          Kiitos rekisteröitymisestä ja tervetuloa vaikuttajien joukkoon.
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <h4>{pointText(props.pointCount)} Mahtavaa!</h4>
         <p>
-          Profiilisi on tallennettu onnistuneesti.             
-          Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja. 
+          Profiilisi on tallennettu onnistuneesti.
+          Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
         </p>
       </Modal.Body>
       <Modal.Footer>
