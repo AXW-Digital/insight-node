@@ -64,6 +64,7 @@ class ProfilePage extends Component {
                                         />
                                     </div>
                                     <div className='col-lg-8'>
+                                        {settings?
                                         <SettingsCard
                                             cardTitle='Asetukset'
                                             maxdist={settings.maxdist}
@@ -72,6 +73,8 @@ class ProfilePage extends Component {
                                             emailTest={settings.emailTest}
                                             emailSurvey={settings.emailSurvey}
                                         />
+                                        :
+                                        <ClimbingBoxLoader size = {150} />}
                                     </div>
                                 </div>
                             </div>

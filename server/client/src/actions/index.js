@@ -8,6 +8,13 @@ export const fetchUser = () => async dispatch => {
   
 };
 
+export const fetchProfile = () => async dispatch => {
+  const res = await axios.get('/api/profile');
+  console.log('profile fetched')
+  dispatch({ type: FETCH_PROFILE, payload: res.data });
+  
+};
+
 export const fetchSettings = () => async dispatch => {
   const res = await axios.get('/api/settings');
   console.log('settings fetched')
@@ -15,12 +22,7 @@ export const fetchSettings = () => async dispatch => {
   
 };
 
-export const fetchProfile = () => async dispatch => {
-  const res = await axios.get('/api/profile');
-  console.log('profile fetched')
-  dispatch({ type: FETCH_PROFILE, payload: res.data });
-  
-};
+
 
 
 
