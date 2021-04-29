@@ -7,7 +7,7 @@ const cardvaluelist = [
         formTitle: 'Ravintolakysely',
         formText: 'Käytkö usein ravintoloissa syömässä? Tai jos et, niin kiinnostaisiko muut vaihtoehdot? Kerro meille!',
         formUrl: '/survey0',
-        color: 'blue',
+        color: 'yellow',
         minutes: '(3 pts)',
         tyyppi: 'Vastaa'
     },
@@ -41,7 +41,7 @@ const cardvaluelist = [
         formTitle: 'Päivittäinen ravintola-arvostelu',
         formText: 'Kävitkö tänään ravintolassa? Kerro meille miltä maistui! Vastaamalla kyselyyn autat ravintoloitsijoita tarjoamaan paremman kokemuksen asiakkaille - samalla sinä ansaitset pisteitä',
         formUrl: '/survey1',
-        color: 'green',
+        color: 'yellow',
         minutes: '(5 pts)',
         tyyppi: 'Vastaa',
         resetHours: 3
@@ -67,7 +67,7 @@ const cardvaluelist = [
         formTitle: 'Oma BK-Kokemukseni',
         formText: 'Tervetuloa Minun BURGER KING® -kokemukseni -kyselyyn. Arvostamme rehellistä palautettasi ja sitä, että käytät aikaasi kyselyyn vastaamiseen.',
         formUrl: '/survey2',
-        color: 'red',
+        color: 'yellow',
         minutes: '(10 pts)',
         tyyppi: 'Vastaa'
 
@@ -80,7 +80,7 @@ const cardvaluelist = [
         formTitle: 'Menutestaus Tampere',
         formText: 'TRIPLA WHOPPER - Kolme kerrosta makusi mukaan',
         formUrl: '#', 
-        color: 'blue',
+        color: 'yellow',
         tyyppi: 'Osallistu'
     },
 

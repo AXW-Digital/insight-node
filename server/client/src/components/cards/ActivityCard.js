@@ -5,7 +5,7 @@ class ActivityCard extends Component {
     render() {
         return (
             <div className={`col-md-6 my-3 ${this.props.shine}`}>
-                <div className={`count-box justify-content-center`} style={{ color: `${this.props.color}` }}>
+                <div className={`count-box justify-content-center h-100`} style={{ color: `${this.props.color}` }}>
                     <i className={`${this.props.boxIcon}`}></i>
                     <div>
                         <CountUp end={this.props.count} duration={4} delay={0.3} suffix={this.props.suffix} />
