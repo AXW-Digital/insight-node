@@ -1478,6 +1478,11 @@ Kysely Cards CSS
   background: rgb(243, 243, 246);
 }
 
+#kysely-title{
+  margin-top: 0px !important;
+  padding-top: 0px;
+}
+
 .kysely h3 {
   font-weight: bold;
   color: rgba(63, 61, 86, 1);
@@ -1491,6 +1496,8 @@ Kysely Cards CSS
 .kysely .card-container {
   max-width: 1300px;
 }
+
+
 
 .kysely .btn-card {
   background-color: #363a59 !important;
@@ -1620,7 +1627,7 @@ Kysely Cards CSS
   color: #e3a509;
 }
 
-.kysely .kysely-card.yellow:hover {
+.kysely .kysely-card.yellow:hover, .kysely-card.yellow:active {
   background: #e3a509;
 }
 
@@ -1715,6 +1722,12 @@ Activity Cards CSS
   padding: 70px 0 60px;
 }
 
+[class^="bx-"], [class*=" bx-"]{
+  display: inline-block;
+  width: 100%;
+}
+
+
 .counts .count-box {
   display: flex;
   align-items: center;
@@ -1733,7 +1746,8 @@ Activity Cards CSS
 .counts .count-box span {
   font-size: 36px;
   display: block;
-  font-weight: 600;
+  font-family: "TT Norms";
+  font-weight: bold;
 }
 
 .counts .count-box p {
@@ -2019,4 +2033,29 @@ Kysely Page CSS
 #kysely .form-group{
   margin-bottom: 20px !important;
 }
+
+#kysely .btn-send{
+  max-width: 400px;
+  font-weight:500;
+  font-family: 'TT Norms';
+  border-radius: 30px !important;
+}
+
+.modal-content{
+  font-family: 'TT Norms' !important;
+  color: #363a59;
+}
+
+.modal-title{
+  text-align: center !important;
+}
+
+.modal-footer .btn{
+  background-color: #e3a509 !important;
+  border-color: #e3a509;
+  color: #363a59;
+  border-radius: 30px !important;
+}
+
+
 

@@ -200,7 +200,10 @@ const FormFunction = (props) => {
             {items[activeStep]}
             {activeStep === (steps - 1) ?
             <div>
-            <Btn type="submit">Submit form</Btn>
+            <Btn 
+            type="submit"
+            className = 'btn btn-lg btn-block text-uppercase btn-warning btn-send'
+            >Lähetä</Btn>
             <SurveyModal
                 show={modalShow}
                 onHide={() => { setModalShow(false); window.location = "/home" }}

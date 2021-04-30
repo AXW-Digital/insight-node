@@ -6,10 +6,14 @@ class ActivityCard extends Component {
         return (
             <div className={`col-md-6 my-3 ${this.props.shine}`}>
                 <div className={`count-box justify-content-center h-100`} style={{ color: `${this.props.color}` }}>
-                    <i className={`${this.props.boxIcon}`}></i>
-                    <div>
+                    <div className = 'row '>
+                    <div className = 'col-4 d-flex justify-content-center align-items-center'>
+                    <i className={`${this.props.boxIcon}` }></i>
+                    </div>
+                    <div className = 'col-8'>
                         <CountUp end={this.props.count} duration={4} delay={0.3} suffix={this.props.suffix} />
                         <p style={{ color: 'gray' }}>{this.props.cardText}</p>
+                    </div>
                     </div>
                 </div>
             </div>

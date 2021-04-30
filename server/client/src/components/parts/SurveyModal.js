@@ -21,7 +21,7 @@ const SurveyModal = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Kiitos vastauksista! Olet vaikuttaja
+          Kiitos vastauksista!
           </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -37,7 +37,8 @@ const SurveyModal = (props) => {
             />
           </div>
         </div>
-        <h4 className='mt-3 modal-heading'>{pointText(props.pointCount)} Mahtavaa!</h4>
+        <br />
+        <h5 className='mt-3 modal-heading'>{pointText(props.pointCount)}</h5>
 
         <p>
           Vastauksesi on tallennettu onnistuneesti.
@@ -50,11 +51,18 @@ const SurveyModal = (props) => {
           justifyContent: "center",
         }}
       >
-        <div className='row'>
-          <div className='d-flex justify-content-center'>
-            <Button onClick={props.onHide} centered>Sulje</Button>
-          </div>
-        </div>
+        <Button
+          onClick={props.onHide}
+          centered
+          className='text-uppercase'
+          variant='warning'
+          size='lg'
+          block
+        >
+          Jatka
+        </Button>
+
+
       </Modal.Footer>
     </Modal>
   );

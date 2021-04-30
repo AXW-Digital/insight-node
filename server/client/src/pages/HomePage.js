@@ -8,7 +8,8 @@ import { createActivityCard } from '../components/cards/CardFunctions'
 import ActivityCardSmall from '../components/cards/ActivityCard'
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
-import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
+import MoonLoader from "react-spinners/MoonLoader";
+
 
 
 
@@ -41,7 +42,9 @@ class HomePage extends Component {
 
             default:
                 return (<div className="row g-4 d-flex">
-                    Loading....
+                    <MoonLoader
+                        size={50}
+                        color={'#e3a509'} />
                 </div>)
 
 
@@ -81,7 +84,8 @@ class HomePage extends Component {
 
                 if (surveyCount === undefined || surveyCount.length === 0) {
                     console.log(surveyCount)
-                    return <div>Olet vastannut kaikkiin kyselihin!</div>
+                    return <div className='home-message vh-100'>Olet ollut aktiivinen vaikuttaja! Uusia kysymyksiä tulossa pian...</div>
+
                 } else {
                     console.log(surveyCount)
                     return (
@@ -108,7 +112,9 @@ class HomePage extends Component {
         const profile = this.props.data.profile;
         switch (profile) {
             case null:
-                return <ClimbingBoxLoader size = {150} />
+                return <MoonLoader
+                    size={50}
+                    color={'#e3a509'} />
             default:
                 console.log(profile)
                 return <h1>Tervetuloa {profile.fName}!</h1>
@@ -125,9 +131,9 @@ class HomePage extends Component {
                 const { isProfile } = this.state;
                 switch (isProfile) {
                     case false:
-                        return <ClimbingBoxLoader size = {150} />
+                        return <MoonLoader size={50} />
                     default:
-                        return <ClimbingBoxLoader size = {150} />
+                        return <MoonLoader size={50} />
                 }
             default:
                 console.log('profile fetched')
@@ -191,8 +197,8 @@ class HomePage extends Component {
                         <section id='kyselyt' className="d-flex align-items-center justify-content-center kysely">
                             <div className="container card-container" data-aos="fade-up">
                                 <header className="section-header">
-                                    <h3>Kyselyt</h3>
-                                    <p>Veritatis et dolores facere numquam et praesentium</p>
+                                    <h3 id='kysely-title'>Kyselyt</h3>
+                                    {/* <p>Vastaamalla kyselyihin pääset keräämään pisteitä ja vaikuttamaan</p> */}
                                 </header>
                                 {this.renderCards()}
                             </div>
