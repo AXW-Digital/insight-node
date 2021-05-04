@@ -4,6 +4,10 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { connect } from 'react-redux';
 import { SignupModal } from '../parts/SurveyModal';
+import { TextField } from "@material-ui/core";
+
+import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
+
 
 const ProfileForm = (props) => {
     const history = useHistory();
@@ -26,6 +30,7 @@ const ProfileForm = (props) => {
             points: 0
         },
         onSubmit: values => {
+            console.log(values)
             axios.post('../api/profile/create', values)
                 .then(res => {
                     if (res.status === 200) {
@@ -39,6 +44,21 @@ const ProfileForm = (props) => {
 
         }
     });
+
+    const { ref } = usePlacesWidget({
+        apiKey: 'AIzaSyAu_der8LRPRQVkD7yY-0t2bw9geF_qGtw',
+        onPlaceSelected: (place) => {
+            formik.setFieldValue("address", place.address);
+            
+        },
+        options : {
+            componentRestrictions: { country: "fi" },
+            fields: ["address_components", "geometry"],
+            types: ["address"]
+        },
+        
+    });
+
 
     const sendFirstPoints = (points) => {
         axios.post('/api/profile/points', { points })
@@ -54,7 +74,7 @@ const ProfileForm = (props) => {
 
 
 
-    console.log(props.data)
+    
 
     return (
         <div className='container-fluid d-flex vh-100 vw-100 sign-bg m-0 px-0 pb-5'>
@@ -120,13 +140,13 @@ const ProfileForm = (props) => {
                                             value={formik.values.phone}
                                             className="form-control"
                                             placeholder="Password"
-                                            pattern="[0-9]{9}"
+                                            pattern="^(\+358)[0-9]{9}"
                                             required />
-                                        <label htmlFor="phone">Puhelinnumero (ilman +358)</label>
+                                        <label htmlFor="phone">Puhelinnumero (+358 muodossa)</label>
                                     </div>
 
 
-                                    <div className="form-label-group">
+                                    {/* <div className="form-label-group">
                                         <input
                                             type="text"
                                             id="address"
@@ -137,8 +157,23 @@ const ProfileForm = (props) => {
                                             placeholder="."
                                             required />
                                         <label htmlFor="address">Osoite</label>
+                                    </div> */}
+                                    <div className="form-label-group">
+                                    <input
+                                            type="text"
+                                            ref={ref}
+                                            id="address"
+                                            name='address'
+                                            placeholder="Osoite"
+                                            onChange={formik.handleChange}
+                                            value={formik.values.address}
+                                            className="form-control"
+                                            required
+                                        />
+                                        <label htmlFor="address">Osoite</label>
+                                        
                                     </div>
-                                    <div className='row clearfix'>
+                                    {/* <div className='row clearfix'>
                                         <div className='col-lg-5 col-md-12'>
                                             <div className="form-label-group">
                                                 <input
@@ -150,24 +185,24 @@ const ProfileForm = (props) => {
                                                     className="form-control"
                                                     placeholder="."
                                                     required />
-                                                <label htmlFor="addrNum">Numero</label>
+                                                <label htmlFor="addrNum">Postinumero</label>
                                             </div>
-                                        </div>
-                                        <div className='col-lg-7 col-md-12'>
-                                            <div className="form-label-group">
-                                                <input
-                                                    type="text"
-                                                    id="city"
-                                                    name='city'
-                                                    onChange={formik.handleChange}
-                                                    value={formik.values.city}
-                                                    className="form-control"
-                                                    placeholder="."
-                                                    required />
-                                                <label htmlFor="city">Paikkakunta</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </div> */}
+                                    {/* <div className='col-lg-7 col-md-12'> */}
+                                    {/* <div className="form-label-group">
+                                        <input
+                                            type="text"
+                                            id="city"
+                                            name='city'
+                                            onChange={formik.handleChange}
+                                            value={formik.values.city}
+                                            className="form-control"
+                                            placeholder="."
+                                            required />
+                                        <label htmlFor="city">Paikkakunta</label>
+                                    </div> */}
+                                    {/* </div> */}
+                                    {/* </div> */}
                                     <button className="btn btn-lg btn-block text-uppercase btn-login mt-2" type="submit">Päivitä tiedot</button>
                                 </form>
                             </div>
@@ -178,8 +213,8 @@ const ProfileForm = (props) => {
             </div>
             <SignupModal
                 show={modalShow}
-                onHide={() => {setModalShow(false); sendFirstPoints(5); window.location = "/home" }}
-                pointCount={5}
+                onHide={() => { setModalShow(false); sendFirstPoints(50); window.location = "/home" }}
+                pointCount={50}
             />
         </div>
 
