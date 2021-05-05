@@ -31,7 +31,10 @@ const ProfileForm = (props) => {
             geom: {}
         },
         onSubmit: values => {
-            console.log(values)
+            const geom = values.geom
+            if (invalidAddress(geom) === true){
+                alert('Tarkista vielä osoite uudelleen!')
+            } else { 
             axios.post('../api/profile/create', values)
                 .then(res => {
                     if (res.status === 200) {
@@ -42,9 +45,19 @@ const ProfileForm = (props) => {
                 .catch(err => {
                     console.log(err)
                 })
-
+            }
         }
     });
+
+
+    function invalidAddress(){
+        let error = false;
+        const geom = formik.values.geom
+        if (Object.keys(geom).length === 0) {
+           error = true 
+        }
+        return error;
+    }
 
     const { ref } = usePlacesWidget({
         apiKey: 'AIzaSyAu_der8LRPRQVkD7yY-0t2bw9geF_qGtw',
