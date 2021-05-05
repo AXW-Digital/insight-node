@@ -27,7 +27,8 @@ const ProfileForm = (props) => {
             rank: 'Vaikuttaja',
             level: 0,
             coupons: 0,
-            points: 0
+            points: 0,
+            geom: {}
         },
         onSubmit: values => {
             console.log(values)
@@ -48,12 +49,16 @@ const ProfileForm = (props) => {
     const { ref } = usePlacesWidget({
         apiKey: 'AIzaSyAu_der8LRPRQVkD7yY-0t2bw9geF_qGtw',
         onPlaceSelected: (place) => {
-            formik.setFieldValue("address", place.address);
+            var geom = {lat:place.geometry.location.lat(), lng: place.geometry.location.lng()}
+            formik.setFieldValue("address", place.formatted_address);
+            formik.setFieldValue("city", place.address_components[2].long_name);
+            formik.setFieldValue('geom', geom)
+            
+            
             
         },
         options : {
             componentRestrictions: { country: "fi" },
-            fields: ["address_components", "geometry"],
             types: ["address"]
         },
         
@@ -141,8 +146,9 @@ const ProfileForm = (props) => {
                                             className="form-control"
                                             placeholder="Password"
                                             pattern="^(\+358)[0-9]{9}"
-                                            required />
-                                        <label htmlFor="phone">Puhelinnumero (+358 muodossa)</label>
+                                            required
+                                            style = {{textOverflow: 'clip'}} />
+                                        <label htmlFor="phone">Puhelinnumero (+358)</label>
                                     </div>
 
 

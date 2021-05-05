@@ -4,6 +4,7 @@ import { SliderDist, SliderPrice } from '../parts/RangeSlider';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { Subject } from 'rxjs';
+import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 
 const subject = new Subject();
 
@@ -16,7 +17,7 @@ const dataService = {
 export { dataService }
 
 var settingsData = {
-    'maxprice': null, 
+    'maxprice': null,
     'maxdist': null,
     'emailTest': null,
     'emailSurvey': null,
@@ -31,6 +32,7 @@ dataService.getData().subscribe(message => {
 });
 
 
+
 const SettingsCard = (props) => {
 
     const formik = useFormik({
@@ -40,13 +42,20 @@ const SettingsCard = (props) => {
             email: '',
             phone: '',
             address: '',
-            addrNum: '',
+            geom: {},
             city: ''
         },
 
         onSubmit: async values => {
-            const res = await axios.post('../api/profile/update', values)
-            alert(res.data)
+            try {
+                const res = await axios.post('../api/profile/update', values);
+                if (res.status === 200) {
+                    alert(res.data)
+                }
+            } catch (err) {
+                alert(err);
+            }
+
         }
     });
 
@@ -54,6 +63,24 @@ const SettingsCard = (props) => {
         const res = await axios.post('../api/settings/update', values)
         alert(res.data)
     }
+
+    const { ref } = usePlacesWidget({
+        apiKey: 'AIzaSyAu_der8LRPRQVkD7yY-0t2bw9geF_qGtw',
+        onPlaceSelected: (place) => {
+            var geom = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }
+            formik.setFieldValue("address", place.formatted_address);
+            formik.setFieldValue("city", place.address_components[2].long_name);
+            formik.setFieldValue('geom', geom)
+
+
+
+        },
+        options: {
+            componentRestrictions: { country: "fi" },
+            types: ["address"]
+        },
+
+    });
 
 
 
@@ -92,7 +119,7 @@ const SettingsCard = (props) => {
                                                 className="custom-control-input"
                                                 id="checkMail"
                                                 defaultChecked={props.emailTest}
-                                                onChange={e => dataService.setData({'emailTest': e.target.checked})}
+                                                onChange={e => dataService.setData({ 'emailTest': e.target.checked })}
                                             />
                                             <label className="custom-control-label" htmlFor="checkMail">Menutestit</label>
                                         </div>
@@ -104,7 +131,7 @@ const SettingsCard = (props) => {
                                                 className="custom-control-input"
                                                 id="checkMailKysely"
                                                 defaultChecked={props.emailSurvey}
-                                                onChange={e => dataService.setData({'emailSurvey': e.target.checked})}
+                                                onChange={e => dataService.setData({ 'emailSurvey': e.target.checked })}
                                             />
                                             <label className="custom-control-label" htmlFor="checkMailKysely">Kyselyt</label>
                                         </div>
@@ -116,7 +143,7 @@ const SettingsCard = (props) => {
                                                 className="custom-control-input"
                                                 id="checkMailNews"
                                                 defaultChecked={props.emailNews}
-                                                onChange={e => dataService.setData({'emailNews': e.target.checked})}
+                                                onChange={e => dataService.setData({ 'emailNews': e.target.checked })}
                                             />
                                             <label className="custom-control-label" htmlFor="checkMailNews">Newsletter</label>
                                         </div>
@@ -125,7 +152,7 @@ const SettingsCard = (props) => {
                                         <hr />
                                     </div>
                                     <div className='col-md-3 ml-auto'>
-                                    <button
+                                        <button
                                             className="btn btn-lg btn-block text-uppercase btn-update-settings"
                                             onClick={() => updateSettings(settingsData)}
                                         >
@@ -137,129 +164,116 @@ const SettingsCard = (props) => {
                             </div>
                         </Tab>
                         <Tab eventKey="info" title="Tiedot">
-                        <form className="form-signin" onSubmit={formik.handleSubmit}>
-                            <div className="tab-pane body active" id="info-tab">
-                                <div className='row clearfix'>
-                                    <div className='col-12 setting-col'>
-                                        <small className="text-muted ">Perustiedot: </small>
-                                        <hr />
-                                    </div>
-                                    <div className='col-lg-6 col-md-12'>
-                                        <div className="form-label-group">
-                                            <input
-                                                type="text"
-                                                id="fName"
-                                                className="form-control"
-                                                name='fName'
-                                                onChange={formik.handleChange}
-                                                value={formik.values.fName}
-                                                placeholder="Etunimi"
-                                                autoFocus />
-                                            <label htmlFor="fName">Etunimi</label>
+                            <form className="form-signin" onSubmit={formik.handleSubmit}>
+                                <div className="tab-pane body active" id="info-tab">
+                                    <div className='row clearfix'>
+                                        <div className='col-12 setting-col'>
+                                            <small className="text-muted ">Perustiedot: </small>
+                                            <hr />
                                         </div>
-                                    </div>
-                                    <div className='col-lg-6 col-md-12'>
-                                        <div className="form-label-group">
-                                            <input
-                                                type="text"
-                                                id="sName"
-                                                name='sName'
-                                                onChange={formik.handleChange}
-                                                value={formik.values.sName}
-                                                className="form-control"
-                                                placeholder="Sukunimi"
-                                                autoFocus />
-                                            <label htmlFor="sName">Sukunimi</label>
+                                        <div className='col-lg-6 col-md-12'>
+                                            <div className="form-label-group">
+                                                <input
+                                                    type="text"
+                                                    id="fName"
+                                                    className="form-control"
+                                                    name='fName'
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.fName}
+                                                    placeholder="Etunimi"
+                                                    autoFocus />
+                                                <label htmlFor="fName">Etunimi</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className='col-lg-6 col-md-12'>
-                                        <div className="form-label-group">
-                                            <input
-                                                type="email"
-                                                id="email"
-                                                name='email'
-                                                onChange={formik.handleChange}
-                                                value={formik.values.email}
-                                                className="form-control"
-                                                placeholder="Email address"
-                                                autoFocus />
-                                            <label htmlFor="email">Sähköposti</label>
+                                        <div className='col-lg-6 col-md-12'>
+                                            <div className="form-label-group">
+                                                <input
+                                                    type="text"
+                                                    id="sName"
+                                                    name='sName'
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.sName}
+                                                    className="form-control"
+                                                    placeholder="Sukunimi"
+                                                    autoFocus />
+                                                <label htmlFor="sName">Sukunimi</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className='col-lg-6 col-md-12'>
-                                        <div className="form-label-group">
-                                            <input
-                                                type="tel"
-                                                id="phone"
-                                                name='phone'
-                                                onChange={formik.handleChange}
-                                                value={formik.values.phone}
-                                                className="form-control"
-                                                placeholder="Password"
-                                                pattern="[0-9]{9}"
+                                        <div className='col-lg-6 col-md-12'>
+                                            <div className="form-label-group">
+                                                <input
+                                                    type="email"
+                                                    id="email"
+                                                    name='email'
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.email}
+                                                    className="form-control"
+                                                    placeholder="Email address"
+                                                    autoFocus />
+                                                <label htmlFor="email">Sähköposti</label>
+                                            </div>
+                                        </div>
+                                        <div className='col-lg-6 col-md-12'>
+                                            <div className="form-label-group">
+                                                <input
+                                                    type="tel"
+                                                    id="phone"
+                                                    name='phone'
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.phone}
+                                                    className="form-control"
+                                                    placeholder="Password"
+                                                    pattern="[0-9]{9}"
                                                 />
-                                            <label htmlFor="phone">Puhelinnumero (ilman +358)</label>
+                                                <label htmlFor="phone">Puhelinnumero (ilman +358)</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className='col-12 setting-col-n'>
-                                        <small className="text-muted setting-col-n">Paikkatiedot: </small>
-                                        <hr />
-                                    </div>
-                                    <div className='col-lg-6 col-md-12'>
-                                        <div className="form-label-group">
-                                            <input
-                                                type="text"
-                                                id="address"
-                                                name='address'
-                                                onChange={formik.handleChange}
-                                                value={formik.values.address}
-                                                className="form-control"
-                                                placeholder="."
+                                        <div className='col-12 setting-col-n'>
+                                            <small className="text-muted setting-col-n">Paikkatiedot: </small>
+                                            <hr />
+                                        </div>
+                                        <div className='col-lg-6 col-md-12'>
+                                            <div className="form-label-group">
+                                                <input
+                                                    type="text"
+                                                    ref={ref}
+                                                    id="address"
+                                                    name='address'
+                                                    placeholder="Osoite"
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.address}
+                                                    className="form-control"
+                                                    required
                                                 />
-                                            <label htmlFor="address">Osoite</label>
+                                                <label htmlFor="address">Osoite</label>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div className='col-lg-4 col-md-12'>
+                                            <div className="form-label-group">
+                                                <input
+                                                    type="text"
+                                                    id="city"
+                                                    name='city'
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.city}
+                                                    className="form-control"
+                                                    placeholder="." />
+                                                <label htmlFor="city">Paikkakunta</label>
+                                            </div>
+                                        </div>
 
-                                    <div className='col-lg-2 col-md-12'>
-                                        <div className="form-label-group">
-                                            <input
-                                                type="number"
-                                                id="addrNum"
-                                                name='addrNum'
-                                                onChange={formik.handleChange}
-                                                value={formik.values.addrNum}
-                                                className="form-control"
-                                                placeholder="."
-                                                />
-                                            <label htmlFor="addrNum">Numero</label>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-4 col-md-12'>
-                                        <div className="form-label-group">
-                                            <input
-                                                type="text"
-                                                id="city"
-                                                name='city'
-                                                onChange={formik.handleChange}
-                                                value={formik.values.city}
-                                                className="form-control"
-                                                placeholder="."/>
-                                            <label htmlFor="city">Paikkakunta</label>
-                                        </div>
-                                    </div>
-
-                                    <div className='col-md-3 ml-auto mt-3'>
-                                        <button
-                                            className="btn btn-lg btn-block text-uppercase btn-update-settings"
-                                            type='submit'
-                                        >
-                                            Päivitä
+                                        <div className='col-md-3 ml-auto mt-3'>
+                                            <button
+                                                className="btn btn-lg btn-block text-uppercase btn-update-settings"
+                                                type='submit'
+                                            >
+                                                Päivitä
                                         </button>
-                                    </div>
+                                        </div>
 
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
                         </Tab>
                         <Tab eventKey="security" title="Turvallisuus">
                             <div className="tab-pane body active" id="security-tab">

@@ -27,7 +27,7 @@ module.exports = app => {
             email,
             phone,
             address,
-            addrNum,
+            geom,
             city,
             profileCreated,
             lastLogin,
@@ -40,7 +40,7 @@ module.exports = app => {
             email,
             phone,
             address,
-            addrNum,
+            geom,
             city,
             profileCreated,
             lastLogin,
@@ -66,7 +66,7 @@ module.exports = app => {
             email,
             phone,
             address,
-            addrNum,
+            geom,
             city } = req.body;
 
         var updateProfile = {
@@ -75,7 +75,7 @@ module.exports = app => {
             email,
             phone,
             address,
-            addrNum,
+            geom,
             city};
 
         var o = Object.entries(updateProfile).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})        
@@ -86,6 +86,10 @@ module.exports = app => {
         const profile = await Profile.findOneAndUpdate(filter, updateProfile, {
             new: true
         });
+
+        res.end('profile updated succesfully');
+
+         
        
     });
 
