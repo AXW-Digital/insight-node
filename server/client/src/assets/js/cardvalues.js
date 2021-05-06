@@ -9,7 +9,8 @@ const cardvaluelist = [
         formUrl: '/survey0',
         color: 'yellow',
         minutes: '(3 pts)',
-        tyyppi: 'Vastaa'
+        tyyppi: 'Vastaa',
+        resetHours: 1
     },
 
     {
@@ -44,7 +45,7 @@ const cardvaluelist = [
         color: 'yellow',
         minutes: '(5 pts)',
         tyyppi: 'Vastaa',
-        resetHours: 3
+        resetHours: 1
 
     },
 
@@ -69,7 +70,8 @@ const cardvaluelist = [
         formUrl: '/survey2',
         color: 'yellow',
         minutes: '(10 pts)',
-        tyyppi: 'Vastaa'
+        tyyppi: 'Vastaa',
+        resetHours: 1
 
     },
 

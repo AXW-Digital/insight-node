@@ -208,6 +208,7 @@ const FormFunction = (props) => {
                 show={modalShow}
                 onHide={() => { setModalShow(false); window.location = "/home" }}
                 pointCount={pointCount}
+                currentPoints={props.currentPoints}
             /> 
             </div>
             :

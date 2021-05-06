@@ -1,5 +1,11 @@
 import { Modal, Button } from 'react-bootstrap';
-import { ActivityCardSmall } from '../../components/cards/ActivityCard'
+import { ActivityCardSmall, PointsCard } from '../../components/cards/ActivityCard'
+import { Progress } from 'antd';
+import { ProgressBar } from 'react-bootstrap';
+
+// Animation
+import { easeQuadInOut } from "d3-ease";
+import AnimatedProgressProvider from "../parts/AnimatedProgressProvider";
 
 const SurveyModal = (props) => {
 
@@ -12,6 +18,10 @@ const SurveyModal = (props) => {
   }
 
   const points = props.pointCount
+  const maxLevelPoints = 1000
+  const pointsPercentage = points / maxLevelPoints
+  const valueStart = props.currentPoints
+  console.log('current points', valueStart)
   return (
     <Modal
       {...props}
@@ -27,14 +37,16 @@ const SurveyModal = (props) => {
       <Modal.Body>
         <div className='row'>
           <div className='col d-flex justify-content-center'>
-            <ActivityCardSmall
+            {/* <PointsCard
               key={'a3'}
               boxIcon={'bx bx-bolt-circle'}
               count={points}
               suffix={' pts'}
               color={'green'}
               shine={'lights'}
-            />
+            /> */}
+
+
           </div>
         </div>
         <br />
@@ -44,6 +56,25 @@ const SurveyModal = (props) => {
           Vastauksesi on tallennettu onnistuneesti.
           Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
           </p>
+        <AnimatedProgressProvider
+          valueStart={50}
+          valueEnd={pointsPercentage * 100}
+          duration={2.5}
+          easingFunction={easeQuadInOut}
+        >
+
+          {value => {
+            const roundedValue = Math.round(value / 100 * maxLevelPoints);
+            return (
+              <div>
+              <p>{`${valueStart}`}</p>
+              <ProgressBar animated now={value + valueStart} />
+              </div>
+            );
+          }}
+
+        </AnimatedProgressProvider>
+
       </Modal.Body>
       <Modal.Footer
         style={{

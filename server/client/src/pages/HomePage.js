@@ -10,6 +10,7 @@ import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
 
+
 // Circular-progress-bar
 import {
     CircularProgressbar,
@@ -174,7 +175,7 @@ class HomePage extends Component {
                                                 return (
                                                     <CircularProgressbarWithChildren
                                                         value={value}
-                                                        text={`${roundedValue} / ${maxLevelPoints} pts`}
+                                                        text={`${roundedValue} / ${maxLevelPoints} p`}
                                                         /* This is important to include, because if you're fully managing the
                                                         animation yourself, you'll want to disable the CSS animation. */
                                                         styles={buildStyles({
@@ -188,12 +189,14 @@ class HomePage extends Component {
                                                     >
                                                         <i className='bx bx-bolt-circle'
                                                             style={{
-                                                                width: 100,
+                                                                width: '20%',
                                                                 marginTop: 20,
-                                                                height: 200,
-                                                                fontSize: 50,
-                                                                color: 'rgb(0, 128, 0)'
+                                                                height: '30%',
+                                                                fontSize: '400%',
+                                                                color: 'rgb(0, 128, 0)',
+                                                                textAlign: 'center'
                                                             }} />
+                                                        <p className='level-name'>Taso 1</p>
                                                     </CircularProgressbarWithChildren>
                                                 );
                                             }}
@@ -202,7 +205,7 @@ class HomePage extends Component {
                                         </div>
                                         <div className='counts'>
                                             <div className='row m-4'>
-                                                <ActivityCardSmall
+                                                {/* <ActivityCardSmall
                                                     key={'a1'}
                                                     boxIcon={'bx bx-message-detail'}
                                                     count={surveyAns === undefined ? 0 : surveyAns === null ? 0 : surveyAns.id.length}
@@ -217,7 +220,7 @@ class HomePage extends Component {
                                                     cardText={'Vaikuttaja taso'}
                                                     suffix={''}
                                                     color={'#007bff'}
-                                                />
+                                                /> */}
                                                 {/* <ActivityCardSmall
                                                     key={'a3'}
                                                     boxIcon={'bx bx-bolt-circle'}

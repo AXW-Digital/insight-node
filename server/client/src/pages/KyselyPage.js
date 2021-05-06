@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import KyselyForm from '../components/forms/KyselyForm'
 
 import Footer from '../components/parts/Footer'
@@ -8,8 +9,8 @@ import Footer from '../components/parts/Footer'
 
 
 
-export default function KyselyPage (props) {
-    
+class KyselyPage extends Component {
+
     // // This jquery function enables toggle of multiple select forms
     // componentDidMount() {
     //     $("select[multiple] option").mousedown(function(){
@@ -22,22 +23,54 @@ export default function KyselyPage (props) {
     //      });
     // }
 
+    // const profile = props.data.
+    // switch
+
+    componentDidMount(){
+        const profile = this.props.data.profile
+        console.log(profile)
+    }
     
+    render() {
+        
+        const profile = this.props.data.profile
 
-
-        return (
-            <div>
-                
-                <div id='page-top'> </div>
-                <section id='kysely' className='bg-light'>
-                    <div className='container'>
-                        <KyselyForm question = {props.match.params.id}/>
+        switch(profile){
+            case null:
+                return ( 
+                    <div>Loading...</div>
+                )
+            default:
+                return (
+                    <div>
+        
+                        <div id='page-top'> </div>
+                        <section id='kysely' className='bg-light'>
+                            <div className='container'>
+                                <KyselyForm
+                                    question={this.props.match.params.id}
+                                    currentPoints={profile.points}
+                                />
+                            </div>
+                        </section>
+                        <Footer />
                     </div>
-                </section>
-                <Footer />
-            </div>
-            
-        )
-    
+        
+                )
+
+        }
+
+
+        
+
+    }
 }
 
+
+function mapStateToProps(data) {
+    return { data };
+}
+
+
+
+export default connect(mapStateToProps)(KyselyPage);
