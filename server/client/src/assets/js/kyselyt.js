@@ -4,6 +4,7 @@ const kyselyt = [
         tyyppi: "custom",
         kyselyTitle: "Ravintolakysely",
         pointCount: 300,
+        resetHours: 1,
         kysymykset: [
             {
                 num: 1,
@@ -218,7 +219,7 @@ const kyselyt = [
         tyyppi: "daily",
         kyselyTitle: "Päivittäinen ravintola-arvostelu",
         pointCount: 75,
-        resetHours: 3,
+        resetHours: 1,
         kysymykset: [
             {
                 num: 1,
@@ -283,6 +284,7 @@ const kyselyt = [
         tyyppi: "custom",
         kyselyTitle: "Taustakysely",
         pointCount: 200,
+        resetHours: 1,
         kysymykset: [
             {
                 num: 1,

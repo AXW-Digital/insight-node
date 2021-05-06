@@ -10,6 +10,19 @@ import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
 
+// Circular-progress-bar
+import {
+    CircularProgressbar,
+    CircularProgressbarWithChildren,
+    buildStyles
+} from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+
+
+// Animation
+import { easeQuadInOut } from "d3-ease";
+import AnimatedProgressProvider from "../components/parts/AnimatedProgressProvider";
+
 
 
 
@@ -125,6 +138,7 @@ class HomePage extends Component {
 
 
     render() {
+        const maxLevelPoints = 1000
         const profile = this.props.data.profile;
         switch (profile) {
             case null:
@@ -138,6 +152,7 @@ class HomePage extends Component {
             default:
                 console.log('profile fetched')
                 const { surveyAns } = this.state;
+                const pointsPercentage = this.props.data.profile.points / maxLevelPoints
                 return (
                     <div>
                         <div id='page-top'></div>
@@ -146,7 +161,46 @@ class HomePage extends Component {
                                 <div className="row">
                                     <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
                                         {this.renderContent()}
-                                        <p>Mitä tekstiä tälle sivulle kuuluu? Pystyisikö tähän koostamaan vastaajan aktiivisuutta tai nostamaan viime kyselyn vaikutuksia?</p>                                <div className='counts'>
+                                        <div className='progress-circle'>
+                                        <AnimatedProgressProvider
+                                            valueStart={0}
+                                            valueEnd={pointsPercentage * 100}
+                                            duration={2.5}
+                                            easingFunction={easeQuadInOut}
+                                        >
+
+                                            {value => {
+                                                const roundedValue = Math.round(value / 100 * maxLevelPoints);
+                                                return (
+                                                    <CircularProgressbarWithChildren
+                                                        value={value}
+                                                        text={`${roundedValue} / ${maxLevelPoints} pts`}
+                                                        /* This is important to include, because if you're fully managing the
+                                                        animation yourself, you'll want to disable the CSS animation. */
+                                                        styles={buildStyles({
+                                                            pathTransition: "none",
+                                                            textSize: '10px',
+                                                            pathColor: `rgba(0, 128, 0, ${value / 20})`,
+                                                            textColor: 'rgb(0, 128, 0)',
+                                                            trailColor: '#d6d6d6',
+                                                            fontFamily: 'TT Norms'
+                                                        })}
+                                                    >
+                                                        <i className='bx bx-bolt-circle'
+                                                            style={{
+                                                                width: 100,
+                                                                marginTop: 20,
+                                                                height: 200,
+                                                                fontSize: 50,
+                                                                color: 'rgb(0, 128, 0)'
+                                                            }} />
+                                                    </CircularProgressbarWithChildren>
+                                                );
+                                            }}
+
+                                        </AnimatedProgressProvider>
+                                        </div>
+                                        <div className='counts'>
                                             <div className='row m-4'>
                                                 <ActivityCardSmall
                                                     key={'a1'}
@@ -164,14 +218,14 @@ class HomePage extends Component {
                                                     suffix={''}
                                                     color={'#007bff'}
                                                 />
-                                                <ActivityCardSmall
+                                                {/* <ActivityCardSmall
                                                     key={'a3'}
                                                     boxIcon={'bx bx-bolt-circle'}
                                                     count={this.props.data.profile.points}
                                                     cardText={'Pisteet yhteensä'}
                                                     suffix={' pts'}
                                                     color={'green'}
-                                                />
+                                                /> */}
 
                                                 <ActivityCardSmall
                                                     key={'a4'}
@@ -182,6 +236,8 @@ class HomePage extends Component {
                                                     color={'blue'}
                                                     shine={'glowing'}
                                                 />
+
+
 
                                             </div>
                                         </div>

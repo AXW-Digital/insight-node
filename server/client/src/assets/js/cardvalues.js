@@ -63,9 +63,9 @@ const cardvaluelist = [
     {
         id: '2',
         name: "Burger King",
-        picUrl: '/img/burgerking.jpeg',
-        formTitle: 'Oma BK-Kokemukseni',
-        formText: 'Tervetuloa Minun BURGER KING® -kokemukseni -kyselyyn. Arvostamme rehellistä palautettasi ja sitä, että käytät aikaasi kyselyyn vastaamiseen.',
+        picUrl: '/img/coffee.jpg',
+        formTitle: 'Taustakysely',
+        formText: 'Kerro hieman lisää itsestäsi, jotta voimme räätälöidä palvelumme kattamaan juuri sinun tarpeitasi',
         formUrl: '/survey2',
         color: 'yellow',
         minutes: '(10 pts)',
