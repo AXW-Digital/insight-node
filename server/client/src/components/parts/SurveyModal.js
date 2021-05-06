@@ -17,11 +17,14 @@ const SurveyModal = (props) => {
     }
   }
 
-  const points = props.pointCount
-  const maxLevelPoints = 1000
-  const pointsPercentage = points / maxLevelPoints
-  const valueStart = props.currentPoints
+  var pointsIncrease = props.pointCount
+  var valueStart = props.currentPoints
+  var maxLevelPoints = 5000
+  var pointsIncreasePercentage = pointsIncrease / maxLevelPoints * 100
+  var pointsStartPercentage = valueStart / maxLevelPoints * 100
+
   console.log('current points', valueStart)
+
   return (
     <Modal
       {...props}
@@ -37,28 +40,28 @@ const SurveyModal = (props) => {
       <Modal.Body>
         <div className='row'>
           <div className='col d-flex justify-content-center'>
-            {/* <PointsCard
+            <PointsCard
               key={'a3'}
-              boxIcon={'bx bx-bolt-circle'}
-              count={points}
-              suffix={' pts'}
+              boxIcon={'bx bx-bolt-circle bx-flashing points-icon'}
+              count={pointsIncrease}
+              suffix={' p'}
               color={'green'}
               shine={'lights'}
-            /> */}
+            />
 
 
           </div>
         </div>
         <br />
-        <h5 className='mt-3 modal-heading'>{pointText(props.pointCount)}</h5>
+        <h5 className='mt-3 modal-heading'>{pointText(pointsIncrease)}</h5>
 
         <p>
           Vastauksesi on tallennettu onnistuneesti.
           Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
           </p>
         <AnimatedProgressProvider
-          valueStart={50}
-          valueEnd={pointsPercentage * 100}
+          valueStart={pointsStartPercentage}
+          valueEnd={pointsStartPercentage + pointsIncreasePercentage}
           duration={2.5}
           easingFunction={easeQuadInOut}
         >
@@ -67,8 +70,19 @@ const SurveyModal = (props) => {
             const roundedValue = Math.round(value / 100 * maxLevelPoints);
             return (
               <div>
-              <p>{`${valueStart}`}</p>
-              <ProgressBar animated now={value + valueStart} />
+                <div className='row'>
+                  <div className='col-6'>
+                    <p>{`Taso 1`}</p>
+                  </div>
+                  <div className='col-6 d-flex justify-content-end'>
+                    <p>{`${valueStart} / 5000 p`}</p>
+                  </div>
+                </div>
+                <ProgressBar 
+                animated 
+                now={value}
+                striped 
+                variant="success" />
               </div>
             );
           }}

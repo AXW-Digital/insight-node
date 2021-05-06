@@ -5,7 +5,7 @@ import { ReactComponent as Ideas } from '../assets/images/ideas.svg'
 import cardvaluelist from '../assets/js/cardvalues'
 import { createCard } from '../components/cards/CardFunctions'
 import { createActivityCard } from '../components/cards/CardFunctions'
-import ActivityCardSmall from '../components/cards/ActivityCard'
+import ActivityCard from '../components/cards/ActivityCard'
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
@@ -139,7 +139,7 @@ class HomePage extends Component {
 
 
     render() {
-        const maxLevelPoints = 1000
+        const maxLevelPoints = 1500
         const profile = this.props.data.profile;
         switch (profile) {
             case null:
@@ -166,7 +166,7 @@ class HomePage extends Component {
                                         <AnimatedProgressProvider
                                             valueStart={0}
                                             valueEnd={pointsPercentage * 100}
-                                            duration={2.5}
+                                            duration={3}
                                             easingFunction={easeQuadInOut}
                                         >
 
@@ -230,7 +230,7 @@ class HomePage extends Component {
                                                     color={'green'}
                                                 /> */}
 
-                                                <ActivityCardSmall
+                                                <ActivityCard
                                                     key={'a4'}
                                                     boxIcon={'bx bx-diamond'}
                                                     count={this.props.data.profile.coupons}

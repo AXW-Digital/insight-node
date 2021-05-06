@@ -1779,6 +1779,10 @@ Activity Cards CSS
 
 }
 
+.points-icon{
+  font-size: 340% !important;
+}
+
 /**
  * The "shine" element
  */
