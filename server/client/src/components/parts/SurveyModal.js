@@ -2,8 +2,9 @@ import { Modal, Button } from 'react-bootstrap';
 import { ActivityCardSmall, PointsCard } from '../../components/cards/ActivityCard'
 import { Progress } from 'antd';
 import { ProgressBar } from 'react-bootstrap';
-import getLevel from '../../functions/getLevel'
-
+import getLevel from '../../functions/getLevel';
+import Reward from "react-rewards";
+import React from "react";
 // Animation
 import { easeExpInOut } from "d3-ease";
 import AnimatedProgressProvider from "../parts/AnimatedProgressProvider";
@@ -18,19 +19,148 @@ const SurveyModal = (props) => {
     }
   }
 
-  const levelData = getLevel(props.currentPoints)
-                const { 
-                    currentPoints,
-                    level,
-                    maxLevelPoints    
-                } = levelData
+  const pointsIncrease = props.pointCount
+  const levelData = getLevel(props.currentPoints, pointsIncrease)
+  const {
+    currentPoints,
+    level,
+    maxLevelPoints,
+    levelUp
+  } = levelData
 
-  var pointsIncrease = props.pointCount
-  var pointsIncreasePercentage = pointsIncrease / maxLevelPoints * 100
-  var pointsStartPercentage = currentPoints / maxLevelPoints * 100
+
+  const pointsIncreasePercentage = pointsIncrease / maxLevelPoints * 100
+  const pointsStartPercentage = currentPoints / maxLevelPoints * 100
 
   console.log('current points', currentPoints)
 
+
+
+  const renderPointsContent = (
+    currentPoints,
+    level,
+    maxLevelPoints,
+    levelUp,
+    pointsIncrease,
+    pointsStartPercentage,
+    pointsIncreasePercentage) => {
+
+    switch (levelUp) {
+      case false:
+        return (<div>
+          <Modal.Body>
+            <div className='row'>
+              <div className='col d-flex justify-content-center'>
+                <PointsCard
+                  key={'a3'}
+                  boxIcon={'bx bx-bolt-circle bx-flashing points-icon'}
+                  count={pointsIncrease}
+                  suffix={' p'}
+                  color={'green'}
+                  shine={'lights'}
+                />
+              </div>
+            </div>
+            <br />
+            <h5 className='mt-3 modal-heading'>{pointText(pointsIncrease)}</h5>
+
+            <p>
+              Vastauksesi on tallennettu onnistuneesti.
+              Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
+          </p>
+            <AnimatedProgressProvider
+              valueStart={pointsStartPercentage}
+              valueEnd={pointsStartPercentage + pointsIncreasePercentage}
+              duration={2.5}
+              easingFunction={easeExpInOut}
+            >
+              {value => {
+                const roundedValue = Math.round(value / 100 * maxLevelPoints);
+                return (
+                  <div>
+                    <div className='row'>
+                      <div className='col-6'>
+                        <p>{`Taso ${level}`}</p>
+                      </div>
+                      <div className='col-6 d-flex justify-content-end'>
+                        <p>{`${currentPoints + pointsIncrease} / ${maxLevelPoints} p`}</p>
+                      </div>
+                    </div>
+                    <ProgressBar
+                      animated
+                      now={value}
+                      striped
+                      variant="success"
+                    />
+                  </div>
+                );
+              }}
+
+            </AnimatedProgressProvider>
+
+          </Modal.Body>
+        </div>
+
+        )
+      case true:
+        return (
+          <Modal.Body>
+            <div className='row'>
+              <div className='col d-flex justify-content-center'>
+                <PointsCard
+                  key={'a3'}
+                  boxIcon={'bx bxs-medal bx-flashing points-icon'}
+                  count={level + 1}
+                  suffix={' p'}
+                  color={'blue'}
+                  shine={'lights-blue'}
+                />
+              </div>
+            </div>
+            <br />
+            <h5 className='mt-3 modal-heading'>{pointText(pointsIncrease)}</h5>
+
+            <p>
+              Vastauksesi on tallennettu onnistuneesti.
+              Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
+          </p>
+            <AnimatedProgressProvider
+              valueStart={0}
+              valueEnd={pointsIncreasePercentage}
+              duration={2.5}
+              easingFunction={easeExpInOut}
+            >
+              {value => {
+                const roundedValue = Math.round(value / 100 * maxLevelPoints);
+                return (
+                  <div>
+                    <div className='row'>
+                      <div className='col-6'>
+                        <p>{`Taso ${level + 1}`}</p>
+                      </div>
+                      <div className='col-6 d-flex justify-content-end'>
+                        <p>{`${currentPoints} / ${maxLevelPoints} p`}</p>
+                      </div>
+                    </div>
+                    <ProgressBar
+                      animated
+                      now={value}
+                      striped
+                      variant="success"
+                    />
+                  </div>
+                );
+              }}
+
+            </AnimatedProgressProvider>
+
+          </Modal.Body>
+        )
+    }
+
+  }
+  
+  
   return (
     <Modal
       {...props}
@@ -43,60 +173,14 @@ const SurveyModal = (props) => {
           Kiitos vastauksista!
           </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <div className='row'>
-          <div className='col d-flex justify-content-center'>
-            <PointsCard
-              key={'a3'}
-              boxIcon={'bx bx-bolt-circle bx-flashing points-icon'}
-              count={pointsIncrease}
-              suffix={' p'}
-              color={'green'}
-              shine={'lights'}
-            />
-
-
-          </div>
-        </div>
-        <br />
-        <h5 className='mt-3 modal-heading'>{pointText(pointsIncrease)}</h5>
-
-        <p>
-          Vastauksesi on tallennettu onnistuneesti.
-          Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
-          </p>
-        <AnimatedProgressProvider
-          valueStart={pointsStartPercentage}
-          valueEnd={pointsStartPercentage + pointsIncreasePercentage}
-          duration={2.5}
-          easingFunction={easeExpInOut}
-        >
-
-          {value => {
-            const roundedValue = Math.round(value / 100 * maxLevelPoints);
-            return (
-              <div>
-                <div className='row'>
-                  <div className='col-6'>
-                    <p>{`Taso ${level}`}</p>
-                  </div>
-                  <div className='col-6 d-flex justify-content-end'>
-                    <p>{`${currentPoints + pointsIncrease} / ${maxLevelPoints} p`}</p>
-                  </div>
-                </div>
-                <ProgressBar 
-                animated 
-                now={value}
-                striped 
-                variant="success"
-                />
-              </div>
-            );
-          }}
-
-        </AnimatedProgressProvider>
-
-      </Modal.Body>
+      {renderPointsContent(
+        currentPoints,
+        level,
+        maxLevelPoints,
+        levelUp,
+        pointsIncrease,
+        pointsStartPercentage,
+        pointsIncreasePercentage)}
       <Modal.Footer
         style={{
           display: "flex",
@@ -121,6 +205,7 @@ const SurveyModal = (props) => {
 }
 
 export default SurveyModal
+
 
 
 const SignupModal = (props) => {

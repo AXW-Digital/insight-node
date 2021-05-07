@@ -1,9 +1,11 @@
 // This function takes the total points as an argument and 
 // returns the current level and current points relative to the level 
 
-export default function getLevel(totalPoints) {
+export default function getLevel(totalPoints, pointsIncrease) {
 
-    var sidx, slen, currentPoints, maxLevelPoints
+    var sidx, slen, currentPoints, maxLevelPoints, pointsDiffToMax
+    var levelUp = false
+
     const levelThresholds = [
         1500,
         5000,
@@ -18,15 +20,37 @@ export default function getLevel(totalPoints) {
 
     const level = sidx + 1
 
-    if (sidx === 0) {
-        currentPoints = totalPoints
-        maxLevelPoints = levelThresholds[0]
-    } else {
-        currentPoints = totalPoints - levelThresholds[sidx - 1]
-        maxLevelPoints = levelThresholds[sidx] - levelThresholds[sidx - 1]
+    if ((totalPoints + pointsIncrease) > levelThresholds[sidx]) {
+        levelUp = true
     }
 
-    return { currentPoints, maxLevelPoints, level}
+
+    switch( levelUp ) {
+        case false:
+            if (sidx === 0) {
+                currentPoints = totalPoints
+                maxLevelPoints = levelThresholds[0]
+            } else {
+                currentPoints = totalPoints - levelThresholds[sidx - 1]
+                maxLevelPoints = levelThresholds[sidx] - levelThresholds[sidx - 1]
+            }
+            return { currentPoints, maxLevelPoints, level, levelUp}
+        case true:
+            if (sidx === 0) {
+                pointsDiffToMax = levelThresholds[0] - totalPoints
+                currentPoints = pointsIncrease - pointsDiffToMax
+                maxLevelPoints = levelThresholds[sidx + 1] - levelThresholds[sidx]
+            } else {
+                pointsDiffToMax = levelThresholds[sidx + 1] - totalPoints
+                currentPoints = pointsIncrease - pointsDiffToMax
+                maxLevelPoints = levelThresholds[sidx] - levelThresholds[sidx - 1]
+            }
+            return { currentPoints, maxLevelPoints, level, levelUp}
+
+    }
+    
+
+    
 
 }
 

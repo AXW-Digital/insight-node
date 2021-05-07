@@ -141,7 +141,6 @@ class HomePage extends Component {
 
 
     render() {
-        const maxLevelPoints = 1500
         const profile = this.props.data.profile;
         switch (profile) {
             case null:
