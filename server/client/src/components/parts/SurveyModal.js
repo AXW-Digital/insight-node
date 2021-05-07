@@ -1,5 +1,5 @@
 import { Modal, Button } from 'react-bootstrap';
-import { ActivityCardSmall, PointsCard } from '../../components/cards/ActivityCard'
+import { ActivityCardSmall, PointsCard, LevelCard } from '../../components/cards/ActivityCard'
 import { Progress } from 'antd';
 import { ProgressBar } from 'react-bootstrap';
 import getLevel from '../../functions/getLevel';
@@ -107,7 +107,7 @@ const SurveyModal = (props) => {
           <Modal.Body>
             <div className='row'>
               <div className='col d-flex justify-content-center'>
-                <PointsCard
+                <LevelCard
                   key={'a3'}
                   boxIcon={'bx bxs-medal bx-flashing points-icon'}
                   count={level + 1}

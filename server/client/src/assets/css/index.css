@@ -1884,7 +1884,7 @@ Activity Cards CSS
 	left: 12px;
 	top: -2px;
 	background: linear-gradient(45deg, #355ee7,#ffffff, #355ee7);
-	background-size: 400%;
+	background-size: 500%;
 	width: calc(100% - 24px);
 	height: calc(100% + 4px);
 	z-index: -1;
@@ -1905,7 +1905,11 @@ Activity Cards CSS
 }
 
 .lights-blue:after {
-	filter: blur(10px);
+	filter: blur(50px);
+}
+
+.counter {
+  cursor: pointer
 }
 
 
