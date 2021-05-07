@@ -1634,20 +1634,20 @@ Kysely Cards CSS
 }
 
 .kysely .kysely-card.yellow {
-  border-bottom: 3px solid #e3a509;
+  border-bottom: 3px solid #ffcf00;
 }
 
 .kysely .kysely-card.yellow .icon {
-  color: #e3a509;
+  color: #ffcf00;
   background: #fde3c4;
 }
 
 .kysely .kysely-card.yellow .read-more {
-  color: #e3a509;
+  color: #ffcf00;
 }
 
 .kysely .kysely-card.yellow:hover, .kysely-card.yellow:active {
-  background: #e3a509;
+  background: #ffcf00;
 }
 
 .kysely .kysely-card.green {

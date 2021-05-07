@@ -10,6 +10,8 @@ import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
 
+// getLevel function
+import getLevel from '../functions/getLevel'
 
 // Circular-progress-bar
 import {
@@ -153,7 +155,16 @@ class HomePage extends Component {
             default:
                 console.log('profile fetched')
                 const { surveyAns } = this.state;
-                const pointsPercentage = this.props.data.profile.points / maxLevelPoints
+
+                // determine level with getLevel function
+                const levelData = getLevel(this.props.data.profile.points)
+                const { 
+                    currentPoints,
+                    level,
+                    maxLevelPoints    
+                } = levelData
+
+                const pointsPercentage = currentPoints / maxLevelPoints
                 return (
                     <div>
                         <div id='page-top'></div>
@@ -163,45 +174,45 @@ class HomePage extends Component {
                                     <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
                                         {this.renderContent()}
                                         <div className='progress-circle'>
-                                        <AnimatedProgressProvider
-                                            valueStart={0}
-                                            valueEnd={pointsPercentage * 100}
-                                            duration={3}
-                                            easingFunction={easeQuadInOut}
-                                        >
+                                            <AnimatedProgressProvider
+                                                valueStart={0}
+                                                valueEnd={pointsPercentage * 100}
+                                                duration={3}
+                                                easingFunction={easeQuadInOut}
+                                            >
 
-                                            {value => {
-                                                const roundedValue = Math.round(value / 100 * maxLevelPoints);
-                                                return (
-                                                    <CircularProgressbarWithChildren
-                                                        value={value}
-                                                        text={`${roundedValue} / ${maxLevelPoints} p`}
-                                                        /* This is important to include, because if you're fully managing the
-                                                        animation yourself, you'll want to disable the CSS animation. */
-                                                        styles={buildStyles({
-                                                            pathTransition: "none",
-                                                            textSize: '10px',
-                                                            pathColor: `rgba(0, 128, 0, ${value / 20})`,
-                                                            textColor: 'rgb(0, 128, 0)',
-                                                            trailColor: '#d6d6d6',
-                                                            fontFamily: 'TT Norms'
-                                                        })}
-                                                    >
-                                                        <i className='bx bx-bolt-circle'
-                                                            style={{
-                                                                width: '20%',
-                                                                marginTop: 20,
-                                                                height: '30%',
-                                                                fontSize: '400%',
-                                                                color: 'rgb(0, 128, 0)',
-                                                                textAlign: 'center'
-                                                            }} />
-                                                        <p className='level-name'>Taso 1</p>
-                                                    </CircularProgressbarWithChildren>
-                                                );
-                                            }}
+                                                {value => {
+                                                    const roundedValue = Math.round(value / 100 * maxLevelPoints);
+                                                    return (
+                                                        <CircularProgressbarWithChildren
+                                                            value={value}
+                                                            text={`${roundedValue} / ${maxLevelPoints} p`}
+                                                            /* This is important to include, because if you're fully managing the
+                                                            animation yourself, you'll want to disable the CSS animation. */
+                                                            styles={buildStyles({
+                                                                pathTransition: "none",
+                                                                textSize: '10px',
+                                                                pathColor: `rgba(0, 128, 0, ${value / 20})`,
+                                                                textColor: 'rgb(0, 128, 0)',
+                                                                trailColor: '#d6d6d6',
+                                                                fontFamily: 'TT Norms'
+                                                            })}
+                                                        >
+                                                            <i className='bx bx-bolt-circle'
+                                                                style={{
+                                                                    width: '20%',
+                                                                    marginTop: 20,
+                                                                    height: '30%',
+                                                                    fontSize: '350%',
+                                                                    color: 'rgb(0, 128, 0)',
+                                                                    textAlign: 'center'
+                                                                }} />
+                                                            <p className='level-name'>{`Taso ${level}`}</p>
+                                                        </CircularProgressbarWithChildren>
+                                                    );
+                                                }}
 
-                                        </AnimatedProgressProvider>
+                                            </AnimatedProgressProvider>
                                         </div>
                                         <div className='counts'>
                                             <div className='row m-4'>
@@ -257,7 +268,6 @@ class HomePage extends Component {
                             <div className="container card-container" data-aos="fade-up">
                                 <header className="section-header">
                                     <h3 id='kysely-title'>Kyselyt</h3>
-                                    {/* <p>Vastaamalla kyselyihin pääset keräämään pisteitä ja vaikuttamaan</p> */}
                                 </header>
                                 {this.renderCards()}
                             </div>

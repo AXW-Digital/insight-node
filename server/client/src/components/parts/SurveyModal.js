@@ -2,9 +2,10 @@ import { Modal, Button } from 'react-bootstrap';
 import { ActivityCardSmall, PointsCard } from '../../components/cards/ActivityCard'
 import { Progress } from 'antd';
 import { ProgressBar } from 'react-bootstrap';
+import getLevel from '../../functions/getLevel'
 
 // Animation
-import { easeQuadInOut } from "d3-ease";
+import { easeExpInOut } from "d3-ease";
 import AnimatedProgressProvider from "../parts/AnimatedProgressProvider";
 
 const SurveyModal = (props) => {
@@ -17,13 +18,18 @@ const SurveyModal = (props) => {
     }
   }
 
-  var pointsIncrease = props.pointCount
-  var valueStart = props.currentPoints
-  var maxLevelPoints = 5000
-  var pointsIncreasePercentage = pointsIncrease / maxLevelPoints * 100
-  var pointsStartPercentage = valueStart / maxLevelPoints * 100
+  const levelData = getLevel(props.currentPoints)
+                const { 
+                    currentPoints,
+                    level,
+                    maxLevelPoints    
+                } = levelData
 
-  console.log('current points', valueStart)
+  var pointsIncrease = props.pointCount
+  var pointsIncreasePercentage = pointsIncrease / maxLevelPoints * 100
+  var pointsStartPercentage = currentPoints / maxLevelPoints * 100
+
+  console.log('current points', currentPoints)
 
   return (
     <Modal
@@ -63,7 +69,7 @@ const SurveyModal = (props) => {
           valueStart={pointsStartPercentage}
           valueEnd={pointsStartPercentage + pointsIncreasePercentage}
           duration={2.5}
-          easingFunction={easeQuadInOut}
+          easingFunction={easeExpInOut}
         >
 
           {value => {
@@ -72,17 +78,18 @@ const SurveyModal = (props) => {
               <div>
                 <div className='row'>
                   <div className='col-6'>
-                    <p>{`Taso 1`}</p>
+                    <p>{`Taso ${level}`}</p>
                   </div>
                   <div className='col-6 d-flex justify-content-end'>
-                    <p>{`${valueStart} / 5000 p`}</p>
+                    <p>{`${currentPoints + pointsIncrease} / ${maxLevelPoints} p`}</p>
                   </div>
                 </div>
                 <ProgressBar 
                 animated 
                 now={value}
                 striped 
-                variant="success" />
+                variant="success"
+                />
               </div>
             );
           }}
