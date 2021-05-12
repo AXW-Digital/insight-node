@@ -1,18 +1,20 @@
 // This function takes the total points as an argument and 
 // returns the current level and current points relative to the level 
 
+export const levelThresholds = [
+    1500,
+    5000,
+    10000,
+    18500,
+    30000
+]
+
+
 export default function getLevel(totalPoints, pointsIncrease) {
 
+    
     var sidx, slen, currentPoints, maxLevelPoints, pointsDiffToMax
     var levelUp = false
-
-    const levelThresholds = [
-        1500,
-        5000,
-        10000,
-        18500,
-        30000
-    ]
 
     for (sidx = 0, slen = levelThresholds.length; sidx < slen; ++sidx) {
         if (totalPoints < levelThresholds[sidx]) break;
@@ -47,12 +49,11 @@ export default function getLevel(totalPoints, pointsIncrease) {
             }
             return { currentPoints, maxLevelPoints, level, levelUp}
 
-    }
-    
-
-    
+    }   
 
 }
+
+
 
 
 

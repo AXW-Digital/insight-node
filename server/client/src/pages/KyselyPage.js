@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import KyselyForm from '../components/forms/KyselyForm'
+import Loader from '../components/parts/Loader'
 
 import Footer from '../components/parts/Footer'
 // import $ from 'jquery';
@@ -37,9 +38,7 @@ class KyselyPage extends Component {
 
         switch(profile){
             case null:
-                return ( 
-                    <div>Loading...</div>
-                )
+                return <Loader /> 
             default:
                 return (
                     <div>

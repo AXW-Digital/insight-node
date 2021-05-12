@@ -16,9 +16,18 @@ import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import KyselyPage from './pages/KyselyPage';
 import CreateProfile from './pages/CreateProfile';
+import Kyselyt from './pages/Kyselyt';
+import More from './pages/More';
+import Settings from './pages/Settings';
+import Profile from './pages/Profile'
 
 //parts
 import Header from './components/parts/Header'
+
+// Navigation
+import NavigationBottom from './components/parts/NavigationBottom'
+
+
 
 class App extends Component {
   
@@ -50,12 +59,16 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={LandingPage} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/home" component={HomePage} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/kyselyt" component={Kyselyt} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/profile" component={ProfilePage} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/m/settings" component={Settings} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/m/profile" component={Profile} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/more" component={More} />
             <PrivateRoute auth = {authStatus} path = "/survey:id" component={KyselyPage} />
             <RedirectRoute auth = {authStatus} component={Signin} path="/signin" />
             <Route auth = {authStatus} component={Signup} path="/signup" />
             <CreateProfileRoute auth = {authStatus} profile = {profileStatus} component={CreateProfile} path="/profile/create" />
-
+            <NavigationBottom/>
           </div>
         </BrowserRouter>
       </div>

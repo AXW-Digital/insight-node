@@ -184,7 +184,7 @@ const SurveyModal = (props) => {
       <Modal.Footer
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "center"
         }}
       >
         <Button
@@ -194,6 +194,9 @@ const SurveyModal = (props) => {
           variant='warning'
           size='lg'
           block
+          style={{
+            zIndex: 999
+          }}
         >
           Jatka
         </Button>

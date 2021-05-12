@@ -8,14 +8,14 @@ import { createActivityCard } from '../components/cards/CardFunctions'
 import ActivityCard from '../components/cards/ActivityCard'
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
-import MoonLoader from "react-spinners/MoonLoader";
+import Loader from '../components/parts/Loader'
 
 // getLevel function
-import getLevel from '../functions/getLevel'
+import getLevel, { levelThresholds } from '../functions/getLevel'
+
 
 // Circular-progress-bar
 import {
-    CircularProgressbar,
     CircularProgressbarWithChildren,
     buildStyles
 } from "react-circular-progressbar";
@@ -25,6 +25,9 @@ import "react-circular-progressbar/dist/styles.css";
 // Animation
 import { easeQuadInOut } from "d3-ease";
 import AnimatedProgressProvider from "../components/parts/AnimatedProgressProvider";
+
+// Progress bar
+import StepProgressBar from "../components/parts/ProgressBar";
 
 
 
@@ -57,11 +60,7 @@ class HomePage extends Component {
         switch (isLoading) {
 
             default:
-                return (<div className="row g-4 d-flex">
-                    <MoonLoader
-                        size={50}
-                        color={'#e3a509'} />
-                </div>)
+                return <Loader /> 
 
 
             case false:
@@ -128,9 +127,7 @@ class HomePage extends Component {
         const profile = this.props.data.profile;
         switch (profile) {
             case null:
-                return <MoonLoader
-                    size={50}
-                    color={'#e3a509'} />
+                return <Loader /> 
             default:
                 console.log(profile)
                 return <h1>Tervetuloa {profile.fName}!</h1>
@@ -147,9 +144,9 @@ class HomePage extends Component {
                 const { isProfile } = this.state;
                 switch (isProfile) {
                     case false:
-                        return <MoonLoader size={50} />
+                        return <Loader /> 
                     default:
-                        return <MoonLoader size={50} />
+                        return <Loader /> 
                 }
             default:
                 console.log('profile fetched')
@@ -157,13 +154,18 @@ class HomePage extends Component {
 
                 // determine level with getLevel function
                 const levelData = getLevel(this.props.data.profile.points)
-                const { 
+                const {
                     currentPoints,
                     level,
-                    maxLevelPoints    
+                    maxLevelPoints
                 } = levelData
 
                 const pointsPercentage = currentPoints / maxLevelPoints
+                var stepPositions = levelThresholds.map(x => x/(Math.max(...levelThresholds)/100))
+                stepPositions.unshift(0)
+                const points = this.props.data.profile.points
+                const progress = points/(Math.max(...levelThresholds)/100)
+
                 return (
                     <div>
                         <div id='page-top'></div>
@@ -186,8 +188,6 @@ class HomePage extends Component {
                                                         <CircularProgressbarWithChildren
                                                             value={value}
                                                             text={`${roundedValue} / ${maxLevelPoints} p`}
-                                                            /* This is important to include, because if you're fully managing the
-                                                            animation yourself, you'll want to disable the CSS animation. */
                                                             styles={buildStyles({
                                                                 pathTransition: "none",
                                                                 textSize: '10px',
@@ -210,36 +210,30 @@ class HomePage extends Component {
                                                         </CircularProgressbarWithChildren>
                                                     );
                                                 }}
+                                            </AnimatedProgressProvider>
+                                            <AnimatedProgressProvider
+                                                valueStart={0}
+                                                valueEnd={progress}
+                                                duration={3}
+                                                easingFunction={easeQuadInOut}
+                                            >
+                                                {value => {
+                                                    const roundedValue = Math.round(value / 100 * maxLevelPoints);
+                                                    return (
+                                                        <StepProgressBar 
+                                                        progress={value}
+                                                        currentLevel = {level}
+                                                        stepPositions = {stepPositions}
+                                                        >
+                                                        </StepProgressBar>
+                                                    );
+                                                }}
 
                                             </AnimatedProgressProvider>
+
                                         </div>
                                         <div className='counts'>
                                             <div className='row m-4'>
-                                                {/* <ActivityCardSmall
-                                                    key={'a1'}
-                                                    boxIcon={'bx bx-message-detail'}
-                                                    count={surveyAns === undefined ? 0 : surveyAns === null ? 0 : surveyAns.id.length}
-                                                    cardText={'Vastatut kyselyt'}
-                                                    suffix={''}
-                                                    color={'#007bff'}
-                                                />
-                                                <ActivityCardSmall
-                                                    key={'a2'}
-                                                    boxIcon={'bx bxs-medal'}
-                                                    count={this.props.data.profile.level}
-                                                    cardText={'Vaikuttaja taso'}
-                                                    suffix={''}
-                                                    color={'#007bff'}
-                                                /> */}
-                                                {/* <ActivityCardSmall
-                                                    key={'a3'}
-                                                    boxIcon={'bx bx-bolt-circle'}
-                                                    count={this.props.data.profile.points}
-                                                    cardText={'Pisteet yhteensä'}
-                                                    suffix={' pts'}
-                                                    color={'green'}
-                                                /> */}
-
                                                 <ActivityCard
                                                     key={'a4'}
                                                     boxIcon={'bx bx-diamond'}
@@ -263,14 +257,7 @@ class HomePage extends Component {
                                 </div>
                             </div>
                         </section>
-                        <section id='kyselyt' className="d-flex align-items-center justify-content-center kysely">
-                            <div className="container card-container" data-aos="fade-up">
-                                <header className="section-header">
-                                    <h3 id='kysely-title'>Kyselyt</h3>
-                                </header>
-                                {this.renderCards()}
-                            </div>
-                        </section>
+                        
 
                         {/* Menutests commented out due to not being part of current plan */}
 

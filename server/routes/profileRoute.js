@@ -14,6 +14,7 @@ module.exports = app => {
             new: true
         });
         
+        console.log(profile.fName, Date(Date.now()))
         res.send(profile)
 
         

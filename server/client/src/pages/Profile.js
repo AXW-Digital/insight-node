@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProfileCard from '../components/cards/ProfileCard'
-import SettingsCard from '../components/cards/SettingsCard'
 import AvatarCard from '../components/cards/AvatarCard'
 import cardvaluelist from '../assets/js/cardvalues'
 import { createSmallActivityCard } from '../components/cards/CardFunctions'
@@ -16,9 +15,8 @@ class ProfilePage extends Component {
     render() {
 
         const profile = this.props.data.profile
-        const settings = this.props.data.settings
 
-        if (settings === null || profile === null || settings === undefined || profile === undefined) {
+        if (profile === null || profile === undefined) {
             <Loader /> 
         }
 
@@ -62,19 +60,6 @@ class ProfilePage extends Component {
                                             homeCity={profile.city}
                                             homeAddress={profile.address + ' ' + profile.addrNum}
                                         />
-                                    </div>
-                                    <div className='col-lg-8'>
-                                        {settings?
-                                        <SettingsCard
-                                            cardTitle='Asetukset'
-                                            maxdist={settings.maxdist}
-                                            maxprice={settings.maxprice}
-                                            emailNews={settings.emailNews}
-                                            emailTest={settings.emailTest}
-                                            emailSurvey={settings.emailSurvey}
-                                        />
-                                        :
-                                        <Loader /> }
                                     </div>
                                 </div>
                             </div>

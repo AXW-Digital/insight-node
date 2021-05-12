@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollButton from './ScrollButton'
 
 const Footer= () => (
         <div>
@@ -51,11 +52,7 @@ const Footer= () => (
                                 className="google-plus">
                                 <i className="bx bxl-linkedin"></i>
                             </a>
-                                <a 
-                                    href="#page-top" 
-                                    className="back-to-top">
-                                    <i className='bx bxs-chevrons-up' ></i>
-                                </a>
+                            <ScrollButton />
                             
                             </div>
                             

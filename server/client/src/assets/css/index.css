@@ -78,9 +78,7 @@ h3 {
 #page-top {
   position: absolute;
   top: 0;
-
 }
-
 
 
 /*--------------------------------------------------------------
@@ -91,9 +89,9 @@ h3 {
   display: none;
   width: 40px;
   height: 40px;
-  border-radius: 3px;
+  border-radius: 20px;
   right: 15px;
-  bottom: 15px;
+  bottom: 65px;
   transition: display 0.5s ease-in-out;
   z-index: 99999;
   background: #e2b11194 !important;
@@ -102,8 +100,8 @@ h3 {
 
 .back-to-top i {
   font-size: 24px;
-  position: relative;
-  bottom: 2.5px
+  margin-top: 7px;
+  
 }
 
 .back-to-top:hover {
@@ -172,6 +170,10 @@ h3 {
   #responsive-navbar-nav {
     margin-top: 2ex;
     background-color: #f1eeddf5 !important;
+  }
+
+  .navbar-toggler{
+    display: none;
   }
 }
 
@@ -403,6 +405,9 @@ h3 {
   font-size: 150%
 }
 
+#hero .RSPBprogressBar {
+  margin-top: 20%;
+}
 
 /*--------------------------------------------------------------
 kasvuvaikuttajan section
@@ -1912,6 +1917,22 @@ Activity Cards CSS
   cursor: pointer
 }
 
+.indexedStep {
+  color: white;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  background-color: rgba(211, 211, 211, 0.8);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.indexedStep.accomplished {
+  background-color: rgba(0, 116, 217, 1);
+}
+
 
 
 /* -----------------------------------------------
@@ -2117,5 +2138,48 @@ Kysely Page CSS
   border-radius: 30px !important;
 }
 
+/* -----------------------------------------------
+Bottom Navigation CSS
+-------------------------------------------------- */
+a:hover{
+  text-decoration: none !important;
+}
+
+a:visited{
+  text-decoration: none !important;
+}
+
+a:link{
+  text-decoration: none !important;
+}
+
+a:active{
+  text-decoration: none !important;
+}
+
+/* .Mui-selected   {
+  background-color: #e3a50938 !important;
+}
+
+.MuiBottomNavigationAction-label {
+  background-color: transparent !important;
+} */
+
+/* -----------------------------------------------
+end Bottom Navigation CSS
+-------------------------------------------------- */
+
+/* -----------------------------------------------
+More List CSS
+-------------------------------------------------- */
+
+.more-list{
+  margin-top: calc(var(--header-height) + 10px) !important;
+}
+
+.MuiListItemIcon-root {
+  font-size: 20px
+  
+}
 
 

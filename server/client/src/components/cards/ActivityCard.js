@@ -63,6 +63,7 @@ export { PointsCard };
 class LevelCard extends Component {
     constructor(props) {
         super(props);
+        
         this.clickMe = this.clickMe.bind(this);
     }
 
@@ -74,7 +75,7 @@ class LevelCard extends Component {
         setTimeout(function() { //Start the timer
             this.setState({render: true})
             this.reward.rewardMe(); //After 1 second, set render to true
-        }.bind(this), 2000)
+        }.bind(this), 2300)
                
     }
 
@@ -84,9 +85,9 @@ class LevelCard extends Component {
         render() {
             return (
                 <div className={`col-lg-6 align-self-stretch justify-content-between d-flex clearfix mt-2 mt-lg-0 ${this.props.shine}`}>
-                    <div className="count-box-small d-flex align-items-center justify-content-end counter" style={{ color: `${this.props.color}`}} onClick={() => this.clickMe()}>
+                    <div className="count-box-small d-flex align-items-center justify-content-end" style={{ color: `${this.props.color}`}} >
                         <i className={`${this.props.boxIcon}`}></i>
-                        <div className='counter pl-2'>                            
+                        <div className='counter pl-2' >                            
                             
                             <Reward
                                 ref={ref => {
@@ -94,7 +95,7 @@ class LevelCard extends Component {
                                 }}
                                 type="memphis"
                             >
-                                <div >
+                                <div>
                                 <CountUp   start = {this.props.count - 1} end={this.props.count} duration={0} delay={2}  />
                                 </div>                                
                             </Reward>
