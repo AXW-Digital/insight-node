@@ -21,7 +21,7 @@ const cardvaluelist = [
         formText: 'Uusi French Beef. Valkosipulisämpylän välissä kaksi 100% naudanlihapihviä, siivu emmental-sulatejuustoa, kaksi viipaletta pekonia ja bataviasalaattia.',
         formUrl: '/survey1',
         color: 'purple',
-        tyyppi: 'Osallistu'
+        tyyppi: 'Feed'
     },
 
     {
@@ -32,7 +32,7 @@ const cardvaluelist = [
         formText: 'Uudessa raikkaassa All Vegan -salaatissa maistuvat soijapavut, lehtikaali, pinaatti ja pikkelöity porkkana. Nimensä mukaisesti salaatti on 100 % vegaaninen.',
         formUrl: '#',
         color: 'purple',
-        tyyppi: 'Osallistu'
+        tyyppi: 'Feed'
     },
 
     {
@@ -57,7 +57,7 @@ const cardvaluelist = [
         formText: 'Supersuosittu Kebab-hampurilainen.',
         formUrl: '#',
         color: 'green',
-        tyyppi: 'Osallistu'
+        tyyppi: 'Feed'
 
     },
 
@@ -83,7 +83,7 @@ const cardvaluelist = [
         formText: 'TRIPLA WHOPPER - Kolme kerrosta makusi mukaan',
         formUrl: '#', 
         color: 'yellow',
-        tyyppi: 'Osallistu'
+        tyyppi: 'Feed'
     },
 
     {
