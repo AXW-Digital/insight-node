@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as Nainen } from '../../assets/images/nainen.svg';
 
 
-class Vaikuttava extends React.Component {
+class LandingSection1 extends React.Component {
 
     renderContent() {
         const data = this.props.data
@@ -12,8 +12,11 @@ class Vaikuttava extends React.Component {
             case false:
                 return (<div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
                     <h1>Olet vaikuttava!</h1>
-                    <p>Kasvuvaikuttajana autat luomaan parempaa ymmärrystä elämyspuolen palveluista.
-                    Ole mukana muokkaamassa tulevaisuutta!</p>
+                    <p> Vaikuttava-yhteisön jäsenenä autat yrittäjiä ymmärtämään paremmin asiakkaiden toiveita ja tarpeita ja näin
+                        edesautat heitä kehittämään entistä vaikuttavampia tuotteita ja palveluja. </p>
+                    <p>Vastineeksi mielipiteistäsi saat palkintoja:
+                        lahjakortteja, alennuksia, etuja ja tarjouksia. </p>
+                    <p>Ole mukana muokkaamassa tulevaisuutta!</p>
                     <a href="/signin" className="btn-get-started scrollto">Kirjaudu</a>
                     <a href="/signup" className="btn-get-rekister scrollto">Rekisteröidy</a>
                 </div>);
@@ -57,4 +60,4 @@ class Vaikuttava extends React.Component {
     }
 }
 
-export default Vaikuttava;
+export default LandingSection1;

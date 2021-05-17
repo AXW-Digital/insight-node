@@ -3,11 +3,11 @@ import {ReactComponent as Powerful} from '../../assets/images/powerful.svg'
 import { Card } from 'react-bootstrap'
 
 
-class Voima extends React.Component {
+class LandingSection6 extends React.Component {
     render() {
         return (
             <div>
-                <section id="voima" className="d-flex align-items-center bg-white">
+                <section className="d-flex align-items-center even-section">
                     <div className="container">
                     <div className="row">
                         <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1">
@@ -38,4 +38,4 @@ class Voima extends React.Component {
     }
 }
 
-export default Voima;
+export default LandingSection6;

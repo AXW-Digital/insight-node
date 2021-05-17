@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {ReactComponent as Data} from '../../assets/images/datasvg.svg'
 import { Card } from 'react-bootstrap';
 
-class Growflow extends Component {
+class LandingSection5 extends Component {
     render() {
         return (
             <div>
-              <section id="growflow" className="d-flex align-items-center">
+              <section className="d-flex align-items-center odd-section">
                 <div className="container">
                 <div className="row">
                     <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1">
@@ -41,4 +41,4 @@ class Growflow extends Component {
     }
 }
 
-export default Growflow;
+export default LandingSection5;

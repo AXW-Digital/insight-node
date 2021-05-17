@@ -80,6 +80,107 @@ h3 {
   top: 0;
 }
 
+/* linelist */
+ul.linelist {
+  padding-left: 15px;
+  margin-top: -1px;
+}
+ul.linelist li {
+  padding-left: 33px;
+  margin-bottom: 2.5em;
+  list-style: none;
+  /* background: url('../img/misc/list-bullet-darkgray.png') no-repeat; */
+}
+ul.linelist li.yellow {
+  background: url('../images/bullet_yellow.png') no-repeat;
+}
+/* ul.linelist li.blue {
+  background: url('../img/misc/list-bullet-blue.png') no-repeat;
+}
+ul.linelist li.pink {
+  background: url('../img/misc/list-bullet-pink.png') no-repeat;
+} */
+.where {
+  font-size: 1.2857em; /* 18/16 -> 18px */
+  font-weight: 300;
+  display: inline;
+  margin-right: 0.5em;
+}
+.what {
+  font-size: 0.75em; /* 12/16 -> 12px */
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #444444;
+  display: inline-block;
+  padding: 0 12px;
+  margin: -5px 0.5em 0 0 !important;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.what.green {
+  background-color: #c4df9b;
+}
+.what.blue {
+  background-color: #6dcff6;
+}
+.what.pink {
+  background-color: #f06eaa;
+}
+.when {
+  float: right;
+  color: #b9b9b9;
+  font-style: italic;
+}
+.description {
+  display: block;
+  margin-top: 0.5em;
+}
+
+
+/* BORDERS AND BULLETS */
+
+p {
+  /*CSS reset*/
+  margin-bottom: 0;
+}
+
+ul.linelist li {
+  position:relative; /* so that pseudoelements are positioned relatively to their "li"s*/
+  /* use padding-bottom instead of margin-bottom.*/ 
+  margin-bottom: 0; /* This overrides previously specified margin-bottom */
+  padding-bottom: 2.5em;
+}
+
+ul.linelist li:after {
+  /* bullets */
+  content: url('http://upload.wikimedia.org/wikipedia/commons/thumb/3/30/RedDisc.svg/20px-RedDisc.svg.png');
+  position: absolute;
+  left: -26px; /*adjust manually*/
+  top: -3px;
+}
+
+ul.linelist li:before {
+  /* lines */
+  content:"";
+  position: absolute;
+  left: -16px; /* adjust manually */
+  border-left: 1px solid black;
+  height: 100%;
+  width: 1px;
+  font-family: 'TT Norms Light';
+}
+
+ul.linelist li:first-child:before {
+ /* first li's line */
+ top: 6px; /* moves the line down so that it disappears under the bullet. Adjust manually */
+}
+
+ul.linelist li:last-child:before {
+  /* last li's line */
+ height: 6px; /* shorten the line so it goes only up to the bullet. Is equal to first-child:before's top */
+}
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -410,10 +511,192 @@ h3 {
 }
 
 /*--------------------------------------------------------------
-kasvuvaikuttajan section
+even section
 ---------------------------------------------------------------*/
 
-#kasvut {
+.even-section {
+  background: whitesmoke;
+  margin-bottom: 100%;
+  width: 100%;
+  max-height: 100%;
+  border-bottom: 2px solid #fcebe3;
+  margin: 72px 0 -72px 0;
+  height: 100%;
+}
+
+.even-section .icon-box {
+  margin-top: 40px;
+}
+
+.even-section .description {
+  font-family: "TT Norms Light";
+  font-size: 16px;
+  color: rgba(63, 61, 86, 1);
+  border-left-width: 1.5ex !important;
+  border-left-color: #ffcf00 !important;
+  color: rgba(63, 61, 86, 1) !important;
+}
+
+
+.even-section h3 {
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  color: rgba(63, 61, 86, 1);
+}
+
+.even-section h2 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 56px;
+  color: #0f0f0f;
+}
+
+.even-section p {
+  color: #0f0f0f;
+  font-size: 16px;
+  color: rgba(63, 61, 86, 1)
+}
+
+.even-section .container {
+  margin-bottom: 5rem;
+}
+
+.even-section .animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@media (min-width: 1024px) {
+  .even-section {
+    background-attachment: fixed;
+  }
+
+  .even-section .animated {
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  }
+
+  .even-section {
+    border-bottom: 2px solid #fcebe3;
+    margin: 72px 0 -72px 0;
+    height: 100%;
+  }
+
+}
+
+@media (max-width: 991px) {
+  .even-section {
+    height: calc(100vh - 72px);
+  }
+
+  .even-section .animated {
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  }
+
+  .even-section .kasvut-img {
+    text-align: center;
+  }
+
+  .even-section .kasvut-img img {
+    width: 50%;
+  }
+
+  .even-section {
+    border-bottom: 2px solid #fcebe3;
+    margin: 72px 0 -72px 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .even-section h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .even-section h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+
+  .even-section .kasvut-img img {
+    width: 70%;
+  }
+
+  .even-section .animated {
+    -webkit-animation: none;
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  }
+
+  .even-section {
+    border-bottom: 2px solid #fcebe3;
+    margin: 72px 0 -72px 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .even-section {
+    max-width: 100%;
+    max-width: 100%;
+  }
+
+  .even-section .kasvut-img img {
+    width: 80%;
+    margin-top: -50rem !important;
+  }
+
+  .even-section .animated {
+    -webkit-animation: none;
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  }
+
+  .even-section .description {
+    font-family: "TT Norms Light";
+    font-size: 18px;
+    color: rgba(63, 61, 86, 1);
+    border-left-width: 1.5ex !important;
+    border-left-color: #ffcf00 !important;
+    color: rgba(63, 61, 86, 1) !important;
+  }
+
+  .even-section {
+    border-bottom: 2px solid #fcebe3;
+    margin: 72px 0 -72px 0;
+    height: 100%;
+  }
+
+}
+
+@-webkit-keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/*--------------------------------------------------------------
+even section ends
+---------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+odd section begins
+---------------------------------------------------------------*/
+
+.odd-section {
   background: white;
   margin-bottom: 100%;
   width: 100%;
@@ -423,217 +706,35 @@ kasvuvaikuttajan section
   height: 100%;
 }
 
-#kasvut .icon-box {
+.odd-section .icon-box {
   margin-top: 40px;
 }
 
-#kasvut .description {
+.odd-section .description {
   font-family: "TT Norms Light";
-  font-size: 20px;
+  font-size: 16px;
   color: rgba(63, 61, 86, 1);
   border-left-width: 1.5ex !important;
   border-left-color: #ffcf00 !important;
   color: rgba(63, 61, 86, 1) !important;
 }
 
+.odd-section .hyodyt {
 
-#kasvut h3 {
-  margin: 0 0 10px 0;
-  font-weight: bold;
-  color: rgba(63, 61, 86, 1);
-}
-
-#kasvut h2 {
-  margin: 0 0 10px 0;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 56px;
-  color: #0f0f0f;
-}
-
-#kasvut p {
-  color: #0f0f0f;
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1)
-}
-
-#kasvut .container {
-  margin-bottom: 5rem;
-}
-
-#kasvut .animated {
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
-}
-
-@media (min-width: 1024px) {
-  #kasvut {
-    background-attachment: fixed;
-  }
-
-  #kasvut .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #kasvut {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@media (max-width: 991px) {
-  #kasvut {
-    height: calc(100vh - 72px);
-  }
-
-  #kasvut .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #kasvut .kasvut-img {
-    text-align: center;
-  }
-
-  #kasvut .kasvut-img img {
-    width: 50%;
-  }
-
-  #kasvut {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  #kasvut h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  #kasvut h2 {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-
-  #kasvut .kasvut-img img {
-    width: 70%;
-  }
-
-  #kasvut .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #kasvut {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 575px) {
-  #kasvut {
-    max-width: 100%;
-    max-width: 100%;
-  }
-
-  #kasvut .kasvut-img img {
-    width: 80%;
-    margin-top: -50rem !important;
-  }
-
-  #kasvut .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #kasvut .description {
-    font-family: "TT Norms Light";
-    font-size: 18px;
-    color: rgba(63, 61, 86, 1);
-    border-left-width: 1.5ex !important;
-    border-left-color: #ffcf00 !important;
-    color: rgba(63, 61, 86, 1) !important;
-  }
-
-  #kasvut {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@-webkit-keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-/*--------------------------------------------------------------
-kasvuvaikkuttaja ends
----------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-kukka begins
----------------------------------------------------------------*/
-
-#kukka {
-  background: whitesmoke;
-  margin-bottom: 100%;
-  width: 100%;
-  max-height: 100%;
-  border-bottom: 2px solid #fcebe3;
-  margin: 72px 0 -72px 0;
-  height: 100%;
-}
-
-#kukka .icon-box {
-  margin-top: 40px;
-}
-
-#kukka .description {
-  font-family: "TT Norms Light";
-  font-size: 20px;
+  font-size: 16px;
   color: rgba(63, 61, 86, 1);
   border-left-width: 1.5ex !important;
   border-left-color: #ffcf00 !important;
   color: rgba(63, 61, 86, 1) !important;
 }
 
-#kukka .hyodyt {
-
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1);
-  border-left-width: 1.5ex !important;
-  border-left-color: #ffcf00 !important;
-  color: rgba(63, 61, 86, 1) !important;
-}
-
-#kukka h3 {
+.odd-section h3 {
   margin: 0 0 10px 0;
   font-weight: bold;
   color: rgba(63, 61, 86, 1);
 }
 
-#kukka h2 {
+.odd-section h2 {
   margin: 0 0 10px 0;
   font-size: 24px;
   font-weight: 700;
@@ -641,30 +742,30 @@ kukka begins
   color: #0f0f0f;
 }
 
-#kukka p {
-  font-size: 20px;
+.odd-section p {
+  font-size: 16px;
   color: #0f0f0f;
   color: rgba(63, 61, 86, 1)
 }
 
-#kukka .container {
+.odd-section .container {
   margin-bottom: 5rem;
 }
 
-#kukka .animated {
+.odd-section .animated {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
 @media (min-width: 1024px) {
-  #kukka {
+  .odd-section {
     background-attachment: fixed;
   }
 
-  #kukka .animated {
+  .odd-section .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
 
-  #kukka {
+  .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
@@ -673,23 +774,23 @@ kukka begins
 }
 
 @media (max-width: 991px) {
-  #kukka {
+  .odd-section {
     height: calc(100vh - 72px);
   }
 
-  #kukka .animated {
+  .odd-section .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
 
-  #kukka .kukka-img {
+  .odd-section .kukka-img {
     text-align: center;
   }
 
-  #kukka .kukka-img img {
+  .odd-section .kukka-img img {
     width: 50%;
   }
 
-  #kukka {
+  .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
@@ -697,27 +798,27 @@ kukka begins
 }
 
 @media (max-width: 768px) {
-  #kukka h1 {
+  .odd-section h1 {
     font-size: 28px;
     line-height: 36px;
   }
 
-  #kukka h2 {
+  .odd-section h2 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
   }
 
-  #kukka .kukka-img img {
+  .odd-section .kukka-img img {
     width: 70%;
   }
 
-  #kukka .animated {
+  .odd-section .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
 
-  #kukka {
+  .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
@@ -725,22 +826,22 @@ kukka begins
 }
 
 @media (max-width: 575px) {
-  #kukka {
+  .odd-section {
     max-width: 100%;
     max-width: 100%;
   }
 
-  #kukka .kukka-img img {
+  .odd-section .kukka-img img {
     width: 80%;
     margin-top: -50rem !important;
   }
 
-  #kukka .animated {
+  .odd-section .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
 
-  #kukka .description {
+  .odd-section .description {
     font-family: "TT Norms Light";
     font-size: 18px;
     color: rgba(63, 61, 86, 1);
@@ -749,13 +850,13 @@ kukka begins
     color: rgba(63, 61, 86, 1) !important;
   }
 
-  #kukka {
+  .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
   }
 
-  #kukka .hyodyt {
+  .odd-section .hyodyt {
     font-size: 18px;
     color: rgba(63, 61, 86, 1);
   }
@@ -782,365 +883,10 @@ kukka begins
 }
 
 /*--------------------------------------------------------------
-kukka ends
----------------------------------------------------------------*/
+# odd-section ends
+--------------------------------------------------------------*/
 
-/*--------------------------------------------------------------
-growflow begins
----------------------------------------------------------------*/
 
-#growflow {
-  background: whitesmoke;
-  margin-bottom: 100%;
-  width: 100%;
-  max-height: 100%;
-  border-bottom: 2px solid #fcebe3;
-  margin: 72px 0 -72px 0;
-  height: 100%;
-}
-
-#growflow .icon-box {
-  margin-top: 40px;
-}
-
-#growflow .description {
-  font-family: "TT Norms Light";
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1);
-  border-left-width: 1.5ex !important;
-  border-left-color: #ffcf00 !important;
-  color: rgba(63, 61, 86, 1) !important;
-}
-
-
-#growflow h3 {
-  margin: 0 0 10px 0;
-  font-weight: bold;
-  color: rgba(63, 61, 86, 1);
-}
-
-#growflow h2 {
-  margin: 0 0 10px 0;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 56px;
-  color: #0f0f0f;
-}
-
-#growflow p {
-  color: #0f0f0f;
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1)
-}
-
-#growflow .container {
-  margin-bottom: 5rem;
-}
-
-#growflow .animated {
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
-}
-
-@media (min-width: 1024px) {
-  #growflow {
-    background-attachment: fixed;
-  }
-
-  #growflow .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #growflow {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@media (max-width: 991px) {
-  #growflow {
-    height: calc(100vh - 72px);
-  }
-
-  #growflow .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #growflow .growflow-img {
-    text-align: center;
-  }
-
-  #growflow .growflow-img img {
-    width: 50%;
-  }
-
-  #growflow {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  #growflow h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  #growflow h2 {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-
-  #growflow .growflow-img img {
-    width: 70%;
-  }
-
-  #growflow .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #growflow {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 575px) {
-  #growflow {
-    max-width: 100%;
-  }
-
-  #growflow .growflow-img img {
-    width: 80%;
-    margin-top: -50rem !important;
-  }
-
-  #growflow .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #growflow .description {
-    font-family: "TT Norms Light";
-    font-size: 18px;
-    color: rgba(63, 61, 86, 1);
-    border-left-width: 1.5ex !important;
-    border-left-color: #ffcf00 !important;
-    color: rgba(63, 61, 86, 1) !important;
-  }
-
-  #growflow {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@-webkit-keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-/*--------------------------------------------------------------
-growflow ends
----------------------------------------------------------------*/
-/*--------------------------------------------------------------
-voima begins
----------------------------------------------------------------*/
-#voima {
-  background: whitesmoke;
-  margin-bottom: 100%;
-  width: 100%;
-  max-height: 100%;
-  border-bottom: 2px solid #fcebe3;
-  margin: 72px 0 -72px 0;
-  height: 100%;
-}
-
-#voima .icon-box {
-  margin-top: 40px;
-}
-
-#voima .description {
-  font-family: "TT Norms Light";
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1);
-  border-left-width: 1.5ex !important;
-  border-left-color: #ffcf00 !important;
-  color: rgba(63, 61, 86, 1) !important;
-}
-
-
-#voima h3 {
-  margin: 0 0 10px 0;
-  font-weight: bold;
-  color: rgba(63, 61, 86, 1);
-}
-
-#voima h2 {
-  margin: 0 0 10px 0;
-  font-weight: 700;
-  line-height: 56px;
-  color: #0f0f0f;
-}
-
-#voima p {
-  color: #0f0f0f;
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1)
-}
-
-#voima .container {
-  margin-bottom: 5rem;
-}
-
-#voima .animated {
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
-}
-
-@media (min-width: 1024px) {
-  #voima {
-    background-attachment: fixed;
-  }
-
-  #voima .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #voima {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@media (max-width: 991px) {
-  #voima {
-    height: calc(100vh - 72px);
-  }
-
-  #voima .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #voima .voima-img {
-    text-align: center;
-  }
-
-  #voima .voima-img img {
-    width: 50%;
-  }
-
-  #voima {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  #voima h1 {
-    line-height: 36px;
-  }
-
-  #voima h2 {
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-
-  #voima .voima-img img {
-    width: 70%;
-  }
-
-  #voima .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #voima {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 575px) {
-  #voima {
-    max-width: 100%;
-  }
-
-  #voima .voima-img img {
-    width: 80%;
-    margin-top: -50rem !important;
-  }
-
-  #voima .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #voima {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-  #voima .description {
-    font-family: "TT Norms Light";
-    font-size: 18px;
-    color: rgba(63, 61, 86, 1);
-    border-left-width: 1.5ex !important;
-    border-left-color: #ffcf00 !important;
-    color: rgba(63, 61, 86, 1) !important;
-  }
-
-}
-
-@-webkit-keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-/*--------------------------------------------------------------
-voima ends
----------------------------------------------------------------*/
 
 
 /*--------------------------------------------------------------
