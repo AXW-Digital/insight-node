@@ -28,7 +28,8 @@ export default class FeedCardFunction extends Component {
                  color = {this.props.color}
                  minutes = {this.props.minutes}
                  tyyppi = {this.props.tyyppi}
-                 date = {this.props.date}                
+                 date = {this.props.date}
+                 content = {this.props.formContent}                
                 />
                 </Fade>
             </div>

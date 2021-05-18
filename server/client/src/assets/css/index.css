@@ -554,8 +554,6 @@ even section
 }
 
 .even-section p {
-  color: #0f0f0f;
-  font-size: 16px;
   color: rgba(63, 61, 86, 1)
 }
 
@@ -902,6 +900,7 @@ odd section begins
 
 #footer h3 {
   margin-top: 0 !important;
+  color: white;
 }
 
 #footer .footer-top {
@@ -1480,6 +1479,79 @@ Kysely Cards CSS
   background: #fff;
 }
 
+.anticon {
+  margin-right: 8px !important;
+}
+
+.ant-collapse-content-box{
+  z-index: -5 !important;
+}
+
+
+/* Accordion Element */
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap");
+
+/* Style the accordion section */
+.accordion__section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  transition: background-color 0.6s ease;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.accordion:hover,
+.active {
+  background-color: #ccc;
+}
+
+/* Style the accordion content title */
+.accordion__title {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Style the accordion chevron icon */
+.accordion__icon {
+  margin-left: auto;
+  transition: transform 0.6s ease;
+}
+
+/* Style to rotate icon when state is active */
+.rotate {
+  transform: rotate(90deg);
+}
+
+/* Style the accordion content panel. Note: hidden by default */
+.accordion__content {
+  background-color: white;
+  overflow: auto;
+  transition: max-height 0.6s ease;
+  overflow: hidden;
+}
+
+/* Style the accordion content text */
+.accordion__text {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 18px;
+}
+
 
 
 /* -----------------------------------------------
@@ -1942,7 +2014,8 @@ HomeNewsFeed CSS
 .btn-sort{
   border-radius: 20px !important;
   margin: 5px !important;
-  padding: 2em;
   z-index: 99;
 }
+
+
 

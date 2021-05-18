@@ -44,7 +44,7 @@ class KyselyPage extends Component {
                     <div>
         
                         <div id='page-top'> </div>
-                        <section id='kysely' className='bg-light'>
+                        <section id='kysely' className='odd-section'>
                             <div className='container'>
                                 <KyselyForm
                                     question={this.props.match.params.id}
@@ -52,6 +52,10 @@ class KyselyPage extends Component {
                                 />
                             </div>
                         </section>
+                        <section className='even-section'>
+                            <p>asdf</p>
+                        </section>
+
                         <Footer />
                     </div>
         

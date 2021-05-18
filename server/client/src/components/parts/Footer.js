@@ -9,7 +9,7 @@ const Footer= () => (
                         <div className="row">
 
                         <div className="col-lg-3 col-md-6 footer-contact" data-aos="fade-up" data-aos-delay="100">
-                            <h3>Growflow <br /> Insights</h3>
+                            <h3 className='footer-text'>Growflow <br /> Insights</h3>
                             <p>
                             Verkkosaarenkatu 5 <br />
                             00580 Helsinki<br />

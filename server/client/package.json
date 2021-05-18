@@ -29,6 +29,7 @@
     "http-proxy-middleware": "^1.1.0",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
+    "lorem-ipsum": "^2.0.3",
     "material-ui": "^0.20.2",
     "moment": "^2.29.1",
     "random-material-color": "^1.0.5",

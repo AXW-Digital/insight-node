@@ -27,7 +27,7 @@ class Shuffle extends Component {
             order: 'asc',
             sortingMethod: 'chronological',
             enterLeaveAnimation: 'accordionVertical',
-            articles: cardvaluelist.filter(x => x.tyyppi === 'Feed')
+            articles: cardvaluelist.filter(x => x.tyyppi === 'Feed').sort((a, b) => b.timestamp - a.timestamp)
         };
 
         this.toggleList = this.toggleList.bind(this);
@@ -117,6 +117,7 @@ class Shuffle extends Component {
                     key={article.id + '_1'}
                     view={article.view}
                     date={article.timestamp}
+                    content={article.formContent}
                     index={i}
                     clickHandler={throttle(() => this.moveArticle('articles', 'removedArticles', article.id), 800)}
                     {...article}
@@ -152,7 +153,8 @@ class Shuffle extends Component {
               /> */}
                             </div>
                         </header>
-                        <div className='row g-1'>
+                        <div className = 'container' style={{padding:'0 5 0 5'}}>
+                        <div className='row d-flex justify-content-center justify-content-xl-start'>
                             <FlipMove className="flip-wrapper grid"
                                 staggerDurationBy="200"
                                 duration={500}
@@ -165,6 +167,7 @@ class Shuffle extends Component {
                                 {this.renderArticles()}
 
                             </FlipMove>
+                        </div>
                         </div>
                     </div>
                 </div>
