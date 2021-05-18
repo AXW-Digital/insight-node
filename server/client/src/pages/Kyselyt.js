@@ -1,36 +1,32 @@
+// Core
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import Footer from '../components/parts/Footer'
-// import { ReactComponent as Ideas } from '../assets/images/ideas.svg'
-import cardvaluelist from '../assets/js/cardvalues'
-import { createCard } from '../components/cards/CardFunctions'
-// import { createActivityCard } from '../components/cards/CardFunctions'
-// import ActivityCard from '../components/cards/ActivityCard'
 import axios from 'axios';
-
-import Loader from '../components/parts/Loader'
-
-// getLevel function
-import getLevel, { levelThresholds } from '../functions/getLevel'
-
-
-// Circular-progress-bar
-import {
-    CircularProgressbarWithChildren,
-    buildStyles
-} from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-
-
-// Animation
-import { easeQuadInOut } from "d3-ease";
-import AnimatedProgressProvider from "../components/parts/AnimatedProgressProvider";
-
-// Progress bar
-import StepProgressBar from "../components/parts/ProgressBar";
+import { connect } from 'react-redux';
+// Components
+import Footer from '../components/parts/Footer';
+import Loader from '../components/parts/Loader';
+import cardvaluelist from '../assets/js/cardvalues';
+import { createCard } from '../components/cards/CardFunctions';
+import Accordion from '../components/parts/Accordion'
+// Modules
+import { Card } from 'react-bootstrap';
+import { Collapse } from 'antd';
+import { LoremIpsum } from "lorem-ipsum";
+// Media
+import { ReactComponent as Searching } from '../assets/images/searching.svg';
+import { ReactComponent as Faq } from '../assets/images/faq.svg';
 
 
-
+const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+        max: 8,
+        min: 4
+    },
+    wordsPerSentence: {
+        max: 16,
+        min: 4
+    }
+});
 
 
 
@@ -60,7 +56,7 @@ class HomePage extends Component {
         switch (isLoading) {
 
             default:
-                return <Loader /> 
+                return <Loader />
 
 
             case false:
@@ -127,7 +123,7 @@ class HomePage extends Component {
         const profile = this.props.data.profile;
         switch (profile) {
             case null:
-                return <Loader /> 
+                return <Loader />
             default:
                 console.log(profile)
                 return <h1>Tervetuloa {profile.fName}!</h1>
@@ -139,14 +135,15 @@ class HomePage extends Component {
 
     render() {
         const profile = this.props.data.profile;
+        const { Panel } = Collapse;
         switch (profile) {
             case null:
                 const { isProfile } = this.state;
                 switch (isProfile) {
                     case false:
-                        return <Loader /> 
+                        return <Loader />
                     default:
-                        return <Loader /> 
+                        return <Loader />
                 }
             default:
 
@@ -155,7 +152,7 @@ class HomePage extends Component {
                 return (
                     <div>
                         <div id='page-top'></div>
-                        <section id='kyselyt' className="d-flex align-items-center justify-content-center kysely">
+                        <section id='kyselyt' className="d-flex align-items-center justify-content-center kysely odd-section">
                             <div className="container card-container" data-aos="fade-up">
                                 <header className="section-header">
                                     <h3 id='kysely-title mt-2'>Kyselyt</h3>
@@ -164,19 +161,65 @@ class HomePage extends Component {
                             </div>
                         </section>
 
-                        {/* Menutests commented out due to not being part of current plan */}
+                        <section className="d-flex align-items-center even-section">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-lg-6 order-1 order-lg-1">
+                                        <h3>Mitä psiteet ovat?</h3>
+                                        <p>Pisteet ovat tapamme palkita Vaikuttavia aktiivisuudesta. Pisteitä kertyy vastaamalla kyselyihin, rekrytoimalla, jne. Kerryttämällä pisteitä kiipeät ylös vaikuttajatasoja, jolloin piste, kuponki ja palkintokertymät kasvavat.
+                                        </p>
+                                        <h3> Mitä kupongit ovat? </h3>
+                                        <p>Kupongit ovat keräämiäisi arpoja, joilla voit osallistua säännöllisesti järjestämiimme arvontoihin. Joka arvonnan päätyttyä kupongit nollautuvat. Kuponkeja kerrytät vastaamalla kyselyihin. Mikäli kyselyyn kuuluu oma vastaaja-arvonta, eivät kuluta kuponkeja. Voittajille ilmoitetaan sähköpostitse. Seuraava arvonta xx.x.
+                                        </p>
+                                        <div className="icon-box">
+                                            <Card className="description shadow-lg p-3 mb-5 bg-white rounded" data-aos="flip-up" data-aos-duration="200" data-aos-delay="300">
+                                                Viime arvonnan voittajat Laura Helsinki ja Jokke Joensuu!
+                                            </Card>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6 order-1 order-lg-2 kukka-img">
+                                        <div className="img-fluid animated">
+                                            <Searching />
+                                        </div>
+                                    </div>
 
-                        {/* <section id='menutestaus' className="d-flex align-items-center bg-light justify-content-center kysely">
-                        <div className="container card-container" data-aos="fade-up">
-                            <header className="section-header">
-                                <h3>Menutestaukset</h3>
-                                <p>Veritatis et dolores facere numquam et praesentium</p>
-                            </header>
-                            <div className="row g-4 d-flex">
-                                {cardvaluelist.filter(card => card.tyyppi === 'Osallistu').map(createCard)}
+                                </div>
                             </div>
-                        </div>
-                    </section> */}
+                        </section>
+                        <section className="d-flex align-items-center odd-section">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-lg-6 order-2 order-lg-2">
+                                        <h3>FAQ - Usein kysytyt kysymykset</h3>
+                                        <Accordion
+                                            title="Mikä on vaikuttava.io?"
+                                            content={lorem.generateParagraphs(1)}
+                                        />
+                                        <Accordion
+                                            title="Mitä kupongit ovat?"
+                                            content={lorem.generateParagraphs(1)}
+                                        />
+                                        <Accordion title="Mitä pisteet ovat? Kuinka niitä kertyy?"
+                                            content={'Pisteet ovat tapamme palkita Vaikuttavia aktiivisuudesta. Pisteitä kertyy vastaamalla kyselyihin, rekrytoimalla jne. Kerryttämällä pisteitä kiipeät ylös vaikuttajatasoja, jolloin piste, kuponmki ja palkintokertymät kasvavat.'}
+                                        />
+                                        <Accordion
+                                            title="Mistä näen profiilini?"
+                                            content={lorem.generateParagraphs(1)}
+                                        />
+                                        <Accordion
+                                            title="Kuinka poistan tilini?"
+                                            content={lorem.generateParagraphs(1)}
+                                        />
+                                    </div>
+                                    <div className="col-lg-6 order-1 order-lg-1">
+                                        <div className="img-fluid animated ">
+                                            <Faq />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
 
                         <Footer />
                     </div>
