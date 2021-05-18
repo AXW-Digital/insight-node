@@ -8,6 +8,7 @@ import ActivityCard from "../components/cards/ActivityCard";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Loader from "../components/parts/Loader";
+import AOS from 'aos'
 
 // getLevel function
 import getLevel, { levelThresholds } from "../functions/getLevel";
@@ -25,6 +26,9 @@ import AnimatedProgressProvider from "../components/parts/AnimatedProgressProvid
 
 // Progress bar
 import StepProgressBar from "../components/parts/ProgressBar";
+
+// Newsfeed
+import HomeNewsFeed from '../components/sections/HomeNewsFeed'
 
 class HomePage extends Component {
   constructor(props) {
@@ -45,6 +49,11 @@ class HomePage extends Component {
       })
       .catch((err) => {
         this.setState({ isProfile: false });
+      });
+      
+    AOS.init({
+        duration : 1500,
+        once: true
       });
   }
 
@@ -254,21 +263,7 @@ class HomePage extends Component {
 
             {/* Menutests commented out due to not being part of current plan */}
 
-            <section
-              id="menutestaus"
-              className="d-flex align-items-center bg-light justify-content-center kysely"
-            >
-              <div className="container card-container" data-aos="fade-up">
-                <header className="section-header">
-                  <h3>Newsfeed</h3>
-                </header>
-                <div className="row d-flex">
-                  {cardvaluelist
-                    .filter((card) => card.tyyppi === "Feed")
-                    .map(createFeedCard)}
-                </div>
-              </div>
-            </section>
+            <HomeNewsFeed />
 
             <Footer />
           </div>

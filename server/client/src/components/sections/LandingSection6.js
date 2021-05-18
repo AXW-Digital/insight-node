@@ -14,12 +14,12 @@ class LandingSection6 extends React.Component {
                         <h3>KASVUVAIKUTTAJIEN VOIMA</h3>
                             <div className="icon-box">
                                 <Card className="description shadow-lg p-3 mb-5 bg-white rounded" data-aos="flip-up" data-aos-duration="200" data-aos-delay="300">
-                                Ravintolan raaka-aineiden lähituotannon osuus kasvoi 40%
+                                Ravintola uudisti koko ruokalistan ja panostaa nyt yhteisölliseen syömiseen ja jaettaviin annoksiin erityisesti alkupaloissa.  Tämän ansiosta keskiostos on kasvanut x%
                                 </Card>
                             </div>
                             <div className="icon-box">
                                 <Card className="description shadow-lg p-3 mb-5 bg-white rounded" data-aos="flip-up" data-aos-duration="200" data-aos-delay="300">
-                                Ravintolan raaka-aineiden lähituotannon osuus kasvoi 40%
+                                Klassikkoannos palautettiin ruokalistalle yhteisömme voimasta 
                                 </Card>
                             </div>
                             

@@ -1,7 +1,7 @@
 const cardvaluelist = [
     
     {
-        id: '0',
+        id: 5,
         name: "McDonald's",
         picUrl: '/img/wine.jpg',
         formTitle: 'Ravintolakysely',
@@ -14,29 +14,31 @@ const cardvaluelist = [
     },
 
     {
-        id: 'mc_d2',
+        id: 1,
         name: "McDonald's",
         picUrl: '/img/beef.jfif',
         formTitle: 'Menutestaus Helsinki',
         formText: 'Uusi French Beef. Valkosipulisämpylän välissä kaksi 100% naudanlihapihviä, siivu emmental-sulatejuustoa, kaksi viipaletta pekonia ja bataviasalaattia.',
         formUrl: '/survey1',
         color: 'purple',
-        tyyppi: 'Feed'
+        tyyppi: 'Feed',
+        timestamp: 1621248701000
     },
 
     {
-        id: 'mcdonalds_3',
+        id: 2,
         name: "McDonald's",
         picUrl: '/img/salaatti.jfif',
         formTitle: 'All Vegan -salaatti',
         formText: 'Uudessa raikkaassa All Vegan -salaatissa maistuvat soijapavut, lehtikaali, pinaatti ja pikkelöity porkkana. Nimensä mukaisesti salaatti on 100 % vegaaninen.',
         formUrl: '#',
         color: 'purple',
-        tyyppi: 'Feed'
+        tyyppi: 'Feed',
+        timestamp: 1620827501000
     },
 
     {
-        id: '1',
+        id: 6,
         name: "Hesburger",
         picUrl: '/img/food.jpg',
         formTitle: 'Päivittäinen ravintola-arvostelu',
@@ -50,14 +52,15 @@ const cardvaluelist = [
     },
 
     {
-        id: 'hese_2',
+        id: 3,
         name: "Hesburger",
         picUrl: '/img/hese2.png',
         formTitle: 'Menutestaus Jyväskylä',
         formText: 'Supersuosittu Kebab-hampurilainen.',
         formUrl: '#',
         color: 'green',
-        tyyppi: 'Feed'
+        tyyppi: 'Feed',
+        timestamp: 1620827502000
 
     },
 
@@ -76,14 +79,15 @@ const cardvaluelist = [
     },
 
     {
-        id:'burgerking_2',
+        id: 4,
         name: "Burger King", 
         picUrl: '/img/whopper.png', 
         formTitle: 'Menutestaus Tampere',
         formText: 'TRIPLA WHOPPER - Kolme kerrosta makusi mukaan',
         formUrl: '#', 
         color: 'yellow',
-        tyyppi: 'Feed'
+        tyyppi: 'Feed',
+        timestamp: 1620582776000
     },
 
     {

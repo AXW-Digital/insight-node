@@ -11,16 +11,13 @@ class LandingSection5 extends Component {
                 <div className="row">
                     <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1">
                         <h3>GROWFLOW INSIGHTS</h3>
-                        <p> Intohimomme on ymmärtää ihmisiä, asiakkaita, kuluttajia, käyttäytymistä, maailmaa. 
-                            Yhdistämme asiakasymmärryksen ja teknologian.  Keräämme, analysoimme, yhdistämme ja 
-                            rikastamme dataa yritysten käyttöön entistä parempien ja vaikuttavimpien tuotteiden 
-                            ja palvelujen kehittämiseen. 
-                        </p>
+                        <p>Intohimomme on auttaa yrittäjiä ymmärtämään asiakkaita ja toimintaympäristöä! Ymmärrys on paras pohja kehitykselle ja tulevaisuudelle. </p>
+                        <p>Kaikki perustuu yhteisön ajatuksiin, joita rikastamme jo kerätyllä datalla. </p>
+                        <p>Vaikuttava.io alustan käyttämä algoritmi on itse kehitetty, joten tiedot näkyvät rajatulle joukolle. </p>
+                        <p>Dataa ei yksilöidä eikä tuloksista voi tunnistaa yksittäisen vastaajan vastauksia. Kaikki perustuu massaan. </p>
 
                         <h3>Kumppanimme</h3>
-                        <p>Yhteistyökumppaneina meillä on ruokaan, ravintolaelämyksiin  ja nautiskeluun liittyviä 
-                            pieniä ja suuria yrityksiä ja yrittäjiä ympäri Suomen -  ravintoloita, kahviloita, pienpanimoja, 
-                            viinibaareja...
+                        <p>Yhteistyökumppaneina meillä on ruokaan, ravintolaelämyksiin ja nautiskeluun liittyviä pieniä ja suuria yrityksiä ja yrittäjiä ympäri Suomen - ravintoloita, kahviloita, pienpanimoja, viinibaareja...
                         </p>
                         <div className="icon-box">
                             <Card className="description shadow-lg p-3 mb-5 bg-white rounded" data-aos="flip-up" data-aos-duration="200" data-aos-delay="300">

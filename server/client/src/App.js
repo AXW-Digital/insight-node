@@ -12,6 +12,7 @@ import CreateProfileRoute from './helpers/CreateProfileRoute'
 import LandingPage from './pages/LandingPage'
 import Signin from './components/forms/Signin';
 import Signup from './components/forms/Signup';
+import Test from './components/sections/HomeNewsFeed';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import KyselyPage from './pages/KyselyPage';
@@ -60,10 +61,11 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/home" component={HomePage} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/kyselyt" component={Kyselyt} />
-            <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/profile" component={ProfilePage} />
-            <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/m/settings" component={Settings} />
-            <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/m/profile" component={Profile} />
-            <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/more" component={More} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/profile" component={ProfilePage} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/m/settings" component={Settings} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/m/profile" component={Profile} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/more" component={More} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/test" component={Test} />
             <PrivateRoute auth = {authStatus} path = "/survey:id" component={KyselyPage} />
             <RedirectRoute auth = {authStatus} component={Signin} path="/signin" />
             <Route auth = {authStatus} component={Signup} path="/signup" />

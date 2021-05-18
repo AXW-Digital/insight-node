@@ -20,8 +20,8 @@ import CloseIcon from '@material-ui/icons/Close';
 export default function FeedCard(props) {
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: "min(90vw, 345px)",
-      minWidth: "min(90vw, 345px)",
+      maxWidth: "min(90vw, 350px)",
+      minWidth: "min(90vw, 350px)",
     },
     media: {
       height: 0,
@@ -51,7 +51,7 @@ export default function FeedCard(props) {
   };
 
   return (
-    <div className="my-3 mx-3">
+    <div className="my-2 flip-wrapper col-xl-4 col-lg-6 col-md-12 justify-content-center kysely-col" key={props.key}>
       <Card className={classes.root}>
         <CardHeader
           avatar={
@@ -65,7 +65,7 @@ export default function FeedCard(props) {
             </IconButton>
           }
           title={props.formTitle}
-          subheader="September 14, 2016"
+          subheader={Intl.DateTimeFormat('fi').format(props.date)}
         />
         <CardMedia
           className={classes.media}

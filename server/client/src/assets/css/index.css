@@ -34,6 +34,7 @@ h3,
 h4,
 h5 .font-primary {
   font-family: "TT Norms";
+  color:rgba(63, 61, 86, 1)
 }
 
 h1 .font-primary {
@@ -1928,4 +1929,20 @@ More List CSS
   
 }
 
+
+/* -----------------------------------------------
+End more List CSS
+-------------------------------------------------- */
+
+
+/* -----------------------------------------------
+HomeNewsFeed CSS
+-------------------------------------------------- */
+
+.btn-sort{
+  border-radius: 20px !important;
+  margin: 5px !important;
+  padding: 2em;
+  z-index: 99;
+}
 
