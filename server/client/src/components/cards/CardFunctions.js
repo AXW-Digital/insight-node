@@ -2,6 +2,7 @@ import FormCard from './FormCard'
 import ActivityCard from './ActivityCard'
 import FeedCardFunction from './FeedCardFunction'
 import {ActivityCardSmall} from './ActivityCard'
+import VoucherCard from './VoucherCard'
 
 
 // Function that creates the card content for the mapping function
@@ -72,3 +73,21 @@ function createFeedCard(cardContent){
     )
 }
 export {createFeedCard}
+
+function createVoucherCard(cardContent){
+    return (
+        <VoucherCard
+        key = {cardContent.id}
+        name = {cardContent.name}
+        picUrl = {cardContent.picUrl}
+        formTitle = {cardContent.formTitle}
+        formText = {cardContent.formText}
+        benefit = {cardContent.benefit}
+        tyyppi = {cardContent.tyyppi}
+        valid = {cardContent.valid}
+        dateStart = {cardContent.dateStart}
+        />
+    )
+}
+
+export {createVoucherCard}

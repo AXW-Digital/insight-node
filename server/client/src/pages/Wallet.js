@@ -1,33 +1,35 @@
-import { connect } from "react-redux";
-import Footer from "../../components/parts/Footer";
-import cardvaluelist from "../../assets/js/cardvalues";
-import { createFeedCard } from "../../components/cards/CardFunctions";
-import axios from "axios";
-import Loader from "../../components/parts/Loader";
+// Core
+import React, { Component } from 'react'
+import axios from 'axios';
+import { connect } from 'react-redux';
+// Components
+import Footer from '../components/parts/Footer';
+import VoucherCard from '../components/cards/VoucherCardClassFunc';
+import cardvaluelist from "../assets/js/cardvalues";
+import { createVoucherCard } from '../components/cards/CardFunctions';
+import Loader from "../components/parts/Loader";
 
-import React, { Component, PropTypes } from 'react';
-import moment from 'moment';
+
 import shuffle from 'lodash/shuffle';
 import throttle from 'lodash/throttle';
 
 import FlipMove from 'react-flip-move';
-import Toggle from '../parts/Toggle';
-
-import FeedCard from '../cards/FeedCardFunction'
+import Toggle from '../components/parts/Toggle';
 
 
-
-
-class Shuffle extends Component {
+class Wallet extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading: true,
+            surveysAns: undefined,
+            isProfile: null,
             removedArticles: [],
             view: 'list',
             order: 'asc',
             sortingMethod: 'chronological',
             enterLeaveAnimation: 'accordionVertical',
-            articles: cardvaluelist.filter(x => x.tyyppi === 'Feed').sort((a, b) => b.timestamp - a.timestamp)
+            articles: cardvaluelist.filter(x => x.tyyppi === 'Voucher').sort((a, b) => b.dateStart - a.dateStart)
         };
 
         this.toggleList = this.toggleList.bind(this);
@@ -35,7 +37,15 @@ class Shuffle extends Component {
         this.toggleSort = this.toggleSort.bind(this);
         this.sortRotate = this.sortRotate.bind(this);
         this.sortShuffle = this.sortShuffle.bind(this);
-    }
+
+    };
+
+    componentDidMount() {
+        axios.get("../api/surveys/count").then((response) => {
+            this.setState({ surveyAns: response.data });
+            this.setState({ isLoading: false });
+        });
+    };
 
     toggleList() {
         this.setState({
@@ -102,22 +112,22 @@ class Shuffle extends Component {
         });
     }
 
-    renderArticles() {
+
+
+
+    renderCards() {
         return this.state.articles.map((article, i) => {
             return (
-                <FeedCard
+                <VoucherCard
+                    key={article.name}
                     name={article.name}
                     picUrl={article.picUrl}
                     formTitle={article.formTitle}
                     formText={article.formText}
-                    formUrl={article.formUrl}
-                    color={article.color}
-                    minutes={article.minutes}
+                    benefit={article.benefit}
                     tyyppi={article.tyyppi}
-                    key={article.id + '_1'}
-                    view={article.view}
-                    date={article.timestamp}
-                    content={article.formContent}
+                    valid={article.valid}
+                    dateStart={article.dateStart}
                     index={i}
                     clickHandler={throttle(() => this.moveArticle('articles', 'removedArticles', article.id), 800)}
                     {...article}
@@ -126,57 +136,59 @@ class Shuffle extends Component {
         });
     }
 
+
     render() {
+
         return (
-
-            <section className="d-flex align-items-center even-section justify-content-center">
-                <div className="container mt-3">
-                <h3> Newsfeed </h3>
+            <div>
+                <div id='page-top'></div>
+                <section className="d-flex align-items-center even-section justify-content-center">
                     <div id="shuffle" className={this.state.view}>
-                        <header>
-                            <div className="abs-right">
-                                <Toggle
-                                    clickHandler={this.toggleSort}
-                                    text={this.state.order === 'asc' ? 'Uusin ensin' : 'Vanhin ensin'}
-                                    icon={this.state.order === 'asc' ? 'angle-up' : 'angle-down'}
-                                    active={this.state.sortingMethod === 'chronological'}
-                                />
-                                <Toggle
-                                    clickHandler={this.sortShuffle}
-                                    text="Shuffle" icon="random"
-                                    active={this.state.sortingMethod === 'shuffle'}
-                                />
-                            </div>
-                        </header>
-                        <div className = 'container' style={{padding:'0 5 0 5'}}>
-                        <div className='row d-flex justify-content-center justify-content-xl-start'>
-                            <FlipMove className="flip-wrapper grid"
-                                staggerDurationBy="200"
-                                duration={500}
-                                enterAnimation={this.state.enterLeaveAnimation}
-                                leaveAnimation={this.state.enterLeaveAnimation}
-                                easing='ease'
-                                typeName={null}
-                            >
 
-                                {this.renderArticles()}
-
-                            </FlipMove>
+                        <div>
+                            <Toggle
+                                clickHandler={this.toggleSort}
+                                text={this.state.order === 'asc' ? 'Uusin ensin' : 'Vanhin ensin'}
+                                icon={this.state.order === 'asc' ? 'angle-up' : 'angle-down'}
+                                active={this.state.sortingMethod === 'chronological'}
+                            />
+                            <Toggle
+                                clickHandler={this.sortShuffle}
+                                text="Shuffle" icon="random"
+                                active={this.state.sortingMethod === 'shuffle'}
+                            />
                         </div>
+
+                        <div className='container'>
+                            <div className='row'>
+                                <FlipMove className="flip-wrapper grid "
+                                    staggerDurationBy="200"
+                                    duration={500}
+                                    enterAnimation={this.state.enterLeaveAnimation}
+                                    leaveAnimation={this.state.enterLeaveAnimation}
+                                    easing='ease'
+                                    typeName={null}
+                                >
+
+                                    {this.renderCards()}
+
+                                </FlipMove>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
 
-        );
+                </section>
+                <Footer />
+            </div>
+        )
+
     }
-};
+}
+
 
 function mapStateToProps(data) {
     return { data };
+
 }
 
-export default connect(mapStateToProps)(Shuffle);
-
-
-
+export default connect(mapStateToProps)(Wallet);

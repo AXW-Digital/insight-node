@@ -12,7 +12,7 @@ import CreateProfileRoute from './helpers/CreateProfileRoute'
 import LandingPage from './pages/LandingPage'
 import Signin from './components/forms/Signin';
 import Signup from './components/forms/Signup';
-import Test from './components/sections/HomeNewsFeed';
+import Test from './pages/Wallet';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import KyselyPage from './pages/KyselyPage';

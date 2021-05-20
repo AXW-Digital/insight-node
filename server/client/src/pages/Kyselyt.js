@@ -165,7 +165,7 @@ class HomePage extends Component {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-lg-6 order-1 order-lg-1">
-                                        <h3>Mitä psiteet ovat?</h3>
+                                        <h3>Mitä pisteet ovat?</h3>
                                         <p>Pisteet ovat tapamme palkita Vaikuttavia aktiivisuudesta. Pisteitä kertyy vastaamalla kyselyihin, rekrytoimalla, jne. Kerryttämällä pisteitä kiipeät ylös vaikuttajatasoja, jolloin piste, kuponki ja palkintokertymät kasvavat.
                                         </p>
                                         <h3> Mitä kupongit ovat? </h3>

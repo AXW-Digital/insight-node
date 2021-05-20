@@ -36,7 +36,7 @@ export default function NavigationBottom() {
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
       <BottomNavigationAction label="Home" value="home" component={Link}  to="/home" icon={<BiHome />} />
       <BottomNavigationAction label="Kyselyt" value="kyselyt" component={Link}  to="/kyselyt" icon={<IoMdListBox />} />
-      <BottomNavigationAction label="Pisteet" value="points" icon={< BiBoltCircle />} />
+      <BottomNavigationAction label="Pisteet" value="points" component={Link} to="/test" icon={< BiBoltCircle />} />
       <BottomNavigationAction label="Lisää" value="more" component={Link}  to="/more" icon={<CgMore />} />
     </BottomNavigation>
   );

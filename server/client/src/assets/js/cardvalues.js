@@ -167,7 +167,92 @@ const cardvaluelist = [
         tyyppi: 'Activity',
         suffix: '',
         color: 'indigo'
-    }
+    },
+
+    {
+        id: 10,
+        name: "test1",
+        picUrl: 'https://source.unsplash.com/random?sig=8&food',
+        formTitle: 'Casa Italia',
+        formText: '-50% a la carte annoksesta',
+        benefit: '-50%',
+        tyyppi: 'Voucher',
+        dateStart: 1621512013000,
+        valid: 2629743000
+
+    },
+
+    {
+        id: 11,
+        name: "test2",
+        picUrl: 'https://source.unsplash.com/random?sig=3&barbeque',
+        formTitle: 'Manhattan',
+         formText: '-50% toisesta pihvistä',
+        benefit: '-50%',
+        tyyppi: 'Voucher',
+        dateStart: 1621512013000,
+        valid: 604800000
+    },
+
+    {
+        id: 12,
+        name: "test3",
+        picUrl: 'https://source.unsplash.com/random?sig=4&coffee',
+        formTitle: 'Kahvilaetu',
+        formText: '-25% kahvista',
+        benefit: '-25%',
+        tyyppi: 'Voucher',
+        dateStart: 1621512013000,
+        valid: 1604800000
+    },
+
+    {
+        id: 13,
+        name: "test4",
+        picUrl: 'https://source.unsplash.com/random?sig=1&groceries',
+        formTitle: 'SOK Lahjakortti',
+        formText: 'Lahjakortti kaikkiin SOK myymälöihin',
+        benefit: '10€',
+        tyyppi: 'Voucher',
+        dateStart: 1621512013000,
+        valid: 1004800000
+    },
+
+    {
+        id: 14,
+        name: "test5",
+        picUrl: 'https://source.unsplash.com/random?sig=1&waffles',
+        formTitle: 'Happy Waffle',
+        formText: 'Lahjakortti Happy Waffle kahviloihin',
+        benefit: '5€',
+        tyyppi: 'Voucher',
+        dateStart: 1621512013000,
+        valid: 26297430000
+    },
+
+    {
+        id: 15,
+        name: "test6",
+        picUrl: 'https://source.unsplash.com/random?sig=2&coffee',
+        formTitle: 'Moko Market',
+        formText: 'Lahjakortti',
+        benefit: '4€',
+        tyyppi: 'Voucher',
+        dateStart: 1621512013000,
+        valid: 9629743000
+    },
+
+    {
+        id: 16,
+        name: "test7",
+        picUrl: 'https://source.unsplash.com/random?sig=5&lunch',
+        formTitle: 'Ravintola Greenport',
+        formText: 'Lounas alennus',
+        benefit: '-30%',
+        tyyppi: 'Voucher',
+        dateStart: 1621512013000,
+        valid: 204800000
+    },
 
 ]
 
