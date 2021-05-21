@@ -12,10 +12,10 @@
 # Global variables
 --------------------------------------------------------------*/
 
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
 html {
   scroll-padding-top: var(--header-height);
   /* height of sticky header */
@@ -28,13 +28,9 @@ a:hover {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 .font-primary {
+h1, h2, h3, h4, h5 .font-primary {
   font-family: "TT Norms";
-  color:rgba(63, 61, 86, 1)
+  color: rgba(63, 61, 86, 1)
 }
 
 h1 .font-primary {
@@ -53,8 +49,7 @@ h4 .font-primary {
   font-size: 28px;
 }
 
-p,
-.hyodyt .font-primary {
+p, .hyodyt .font-primary {
   font-family: "TT Norms Light";
 }
 
@@ -75,40 +70,47 @@ h3 {
   margin: 5ex 0 3ex 0 !important;
 }
 
-
 #page-top {
   position: absolute;
   top: 0;
 }
 
 /* linelist */
+
 ul.linelist {
   padding-left: 15px;
   margin-top: -1px;
 }
+
 ul.linelist li {
   padding-left: 33px;
   margin-bottom: 2.5em;
   list-style: none;
   /* background: url('../img/misc/list-bullet-darkgray.png') no-repeat; */
 }
+
 ul.linelist li.yellow {
   background: url('../images/bullet_yellow.png') no-repeat;
 }
+
 /* ul.linelist li.blue {
   background: url('../img/misc/list-bullet-blue.png') no-repeat;
 }
 ul.linelist li.pink {
   background: url('../img/misc/list-bullet-pink.png') no-repeat;
 } */
+
 .where {
-  font-size: 1.2857em; /* 18/16 -> 18px */
+  font-size: 1.2857em;
+  /* 18/16 -> 18px */
   font-weight: 300;
   display: inline;
   margin-right: 0.5em;
 }
+
 .what {
-  font-size: 0.75em; /* 12/16 -> 12px */
+  font-size: 0.75em;
+  /* 12/16 -> 12px */
   font-weight: 700;
   text-transform: uppercase;
   color: #fff;
@@ -120,25 +122,29 @@ ul.linelist li.pink {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+
 .what.green {
   background-color: #c4df9b;
 }
+
 .what.blue {
   background-color: #6dcff6;
 }
+
 .what.pink {
   background-color: #f06eaa;
 }
+
 .when {
   float: right;
   color: #b9b9b9;
   font-style: italic;
 }
+
 .description {
   display: block;
   margin-top: 0.5em;
 }
-
 
 /* BORDERS AND BULLETS */
 
@@ -148,9 +154,11 @@ p {
 }
 
 ul.linelist li {
-  position:relative; /* so that pseudoelements are positioned relatively to their "li"s*/
-  /* use padding-bottom instead of margin-bottom.*/ 
-  margin-bottom: 0; /* This overrides previously specified margin-bottom */
+  position: relative;
+  /* so that pseudoelements are positioned relatively to their "li"s*/
+  /* use padding-bottom instead of margin-bottom.*/
+  margin-bottom: 0;
+  /* This overrides previously specified margin-bottom */
   padding-bottom: 2.5em;
 }
 
@@ -158,15 +166,17 @@ ul.linelist li:after {
   /* bullets */
   content: url('http://upload.wikimedia.org/wikipedia/commons/thumb/3/30/RedDisc.svg/20px-RedDisc.svg.png');
   position: absolute;
-  left: -26px; /*adjust manually*/
+  left: -26px;
+  /*adjust manually*/
   top: -3px;
 }
 
 ul.linelist li:before {
   /* lines */
-  content:"";
+  content: "";
   position: absolute;
-  left: -16px; /* adjust manually */
+  left: -16px;
+  /* adjust manually */
   border-left: 1px solid black;
   height: 100%;
   width: 1px;
@@ -174,18 +184,21 @@ ul.linelist li:before {
 }
 
 ul.linelist li:first-child:before {
- /* first li's line */
- top: 6px; /* moves the line down so that it disappears under the bullet. Adjust manually */
+  /* first li's line */
+  top: 6px;
+  /* moves the line down so that it disappears under the bullet. Adjust manually */
 }
 
 ul.linelist li:last-child:before {
   /* last li's line */
- height: 6px; /* shorten the line so it goes only up to the bullet. Is equal to first-child:before's top */
+  height: 6px;
+  /* shorten the line so it goes only up to the bullet. Is equal to first-child:before's top */
 }
 
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
+
 .back-to-top {
   position: fixed;
   display: none;
@@ -203,7 +216,6 @@ ul.linelist li:last-child:before {
 .back-to-top i {
   font-size: 24px;
   margin-top: 7px;
-  
 }
 
 .back-to-top:hover {
@@ -211,10 +223,10 @@ ul.linelist li:last-child:before {
   transition: background 0.2s ease-in-out;
 }
 
-
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
 #header {
   height: var(--header-height);
   transition: all 0.5s;
@@ -246,11 +258,9 @@ ul.linelist li:last-child:before {
   color: #363a59a4 !important;
 }
 
-
 #header a:hover {
   text-decoration: none;
 }
-
 
 #main {
   margin-top: 72px;
@@ -260,25 +270,20 @@ ul.linelist li:last-child:before {
   #header {
     background: #ffd000ea;
   }
-
   #header .mylinks {
     font-weight: bold;
     background-color: #effae5c0;
     ;
     color: #363a59;
   }
-
-
   #responsive-navbar-nav {
     margin-top: 2ex;
     background-color: #f1eeddf5 !important;
   }
-
-  .navbar-toggler{
+  .navbar-toggler {
     display: none;
   }
 }
-
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -288,12 +293,9 @@ ul.linelist li:last-child:before {
   margin-right: 2ex;
 }
 
-
-
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-
 
 #hero {
   width: 100%;
@@ -303,7 +305,7 @@ ul.linelist li:last-child:before {
   margin: 10rem 0 -72px 0;
 }
 
-#hero .container{
+#hero .container {
   z-index: 1;
 }
 
@@ -315,7 +317,6 @@ ul.linelist li:last-child:before {
 }
 
 #hero h2 {
-
   color: #0f0f0f;
   margin-bottom: 50px;
   font-size: 22px;
@@ -378,11 +379,9 @@ ul.linelist li:last-child:before {
     background-attachment: fixed;
     margin-top: 450px;
   }
-
   #hero .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   #hero .container {
     margin-bottom: 10rem;
     text-align: center;
@@ -395,19 +394,15 @@ ul.linelist li:last-child:before {
     height: 100%;
     margin-top: 150px
   }
-
   #hero .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   #hero .hero-img {
     text-align: center;
   }
-
   #hero .hero-img img {
     width: 50%;
   }
-
   #hero .container {
     margin-bottom: 10rem;
     text-align: center;
@@ -419,22 +414,18 @@ ul.linelist li:last-child:before {
     font-size: 28px;
     line-height: 36px;
   }
-
   #hero h2 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
   }
-
   #hero .hero-img img {
     width: 70%;
   }
-
   #hero .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   #hero .container {
     margin-bottom: 10rem;
     text-align: center;
@@ -445,25 +436,20 @@ ul.linelist li:last-child:before {
   #hero .hero-img img {
     width: 80%;
   }
-
   #hero .container {
     margin-bottom: 10rem;
     text-align: center;
   }
-
   #hero .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   #hero .btn-get-started {
     display: inline-block;
   }
-
   #hero .btn-get-rekister {
     display: inline-block;
   }
-
 }
 
 #hero>div>div>div.col-lg-6.pt-5.pt-lg-0.order-2.order-lg-2>p {
@@ -474,7 +460,6 @@ ul.linelist li:last-child:before {
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
@@ -484,26 +469,25 @@ ul.linelist li:last-child:before {
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
 }
 
-#hero .CircularProgressbar-text{
+#hero .CircularProgressbar-text {
   padding-top: 30px;
   font-family: 'TT Norms';
   font-weight: 600;
 }
 
 #hero .progress-circle {
-  margin-top: 50px ;
-  margin-bottom: 20px ;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
 
-#hero .level-name{
+#hero .level-name {
   font-family: 'TT Norms Light';
-  color:rgba(0, 0, 0, 0.829);
+  color: rgba(0, 0, 0, 0.829);
   font-size: 150%
 }
 
@@ -538,7 +522,6 @@ even section
   color: rgba(63, 61, 86, 1) !important;
 }
 
-
 .even-section h3 {
   margin: 0 0 10px 0;
   font-weight: bold;
@@ -569,36 +552,29 @@ even section
   .even-section {
     background-attachment: fixed;
   }
-
   .even-section .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   .even-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
   }
-
 }
 
 @media (max-width: 991px) {
   .even-section {
     height: calc(100vh - 72px);
   }
-
   .even-section .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   .even-section .kasvut-img {
     text-align: center;
   }
-
   .even-section .kasvut-img img {
     width: 50%;
   }
-
   .even-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
@@ -611,22 +587,18 @@ even section
     font-size: 28px;
     line-height: 36px;
   }
-
   .even-section h2 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
   }
-
   .even-section .kasvut-img img {
     width: 70%;
   }
-
   .even-section .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   .even-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
@@ -639,17 +611,14 @@ even section
     max-width: 100%;
     max-width: 100%;
   }
-
   .even-section .kasvut-img img {
     width: 80%;
     margin-top: -50rem !important;
   }
-
   .even-section .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   .even-section .description {
     font-family: "TT Norms Light";
     font-size: 18px;
@@ -658,20 +627,17 @@ even section
     border-left-color: #ffcf00 !important;
     color: rgba(63, 61, 86, 1) !important;
   }
-
   .even-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
   }
-
 }
 
 @-webkit-keyframes up-down {
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
@@ -681,7 +647,6 @@ even section
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
@@ -719,7 +684,6 @@ odd section begins
 }
 
 .odd-section .hyodyt {
-
   font-size: 16px;
   color: rgba(63, 61, 86, 1);
   border-left-width: 1.5ex !important;
@@ -759,36 +723,29 @@ odd section begins
   .odd-section {
     background-attachment: fixed;
   }
-
   .odd-section .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
   }
-
 }
 
 @media (max-width: 991px) {
   .odd-section {
     height: calc(100vh - 72px);
   }
-
   .odd-section .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   .odd-section .kukka-img {
     text-align: center;
   }
-
   .odd-section .kukka-img img {
     width: 50%;
   }
-
   .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
@@ -801,22 +758,18 @@ odd section begins
     font-size: 28px;
     line-height: 36px;
   }
-
   .odd-section h2 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
   }
-
   .odd-section .kukka-img img {
     width: 70%;
   }
-
   .odd-section .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
@@ -829,17 +782,14 @@ odd section begins
     max-width: 100%;
     max-width: 100%;
   }
-
   .odd-section .kukka-img img {
     width: 80%;
     margin-top: -50rem !important;
   }
-
   .odd-section .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   .odd-section .description {
     font-family: "TT Norms Light";
     font-size: 18px;
@@ -848,13 +798,11 @@ odd section begins
     border-left-color: #ffcf00 !important;
     color: rgba(63, 61, 86, 1) !important;
   }
-
   .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
   }
-
   .odd-section .hyodyt {
     font-size: 18px;
     color: rgba(63, 61, 86, 1);
@@ -865,7 +813,6 @@ odd section begins
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
@@ -875,7 +822,6 @@ odd section begins
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
@@ -885,12 +831,10 @@ odd section begins
 # odd-section ends
 --------------------------------------------------------------*/
 
-
-
-
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+
 #footer {
   background: #363a59;
   padding: 0 0 30px 0;
@@ -909,7 +853,6 @@ odd section begins
   background: #363a59;
 }
 
-
 #footer .footer-top h4 {
   padding-top: 1ex;
   font-size: 16px;
@@ -921,7 +864,6 @@ odd section begins
 
 #footer .footer-top .footer-links {
   margin-bottom: 30px;
-
 }
 
 #footer .footer-top .footer-links ul {
@@ -929,8 +871,6 @@ odd section begins
   padding: 0;
   margin: 0;
 }
-
-
 
 #footer .footer-top .footer-links ul li {
   padding: 10px 0;
@@ -979,21 +919,14 @@ odd section begins
   float: left;
 }
 
-
 @media (max-width: 575px) {
-
-  #footer .copyright,
-  #footer .credits {
+  #footer .copyright, #footer .credits {
     float: none;
     -moz-text-align-last: center;
     text-align-last: center;
     padding: 3px 0;
   }
 }
-
-
-
-
 
 /* -----------------------------------------------
 Signin and Signup component css
@@ -1017,7 +950,6 @@ Signin and Signup component css
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
   font-family: 'TT Norms Light';
   color: rgba(63, 61, 86, 1) !important;
-
 }
 
 .card-signin .card-title {
@@ -1027,7 +959,6 @@ Signin and Signup component css
   font-family: 'TT Norms';
   color: rgb(90 87 123) !important
 }
-
 
 .card-signin .card-body {
   padding: 2rem;
@@ -1061,8 +992,7 @@ Signin and Signup component css
   border-radius: 2rem;
 }
 
-.form-label-group>input,
-.form-label-group>label {
+.form-label-group>input, .form-label-group>label {
   padding: var(--input-padding-y) var(--input-padding-x);
 }
 
@@ -1168,23 +1098,7 @@ Signin and Signup component css
   text-align: center !important;
 }
 
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-input[type="checkbox"]:focus,
-.uneditable-input:focus {
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, input[type="checkbox"]:focus, .uneditable-input:focus {
   border-color: #ffcf00;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #ffcf00;
   outline: 0 none;
@@ -1206,8 +1120,6 @@ input[type="checkbox"]:focus,
   background-color: #C8FFC8;
 }
 
-
-
 .link-primary {
   text-decoration: none !important;
 }
@@ -1219,7 +1131,6 @@ input[type="checkbox"]:focus,
   .form-label-group>label {
     display: none;
   }
-
   .form-label-group input::-ms-input-placeholder {
     color: #777;
   }
@@ -1228,27 +1139,24 @@ input[type="checkbox"]:focus,
 /* Fallback for IE
 -------------------------------------------------- */
 
-@media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) {
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .form-label-group>label {
     display: none;
   }
-
   .form-label-group input:-ms-input-placeholder {
     color: #777;
   }
 }
 
-
-
 /* -----------------------------------------------
 Kysely Cards CSS
 -------------------------------------------------- */
+
 #kyselyt {
   background: rgb(243, 243, 246);
 }
 
-#kysely-title{
+#kysely-title {
   margin-top: 0px !important;
   padding-top: 0px;
 }
@@ -1267,8 +1175,6 @@ Kysely Cards CSS
   max-width: 1300px;
 }
 
-
-
 .kysely .btn-card {
   background-color: #363a59 !important;
   width: min(70%, 180px);
@@ -1281,7 +1187,6 @@ Kysely Cards CSS
   justify-content: center;
   margin-left: 0px;
   margin-right: 0px;
-
 }
 
 .kysely .kysely-card .container-fluid {
@@ -1328,27 +1233,19 @@ Kysely Cards CSS
   max-height: var(--kysely-card-image-max-height);
 }
 
-
-
-
 .kysely .kysely-card img {
   border-radius: 4px;
   transition: 0.3s;
   width: 100%;
   height: 100%;
   object-fit: cover;
-
 }
-
-
-
 
 .kysely .kysely-card h3 {
   color: #444444;
   font-weight: 700;
   margin: 2rem 0 1rem 0 !important;
 }
-
 
 .kysely .kysely-card.blue {
   border-bottom: 3px solid #2db6fa;
@@ -1469,9 +1366,7 @@ Kysely Cards CSS
   background: #f51f9c;
 }
 
-.kysely .kysely-card:hover h3,
-.kysely .kysely-card:hover p,
-.kysely .kysely-card:hover .read-more {
+.kysely .kysely-card:hover h3, .kysely .kysely-card:hover p, .kysely .kysely-card:hover .read-more {
   color: #fff;
 }
 
@@ -1483,22 +1378,22 @@ Kysely Cards CSS
   margin-right: 8px !important;
 }
 
-.ant-collapse-content-box{
+.ant-collapse-content-box {
   z-index: -5 !important;
 }
-
 
 /* Accordion Element */
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap");
-
 /* Style the accordion section */
+
 .accordion__section {
   display: flex;
   flex-direction: column;
 }
 
 /* Style the buttons that are used to open and close the accordion panel */
+
 .accordion {
   background-color: #eee;
   color: #444;
@@ -1512,12 +1407,13 @@ Kysely Cards CSS
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.accordion:hover,
-.active {
+
+.accordion:hover, .active {
   background-color: #ccc;
 }
 
 /* Style the accordion content title */
+
 .accordion__title {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
@@ -1526,17 +1422,20 @@ Kysely Cards CSS
 }
 
 /* Style the accordion chevron icon */
+
 .accordion__icon {
   margin-left: auto;
   transition: transform 0.6s ease;
 }
 
 /* Style to rotate icon when state is active */
+
 .rotate {
   transform: rotate(90deg);
 }
 
 /* Style the accordion content panel. Note: hidden by default */
+
 .accordion__content {
   background-color: white;
   overflow: auto;
@@ -1545,6 +1444,7 @@ Kysely Cards CSS
 }
 
 /* Style the accordion content text */
+
 .accordion__text {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -1552,26 +1452,20 @@ Kysely Cards CSS
   padding: 18px;
 }
 
-
-
 /* -----------------------------------------------
 Activity Cards CSS
 -------------------------------------------------- */
 
-
-
 @media (min-width: 991px) {
-.counts {
-  padding: 70px 60px 60px 60px;
-}
+  .counts {
+    padding: 70px 60px 60px 60px;
+  }
 }
 
-
-[class^="bx-"], [class*=" bx-"]{
+[class^="bx-"], [class*=" bx-"] {
   display: inline-block;
   width: 100%;
 }
-
 
 .counts .count-box {
   display: flex;
@@ -1600,10 +1494,9 @@ Activity Cards CSS
   margin: 0 !important;
   font-family: "TT Norms Light";
   font-size: 15px !important;
-
 }
 
-.points-icon{
+.points-icon {
   font-size: 340% !important;
 }
 
@@ -1611,7 +1504,7 @@ Activity Cards CSS
  * The "shine" element
  */
 
- .glowing::before{
+.glowing::before {
   content: '';
   position: absolute;
   left: 12px;
@@ -1629,107 +1522,103 @@ Activity Cards CSS
   0% {
     background-position: 0 0;
   }
-  
   50% {
     background-position: 400% 0;
   }
-  
   100% {
     background-position: 0 0;
   }
-}
- 
- @media (max-width: 991px) {
- .glowing::before{
-  content: '';
-  position: absolute;
-  left: 12px;
-  top: -3px;
-  background: linear-gradient(45deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde);
-  background-size: 400%;
-  width: calc(100% + -24px);
-  height: calc(100% + 6px);
-  z-index: -2;
-  animation: glower 40s linear infinite;
-  box-shadow: 0 0 30px 10px rgba(0, 204, 255, 0.603)
 }
 
-@keyframes glower {
-  0% {
-    background-position: 0 0;
+@media (max-width: 991px) {
+  .glowing::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: -3px;
+    background: linear-gradient(45deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde);
+    background-size: 400%;
+    width: calc(100% + -24px);
+    height: calc(100% + 6px);
+    z-index: -2;
+    animation: glower 40s linear infinite;
+    box-shadow: 0 0 30px 10px rgba(0, 204, 255, 0.603)
   }
-  
-  50% {
-    background-position: 400% 0;
+  @keyframes glower {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
   }
-  
-  100% {
-    background-position: 0 0;
-  }
-}
 }
 
 .modal-content {
   z-index: 0;
 }
+
 .lights:before, .lights:after {
-	content: '';
-	position: absolute;
-	left: 12px;
-	top: -2px;
-	background: linear-gradient(45deg, #01ad43,#ffffff, #01ad43);
-	background-size: 400%;
-	width: calc(100% - 24px);
-	height: calc(100% + 4px);
-	z-index: -1;
-	animation: steam 20s linear infinite;
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: -2px;
+  background: linear-gradient(45deg, #01ad43, #ffffff, #01ad43);
+  background-size: 400%;
+  width: calc(100% - 24px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
   border-radius: 5px;
 }
 
 @keyframes steam {
-	0% {
-		background-position: 0 0;
-	}
-	50% {
-		background-position: 400% 0;
-	}
-	100% {
-		background-position: 0 0;
-	}
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .lights:after {
-	filter: blur(10px);
+  filter: blur(10px);
 }
 
 .lights-blue:before, .lights-blue:after {
-	content: '';
-	position: absolute;
-	left: 12px;
-	top: -2px;
-	background: linear-gradient(45deg, #355ee7,#ffffff, #355ee7);
-	background-size: 500%;
-	width: calc(100% - 24px);
-	height: calc(100% + 4px);
-	z-index: -1;
-	animation: steam 20s linear infinite;
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: -2px;
+  background: linear-gradient(45deg, #355ee7, #ffffff, #355ee7);
+  background-size: 500%;
+  width: calc(100% - 24px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
   border-radius: 5px;
 }
 
 @keyframes steam {
-	0% {
-		background-position: 0 0;
-	}
-	50% {
-		background-position: 600% 0;
-	}
-	100% {
-		background-position: 0 0;
-	}
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 600% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .lights-blue:after {
-	filter: blur(50px);
+  filter: blur(50px);
 }
 
 .counter {
@@ -1752,8 +1641,6 @@ Activity Cards CSS
   background-color: rgba(0, 116, 217, 1);
 }
 
-
-
 /* -----------------------------------------------
 Profile Page CSS
 -------------------------------------------------- */
@@ -1774,7 +1661,6 @@ Profile Page CSS
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
   font-family: 'TT Norms Light';
   color: rgba(63, 61, 86, 1) !important;
-
 }
 
 .profile-card .card-title {
@@ -1785,7 +1671,6 @@ Profile Page CSS
   color: rgb(90 87 123) !important
 }
 
-
 .profile-card .card-body {
   padding: 2rem;
 }
@@ -1793,8 +1678,6 @@ Profile Page CSS
 .profile-card .tab-pane {
   margin: 1rem 0 1rem 0;
 }
-
-
 
 .profile-image img {
   -webkit-border-radius: 50%;
@@ -1805,19 +1688,17 @@ Profile Page CSS
   height: 120px;
   border: 3px solid #fff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  object-fit: cover;  
+  object-fit: cover;
 }
 
 .count-box-small {
-
   padding: 20px 30px 20px 30px;
   width: 100%;
   background: #fff;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
-
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
+  border: 1px solid rgba(0, 0, 0, .125);
   border-radius: .25rem;
 }
 
@@ -1838,18 +1719,17 @@ Profile Page CSS
   margin: 0 !important;
   font-family: "TT Norms Light";
   font-size: 15px !important;
-
 }
 
-.setting-col hr{
+.setting-col hr {
   margin: 3px 0 30px 0
 }
 
-.setting-col-n hr{
+.setting-col-n hr {
   margin: 3px 0 20px 0
 }
 
-.setting-col-n{
+.setting-col-n {
   margin: 10px 0 10px 0 !important
 }
 
@@ -1861,36 +1741,34 @@ Profile Page CSS
   border-radius: 30px !important;
 }
 
-.btn-danger{
+.btn-danger {
   border-radius: 30px !important;
 }
 
-.nav-pills > a{
+.nav-pills>a {
   color: #363a59 !important;
   font-weight: bold;
 }
 
-.nav-pills >  a.active {
-  background-color:#ffcf00 !important;
+.nav-pills>a.active {
+  background-color: #ffcf00 !important;
   color: #363a59 !important;
 }
-
 
 /* -----------------------------------------------
 Kysely Page CSS
 -------------------------------------------------- */
 
-#kysely{
+#kysely {
   padding: 20px 0;
   min-height: calc(100vh - var(--header-height));
-  margin: var(--header-height) 0 0 0; 
-  color:rgba(63, 61, 86, 1)
+  margin: var(--header-height) 0 0 0;
+  color: rgba(63, 61, 86, 1)
 }
 
-#kysely h2{
+#kysely h2 {
   text-align: center;
 }
-
 
 #kysely .kyselyTitle {
   text-align: center;
@@ -1901,11 +1779,11 @@ Kysely Page CSS
   overflow-y: auto;
 }
 
-#kysely .form-label{
+#kysely .form-label {
   font-family: 'TT Norms';
 }
 
-#kysely .form-control{
+#kysely .form-control {
   font-family: 'TT Norms Light';
 }
 
@@ -1915,42 +1793,42 @@ Kysely Page CSS
   outline: 0 none !important;
 }
 
-#kysely .group-name{
+#kysely .group-name {
   margin: 0px 0 10px 0;
   text-align: center;
-  font-size: 20px;  
+  font-size: 20px;
 }
 
-#kysely .group-line{
-  margin: 25px 0 10px 0;  
+#kysely .group-line {
+  margin: 25px 0 10px 0;
 }
 
-#kysely .group-line-b{
+#kysely .group-line-b {
   position: relative;
-  margin: 10px 0 25px 0;  
+  margin: 10px 0 25px 0;
 }
 
-#kysely .form-group{
+#kysely .form-group {
   margin-bottom: 20px !important;
 }
 
-#kysely .btn-send{
+#kysely .btn-send {
   max-width: 400px;
-  font-weight:500;
+  font-weight: 500;
   font-family: 'TT Norms';
   border-radius: 30px !important;
 }
 
-.modal-content{
+.modal-content {
   font-family: 'TT Norms' !important;
   color: #363a59;
 }
 
-.modal-title{
+.modal-title {
   text-align: center !important;
 }
 
-.modal-footer .btn{
+.modal-footer .btn {
   background-color: #e3a509 !important;
   border-color: #e3a509;
   color: #363a59;
@@ -1960,19 +1838,20 @@ Kysely Page CSS
 /* -----------------------------------------------
 Bottom Navigation CSS
 -------------------------------------------------- */
-a:hover{
+
+a:hover {
   text-decoration: none !important;
 }
 
-a:visited{
+a:visited {
   text-decoration: none !important;
 }
 
-a:link{
+a:link {
   text-decoration: none !important;
 }
 
-a:active{
+a:active {
   text-decoration: none !important;
 }
 
@@ -1992,26 +1871,23 @@ end Bottom Navigation CSS
 More List CSS
 -------------------------------------------------- */
 
-.more-list{
+.more-list {
   margin-top: calc(var(--header-height) + 10px) !important;
 }
 
 .MuiListItemIcon-root {
   font-size: 20px
-  
 }
-
 
 /* -----------------------------------------------
 End more List CSS
 -------------------------------------------------- */
 
-
 /* -----------------------------------------------
 HomeNewsFeed CSS
 -------------------------------------------------- */
 
-.btn-sort{
+.btn-sort {
   border-radius: 20px !important;
   margin: 5px !important;
   z-index: 99;
@@ -2021,19 +1897,37 @@ HomeNewsFeed CSS
 End HomeNewsFeed CSS
 -------------------------------------------------- */
 
-
 /* -----------------------------------------------
 Vouchers CSS
 -------------------------------------------------- */
-
 
 .btn-activate {
   width: 120px !important;
 }
 
-.content-col{
+.content-col {
   max-height: 80px;
 }
+@media (min-width: 992px){
+.voucher-modal-lg {
+    width: auto;
+}
+}
 
+@media (max-width: 768px){
+#fullscreen-modal.modal-dialog {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0;
+    padding: 0;
+ }
+ #fullscreen-modal.modal-content {
+  height: 100% !important;
+}
+#fullscreen-modal.modal-content.modal-body {
+  display: flex !important;
+  height: 500px !important
+}
+}
 
 

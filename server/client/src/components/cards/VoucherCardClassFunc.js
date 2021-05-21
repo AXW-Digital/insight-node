@@ -9,7 +9,7 @@ export default class VoucherCardClassFunc extends Component {
             <div className='list-item'>
                 <Fade >
                     <VoucherCard
-                        key={this.props.name}
+                        key={this.props.key}
                         name={this.props.name}
                         picUrl={this.props.picUrl}
                         formTitle={this.props.formTitle}

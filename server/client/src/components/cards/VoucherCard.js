@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import { yellow } from '@material-ui/core/colors';
 import Countdown from "react-countdown";
+import VoucherModal from '../parts/VoucherModal'
 
 const useStyles = makeStyles((theme) => ({
     breakpoints: {
@@ -100,8 +101,9 @@ const useStyles = makeStyles((theme) => ({
 export default function VoucherCard(props) {
     const classes = useStyles();
 
-    // Random component
+    // Expiry component
     const Completionist = () => <span>Ei voimassa!</span>;
+    const [modalShow, setModalShow] = React.useState(false);
 
     // Renderer callback with condition
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -118,10 +120,12 @@ export default function VoucherCard(props) {
         }
     };
 
+    
     return (
-        <div className="my-2 mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-12" key={props.key} style={{ position: 'relative' }}>
+        <>
+        <div className="my-2  col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12" key={props.key}>
             <Card className={classes.root}>
-                <CardActionArea>
+                <CardActionArea onClick={() => setModalShow(true)}>
                     <CardMedia
                         className={classes.media}
                         image={props.picUrl}
@@ -172,6 +176,13 @@ export default function VoucherCard(props) {
                 </div>
             </Card>
         </div>
+        <VoucherModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        {...props}
+        />
+        
+        </>
     );
 }
 

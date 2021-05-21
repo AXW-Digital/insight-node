@@ -142,28 +142,29 @@ class Wallet extends Component {
         return (
             <div>
                 <div id='page-top'></div>
-                <section className="d-flex align-items-center even-section justify-content-center">
-                    <div id="shuffle" className={this.state.view}>
+                <section className="d-flex  even-section ">
 
-                        <div>
-                            <Toggle
-                                clickHandler={this.toggleSort}
-                                text={this.state.order === 'asc' ? 'Uusin ensin' : 'Vanhin ensin'}
-                                icon={this.state.order === 'asc' ? 'angle-up' : 'angle-down'}
-                                active={this.state.sortingMethod === 'chronological'}
-                            />
-                            <Toggle
-                                clickHandler={this.sortShuffle}
-                                text="Shuffle" icon="random"
-                                active={this.state.sortingMethod === 'shuffle'}
-                            />
-                        </div>
+                        <div className='container-fluid voucher-container mb-5'>
 
-                        <div className='container'>
-                            <div className='row'>
-                                <FlipMove className="flip-wrapper grid "
+                            <div className = 'row justify-content-center justify-content-xl-start ml-auto'>
+                                <Toggle
+                                    clickHandler={this.toggleSort}
+                                    text={this.state.order === 'asc' ? 'Uusin ensin' : 'Vanhin ensin'}
+                                    icon={this.state.order === 'asc' ? 'angle-up' : 'angle-down'}
+                                    active={this.state.sortingMethod === 'chronological'}
+                                />
+                                <Toggle
+                                    clickHandler={this.sortShuffle}
+                                    text="Shuffle" icon="random"
+                                    active={this.state.sortingMethod === 'shuffle'}
+                                />
+                            </div>
+
+
+                            <div className='row justify-content-center justify-content-xl-start '>
+                                <FlipMove className="flip-wrapper grid"
                                     staggerDurationBy="200"
-                                    duration={500}
+                                    duration={700}
                                     enterAnimation={this.state.enterLeaveAnimation}
                                     leaveAnimation={this.state.enterLeaveAnimation}
                                     easing='ease'
@@ -174,8 +175,8 @@ class Wallet extends Component {
 
                                 </FlipMove>
                             </div>
+
                         </div>
-                    </div>
 
                 </section>
                 <Footer />
