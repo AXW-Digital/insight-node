@@ -67,9 +67,10 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: 'min(16px, 2vw)!important',
         marginTop: '10px',
         fontFamily: "'TT Norms' !important",
+        zIndex: '10 !important'
     },
     action: {
-
+        zIndex: '1 !important'
     },
     content: {
         marginTop: '15px',
@@ -120,68 +121,127 @@ export default function VoucherCard(props) {
         }
     };
 
-    
+
     return (
         <>
-        <div className="my-2  col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12" key={props.key}>
-            <Card className={classes.root}>
-                <CardActionArea onClick={() => setModalShow(true)}>
-                    <CardMedia
-                        className={classes.media}
-                        image={props.picUrl}
-                        title={props.formTitle}
-                    >
-                        <Avatar className={classes.large}>
-                            {props.benefit}
-                        </Avatar>
+            <div className="my-2  col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12" key={props.key}>
+                <Card className={classes.root}>
 
-                    </CardMedia>
-                    <div className='row'>
-                        <div className='col-8 pr-0 content-col'>
-                            <CardContent className={classes.content}>
-                                <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                                    {props.formTitle}
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
-                                    {props.formText}
-                                </Typography>
-                            </CardContent>
-                        </div>
-                        <div className='col-4 px-0'>
-                            <CardActions className={classes.action}>
-                                <Button
-                                    variant='contained'
-                                    href={props.formUrl}
-                                    className={classes.button}
-                                >AKTIVOI
-                                </Button>
-                            </CardActions>
-                        </div>
-                    </div>
-                    <hr className={classes.line} />
-                </CardActionArea>
-                <div className='row ml-1'>
-                    <div className='col-6'>
-                        <Typography variant="body2" color="textSecondary" component="p" className={classes.date}>
-                            Lisätty: {Intl.DateTimeFormat('fi').format(props.startDate)}
-                        </Typography>
-                    </div>
-                    <div className='col-6'>
-                        <div className='text-right mr-3'>
+                    {/* Check if card is valid and render a clickable card or disabled card */}
+                    {(Date.now() - props.dateStart) < props.valid ?
+
+                        // Card valid render
+                        <CardActionArea onClick={() => setModalShow(true)}>
+                            <CardMedia
+                                className={classes.media}
+                                image={props.picUrl}
+                                title={props.formTitle}
+                            >
+                                <Avatar className={classes.large}>
+                                    {props.benefit}
+                                </Avatar>
+
+                            </CardMedia>
+                            <div className='row'>
+                                <div className='col-8 pr-0 content-col'>
+                                    <CardContent className={classes.content}>
+                                        <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                                            {props.formTitle}
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
+                                            {props.formText}
+                                        </Typography>
+                                    </CardContent>
+                                </div>
+                                <div className='col-4 px-0'>
+                                    <CardActions className={classes.action}>
+                                        <Button
+                                            variant='contained'
+                                            href={props.formUrl}
+                                            className={classes.button}
+                                            onMouseDown={event => event.stopPropagation()}
+                                            onClick={event => {
+                                                event.stopPropagation();
+                                                event.preventDefault();
+                                                console.log("Button clicked");
+                                            }}
+                                        >AKTIVOI
+                                        </Button>
+                                    </CardActions>
+                                </div>
+                            </div>
+                            <hr className={classes.line} />
+                        </CardActionArea>
+                        // end Card valid render
+
+                        // card not valid render
+                        :
+                        <>
+                            <div className='voucher-invalid'>
+                                <CardMedia
+                                    className={classes.media}
+                                    image={props.picUrl}
+                                    title={props.formTitle}
+                                >
+                                    <Avatar className={classes.large}>
+                                        {props.benefit}
+                                    </Avatar>
+
+                                </CardMedia>
+                                <div className='row'>
+                                    <div className='col-8 pr-0 content-col'>
+                                        <CardContent className={classes.content}>
+                                            <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                                                {props.formTitle}
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
+                                                {props.formText}
+                                            </Typography>
+                                        </CardContent>
+                                    </div>
+                                    <div className='col-4 px-0'>
+                                        <CardActions className={classes.action}>
+                                            <Button
+                                                variant='contained'
+                                                href={props.formUrl}
+                                                className={classes.button}
+                                            >AKTIVOI
+                        </Button>
+                                        </CardActions>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                        // end card not valid render
+                    }
+                    {/* end valid check */}
+
+                    {/* Render rest of card */}
+                    <div className='row ml-1'>
+                        <div className='col-6'>
                             <Typography variant="body2" color="textSecondary" component="p" className={classes.date}>
-                                <Countdown date={props.dateStart + props.valid} renderer={renderer} />
+                                Lisätty: {Intl.DateTimeFormat('fi').format(props.startDate)}
                             </Typography>
                         </div>
+                        <div className='col-6'>
+                            <div className='text-right mr-3'>
+                                <Typography variant="body2" color="textSecondary" component="p" className={classes.date}>
+                                    <Countdown date={props.dateStart + props.valid} renderer={renderer} />
+                                </Typography>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </Card>
-        </div>
-        <VoucherModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        {...props}
-        />
-        
+                    {/* end Render rest of card */}
+
+
+                </Card>
+            </div>
+            <VoucherModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                {...props}
+            />
+
         </>
     );
 }

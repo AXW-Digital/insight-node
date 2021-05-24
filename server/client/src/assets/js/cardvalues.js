@@ -178,7 +178,9 @@ const cardvaluelist = [
         benefit: '-50%',
         tyyppi: 'Voucher',
         dateStart: 1621512013000,
-        valid: 2629743000
+        valid: 2629743000,
+        description: '-50% alennus kaikista a la carte annoksista Casa Italia ravintoloissa. Etua ei voi käyttää alkoholituotteisiin',
+        benefitType: 'Alennus'
 
     },
 
@@ -191,7 +193,9 @@ const cardvaluelist = [
         benefit: '-50%',
         tyyppi: 'Voucher',
         dateStart: 1621512013000,
-        valid: 604800000
+        valid: 604800000,
+        description: '-50% extra pihvistä minkä tahansa annoksen yhteydessä',
+        benefitType: 'Alennus'
     },
 
     {
@@ -203,7 +207,9 @@ const cardvaluelist = [
         benefit: '-25%',
         tyyppi: 'Voucher',
         dateStart: 1621512013000,
-        valid: 1604800000
+        valid: 1604800000,
+        description: 'Etu koskee kaikkia kahvituotteita. Maksimissaan 3kpl kahvituotteita',
+        benefitType: 'Alennus'
     },
 
     {
@@ -215,7 +221,9 @@ const cardvaluelist = [
         benefit: '10€',
         tyyppi: 'Voucher',
         dateStart: 1621512013000,
-        valid: 1004800000
+        valid: 1004800000,
+        description: 'S-ryhmän lahjakortilla voit maksaa useimmissa S-ryhmän toimipaikoissa. Lahjakortti käy S-ryhmän tavarataloissa, ruokakaupoissa ja hotelleissa. Lahjakortit käyvät myös kaikissa S-ryhmän ravintoloissa.',
+        benefitType: 'Lahjakortti'
     },
 
     {
@@ -227,7 +235,9 @@ const cardvaluelist = [
         benefit: '5€',
         tyyppi: 'Voucher',
         dateStart: 1621512013000,
-        valid: 26297430000
+        valid: 26297430000,
+        description: 'Lahjakortilla voi maksaa mitä vain tuotteita Happy Waffle tuotevalikoimassa. Lahjakorttia ei voida vaihtaa rahaksi',
+        benefitType: 'Lahjakortti'
     },
 
     {
@@ -239,7 +249,9 @@ const cardvaluelist = [
         benefit: '4€',
         tyyppi: 'Voucher',
         dateStart: 1621512013000,
-        valid: 9629743000
+        valid: 9629743000,
+        description: 'Lahjakortilla voi maksaa mitä vain tuotteita Moko Marketin tuotevalikoimassa. Lahjakorttia ei voida vaihtaa rahaksi',
+        benefitType: 'Lahjakortti'
     },
 
     {
@@ -251,7 +263,9 @@ const cardvaluelist = [
         benefit: '-30%',
         tyyppi: 'Voucher',
         dateStart: 1621512013000,
-        valid: 204800000
+        valid: 204800000,
+        description: 'Alennus on voimassa lounasaikoina klo 11:00 - 13:00',
+        benefitType: 'Alennus'
     },
 
 ]

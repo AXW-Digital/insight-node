@@ -1,5 +1,10 @@
 import React from 'react';
 import ScrollButton from './ScrollButton'
+import $ from 'jquery'
+
+
+// var isShown = $('.modal').hasClass('show')
+// console.log('is modal shown?', isShown)
 
 const Footer= () => (
         <div>

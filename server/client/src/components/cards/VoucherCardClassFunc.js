@@ -17,7 +17,9 @@ export default class VoucherCardClassFunc extends Component {
                         benefit={this.props.benefit}
                         tyyppi={this.props.tyyppi}
                         valid={this.props.valid}
-                        dateStart={this.props.dateStart}               
+                        dateStart={this.props.dateStart}
+                        description={this.props.description}
+                        benefitType = {this.props.benefitType}               
                         />
                 </Fade>
             </div>

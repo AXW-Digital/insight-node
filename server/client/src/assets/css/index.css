@@ -1930,4 +1930,50 @@ Vouchers CSS
 }
 }
 
+.voucher-invalid{
+  opacity: 0.5 !important;
+}
+
+#voucher-modal{
+  font-family: 'TT Norms' !important;
+}
+
+#voucher-modal .modal-title{
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#voucher-modal .modal-body{
+  padding: 0 16px 16px 16px !important;
+}
+
+#voucher-modal .voucher-modal-activate{
+  background: #ffcf00 !important;
+  color: #363a59 !important;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.voucher-image{
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.voucher-benefit-box{
+  background: #363a59;
+  color: white;
+}
+
+.voucher-benefit-box,
+.voucher-benefit-type{
+  background: #ffcf00;
+  height: 50px;
+  color: #363a59;
+  border-color: white;
+  border-width: 2px;
+  font-size: 28px;
+  font-family: 'TT Norms' !important;
+  font-weight: bold
+}
 
