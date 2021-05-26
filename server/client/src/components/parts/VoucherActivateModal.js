@@ -116,7 +116,10 @@ const VoucherActivateModal = (props) => {
                     </Toolbar>
                 </AppBar>
                 <div className='container d-flex align-items-center justify-content-center vh-100'>
-                    <QRCodeComponent value= {qr_code} />
+                    <QRCodeComponent 
+                    value= {qr_code}
+                    renderAs = 'canvas' 
+                    />
                 </div>
             </Dialog>
         </div>
