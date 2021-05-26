@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import './assets/css/index.css';
 import 'aos/dist/aos.css'
 import 'react-phone-number-input/style.css'
+import "antd/dist/antd.css";
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css'

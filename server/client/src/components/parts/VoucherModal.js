@@ -3,6 +3,13 @@ import Reward from "react-rewards";
 import React from "react";
 import Countdown from "react-countdown";
 import { BiTimer, BiCalendarCheck } from 'react-icons/bi';
+import { connect } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
+import storeReducer from '../../reducers/storeReducer'
+import store from '../../store/index';
+import VoucherActivateModal from '../parts/VoucherActivateModal'
+
+
 
 
 const VoucherModal = (props) => {
@@ -10,6 +17,10 @@ const VoucherModal = (props) => {
     // Expiry component
     const Completionist = () => <span>Ei voimassa!</span>;
     const [modalShow, setModalShow] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
+    const store = configureStore({ reducer: storeReducer })
+
+
 
     // Renderer callback with condition
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -18,7 +29,7 @@ const VoucherModal = (props) => {
             return <Completionist />;
         } else {
             // Render a countdown
-            switch(days){
+            switch (days) {
                 default:
                     return (
                         <span>
@@ -39,81 +50,82 @@ const VoucherModal = (props) => {
                     );
 
             }
-            
+
         }
     };
 
 
-    return (
-        <Modal
-            {...props}
-            size="xl"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            id = 'voucher-modal'
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    {props.formTitle}
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <div className=' d-flex row justify-content-center'>
-                    <img
-                        src={props.picUrl}
-                        className='voucher-image'
-                    ></img>
-                </div>
-                <div className='row d-flex'>
-                    <div className='col-6 d-flex justify-content-center align-items-center voucher-benefit-box'>
-                        {props.benefit}
-                    </div>
-                    <div className='col-6 d-flex justify-content-center align-items-center voucher-benefit-type'>
-                        {props.benefitType}
-                    </div>
-                </div>
-                <h4 className = 'mt-4'> {props.formText}</h4>
-                <p className = 'mt-4'>
-                    {props.description}
-                    <br/>
-                    <br/>
-                    <BiCalendarCheck 
-                    size='1.5rem'
-                    /> &nbsp; Voimassa: {Intl.DateTimeFormat('fi').format(props.dateStart + props.valid)}
-                </p>
-                <hr className = 'row d-flex' />
-                <p className = 'mt-4'>
-                    <BiTimer
-                    size = '1.5em'/>
-                    <Countdown date={props.dateStart + props.valid} renderer={renderer} />
-                </p>
-            </Modal.Body>
 
-            <Modal.Footer
-                style={{
-                    display: "flex",
-                    justifyContent: "center"
-                }}
+    return (
+        <>
+            <Modal
+                {...props}
+                size="xl"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                id='voucher-modal'
+                onEnter={function () { store.dispatch({ type: 'modal/opened' }) }}
+                onExit={function () { store.dispatch({ type: 'modal/closed' }) }}
             >
-                <Button
-                    onClick={props.onHide}
-                    centered
-                    className='text-uppercase voucher-modal-activate'
-                    size='lg'
-                    block
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        {props.formTitle}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className=' d-flex row justify-content-center'>
+                        <img
+                            src={props.picUrl}
+                            className='voucher-image'
+                        ></img>
+                    </div>
+                    <div className='row d-flex'>
+                        <div className='col-6 d-flex justify-content-center align-items-center voucher-benefit-box'>
+                            {props.benefit}
+                        </div>
+                        <div className='col-6 d-flex justify-content-center align-items-center voucher-benefit-type'>
+                            {props.benefitType}
+                        </div>
+                    </div>
+                    <h4 className='mt-4'> {props.formText}</h4>
+                    <p className='mt-4'>
+                        {props.description}
+                        <br />
+                        <br />
+                        <BiCalendarCheck
+                            size='1.5rem'
+                        /> &nbsp; Voimassa: {Intl.DateTimeFormat('fi').format(props.dateStart + props.valid)}
+                    </p>
+                    <hr className='row d-flex' />
+                    <p className='mt-4'>
+                        <BiTimer
+                            size='1.5em' />
+                        <Countdown date={props.dateStart + props.valid} renderer={renderer} />
+                    </p>
+                </Modal.Body>
+
+                <Modal.Footer
                     style={{
-                        zIndex: 999
+                        display: "flex",
+                        justifyContent: "center"
                     }}
                 >
-                    AKTIVOI
-        </Button>
+                    <VoucherActivateModal
+                        {...props}
+                    />
 
 
-            </Modal.Footer>
-        </Modal>
+                </Modal.Footer>
+            </Modal>
+
+        </>
     );
 }
 
-export default VoucherModal
+function mapStateToProps(data) {
+    return { data };
 
+}
+
+export default connect(mapStateToProps)(VoucherModal);
 

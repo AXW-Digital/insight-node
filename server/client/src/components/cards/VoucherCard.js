@@ -12,6 +12,7 @@ import { yellow } from '@material-ui/core/colors';
 import Countdown from "react-countdown";
 import VoucherModal from '../parts/VoucherModal'
 
+
 const useStyles = makeStyles((theme) => ({
     breakpoints: {
         values: {
@@ -59,16 +60,6 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden !important',
         textOverflow: 'ellipsis !important'
     },
-    button: {
-        fontWeight: 'bold',
-        backgroundColor: '#363a59 !important',
-        color: 'white',
-        paddingLeft: 'min(16px, 2vw)!important',
-        paddingRight: 'min(16px, 2vw)!important',
-        marginTop: '10px',
-        fontFamily: "'TT Norms' !important",
-        zIndex: '10 !important'
-    },
     action: {
         zIndex: '1 !important'
     },
@@ -105,7 +96,7 @@ export default function VoucherCard(props) {
     // Expiry component
     const Completionist = () => <span>Ei voimassa!</span>;
     const [modalShow, setModalShow] = React.useState(false);
-
+    
     // Renderer callback with condition
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {
@@ -155,18 +146,7 @@ export default function VoucherCard(props) {
                                 </div>
                                 <div className='col-4 px-0'>
                                     <CardActions className={classes.action}>
-                                        <Button
-                                            variant='contained'
-                                            href={props.formUrl}
-                                            className={classes.button}
-                                            onMouseDown={event => event.stopPropagation()}
-                                            onClick={event => {
-                                                event.stopPropagation();
-                                                event.preventDefault();
-                                                console.log("Button clicked");
-                                            }}
-                                        >AKTIVOI
-                                        </Button>
+
                                     </CardActions>
                                 </div>
                             </div>
@@ -206,7 +186,7 @@ export default function VoucherCard(props) {
                                                 href={props.formUrl}
                                                 className={classes.button}
                                             >AKTIVOI
-                        </Button>
+                                            </Button>
                                         </CardActions>
                                     </div>
                                 </div>
@@ -232,8 +212,6 @@ export default function VoucherCard(props) {
                         </div>
                     </div>
                     {/* end Render rest of card */}
-
-
                 </Card>
             </div>
             <VoucherModal
@@ -241,6 +219,7 @@ export default function VoucherCard(props) {
                 onHide={() => setModalShow(false)}
                 {...props}
             />
+
 
         </>
     );

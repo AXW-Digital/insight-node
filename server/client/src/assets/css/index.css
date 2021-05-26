@@ -208,7 +208,7 @@ ul.linelist li:last-child:before {
   right: 15px;
   bottom: 65px;
   transition: display 0.5s ease-in-out;
-  z-index: 99999;
+  z-index: 99;
   background: #e2b11194 !important;
   color: white !important;
 }
@@ -1977,3 +1977,16 @@ Vouchers CSS
   font-weight: bold
 }
 
+.qr-code-background{
+  border-radius: 5px;
+  background-color: white;
+}
+
+.qr-code-value{
+  background-color: white;
+  padding: 5px;
+  font-size: 20px;
+  font-family: 'arial';
+  font-weight: bold;
+  border-radius: 5px;
+}

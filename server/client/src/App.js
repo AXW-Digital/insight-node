@@ -6,6 +6,8 @@ import AOS from 'aos';
 import PrivateRoute from './helpers/PrivateRoute'
 import RedirectRoute from './helpers/RedirectRoute'
 import CreateProfileRoute from './helpers/CreateProfileRoute'
+import { Provider } from "react-redux";
+import rootStore from './store/index';
 
 
 //pages
@@ -36,13 +38,13 @@ class App extends Component {
     this.props.fetchUser();
     this.props.fetchSettings();
     this.props.fetchProfile();
+    this.props.fetchStore();
 
       AOS.init({
         duration : 1500,
         once: true
       });
     
-
   };
 
   
@@ -53,8 +55,7 @@ class App extends Component {
 
 
 
-    return (
-      <div>
+    return (      
         <BrowserRouter>
           <div>
             <Header />
@@ -72,8 +73,7 @@ class App extends Component {
             <CreateProfileRoute auth = {authStatus} profile = {profileStatus} component={CreateProfile} path="/profile/create" />
             <NavigationBottom/>
           </div>
-        </BrowserRouter>
-      </div>
+        </BrowserRouter>      
     );
   }
 };
