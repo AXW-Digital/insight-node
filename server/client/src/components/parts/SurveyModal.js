@@ -8,6 +8,7 @@ import React from "react";
 // Animation
 import { easeExpInOut } from "d3-ease";
 import AnimatedProgressProvider from "../parts/AnimatedProgressProvider";
+import LandingBarChart from '../charts/LandingBarChart';
 
 const SurveyModal = (props) => {
 
@@ -248,3 +249,52 @@ const SignupModal = (props) => {
 }
 
 export { SignupModal }
+
+
+const SignupModalQuestion = (props) => {
+
+  const pointText = (pointCount) => {
+    if (pointCount < 2) {
+      return 'Olet ansainnut ensimmäisen pisteesi.'
+    } else {
+      return 'Olet ansainnut ensimmäiset ' + pointCount + ' pistettä.'
+    }
+  }
+
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Kiitos!
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div>
+        <LandingBarChart/>
+        <p>Ehkä nyt vuosikymmenten takainen taiso ala-asteen pyörätelineiltä ratkeaa!</p>
+        <h4>
+          Liity vaikuttavien joukkoon ja voita!
+        </h4>
+        <p>
+          Jaammes säännöllisesti lahjakortteja kumppaneillemme. Tänä vuonna jaossa yli 7000€ edestä palkintoja!
+        </p>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button 
+          onClick={props.onHide}
+          href='/signup'
+        >         
+          Rekisteröidy
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+export { SignupModalQuestion }

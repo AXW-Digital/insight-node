@@ -40,13 +40,10 @@ class LandingSection1 extends React.Component {
     render() {
         return (
             <div>
-                <div id='page-top'></div>
                 <section id="hero" className="d-flex align-items-center">
                     <div className="container">
                         <div className="row">
-
                             {this.renderContent()}
-
                             <div className="col-lg-6 order-1 order-lg-1 hero-img">
                                 <div className="img-fluid animated">
                                     <Nainen />

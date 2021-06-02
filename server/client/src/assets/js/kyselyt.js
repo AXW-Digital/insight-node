@@ -333,8 +333,6 @@ const kyselyt = [
                     'Vuokra-asunto',
                     'Asumisoikeus',
                     'Muu',
-
-
                 ]
             },
             {
@@ -411,7 +409,44 @@ const kyselyt = [
                 ]
             }
         ]
-    }
+    },
+
+    {
+        id: "4",
+        tyyppi: "daily",
+        kyselyTitle: "Suuret maailmaa jakavat kysymykset",
+        pointCount: 0,
+        resetHours: 1,
+        kysymykset: [
+            {
+                num: 1,
+                title: "Kumpi ensin, maito vai tee?",
+                type: "single",
+                choices: [
+                    {label: "maito ensin", css: 'maito'},
+                    {label: 'tee ensin', css: 'tee'}
+                ]
+            },
+            {
+                num: 2,
+                title: "Kumpi päällimmäiseksi, leikkele vai juusto?",
+                type: "single",
+                choices: [
+                    {label: "Leikkele päälle", css: 'leikkele'},
+                    {label: "Juusto on kingi", css: 'juusto'},
+                ]
+            },
+            {
+                num: 3,
+                title: "Ovatko irtokarkit irtsareita vai irttareita?",
+                type: "single",
+                choices: [
+                    {label: "Irtsarit", css: 'irtsarit'},
+                    {label: "Irttarit", css: 'irttarit'},
+                ]
+            }
+        ]
+    },
     
 ];
 

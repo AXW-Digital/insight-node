@@ -100,7 +100,7 @@ const VoucherModal = (props) => {
                     <p className='mt-4'>
                         <BiTimer
                             size='1.5em' />
-                        <Countdown date={props.dateStart + props.valid} renderer={renderer} />
+                        &nbsp; &nbsp; <Countdown date={props.dateStart + props.valid} renderer={renderer} />
                     </p>
                 </Modal.Body>
 

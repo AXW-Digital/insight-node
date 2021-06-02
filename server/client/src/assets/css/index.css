@@ -522,6 +522,13 @@ even section
   color: rgba(63, 61, 86, 1) !important;
 }
 
+.even-section h1{
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    line-height: 56px;
+    color: #363a59;  
+}
+
 .even-section h3 {
   margin: 0 0 10px 0;
   font-weight: bold;
@@ -689,6 +696,13 @@ odd section begins
   border-left-width: 1.5ex !important;
   border-left-color: #ffcf00 !important;
   color: rgba(63, 61, 86, 1) !important;
+}
+
+.odd-section h1{
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  line-height: 56px;
+  color: #363a59;  
 }
 
 .odd-section h3 {
@@ -1989,4 +2003,158 @@ Vouchers CSS
   font-family: 'arial';
   font-weight: bold;
   border-radius: 5px;
+  min-width: 125px;
+}
+
+.qr-loader div{
+  background: white;
+  border-radius: 5px;
+  width: 128px;
+  height: 128px;
+  margin-left: 13px;
+}
+
+.qr-placeholder {
+  background: white;
+  border-radius: 5px;
+  width: 128px;
+  height: 128px;
+}
+
+.qr-placeholder .qr-code-background{
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+  transform: scale(0.97);
+}
+
+.qr-loading-box{
+  position: relative;
+  right: '20px'
+}
+
+.ant-btn-primary[disabled]{
+  background: rgba(17, 230, 17, 0.568) !important;
+}
+
+.qr-code-value-parent .qr-code-value{
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+  transform: scale(0.97);
+}
+
+.qr-parent{
+  transform: scale(1.5);
+  border-width: 2px;
+  border-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  height: min(400px, 57vh);
+  width: min(250px, 60vw);
+
+}
+
+.qr-btn{
+  margin-top: 10px
+}
+
+.qr-countdown{
+  color: white;
+  font-family: 'Arial';
+  font-weight: 200;
+  font-size: 14px;
+
+}
+
+.qr-countdown-done{
+  color: white;
+  font-family: 'Arial';
+  font-weight: 200;
+  font-size: 14px;
+  min-width: 140px;
+  margin-right: -15px;
+}
+
+.qr-btn svg{
+  margin-left: 50px !important;
+}
+
+.signup-modal{
+  padding-right: 0 !important;
+}
+
+.apexcharts-menu-icon{
+  visibility: hidden;
+}
+
+/* -----------------------------------------------
+end Vouchers CSS
+-------------------------------------------------- */
+
+/* -----------------------------------------------
+Question front page CSS
+-------------------------------------------------- */
+
+.cc-selector input{
+  margin:0;padding:0;
+  -webkit-appearance:none;
+     -moz-appearance:none;
+          appearance:none;
+}
+
+.cc-selector-2 input{
+  position:absolute;
+  z-index:999;
+}
+
+.cc-selector-2 input:active +.option-cc, .cc-selector input:active +.option-cc{opacity: .9;}
+.cc-selector-2 input:checked +.option-cc, .cc-selector input:checked +.option-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+
+.option-cc{
+  cursor:pointer;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:inline-block;
+  width: min(70vw, 250px);height:min(70vw, 250px);
+  -webkit-transition: all 100ms ease-in;
+     -moz-transition: all 100ms ease-in;
+          transition: all 100ms ease-in;
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+     -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+          filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.option-cc:hover{
+  -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+     -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+          filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+span.cc{ color:#6d84b4 }
+.cc-selector-2 input{ position: absolute; visibility: hidden;}
+.cc-selector-2 label{ margin: 0 0 30px 0; }
+.cc-selector-2 h6 {
+  background-color: #363a59;
+  color: #e3a509;
+  padding: 2px 0 2px 10px;
+}
+
+/* Images */
+.maito{background-image:url('../images/maito.jpg'); object-fit: cover;  }
+.tee{background-image:url('../images/tee.jpg'); object-fit: cover;  }
+.leikkele{background-image:url('../images/leikkele.jpg'); object-fit: cover;  }
+.juusto{background-image:url('../images/juusto.jpg'); object-fit: cover;  }
+.irttarit{background-image:url('../images/irttarit.jpg'); object-fit: cover;  }
+.irtsarit{background-image:url('../images/irtsarit.jpg'); object-fit: cover;  }
+
+
+
+#chart {
+  overflow: hidden !important;
 }

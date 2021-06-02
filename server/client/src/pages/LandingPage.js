@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //components
 
+import LandingQuestion from '../components/sections/LandingQuestion';
 import LandingSection1 from '../components/sections/LandingSection1';
 import LandingSection2 from '../components/sections/LandingSection2';
 import LandingSection3 from '../components/sections/LandingSection3';
@@ -17,6 +18,7 @@ class LandingPage extends Component {
     render() {
         return (
                 <div>
+                <LandingQuestion data = {this.props.data}/>
                 <LandingSection1 data = {this.props.data} />
                 <LandingSection2 />
                 <LandingSection3 />

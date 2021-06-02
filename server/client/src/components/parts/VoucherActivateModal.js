@@ -36,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
     title: {
         marginLeft: theme.spacing(2),
         flex: 1,
-        fontFamily: 'TT Norms'
+        fontFamily: 'TT Norms',
+        fontWeight: 'bold'
     },
     button: {
         fontWeight: 'bold',
@@ -110,7 +111,7 @@ const VoucherActivateModal = (props) => {
                         <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
                             <CloseIcon />
                         </IconButton>
-                        <Typography variant="h6" className={classes.title}>
+                        <Typography variant="h5" className={classes.title}>
                             {props.benefit} &nbsp; {props.benefitType}
                         </Typography>
                     </Toolbar>
@@ -118,7 +119,7 @@ const VoucherActivateModal = (props) => {
                 <div className='container d-flex align-items-center justify-content-center vh-100'>
                     <QRCodeComponent 
                     value= {qr_code}
-                    renderAs = 'canvas' 
+                    renderAs = 'svg' 
                     />
                 </div>
             </Dialog>
