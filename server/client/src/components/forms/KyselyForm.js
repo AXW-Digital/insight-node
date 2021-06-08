@@ -5,7 +5,7 @@ import FormFunctionLanding from './FormFunctionLanding'
 import kyselyt from '../../assets/js/kyselyt'
 
 export default function KyselyForm(props) {
-    var title = kyselyt.map((d) => d.kyselyTitle)[props.question]
+    var title = props.kyselyt.map((d) => d.kyselyTitle)[props.question]
     return (
 
 
@@ -15,6 +15,7 @@ export default function KyselyForm(props) {
                 question={props.question}
                 title={title}
                 currentPoints={props.currentPoints}
+                kyselyt={props.kyselyt}
             />
 
         </div>

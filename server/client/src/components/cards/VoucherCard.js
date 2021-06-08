@@ -112,6 +112,12 @@ export default function VoucherCard(props) {
         }
     };
 
+    const valid = new Date(props.valid).getTime()
+    const startDate = new Date(props.dateStart).getTime()
+    const endDate = new Date(startDate + valid)
+    const validUntil = Intl.DateTimeFormat('fi').format(endDate)
+    const cntdwn = startDate + valid
+    const trest = Date.now() - startDate
 
     return (
         <>
@@ -119,7 +125,7 @@ export default function VoucherCard(props) {
                 <Card className={classes.root}>
 
                     {/* Check if card is valid and render a clickable card or disabled card */}
-                    {(Date.now() - props.dateStart) < props.valid ?
+                    {(Date.now() - startDate) < valid ?
 
                         // Card valid render
                         <CardActionArea onClick={() => setModalShow(true)}>
@@ -206,7 +212,7 @@ export default function VoucherCard(props) {
                         <div className='col-6'>
                             <div className='text-right mr-3'>
                                 <Typography variant="body2" color="textSecondary" component="p" className={classes.date}>
-                                    <Countdown date={props.dateStart + props.valid} renderer={renderer} />
+                                    <Countdown date={cntdwn} renderer={renderer} />
                                 </Typography>
                             </div>
                         </div>

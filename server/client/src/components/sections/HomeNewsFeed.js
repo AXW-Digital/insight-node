@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Footer from "../../components/parts/Footer";
-import cardvaluelist from "../../assets/js/cardvalues";
+// import cardvaluelist from "../../assets/js/cardvalues";
 import { createFeedCard } from "../../components/cards/CardFunctions";
 import axios from "axios";
 import Loader from "../../components/parts/Loader";
@@ -17,7 +17,6 @@ import FeedCard from '../cards/FeedCardFunction'
 
 
 
-
 class Shuffle extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +26,9 @@ class Shuffle extends Component {
             order: 'asc',
             sortingMethod: 'chronological',
             enterLeaveAnimation: 'accordionVertical',
-            articles: cardvaluelist.filter(x => x.tyyppi === 'Feed').sort((a, b) => b.timestamp - a.timestamp)
+            articles: [],
+            error: null,
+            isLoaded: false,
         };
 
         this.toggleList = this.toggleList.bind(this);
@@ -36,6 +37,30 @@ class Shuffle extends Component {
         this.sortRotate = this.sortRotate.bind(this);
         this.sortShuffle = this.sortShuffle.bind(this);
     }
+
+    componentDidMount() {
+        fetch("http://localhost:3030/api/cards")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        articles: result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
+                    });
+                    console.log(result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp)))
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
+
+
+
 
     toggleList() {
         this.setState({
@@ -52,8 +77,8 @@ class Shuffle extends Component {
     }
 
     toggleSort() {
-        const sortAsc = (a, b) => a.timestamp - b.timestamp;
-        const sortDesc = (a, b) => b.timestamp - a.timestamp;
+        const sortAsc = (a, b) => Date.parse(a.timestamp) - Date.parse(b.timestamp);
+        const sortDesc = (a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp);
 
         this.setState({
             order: (this.state.order === 'asc' ? 'desc' : 'asc'),

@@ -65,7 +65,7 @@ export default function FeedCard(props) {
             </IconButton>
           }
           title={props.formTitle}
-          subheader={Intl.DateTimeFormat('fi').format(props.date)}
+          subheader={Intl.DateTimeFormat('fi').format(Date.parse(props.date))}
         />
         <CardMedia
           className={classes.media}

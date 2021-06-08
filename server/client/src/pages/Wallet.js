@@ -29,7 +29,9 @@ class Wallet extends Component {
             order: 'asc',
             sortingMethod: 'chronological',
             enterLeaveAnimation: 'accordionVertical',
-            articles: cardvaluelist.filter(x => x.tyyppi === 'Voucher').sort((a, b) => b.dateStart - a.dateStart)
+            articles: [],
+            error: null,
+            isLoaded: false,
         };
 
         this.toggleList = this.toggleList.bind(this);
@@ -45,6 +47,26 @@ class Wallet extends Component {
             this.setState({ surveyAns: response.data });
             this.setState({ isLoading: false });
         });
+
+        fetch("http://localhost:3030/api/cards")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        articles: result.filter(x => x.tyyppi === 'Voucher').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+                    });
+                    console.log(result.filter(x => x.tyyppi === 'Vouher').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)))
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+        
+
     };
 
     toggleList() {
@@ -62,8 +84,8 @@ class Wallet extends Component {
     }
 
     toggleSort() {
-        const sortAsc = (a, b) => a.timestamp - b.timestamp;
-        const sortDesc = (a, b) => b.timestamp - a.timestamp;
+        const sortAsc = (a, b) => a.createdAt - b.createdAt;
+        const sortDesc = (a, b) => b.createdAt - a.createdAt;
 
         this.setState({
             order: (this.state.order === 'asc' ? 'desc' : 'asc'),

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button as Btn } from 'react-bootstrap';
-import kyselyt from '../../assets/js/kyselyt';
+// import kyselyt from '../../assets/js/kyselyt';
 import Rating from '@material-ui/lab/Rating';
 import axios from 'axios';
 import SurveyModal from '../parts/SurveyModal';
@@ -18,14 +18,14 @@ const useStyles = makeStyles({
 });
 
 
-function Choices(n, q) {
+function Choices(n, q, kyselyt) {
     const listItems = kyselyt.map((d) => d.kysymykset);
     const choices = listItems[q];
     const kys = choices.map((d) => d.choices);
     return kys[n];
 }
 
-function CreateForm(x, q, setField) {
+function CreateForm(x, q, setField, kyselyt) {
     var choices = kyselyt.map((d) => d.kysymykset)[q]
     var type = choices.map((d) => d.type)[x]
     var group = choices.map((d) => d.group)
@@ -47,9 +47,9 @@ function CreateForm(x, q, setField) {
                     <Form.Control
                         key={key + '_2'}
                         as='select'
-                        multiple htmlSize={Choices(x, q).length}
+                        multiple htmlSize={Choices(x, q, kyselyt).length}
                         onChange={e => setField(key, Array.from(e.target.selectedOptions, option => option.value))}
-                    >{Choices(x, q).map(x => <option value={x}>{x}</option>)}
+                    >{Choices(x, q, kyselyt).map(x => <option value={x}>{x}</option>)}
 
                     </Form.Control> :
                     type === 'single' ?
@@ -60,7 +60,7 @@ function CreateForm(x, q, setField) {
                             defaultValue=''
                         >
                             <option className='text-muted' value='' disabled >Valitse yksi:</option>
-                            {Choices(x, q).map(x => <option value={x}>{x}</option>)}
+                            {Choices(x, q, kyselyt).map(x => <option value={x}>{x}</option>)}
                         </Form.Control> :
                         type === 'range' ?
                             <div className='row px-2'>
@@ -86,14 +86,14 @@ function CreateForm(x, q, setField) {
     );
 }
 
-function CreateKysely(q, setField) {
+function CreateKysely(q, setField, kyselyt) {
     const listItems = kyselyt.map((d) => d.kysymykset);
     const choices = listItems[q];
     const kys = choices.map((d) => d.choices);
     const items = [];
     var i;
     for (i = 0; i < kys.length; i++) {
-        items.push(CreateForm(i, q, setField));
+        items.push(CreateForm(i, q, setField, kyselyt));
     }
     return items;
 }
@@ -101,6 +101,7 @@ function CreateKysely(q, setField) {
 
 const FormFunction = (props) => {
 
+    const kyselyt = props.kyselyt
     const [form, setForm] = useState({})
 
     const setField = (field, value) => {
@@ -166,7 +167,7 @@ const FormFunction = (props) => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    var items = CreateKysely(id, setField)
+    var items = CreateKysely(id, setField, kyselyt)
     const steps = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.choices).length;
     var group = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.group)
 

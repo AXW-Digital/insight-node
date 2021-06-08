@@ -54,7 +54,11 @@ const VoucherModal = (props) => {
         }
     };
 
-
+    const valid = new Date(props.valid).getTime()
+    const startDate = new Date(props.dateStart).getTime()
+    const endDate = new Date(startDate + valid)
+    const validUntil = Intl.DateTimeFormat('fi').format(endDate)
+    const cntdwn = startDate + valid
 
     return (
         <>
@@ -94,13 +98,13 @@ const VoucherModal = (props) => {
                         <br />
                         <BiCalendarCheck
                             size='1.5rem'
-                        /> &nbsp; Voimassa: {Intl.DateTimeFormat('fi').format(props.dateStart + props.valid)}
+                        /> &nbsp; Voimassa: {validUntil}
                     </p>
                     <hr className='row d-flex' />
                     <p className='mt-4'>
                         <BiTimer
                             size='1.5em' />
-                        &nbsp; &nbsp; <Countdown date={props.dateStart + props.valid} renderer={renderer} />
+                        &nbsp; &nbsp; <Countdown date={cntdwn} renderer={renderer} />
                     </p>
                 </Modal.Body>
 
