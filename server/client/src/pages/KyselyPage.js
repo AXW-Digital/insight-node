@@ -25,7 +25,7 @@ class KyselyPage extends Component {
     componentDidMount() {
         const profile = this.props.data.profile
         console.log(profile)
-        fetch("http://localhost:3030/api/surveys")
+        fetch("https://vaikuttava-admin.ngrok.io/api/surveys")
             .then(res => res.json())
             .then(
                 (result) => {

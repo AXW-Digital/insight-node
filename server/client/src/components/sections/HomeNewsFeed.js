@@ -39,7 +39,7 @@ class Shuffle extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:3030/api/cards")
+        fetch("https://vaikuttava-admin.ngrok.io/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {

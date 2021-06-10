@@ -3,6 +3,6 @@ export default {
     getData: () =>
     axios({
         'method':'GET',
-        'url':'http://localhost:3030/api/surveys',
+        'url':'https://vaikuttava-admin.ngrok.io/api/surveys',
     })
 }

@@ -15,7 +15,7 @@ export default class FormCard extends Component {
         return (
             <div className="col-xl-4 col-md-6 my-3 kysely-col" data-aos="fade-up" data-aos-delay="200">
 
-                <div className={`kysely-card ${this.props.color}`}>
+                <div className={`kysely-card yellow`}>
                     <div className='container-fluid'>
                         <div className='row row-image'>
 
@@ -32,7 +32,7 @@ export default class FormCard extends Component {
                             <p className="card-text">{this.props.formText}</p>
                         </div>
                         <div className='row row-button'>
-                            <a href={this.props.formUrl} className="btn btn-primary btn-card my-auto text-center">{this.props.tyyppi} {this.props.minutes}</a>
+                            <a href={`/survey${this.props.formUrl}`} className="btn btn-primary btn-card my-auto text-center">{this.props.tyyppi} {this.props.minutes}</a>
                         </div>
                     </div>
                 </div>

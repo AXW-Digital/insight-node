@@ -34,7 +34,14 @@ const lorem = new LoremIpsum({
 class HomePage extends Component {
     constructor(props) {
         super(props);
-        this.state = { isLoading: true, surveysAns: undefined, isProfile: null };
+        this.state = { 
+            isLoading: true, 
+            surveysAns: undefined, 
+            isProfile: null,
+            cards: [],
+            error: null,
+            isLoaded: false, 
+        };
     }
 
     componentDidMount() {
@@ -48,10 +55,28 @@ class HomePage extends Component {
         }).catch(err => {
             this.setState({ isProfile: false })
         });
+
+        fetch("https://vaikuttava-admin.ngrok.io/api/cards")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        cards: result.filter(x => x.tyyppi === 'Vastaa').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
     }
 
     renderCards() {
         const { isLoading, surveyAns } = this.state;
+        const cardvaluelist = this.state.cards
         console.log(surveyAns)
         switch (isLoading) {
 

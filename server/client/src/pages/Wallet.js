@@ -48,7 +48,7 @@ class Wallet extends Component {
             this.setState({ isLoading: false });
         });
 
-        fetch("http://localhost:3030/api/cards")
+        fetch("https://vaikuttava-admin.ngrok.io/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {

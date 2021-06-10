@@ -187,12 +187,6 @@ export default function VoucherCard(props) {
                                     </div>
                                     <div className='col-4 px-0'>
                                         <CardActions className={classes.action}>
-                                            <Button
-                                                variant='contained'
-                                                href={props.formUrl}
-                                                className={classes.button}
-                                            >AKTIVOI
-                                            </Button>
                                         </CardActions>
                                     </div>
                                 </div>
@@ -206,7 +200,7 @@ export default function VoucherCard(props) {
                     <div className='row ml-1'>
                         <div className='col-6'>
                             <Typography variant="body2" color="textSecondary" component="p" className={classes.date}>
-                                Lisätty: {Intl.DateTimeFormat('fi').format(props.startDate)}
+                                Lisätty: {Intl.DateTimeFormat('fi').format(startDate)}
                             </Typography>
                         </div>
                         <div className='col-6'>
