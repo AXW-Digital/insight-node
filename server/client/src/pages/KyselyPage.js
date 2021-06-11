@@ -12,88 +12,88 @@ import Footer from '../components/parts/Footer'
 
 
 class KyselyPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            error: null,
-            isLoaded: false,
-            items: []
-        };
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			error: null,
+			isLoaded: false,
+			items: []
+		};
+	}
 
 
-    componentDidMount() {
-        const profile = this.props.data.profile
-        console.log(profile)
-        fetch("https://vaikuttava-admin.ngrok.io/api/surveys")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-    }
+	componentDidMount() {
+		const profile = this.props.data.profile
+		console.log(profile)
+		fetch("https://vaikuttava-admin.ngrok.io/api/surveys")
+			.then(res => res.json())
+			.then(
+				(result) => {
+					this.setState({
+						isLoaded: true,
+						items: result
+					});
+				},
+				// Note: it's important to handle errors here
+				// instead of a catch() block so that we don't swallow
+				// exceptions from actual bugs in components.
+				(error) => {
+					this.setState({
+						isLoaded: true,
+						error
+					});
+				}
+			)
+	}
 
 
 
 
-    render() {
-        const { error, isLoaded, items } = this.state;
-        const profile = this.props.data.profile
+	render() {
+		const { error, isLoaded, items } = this.state;
+		const profile = this.props.data.profile
 
-        switch (profile) {
-            case null:
-                return <Loader />
-            default:
+		switch (profile) {
+			case null:
+				return <Loader />
+			default:
 
-                if (error) {
-                    return <div>Error: {error.message}</div>;
-                } else if (!isLoaded) {
-                    return <Loader />;
-                } else {
-                    return (
-                        <div>
+				if (error) {
+					return <div>Error: {error.message}</div>;
+				} else if (!isLoaded) {
+					return <Loader />;
+				} else {
+					return (
+						<div>
 
-                            <div id='page-top'> </div>
-                            <section id='kysely' className='odd-section'>
-                                <div className='container'>
-                                    <KyselyForm
-                                        question={this.props.match.params.id}
-                                        currentPoints={profile.points}
-                                        kyselyt={items}
-                                    />
-                                </div>
-                            </section>
-                            <section className='even-section'>
-                                <p>asdf</p>
-                            </section>
+							<div id='page-top'> </div>
+							<section id='kysely' className='odd-section'>
+								<div className='container'>
+									<KyselyForm
+										question={this.props.match.params.id}
+										currentPoints={profile.points}
+										kyselyt={items}
+									/>
+								</div>
+							</section>
+							<section className='even-section'>
+								<p>asdf</p>
+							</section>
 
-                            <Footer />
-                        </div>
+							<Footer />
+						</div>
 
-                    );
-                }
-        }
+					);
+				}
+		}
 
-    }
+	}
 }
 
 
 
 function mapStateToProps(data) {
-    return { data };
+	return { data };
 }
 
 
