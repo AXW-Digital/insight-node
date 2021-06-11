@@ -27,8 +27,12 @@ import AnimatedProgressProvider from "../components/parts/AnimatedProgressProvid
 // Progress bar
 import StepProgressBar from "../components/parts/ProgressBar";
 
-// Newsfeed
-import HomeNewsFeed from '../components/sections/HomeNewsFeed'
+import HomeNewsFeed from '../components/sections/HomeNewsFeed';
+
+// Roulette
+import VoucherRouletteModal from '../components/parts/VoucherRouletteModal';
+
+
 
 class HomePage extends Component {
   constructor(props) {
@@ -50,11 +54,11 @@ class HomePage extends Component {
       .catch((err) => {
         this.setState({ isProfile: false });
       });
-      
+
     AOS.init({
-        duration : 1500,
-        once: true
-      });
+      duration: 1500,
+      once: true
+    });
   }
 
   renderCards() {
@@ -242,18 +246,21 @@ class HomePage extends Component {
                       <div className="row m-4">
                         <ActivityCard
                           key={"a4"}
-                          boxIcon={"bx bx-diamond"}
+                          boxIcon={"bx bxs-coupon"}
                           count={this.props.data.profile.coupons}
                           cardText={"Kupongit yhteensä"}
                           suffix={""}
                           color={"blue"}
                           shine={"glowing"}
-                        />
+                        >
+                          <VoucherRouletteModal
+                          />
+                          </ActivityCard>
                       </div>
                     </div>
                   </div>
                   <div className="col-lg-6 order-1 order-lg-1 hero-img align-items-center">
-                    <div className="img-fluid animated">
+                    <div className="img-fluid animated d-none d-lg-block">
                       <Ideas />
                     </div>
                   </div>
@@ -261,9 +268,9 @@ class HomePage extends Component {
               </div>
             </section>
 
-            {/* Menutests commented out due to not being part of current plan */}
 
             <HomeNewsFeed />
+
 
             <Footer />
           </div>

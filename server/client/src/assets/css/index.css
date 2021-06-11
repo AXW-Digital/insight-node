@@ -1918,6 +1918,15 @@ HomeNewsFeed CSS
  
 }
 
+/* .react-multi-carousel-item{
+  max-width: min(78vw, 345px);
+  min-width: min(78vw, 345px);
+} */
+
+.react-multi-carousel-track{
+
+} 
+
 
 
 /* -----------------------------------------------

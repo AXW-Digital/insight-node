@@ -22,7 +22,8 @@ import CreateProfile from './pages/CreateProfile';
 import Kyselyt from './pages/Kyselyt';
 import More from './pages/More';
 import Settings from './pages/Settings';
-import Profile from './pages/Profile'
+import Profile from './pages/Profile';
+import FeedPage from './pages/FeedPage';
 
 //parts
 import Header from './components/parts/Header'
@@ -67,6 +68,7 @@ class App extends Component {
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/m/profile" component={Profile} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/more" component={More} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/test" component={Test} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/feed" component={FeedPage} />
             <PrivateRoute auth = {authStatus} path = "/survey:id" component={KyselyPage} />
             <RedirectRoute auth = {authStatus} component={Signin} path="/signin" />
             <Route auth = {authStatus} component={Signup} path="/signup" />

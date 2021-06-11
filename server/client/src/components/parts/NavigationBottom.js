@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import FolderIcon from '@material-ui/icons/Folder';
-import { IoMdListBox } from "react-icons/io";
-import { BiBoltCircle, BiHome } from "react-icons/bi";
+import { IoTicketOutline } from "react-icons/io5";
+import { BiBoltCircle, BiHome, BiNews } from "react-icons/bi";
 import { CgMore } from "react-icons/cg";
 import HomeIcon from '@material-ui/icons/Home'
 import Kyselyt from '../../pages/Kyselyt'
@@ -35,8 +35,9 @@ export default function NavigationBottom() {
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
       <BottomNavigationAction label="Home" value="home" component={Link}  to="/home" icon={<BiHome />} />
-      <BottomNavigationAction label="Kyselyt" value="kyselyt" component={Link}  to="/kyselyt" icon={<IoMdListBox />} />
-      <BottomNavigationAction label="Pisteet" value="points" component={Link} to="/test" icon={< BiBoltCircle />} />
+      <BottomNavigationAction label="Kerää" value="kyselyt" component={Link}  to="/kyselyt" icon={< BiBoltCircle />} />
+      <BottomNavigationAction label="Käytä" value="points" component={Link} to="/test" icon={< IoTicketOutline />} />
+      <BottomNavigationAction label="Feed" value="news" component={Link} to="/feed" icon={< BiNews />} />
       <BottomNavigationAction label="Lisää" value="more" component={Link}  to="/more" icon={<CgMore />} />
     </BottomNavigation>
   );

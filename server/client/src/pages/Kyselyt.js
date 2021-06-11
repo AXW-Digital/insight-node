@@ -180,7 +180,7 @@ class HomePage extends Component {
                         <section id='kyselyt' className="d-flex align-items-center justify-content-center kysely odd-section">
                             <div className="container card-container" data-aos="fade-up">
                                 <header className="section-header">
-                                    <h3 id='kysely-title mt-2'>Kyselyt</h3>
+                                    <h3 id='kysely-title mt-2'>Kerää pisteitä vastaamalla kyselyihin</h3>
                                 </header>
                                 {this.renderCards()}
                             </div>
