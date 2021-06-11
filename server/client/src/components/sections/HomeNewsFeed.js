@@ -14,6 +14,7 @@ import FlipMove from 'react-flip-move';
 import Toggle from '../parts/Toggle';
 
 import FeedCard from '../cards/FeedCardFunction'
+import Carousel from "react-multi-carousel";
 
 
 
@@ -130,33 +131,78 @@ class Shuffle extends Component {
     renderArticles() {
         return this.state.articles.map((article, i) => {
             return (
-                <FeedCard
-                    name={article.name}
-                    picUrl={article.picUrl}
-                    formTitle={article.formTitle}
-                    formText={article.formText}
-                    formUrl={article.formUrl}
-                    color={article.color}
-                    minutes={article.minutes}
-                    tyyppi={article.tyyppi}
-                    key={article.id + '_1'}
-                    view={article.view}
-                    date={article.timestamp}
-                    content={article.formContent}
-                    index={i}
-                    clickHandler={throttle(() => this.moveArticle('articles', 'removedArticles', article.id), 800)}
-                    {...article}
-                />
+                <div>
+                    <FeedCard
+                        name={article.name}
+                        picUrl={article.picUrl}
+                        formTitle={article.formTitle}
+                        formText={article.formText}
+                        formUrl={article.formUrl}
+                        color={article.color}
+                        minutes={article.minutes}
+                        tyyppi={article.tyyppi}
+                        key={article.id + '_1'}
+                        view={article.view}
+                        date={article.timestamp}
+                        content={article.formContent}
+                        index={i}
+                        clickHandler={throttle(() => this.moveArticle('articles', 'removedArticles', article.id), 800)}
+                        {...article}
+                    />
+                </div>
             );
         });
     }
 
     render() {
+        const responsive = {
+            superLargeDesktop: {
+                // the naming can be any, depends on you.
+                breakpoint: { max: 4000, min: 3000 },
+                items: 5
+            },
+            desktop: {
+                breakpoint: { max: 3000, min: 1024 },
+                items: 3
+            },
+            tablet: {
+                breakpoint: { max: 1024, min: 464 },
+                items: 2
+            },
+            mobile: {
+                breakpoint: { max: 464, min: 0 },
+                items: 1
+            }
+        };
+
         return (
 
             <section className="d-flex align-items-center even-section justify-content-center">
                 <div className="container mt-3">
-                <h3> Newsfeed </h3>
+                    <h3> Newsfeed </h3>
+                    <div className='container justify-content-center'>
+                        <FlipMove className="flip-wrapper grid"
+                            staggerDurationBy="200"
+                            duration={500}
+                            enterAnimation={this.state.enterLeaveAnimation}
+                            leaveAnimation={this.state.enterLeaveAnimation}
+                            easing='ease'
+                            typeName={null}
+                        >
+                            <Carousel
+                                responsive={responsive}
+                                infinite={true}
+                                itemClass="carousel-item-padding-20-px"
+                                centerMode = {false}
+                            >
+
+
+                                {this.renderArticles()}
+
+
+                            </Carousel>
+                        </FlipMove>
+                    </div>
                     <div id="shuffle" className={this.state.view}>
                         <header>
                             <div className="abs-right">
@@ -173,21 +219,21 @@ class Shuffle extends Component {
                                 />
                             </div>
                         </header>
-                        <div className = 'container' style={{padding:'0 5 0 5'}}>
-                        <div className='row d-flex justify-content-center justify-content-xl-start'>
-                            <FlipMove className="flip-wrapper grid"
-                                staggerDurationBy="200"
-                                duration={500}
-                                enterAnimation={this.state.enterLeaveAnimation}
-                                leaveAnimation={this.state.enterLeaveAnimation}
-                                easing='ease'
-                                typeName={null}
-                            >
+                        <div className='container' style={{ padding: '0 5 0 5' }}>
+                            <div className='row d-flex justify-content-center justify-content-xl-start'>
+                                <FlipMove className="flip-wrapper grid"
+                                    staggerDurationBy="200"
+                                    duration={500}
+                                    enterAnimation={this.state.enterLeaveAnimation}
+                                    leaveAnimation={this.state.enterLeaveAnimation}
+                                    easing='ease'
+                                    typeName={null}
+                                >
 
-                                {this.renderArticles()}
+                                    {this.renderArticles()}
 
-                            </FlipMove>
-                        </div>
+                                </FlipMove>
+                            </div>
                         </div>
                     </div>
                 </div>

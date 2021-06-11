@@ -57,6 +57,7 @@
     "react-linkedin-login-oauth2": "^1.0.9",
     "react-loading-skeleton": "^2.2.0",
     "react-move": "^6.4.0",
+    "react-multi-carousel": "^2.6.3",
     "react-phone-number-input": "^3.1.21",
     "react-redux": "^7.2.3",
     "react-reveal": "^1.2.2",

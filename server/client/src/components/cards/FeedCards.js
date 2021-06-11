@@ -20,8 +20,8 @@ import CloseIcon from '@material-ui/icons/Close';
 export default function FeedCard(props) {
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: "min(90vw, 325px)",
-      minWidth: "min(90vw, 325px)",
+      maxWidth: "min(75vw, 325px)",
+      minWidth: "min(75vw, 325px)",
     },
     media: {
       height: 0,
@@ -51,7 +51,7 @@ export default function FeedCard(props) {
   };
 
   return (
-    <div className="my-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" key={props.key}>
+    <div className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" key={props.key}>                { /* className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" */}
       <Card className={classes.root}>
         <CardHeader
           avatar={
