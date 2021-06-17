@@ -8,6 +8,7 @@ import RedirectRoute from './helpers/RedirectRoute'
 import CreateProfileRoute from './helpers/CreateProfileRoute'
 import { Provider } from "react-redux";
 import rootStore from './store/index';
+import createHistory from 'history/createBrowserHistory' 
 
 
 //pages
@@ -31,6 +32,13 @@ import Header from './components/parts/Header'
 // Navigation
 import NavigationBottom from './components/parts/NavigationBottom'
 
+// Google Analytics
+import ReactGA from 'react-ga';
+import keys from './config/keys';
+import GoogleAnalytics from './GoogleAnalytics';
+
+const TRACKING_ID = keys.googleTrackingID; // YOUR_OWN_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
 
 
 class App extends Component {
@@ -46,14 +54,14 @@ class App extends Component {
         once: true
       });
     
+    
+    
   };
 
   
-
   render() {
     const authStatus = this.props.data.auth
     const profileStatus = this.props.data.profile
-
 
 
     return (      
@@ -75,6 +83,7 @@ class App extends Component {
             <CreateProfileRoute auth = {authStatus} profile = {profileStatus} component={CreateProfile} path="/profile/create" />
             <NavigationBottom/>
           </div>
+          <GoogleAnalytics />
         </BrowserRouter>      
     );
   }

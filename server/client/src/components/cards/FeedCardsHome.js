@@ -33,6 +33,7 @@ export default function FeedCard(props) {
       transition: theme.transitions.create("transform", {
         duration: theme.transitions.duration.shortest,
       }),
+      overflow: 'auto'
     },
     expandOpen: {
       transform: "rotate(180deg)",

@@ -103,14 +103,13 @@ class Shuffle extends Component {
 
 		return (
 
-			<section className="d-flex align-items-center even-section justify-content-center">
+			<div className="d-flex align-items-center even-section justify-content-center">
 				<div className="container mt-3">
 					<h3> Newsfeed </h3>
-					<div className='container'>
 						<Carousel
 							swipeable={true}
 							draggable={true}
-							showDots={true}
+							showDots={false}
 							responsive={responsive}
 							ssr={true} // means to render carousel on server-side.
 							infinite={true}
@@ -126,9 +125,8 @@ class Shuffle extends Component {
 						>
 							{this.renderArticles()}
 						</Carousel>
-					</div>
 				</div>
-			</section>
+			</div>
 
 		);
 	}

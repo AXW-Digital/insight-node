@@ -28,17 +28,33 @@ import AnimatedProgressProvider from "../components/parts/AnimatedProgressProvid
 import StepProgressBar from "../components/parts/ProgressBar";
 
 import HomeNewsFeed from '../components/sections/HomeNewsFeed';
+import HomeQuestion from '../components/sections/HomeQuestion';
+
+
 
 // Roulette
 import VoucherRouletteModal from '../components/parts/VoucherRouletteModal';
+import LeaderBoard from "../components/sections/LeaderBoard";
 
+// Google Analytics
+import ReactGA from 'react-ga';
+import GoogleAnalytics from '../GoogleAnalytics';
+import keys from '../config/keys';
 
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLoading: true, surveysAns: undefined, isProfile: null };
-  }
+    this.state = { 
+      isLoading: true, 
+      surveysAns: undefined, 
+      isProfile: null,    
+      error: null,
+      isLoaded: false,
+      items: []
+      };
+    }
+  
 
   componentDidMount() {
     console.debug("After mount! Let's load data from API...");
@@ -55,10 +71,36 @@ class HomePage extends Component {
         this.setState({ isProfile: false });
       });
 
+      fetch("https://vaikuttava-admin.ngrok.io/api/surveys")
+			.then(res => res.json())
+			.then(
+				(result) => {
+					this.setState({
+						isLoaded: true,
+						items: result
+					});
+				},
+				// Note: it's important to handle errors here
+				// instead of a catch() block so that we don't swallow
+				// exceptions from actual bugs in components.
+				(error) => {
+					this.setState({
+						isLoaded: true,
+						error
+					});
+				}
+			)
+
     AOS.init({
       duration: 1500,
       once: true
     });
+    
+    ReactGA.initialize(keys.googleTrackingID);
+    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.ga('send', 'pageview', window.location.pathname);
+
+  
   }
 
   renderCards() {
@@ -160,7 +202,7 @@ class HomePage extends Component {
         }
       default:
         console.log("profile fetched");
-        const { surveyAns } = this.state;
+        const { surveyAns, items, isLoaded } = this.state;
 
         // determine level with getLevel function
         const levelData = getLevel(this.props.data.profile.points);
@@ -267,10 +309,29 @@ class HomePage extends Component {
                 </div>
               </div>
             </section>
+            
+            <div className = 'justify-content-center'>
+            
+            
+            {isLoaded? 
+              <HomeQuestion
+              kyselyt={items} 
+              />
+            :
+            <Loader />
+            }
+            </div>
 
-
+            <div>
             <HomeNewsFeed />
+            </div>
 
+            <div className = 'odd-section leaderboard mt-1'>
+              <div className = 'pt-3 mx-3'>
+                <h3>Leaderboard</h3>
+            <LeaderBoard />
+            </div>
+            </div>
 
             <Footer />
           </div>
