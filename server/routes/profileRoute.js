@@ -14,7 +14,7 @@ module.exports = app => {
             new: true
         });
         
-        profile.fName ? console.log(profile.fName, Date(Date.now())) : null
+        if (profile !== null) {console.log(profile.fName, Date(Date.now()))} else {console.log('user ' + filter._user + ' needs to update profile') }
         res.send(profile)
 
         

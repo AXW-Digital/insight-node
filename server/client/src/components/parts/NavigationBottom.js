@@ -10,6 +10,16 @@ import HomeIcon from '@material-ui/icons/Home'
 import Kyselyt from '../../pages/Kyselyt'
 import { Link } from 'react-router-dom';
 
+
+// Google Analytics
+import ReactGA from 'react-ga';
+
+
+
+
+
+
+
 const useStyles = makeStyles({
   root: {
     width: '100vw',
@@ -30,7 +40,11 @@ export default function NavigationBottom() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    ReactGA.set({ page: newValue })
+    ReactGA.pageview(newValue)
   };
+
+
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>

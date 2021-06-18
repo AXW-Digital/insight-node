@@ -10,7 +10,6 @@ import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 
 
 const ProfileForm = (props) => {
-    const history = useHistory();
     const [modalShow, setModalShow] = React.useState(false);
 
     const formik = useFormik({

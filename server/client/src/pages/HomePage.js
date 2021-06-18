@@ -183,6 +183,8 @@ class HomePage extends Component {
     switch (profile) {
       case null:
         return <Loader />;
+      case false:
+        return <h1>Päivitä profiili!</h1>
       default:
         console.log(profile);
         return <h1>Tervetuloa {profile.fName}!</h1>;
@@ -336,6 +338,42 @@ class HomePage extends Component {
             <Footer />
           </div>
         );
+      case false:
+        return (
+          <div>
+            <div id="page-top"></div>
+            <section id="hero" className="d-flex align-items-center">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
+                    <h1>Päivitä profiili!</h1>
+                  </div>
+                  <div className="col-lg-6 order-1 order-lg-1 hero-img align-items-center">
+                    <div className="img-fluid animated d-none d-lg-block">
+                      <Ideas />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+            <div>
+            <HomeNewsFeed />
+            </div>
+
+            <div className = 'odd-section leaderboard mt-1'>
+              <div className = 'pt-3 mx-3'>
+                <h3>Leaderboard</h3>
+            <LeaderBoard />
+            </div>
+            </div>
+
+            <Footer />
+            
+          </div>
+        );
+        
+        
     }
   }
 }

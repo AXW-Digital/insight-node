@@ -37,8 +37,14 @@ import ReactGA from 'react-ga';
 import keys from './config/keys';
 import GoogleAnalytics from './GoogleAnalytics';
 
-const TRACKING_ID = keys.googleTrackingID; // YOUR_OWN_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
+
+
+
+const history = createHistory()
+history.listen(location => {
+    ReactGA.set({ page: location.pathname })
+    ReactGA.pageview(location.pathname)
+})
 
 
 class App extends Component {
@@ -61,17 +67,19 @@ class App extends Component {
   
   render() {
     const authStatus = this.props.data.auth
-    const profileStatus = this.props.data.profile
+    var profileStatus = this.props.data.profile
+
+    
 
 
     return (      
-        <BrowserRouter>
+        <BrowserRouter history={history}>
           <div>
             <Header />
             <Route exact path="/" component={LandingPage} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/home" component={HomePage} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/kyselyt" component={Kyselyt} />
-            <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/profile" component={ProfilePage} />
+            <PrivateRoute auth = {authStatus} profile = {profileStatus} exact path = "/profile" component={ProfilePage} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/m/settings" component={Settings} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/m/profile" component={Profile} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/more" component={More} />
@@ -80,7 +88,7 @@ class App extends Component {
             <PrivateRoute auth = {authStatus} path = "/survey:id" component={KyselyPage} />
             <RedirectRoute auth = {authStatus} component={Signin} path="/signin" />
             <Route auth = {authStatus} component={Signup} path="/signup" />
-            <CreateProfileRoute auth = {authStatus} profile = {profileStatus} component={CreateProfile} path="/profile/create" />
+            <Route component={CreateProfile} exact path="/profile/create" /> 
             <NavigationBottom/>
           </div>
           <GoogleAnalytics />

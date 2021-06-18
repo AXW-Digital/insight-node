@@ -24,9 +24,6 @@ import reduxThunk from 'redux-thunk';
 import App from './App';
 
 
-
-
-
 // Font-awesome
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -34,8 +31,15 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 // Reducer
 import reducers from './reducers';
 
+// Google analytics
+import ReactGA from 'react-ga';
+import keys from './config/keys';
+
+
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
-  
+
+const TRACKING_ID = keys.googleTrackingID;
+ReactGA.initialize(TRACKING_ID);  
 
 const Root = () => (
     <App />
