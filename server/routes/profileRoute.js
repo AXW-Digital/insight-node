@@ -23,6 +23,7 @@ module.exports = app => {
     app.post('/api/profile/create', requireLogin, async (req, res) => {
 
         const {
+            uName,
             fName,
             sName,
             email,
@@ -36,6 +37,7 @@ module.exports = app => {
         } = req.body;
 
         const newProfile = new Profile({
+            uName,
             fName,
             sName,
             email,
@@ -62,6 +64,7 @@ module.exports = app => {
     
     app.post('/api/profile/update', requireLogin, async (req, res) => {
         const {
+            uName,
             fName,
             sName,
             email,
@@ -71,6 +74,7 @@ module.exports = app => {
             city } = req.body;
 
         var updateProfile = {
+            uName,
             fName,
             sName,
             email,

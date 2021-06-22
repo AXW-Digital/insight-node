@@ -8,7 +8,8 @@ import ActivityCard from "../components/cards/ActivityCard";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Loader from "../components/parts/Loader";
-import AOS from 'aos'
+import AOS from 'aos';
+import HomeStepper from '../components/parts/HomeStepper'
 
 // getLevel function
 import getLevel, { levelThresholds } from "../functions/getLevel";
@@ -183,8 +184,6 @@ class HomePage extends Component {
     switch (profile) {
       case null:
         return <Loader />;
-      case false:
-        return <h1>Päivitä profiili!</h1>
       default:
         console.log(profile);
         return <h1>Tervetuloa {profile.fName}!</h1>;
@@ -202,6 +201,8 @@ class HomePage extends Component {
           default:
             return <Loader />;
         }
+
+
       default:
         console.log("profile fetched");
         const { surveyAns, items, isLoaded } = this.state;
@@ -218,126 +219,169 @@ class HomePage extends Component {
         const points = this.props.data.profile.points;
         const progress = points / (Math.max(...levelThresholds) / 100);
 
-        return (
-          <div>
-            <div id="page-top"></div>
-            <section id="hero" className="d-flex align-items-center">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
-                    {this.renderContent()}
-                    <div className="progress-circle">
-                      <AnimatedProgressProvider
-                        valueStart={0}
-                        valueEnd={pointsPercentage * 100}
-                        duration={3}
-                        easingFunction={easeQuadInOut}
-                      >
-                        {(value) => {
-                          const roundedValue = Math.round(
-                            (value / 100) * maxLevelPoints
-                          );
-                          return (
-                            <CircularProgressbarWithChildren
-                              value={value}
-                              text={`${roundedValue} / ${maxLevelPoints} p`}
-                              styles={buildStyles({
-                                pathTransition: "none",
-                                textSize: "10px",
-                                pathColor: `rgba(0, 128, 0, ${value / 20})`,
-                                textColor: "rgb(0, 128, 0)",
-                                trailColor: "#d6d6d6",
-                                fontFamily: "TT Norms",
-                              })}
-                            >
-                              <i
-                                className="bx bx-bolt-circle"
-                                style={{
-                                  width: "20%",
-                                  marginTop: 20,
-                                  height: "30%",
-                                  fontSize: "350%",
-                                  color: "rgb(0, 128, 0)",
-                                  textAlign: "center",
-                                }}
-                              />
-                              <p className="level-name">{`Taso ${level}`}</p>
-                            </CircularProgressbarWithChildren>
-                          );
-                        }}
-                      </AnimatedProgressProvider>
-                      <AnimatedProgressProvider
-                        valueStart={0}
-                        valueEnd={progress}
-                        duration={3}
-                        easingFunction={easeQuadInOut}
-                      >
-                        {(value) => {
-                          const roundedValue = Math.round(
-                            (value / 100) * maxLevelPoints
-                          );
-                          return (
-                            <StepProgressBar
-                              progress={value}
-                              currentLevel={level}
-                              stepPositions={stepPositions}
-                            ></StepProgressBar>
-                          );
-                        }}
-                      </AnimatedProgressProvider>
-                    </div>
-                    <div className="counts">
-                      <div className="row m-4">
-                        <ActivityCard
-                          key={"a4"}
-                          boxIcon={"bx bxs-coupon"}
-                          count={this.props.data.profile.coupons}
-                          cardText={"Kupongit yhteensä"}
-                          suffix={""}
-                          color={"blue"}
-                          shine={"glowing"}
-                        >
-                          <VoucherRouletteModal
-                          />
-                          </ActivityCard>
+        switch(points){
+          
+          case 300:
+            return (
+              <div>
+                <div id="page-top"></div>
+                <section id="hero" className="d-flex align-items-center">
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-2">
+                        <div className="img-fluid animated mb-5">
+                        <h1>Tervetuloa {profile.fName}!</h1>
+                        </div>
+                      </div>
+                      <div className="col-lg-6 order-2 order-lg-1 hero-img align-items-center">
+                        
+                          <HomeStepper startStep = {2}/>
+                        
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 order-1 order-lg-1 hero-img align-items-center">
-                    <div className="img-fluid animated d-none d-lg-block">
-                      <Ideas />
+                </section>
+                
+                <div>
+                <HomeNewsFeed />
+                </div>
+    
+                <div className = 'odd-section leaderboard mt-1'>
+                  <div className = 'pt-3 mx-3'>
+                    <h3>Leaderboard</h3>
+                <LeaderBoard />
+                </div>
+                </div>
+    
+                <Footer />
+                
+              </div>
+            );
+
+          
+          default:
+            return (
+              <div>
+                <div id="page-top"></div>
+                <section id="hero" className="d-flex align-items-center">
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
+                        {this.renderContent()}
+                        <div className="progress-circle">
+                          <AnimatedProgressProvider
+                            valueStart={0}
+                            valueEnd={pointsPercentage * 100}
+                            duration={3}
+                            easingFunction={easeQuadInOut}
+                          >
+                            {(value) => {
+                              const roundedValue = Math.round(
+                                (value / 100) * maxLevelPoints
+                              );
+                              return (
+                                <CircularProgressbarWithChildren
+                                  value={value}
+                                  text={`${roundedValue} / ${maxLevelPoints} p`}
+                                  styles={buildStyles({
+                                    pathTransition: "none",
+                                    textSize: "10px",
+                                    pathColor: `rgba(0, 128, 0, ${value / 20})`,
+                                    textColor: "rgb(0, 128, 0)",
+                                    trailColor: "#d6d6d6",
+                                    fontFamily: "TT Norms",
+                                  })}
+                                >
+                                  <i
+                                    className="bx bx-bolt-circle"
+                                    style={{
+                                      width: "20%",
+                                      marginTop: 20,
+                                      height: "30%",
+                                      fontSize: "350%",
+                                      color: "rgb(0, 128, 0)",
+                                      textAlign: "center",
+                                    }}
+                                  />
+                                  <p className="level-name">{`Taso ${level}`}</p>
+                                </CircularProgressbarWithChildren>
+                              );
+                            }}
+                          </AnimatedProgressProvider>
+                          <AnimatedProgressProvider
+                            valueStart={0}
+                            valueEnd={progress}
+                            duration={3}
+                            easingFunction={easeQuadInOut}
+                          >
+                            {(value) => {
+                              const roundedValue = Math.round(
+                                (value / 100) * maxLevelPoints
+                              );
+                              return (
+                                <StepProgressBar
+                                  progress={value}
+                                  currentLevel={level}
+                                  stepPositions={stepPositions}
+                                ></StepProgressBar>
+                              );
+                            }}
+                          </AnimatedProgressProvider>
+                        </div>
+                        <div className="counts">
+                          <div className="row m-4">
+                            <ActivityCard
+                              key={"a4"}
+                              boxIcon={"bx bxs-coupon"}
+                              count={this.props.data.profile.coupons}
+                              cardText={"Kupongit yhteensä"}
+                              suffix={""}
+                              color={"blue"}
+                              shine={"glowing"}
+                            >
+                              <VoucherRouletteModal
+                              />
+                              </ActivityCard>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-lg-6 order-1 order-lg-1 hero-img align-items-center">
+                        <div className="img-fluid animated d-none d-lg-block">
+                          <Ideas />
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </section>
+                
+                <div className = 'justify-content-center'>
+                
+                
+                {isLoaded? 
+                  <HomeQuestion
+                  kyselyt={items} 
+                  />
+                :
+                <Loader />
+                }
                 </div>
+
+                <div>
+                <HomeNewsFeed />
+                </div>
+
+                <div className = 'odd-section leaderboard mt-1'>
+                  <div className = 'pt-3 mx-3'>
+                    <h3>Leaderboard</h3>
+                <LeaderBoard />
+                </div>
+                </div>
+
+                <Footer />
               </div>
-            </section>
-            
-            <div className = 'justify-content-center'>
-            
-            
-            {isLoaded? 
-              <HomeQuestion
-              kyselyt={items} 
-              />
-            :
-            <Loader />
-            }
-            </div>
+            );
+        }
 
-            <div>
-            <HomeNewsFeed />
-            </div>
-
-            <div className = 'odd-section leaderboard mt-1'>
-              <div className = 'pt-3 mx-3'>
-                <h3>Leaderboard</h3>
-            <LeaderBoard />
-            </div>
-            </div>
-
-            <Footer />
-          </div>
-        );
       case false:
         return (
           <div>
@@ -345,13 +389,15 @@ class HomePage extends Component {
             <section id="hero" className="d-flex align-items-center">
               <div className="container">
                 <div className="row">
-                  <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
-                    <h1>Päivitä profiili!</h1>
-                  </div>
-                  <div className="col-lg-6 order-1 order-lg-1 hero-img align-items-center">
-                    <div className="img-fluid animated d-none d-lg-block">
-                      <Ideas />
+                  <div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-2">
+                    <div className="img-fluid animated mb-5">
+                    <h1>Hei vaikuttaja, muistathan päivittää profiilisi!</h1>
                     </div>
+                  </div>
+                  <div className="col-lg-6 order-2 order-lg-1 hero-img align-items-center">
+                    
+                      <HomeStepper startStep = {1}/>
+                    
                   </div>
                 </div>
               </div>

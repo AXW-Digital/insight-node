@@ -1,5 +1,7 @@
 import React from 'react';
 import { ReactComponent as Nainen } from '../../assets/images/nainen.svg';
+import HomeStepper from '../parts/HomeStepper';
+import Loader from '../parts/Loader';
 
 
 class LandingSection1 extends React.Component {
@@ -10,7 +12,7 @@ class LandingSection1 extends React.Component {
             case null:
                 return null
             case false:
-                return (<div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
+                return (<div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-1">
                     <h1>Olet vaikuttava!</h1>
                     <p> Vaikuttava-yhteisön jäsenenä autat yrittäjiä ymmärtämään paremmin asiakkaiden toiveita ja tarpeita ja näin
                         edesautat heitä kehittämään entistä vaikuttavampia tuotteita ja palveluja. </p>
@@ -23,9 +25,15 @@ class LandingSection1 extends React.Component {
             default:
                 switch (data.profile) {
                     case null:
-                        return null
+                        return <Loader />
+                    case false:
+                        return (
+                            <div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-1">
+                                <HomeStepper startStep={1} />
+                            </div>
+                        )
                     default:
-                        return (<div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
+                        return (<div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-1">
                             <h1>Hei {data.profile.fName}, <br /> olet vaikuttava!</h1>
                             <p>Kasvuvaikuttajana autat luomaan parempaa ymmärrystä elämyspuolen palveluista.
                             Jatka tästä vaikuttamaan!</p>
@@ -34,7 +42,32 @@ class LandingSection1 extends React.Component {
 
                 }
         }
+    }
 
+    renderSteps() {
+        const auth = this.props.data.auth
+
+        switch (auth) {
+
+            case false:
+                return (
+                    <div>
+                        <h2>Näin helppoa se on:</h2>
+                        <HomeStepper startStep={0} />
+                    </div>
+                )
+
+            case null:
+                <Loader />
+
+            default:
+                return (
+                    <div className="img-fluid animated">
+                        <Nainen />
+                    </div>
+                )
+
+        }
     }
 
     render() {
@@ -44,10 +77,8 @@ class LandingSection1 extends React.Component {
                     <div className="container">
                         <div className="row">
                             {this.renderContent()}
-                            <div className="col-lg-6 order-1 order-lg-1 hero-img">
-                                <div className="img-fluid animated">
-                                    <Nainen />
-                                </div>
+                            <div className="col-lg-6 order-2 order-lg-2 hero-img">
+                                {this.renderSteps()}
                             </div>
                         </div>
                     </div>

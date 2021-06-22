@@ -5,15 +5,38 @@ import { useHistory } from "react-router-dom";
 import { connect } from 'react-redux';
 import { SignupModal } from '../parts/SurveyModal';
 import { TextField } from "@material-ui/core";
-
+import Button from '@material-ui/core/Button';
+import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
+import yellow from '@material-ui/core/colors/yellow';
 import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
+
+
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            // light: will be calculated from palette.primary.main,
+            main: '#FFCF00',
+            // dark: will be calculated from palette.primary.main,
+            // contrastText: will be calculated to contrast with palette.primary.main
+        }
+    }
+});
+const useStyles = makeStyles((theme) => ({
+    margin: {
+        margin: theme.spacing(1),
+    },
+}));
 
 
 const ProfileForm = (props) => {
     const [modalShow, setModalShow] = React.useState(false);
+    const classes = useStyles();
 
     const formik = useFormik({
         initialValues: {
+            uName: '',
             fName: '',
             sName: '',
             email: '',
@@ -31,29 +54,37 @@ const ProfileForm = (props) => {
         },
         onSubmit: values => {
             const geom = values.geom
-            if (invalidAddress(geom) === true){
+            if (invalidAddress(geom) === true) {
                 alert('Tarkista vielä osoite uudelleen!')
-            } else { 
-            axios.post('../api/profile/create', values)
-                .then(res => {
-                    if (res.status === 200) {
-                        console.log(res)
-                        setModalShow(true)
-                    }
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            } else {
+                axios.post('../api/profile/create', values)
+                    .then(res => {
+                        if (res.status === 200) {
+                            console.log(res)
+                            setModalShow(true)
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
             }
         }
     });
 
+    function generateUser() {
+        const shortName = uniqueNamesGenerator({
+            dictionaries: [colors, adjectives, animals], // colors can be omitted here as not used
+            length: 3,
+            separator: '-'
+        });
+        formik.setFieldValue('uName', shortName)
+    }
 
-    function invalidAddress(){
+    function invalidAddress() {
         let error = false;
         const geom = formik.values.geom
         if (Object.keys(geom).length === 0) {
-           error = true 
+            error = true
         }
         return error;
     }
@@ -61,19 +92,19 @@ const ProfileForm = (props) => {
     const { ref } = usePlacesWidget({
         apiKey: 'AIzaSyAu_der8LRPRQVkD7yY-0t2bw9geF_qGtw',
         onPlaceSelected: (place) => {
-            var geom = {lat:place.geometry.location.lat(), lng: place.geometry.location.lng()}
+            var geom = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }
             formik.setFieldValue("address", place.formatted_address);
             formik.setFieldValue("city", place.address_components[2].long_name);
             formik.setFieldValue('geom', geom)
-            
-            
-            
+
+
+
         },
-        options : {
+        options: {
             componentRestrictions: { country: "fi" },
             types: ["address"]
         },
-        
+
     });
 
 
@@ -91,7 +122,7 @@ const ProfileForm = (props) => {
 
 
 
-    
+
 
     return (
         <div className='container-fluid d-flex vh-100 vw-100 sign-bg m-0 px-0 pb-5'>
@@ -108,6 +139,30 @@ const ProfileForm = (props) => {
                                 </div>
                                 <h5 className="card-title text-center">Päivitä profiili</h5>
                                 <form className="form-signin" onSubmit={formik.handleSubmit}>
+                                    <div className='row clearfix'>
+                                        <div className='col-8'>
+                                            <div className="form-label-group">
+                                                <input
+                                                    type="text"
+                                                    id="uName"
+                                                    className="form-control"
+                                                    name='uName'
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.uName}
+                                                    placeholder='Käyttäjänimi'
+                                                    required
+                                                    autofocus />
+                                                <label htmlFor="uName">Käyttäjänimi</label>
+                                            </div>
+                                        </div>
+                                        <div className='col-4'>
+                                            <ThemeProvider theme={theme}>
+                                                <Button variant="contained" color="primary" className={classes.margin} onClick={() => generateUser()}>
+                                                    Generoi
+                                                </Button>
+                                            </ThemeProvider>
+                                        </div>
+                                    </div>
                                     <div className="form-label-group">
                                         <input
                                             type="text"
@@ -147,7 +202,6 @@ const ProfileForm = (props) => {
                                             autofocus />
                                         <label htmlFor="email">Sähköposti</label>
                                     </div>
-
                                     <div className="form-label-group">
                                         <input
                                             type="tel"
@@ -159,25 +213,11 @@ const ProfileForm = (props) => {
                                             placeholder="Password"
                                             pattern="^(\+358)[0-9]{9}"
                                             required
-                                            style = {{textOverflow: 'clip'}} />
+                                            style={{ textOverflow: 'clip' }} />
                                         <label htmlFor="phone">Puhelinnumero (+358)</label>
                                     </div>
-
-
-                                    {/* <div className="form-label-group">
-                                        <input
-                                            type="text"
-                                            id="address"
-                                            name='address'
-                                            onChange={formik.handleChange}
-                                            value={formik.values.address}
-                                            className="form-control"
-                                            placeholder="."
-                                            required />
-                                        <label htmlFor="address">Osoite</label>
-                                    </div> */}
                                     <div className="form-label-group">
-                                    <input
+                                        <input
                                             type="text"
                                             ref={ref}
                                             id="address"
@@ -189,38 +229,8 @@ const ProfileForm = (props) => {
                                             required
                                         />
                                         <label htmlFor="address">Osoite</label>
-                                        
+
                                     </div>
-                                    {/* <div className='row clearfix'>
-                                        <div className='col-lg-5 col-md-12'>
-                                            <div className="form-label-group">
-                                                <input
-                                                    type="number"
-                                                    id="addrNum"
-                                                    name='addrNum'
-                                                    onChange={formik.handleChange}
-                                                    value={formik.values.addrNum}
-                                                    className="form-control"
-                                                    placeholder="."
-                                                    required />
-                                                <label htmlFor="addrNum">Postinumero</label>
-                                            </div>
-                                        </div> */}
-                                    {/* <div className='col-lg-7 col-md-12'> */}
-                                    {/* <div className="form-label-group">
-                                        <input
-                                            type="text"
-                                            id="city"
-                                            name='city'
-                                            onChange={formik.handleChange}
-                                            value={formik.values.city}
-                                            className="form-control"
-                                            placeholder="."
-                                            required />
-                                        <label htmlFor="city">Paikkakunta</label>
-                                    </div> */}
-                                    {/* </div> */}
-                                    {/* </div> */}
                                     <button className="btn btn-lg btn-block text-uppercase btn-login mt-2" type="submit">Päivitä tiedot</button>
                                 </form>
                             </div>
@@ -231,8 +241,8 @@ const ProfileForm = (props) => {
             </div>
             <SignupModal
                 show={modalShow}
-                onHide={() => { setModalShow(false); sendFirstPoints(50); window.location = "/home" }}
-                pointCount={50}
+                onHide={() => { setModalShow(false); sendFirstPoints(300); window.location = "/home" }}
+                pointCount={300}
             />
         </div>
 

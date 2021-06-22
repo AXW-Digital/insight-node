@@ -8,6 +8,7 @@ const geomSchema = new Schema({
 
 const profileSchema = new Schema({
     _user: { type: Schema.Types.ObjectId, ref: 'User' },
+    uName: String,
     fName: String,
     sName: String,
     email: String,
