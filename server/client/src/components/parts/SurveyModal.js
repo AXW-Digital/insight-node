@@ -32,6 +32,8 @@ const SurveyModal = (props) => {
 
   const pointsIncreasePercentage = pointsIncrease / maxLevelPoints * 100
   const pointsStartPercentage = currentPoints / maxLevelPoints * 100
+  const pointsIncreaseLevelUp = -(currentPoints + maxLevelPoints)
+  const pointsIncreaseLevelUpPercentage = pointsIncreaseLevelUp / maxLevelPoints * 100
 
   console.log('current points', currentPoints)
 
@@ -110,7 +112,7 @@ const SurveyModal = (props) => {
               <div className='col d-flex justify-content-center'>
                 <LevelCard
                   key={'a3'}
-                  boxIcon={'bx bxs-medal bx-flashing points-icon'}
+                  boxIcon={'bx bxs-coupon bx-flashing points-icon'}
                   count={level + 1}
                   suffix={' p'}
                   color={'blue'}
@@ -119,15 +121,15 @@ const SurveyModal = (props) => {
               </div>
             </div>
             <br />
-            <h5 className='mt-3 modal-heading'>{pointText(pointsIncrease)}</h5>
+            <h5 className='mt-3 modal-heading'>Pääsit tasolle {level + 1}. Ansaitsit yhden kupongin!</h5>
 
             <p>
-              Vastauksesi on tallennettu onnistuneesti.
-              Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
+            Vastauksesi tallennettiin onnistuneesti.
+            Käy tarkistamassa kuponkisi ja osallistu arvontaan!  
           </p>
             <AnimatedProgressProvider
               valueStart={0}
-              valueEnd={pointsIncreasePercentage}
+              valueEnd={pointsIncreaseLevelUpPercentage}
               duration={2.5}
               easingFunction={easeExpInOut}
             >
@@ -140,7 +142,7 @@ const SurveyModal = (props) => {
                         <p>{`Taso ${level + 1}`}</p>
                       </div>
                       <div className='col-6 d-flex justify-content-end'>
-                        <p>{`${currentPoints} / ${maxLevelPoints} p`}</p>
+                        <p>{`${pointsIncreaseLevelUp} / ${maxLevelPoints} p`}</p>
                       </div>
                     </div>
                     <ProgressBar

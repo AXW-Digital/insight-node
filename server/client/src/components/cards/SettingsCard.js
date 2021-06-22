@@ -5,6 +5,26 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import { Subject } from 'rxjs';
 import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
+import Button from '@material-ui/core/Button';
+import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
+
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            // light: will be calculated from palette.primary.main,
+            main: '#FFCF00',
+            // dark: will be calculated from palette.primary.main,
+            // contrastText: will be calculated to contrast with palette.primary.main
+        }
+    }
+});
+const useStyles = makeStyles((theme) => ({
+    margin: {
+        margin: theme.spacing(1),
+    },
+}));
 
 const subject = new Subject();
 
@@ -35,8 +55,10 @@ dataService.getData().subscribe(message => {
 
 const SettingsCard = (props) => {
 
+    const classes = useStyles();
     const formik = useFormik({
         initialValues: {
+            uName: '',
             fName: '',
             sName: '',
             email: '',
@@ -82,6 +104,15 @@ const SettingsCard = (props) => {
 
     });
 
+
+    function generateUser() {
+        const shortName = uniqueNamesGenerator({
+            dictionaries: [colors, adjectives, animals], // colors can be omitted here as not used
+            length: 3,
+            separator: '-'
+        });
+        formik.setFieldValue('uName', shortName)
+    }
 
 
     return (
@@ -170,6 +201,28 @@ const SettingsCard = (props) => {
                                         <div className='col-12 setting-col'>
                                             <small className="text-muted ">Perustiedot: </small>
                                             <hr />
+                                        </div>
+                                        <div className='col-9'>
+                                            <div className="form-label-group">
+                                                <input
+                                                    type="text"
+                                                    id="uName"
+                                                    className="form-control"
+                                                    name='uName'
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.uName}
+                                                    placeholder='Käyttäjänimi'
+                                                    required
+                                                    autofocus />
+                                                <label htmlFor="uName">Käyttäjänimi</label>
+                                            </div>
+                                        </div>
+                                        <div className='col-3 btn-generate-col'>
+                                            <ThemeProvider theme={theme}>
+                                                <div className='btn btn-block text-uppercase btn-generate' onClick={() => generateUser()}>
+                                                    Generoi
+                                                </div>
+                                            </ThemeProvider>
                                         </div>
                                         <div className='col-lg-6 col-md-12'>
                                             <div className="form-label-group">

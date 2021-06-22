@@ -13,7 +13,63 @@ class StepProgressBar extends React.Component {
         filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
         stepPositions={this.props.stepPositions}
         height={12}
+        hasStepZero={false}
       >
+        <Step 
+        transition="scale"
+        >
+          {({ accomplished, index }) => (
+            <div
+            className={`indexedStep ${accomplished ? "accomplished" : null}`}
+          >
+            {index + 1}
+          </div>
+          )}
+        </Step>
+        <Step 
+        transition="scale"
+        >
+          {({ accomplished, index }) => (
+            <div
+            className={`indexedStep ${accomplished ? "accomplished" : null}`}
+          >
+            {index + 1}
+          </div>
+          )}
+        </Step>
+        <Step 
+        transition="scale"
+        >
+          {({ accomplished, index }) => (
+            <div
+            className={`indexedStep ${accomplished ? "accomplished" : null}`}
+          >
+            {index + 1}
+          </div>
+          )}
+        </Step>
+        <Step 
+        transition="scale"
+        >
+          {({ accomplished, index }) => (
+            <div
+            className={`indexedStep ${accomplished ? "accomplished" : null}`}
+          >
+            {index + 1}
+          </div>
+          )}
+        </Step>
+        <Step 
+        transition="scale"
+        >
+          {({ accomplished, index }) => (
+            <div
+            className={`indexedStep ${accomplished ? "accomplished" : null}`}
+          >
+            {index + 1}
+          </div>
+          )}
+        </Step>
         <Step 
         transition="scale"
         >

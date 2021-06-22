@@ -2,11 +2,16 @@
 // returns the current level and current points relative to the level 
 
 export const levelThresholds = [
-    1500,
-    5000,
-    10000,
-    18500,
-    30000
+    500,
+    1000,
+    1600,
+    2300,
+    3100,
+    4100,
+    5300,
+    6800,
+    8600,
+    10800
 ]
 
 

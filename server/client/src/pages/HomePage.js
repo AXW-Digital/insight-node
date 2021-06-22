@@ -286,10 +286,11 @@ class HomePage extends Component {
                                   styles={buildStyles({
                                     pathTransition: "none",
                                     textSize: "10px",
-                                    pathColor: `rgba(0, 128, 0, ${value / 20})`,
-                                    textColor: "rgb(0, 128, 0)",
+                                    pathColor: `rgba(54, 58, 89, ${value / 20})`,
+                                    textColor: "rgb(54, 58, 89)",
                                     trailColor: "#d6d6d6",
                                     fontFamily: "TT Norms",
+                                    strokeLinecap: 'butt',
                                   })}
                                 >
                                   <i
@@ -299,7 +300,7 @@ class HomePage extends Component {
                                       marginTop: 20,
                                       height: "30%",
                                       fontSize: "350%",
-                                      color: "rgb(0, 128, 0)",
+                                      color: "rgb(54, 58, 89)",
                                       textAlign: "center",
                                     }}
                                   />
@@ -359,7 +360,8 @@ class HomePage extends Component {
                 
                 {isLoaded? 
                   <HomeQuestion
-                  kyselyt={items} 
+                  kyselyt={items}
+                  currentPoints = {points} 
                   />
                 :
                 <Loader />

@@ -1778,6 +1778,18 @@ Profile Page CSS
 
 
 
+#info-tab .btn-generate {
+  background-color: #ffcf00 ;
+  color: #363a59;
+  font-size: 10px;
+  padding: 13px 5px 13px 5px;
+  margin: 5px 5px 5px 2px
+}
+
+.btn-generate-col{
+  padding: 0px !important;
+}
+
 
 
 /* -----------------------------------------------
