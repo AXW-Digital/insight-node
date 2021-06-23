@@ -496,6 +496,18 @@ ul.linelist li:last-child:before {
 }
 
 
+.nosto-buttons .row {
+min-height: 10vh;
+}
+
+.btn-nosto{
+  background-color:#ffcf00 !important;
+  border-radius: 25px !important;
+  text-align: center !important;
+  min-width: 100px !important;
+  color: #363a59 !important;
+  font-weight: 500 !important;
+}
 
 
 

@@ -353,6 +353,8 @@ class HomePage extends Component {
                       </div>
                     </div>
                   </div>
+                  
+
                 </section>
                 
                 <div className = 'justify-content-center'>
@@ -362,7 +364,7 @@ class HomePage extends Component {
                   <HomeQuestion
                   kyselyt={items}
                   currentPoints = {points} 
-                  />
+                  />                  
                 :
                 <Loader />
                 }

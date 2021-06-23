@@ -32,19 +32,29 @@ class HomeQuestion extends React.Component {
         switch (viewButtons) {
             case true:
                 return (
-                    <>
-                        <div className='row align-items-center'>
-                            <div className='col-4 d-flex justify-content-center'>
-                                <button onClick={() => { this.onButtonClicked(questionForm[0]); hideButtons() }}>{questionForm[0]}</button>
+                    <div className = 'container d-flex h-75 align-items-center justify-content-center'>
+                        <div className='row d-flex'>
+                            <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
+                                <div 
+                                onClick={() => { this.onButtonClicked(questionForm[0]); hideButtons() }}
+                                className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                >{questionForm[0]}</div>
                             </div>
-                            <div className='col-4 d-flex justify-content-center'>
-                                <button onClick={() => { this.onButtonClicked(questionForm[1]); hideButtons() }}>{questionForm[1]}</button>
+                            <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
+                                <div 
+                                onClick={() => { this.onButtonClicked(questionForm[1]); hideButtons() }}
+                                className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                >{questionForm[1]}</div>
                             </div>
-                            <div className='col-4 d-flex justify-content-center'>
-                                <button onClick={() => { this.onButtonClicked(questionForm[2]); hideButtons() }}>{questionForm[2]}</button>
+                            <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
+                                <div 
+                                onClick={() => { this.onButtonClicked(questionForm[2]); hideButtons() }}
+                                className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                >{questionForm[2]}</div>
                             </div>
                         </div>
-                    </>
+                        </div>
+                    
                 )
             case false:
                 return null
@@ -95,15 +105,21 @@ class HomeQuestion extends React.Component {
 
 
         return (
-            <div>
-                <div id="home-question" className="d-flex justify-content-center even-section ">
-                    <div className="container-fluid mx-lg-5 mt-5 mb-5">
+            <div>                
+                <div id="home-question" className="container justify-content-center even-section ">
+                <div className = 'row d-flex justify-content-center pt-4'>
+                  <div className = 'text-centered'>
+                          <h2>Oma arvostelu</h2>
+                  </div>
+                  </div>
                         {this.buttonList()}
 
                         {(this.state.viewForm) ?
-                            this.kyselyForm : ''}
+                        <div className="row d-flex justify-content-center mx-2 mx-lg-5 mt-5 mb-5">
+                            {this.kyselyForm}
+                        </div> : ''}
 
-                    </div>
+                    
                 </div>
             </div>
         );
