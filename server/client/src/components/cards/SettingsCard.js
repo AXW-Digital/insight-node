@@ -296,7 +296,6 @@ const SettingsCard = (props) => {
                                                     onChange={formik.handleChange}
                                                     value={formik.values.address}
                                                     className="form-control"
-                                                    required
                                                 />
                                                 <label htmlFor="address">Osoite</label>
                                             </div>
