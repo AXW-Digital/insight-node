@@ -106,7 +106,7 @@ class HomeQuestion extends React.Component {
 
         return (
             <div>                
-                <div id="home-question" className="container justify-content-center even-section ">
+                <div id="home-question" className="justify-content-center even-section ">
                 <div className = 'row d-flex justify-content-center pt-4'>
                   <div className = 'text-centered'>
                           <h2>Oma arvostelu</h2>

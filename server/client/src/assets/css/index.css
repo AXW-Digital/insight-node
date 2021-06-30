@@ -509,7 +509,11 @@ min-height: 10vh;
   font-weight: 500 !important;
 }
 
-
+.roulette-coupon{
+  position: absolute;
+  top: 44%;
+  font-size: 5vh;
+}
 
 
 
@@ -1949,6 +1953,8 @@ HomeQuestion CSS
     color: rgba(63, 61, 86, 1);
     
 }
+
+
 
 
 

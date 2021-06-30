@@ -9,7 +9,8 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Loader from "../components/parts/Loader";
 import AOS from 'aos';
-import HomeStepper from '../components/parts/HomeStepper'
+import HomeStepper from '../components/parts/HomeStepper';
+import RouletteModal from "../components/cards/RouletteModal";
 
 // getLevel function
 import getLevel, { levelThresholds } from "../functions/getLevel";
@@ -34,13 +35,14 @@ import HomeQuestion from '../components/sections/HomeQuestion';
 
 
 // Roulette
-import VoucherRouletteModal from '../components/parts/VoucherRouletteModal';
 import LeaderBoard from "../components/sections/LeaderBoard";
 
 // Google Analytics
 import ReactGA from 'react-ga';
 import GoogleAnalytics from '../GoogleAnalytics';
 import keys from '../config/keys';
+
+
 
 
 class HomePage extends Component {
@@ -52,9 +54,16 @@ class HomePage extends Component {
       isProfile: null,    
       error: null,
       isLoaded: false,
-      items: []
+      items: [],
       };
+
     }
+
+  
+  
+  
+
+  
   
 
   componentDidMount() {
@@ -260,6 +269,7 @@ class HomePage extends Component {
 
           
           default:
+
             return (
               <div>
                 <div id="page-top"></div>
@@ -331,18 +341,9 @@ class HomePage extends Component {
                         </div>
                         <div className="counts">
                           <div className="row m-4">
-                            <ActivityCard
-                              key={"a4"}
-                              boxIcon={"bx bxs-coupon"}
-                              count={this.props.data.profile.coupons}
-                              cardText={"Kupongit yhteensä"}
-                              suffix={""}
-                              color={"blue"}
-                              shine={"glowing"}
-                            >
-                              <VoucherRouletteModal
-                              />
-                              </ActivityCard>
+                            <RouletteModal
+                            count = {this.props.data.profile.coupons}
+                            />
                           </div>
                         </div>
                       </div>

@@ -5,7 +5,7 @@ import Reward from "react-rewards";
 class ActivityCard extends Component {
     render() {
         return (
-            <div className={`col my-3 ${this.props.shine}`}>
+            <div className={`col my-3 ${this.props.shine}`}  onClick={this.props.showModal}>
                 <div className={`count-box justify-content-center h-100`} style={{ color: `${this.props.color}` }}>
                     <div className='row '>
                         <div className='col-4 d-flex justify-content-center align-items-center'>

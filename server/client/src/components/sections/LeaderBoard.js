@@ -87,7 +87,7 @@ class LeaderBoard extends Component {
             
         } else if (isUpdated) {
             return (
-                <div className = 'leaderboard-chart'>
+                <div className = 'leaderboard-chart container'>
                     <HomeLeaderChart data = {this.state.fullData}/>
                 </div>
             );    
