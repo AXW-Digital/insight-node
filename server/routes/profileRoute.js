@@ -51,7 +51,9 @@ module.exports = app => {
             _user: req.user.id,
             level: 1,
             points: 0,
-            coupons: 0
+            goldCoupons: 0,
+            silverCoupons: 0,
+            bronzeCoupons: 0
         })
 
         await newProfile.save();
@@ -111,6 +113,31 @@ module.exports = app => {
         
         points += currentPoints.points
         const updatePoints = { points }       
+        
+        const profile = await Profile.findOneAndUpdate(filter, updatePoints, {
+            new: true
+        });
+
+        return res.send(200) 
+    }) 
+
+
+    app.post('/api/profile/coupons', requireLogin, async (req, res) => {
+        var { goldCoupons, silverCoupons, bronzeCoupons } = req.body;
+        const filter = {_user: req.user.id}
+        
+        const current = await Profile.findOne(filter)
+
+
+        if (current.goldCoupons === undefined) current.goldCoupons = 0
+        if (current.silverCoupons === undefined) current.silverCoupons = 0
+        if (current.bronzeCoupons === undefined) current.bronzeCoupons = 0
+        
+        goldCoupons += current.goldCoupons
+        silverCoupons += current.silverCoupons
+        bronzeCoupons += current.bronzeCoupons
+
+        const updatePoints = { goldCoupons, silverCoupons, bronzeCoupons }       
         
         const profile = await Profile.findOneAndUpdate(filter, updatePoints, {
             new: true

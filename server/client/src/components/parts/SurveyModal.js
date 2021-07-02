@@ -2,15 +2,20 @@ import { Modal, Button } from 'react-bootstrap';
 import { ActivityCardSmall, PointsCard, LevelCard } from '../../components/cards/ActivityCard'
 import { Progress } from 'antd';
 import { ProgressBar } from 'react-bootstrap';
-import getLevel from '../../functions/getLevel';
+import getLevel, { couponThresholds } from '../../functions/getLevel';
 import Reward from "react-rewards";
 import React from "react";
 // Animation
 import { easeExpInOut } from "d3-ease";
 import AnimatedProgressProvider from "../parts/AnimatedProgressProvider";
 import LandingBarChart from '../charts/LandingBarChart';
+import axios from 'axios';
 
 const SurveyModal = (props) => {
+
+  const [show, setShow] = React.useState(false);
+
+  const handleClose = () => setShow(false);
 
   const pointText = (pointCount) => {
     if (pointCount < 2) {
@@ -37,8 +42,46 @@ const SurveyModal = (props) => {
 
   console.log('current points', currentPoints)
 
+  function postCoupons () {
 
+    if (levelUp) {
+      var bronzeCoupons, silverCoupons, goldCoupons
+      bronzeCoupons = silverCoupons = goldCoupons = 0
+      var couponType = couponThresholds[level + 1]
+      couponType = Object.values(couponType)[0]
 
+      switch (couponType) {
+        case 'bronze':
+          bronzeCoupons = 1
+          break
+        case 'silver':
+          silverCoupons = 1
+          break
+        case 'gold':
+          goldCoupons = 1
+          break
+        default:
+          bronzeCoupons = silverCoupons = goldCoupons = 0
+          break
+      }
+
+      var coupons = { bronzeCoupons, silverCoupons, goldCoupons }
+
+      axios.post('/api/profile/coupons', coupons)
+        .then(res => {
+          if (res.status === 200) {
+            console.log(res)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })        
+    }
+
+    window.location = '/home'
+  }
+
+  
   const renderPointsContent = (
     currentPoints,
     level,
@@ -70,7 +113,7 @@ const SurveyModal = (props) => {
             <p>
               Vastauksesi on tallennettu onnistuneesti.
               Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
-          </p>
+            </p>
             <AnimatedProgressProvider
               valueStart={pointsStartPercentage}
               valueEnd={pointsStartPercentage + pointsIncreasePercentage}
@@ -106,6 +149,7 @@ const SurveyModal = (props) => {
 
         )
       case true:
+
         return (
           <Modal.Body>
             <div className='row'>
@@ -124,9 +168,9 @@ const SurveyModal = (props) => {
             <h5 className='mt-3 modal-heading'>Pääsit tasolle {level + 1}. Ansaitsit yhden kupongin!</h5>
 
             <p>
-            Vastauksesi tallennettiin onnistuneesti.
-            Käy tarkistamassa kuponkisi ja osallistu arvontaan!  
-          </p>
+              Vastauksesi tallennettiin onnistuneesti.
+              Käy tarkistamassa kuponkisi ja osallistu arvontaan!
+            </p>
             <AnimatedProgressProvider
               valueStart={0}
               valueEnd={pointsIncreaseLevelUpPercentage}
@@ -162,8 +206,8 @@ const SurveyModal = (props) => {
     }
 
   }
-  
-  
+
+
   return (
     <Modal
       {...props}
@@ -174,7 +218,7 @@ const SurveyModal = (props) => {
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Kiitos vastauksista!
-          </Modal.Title>
+        </Modal.Title>
       </Modal.Header>
       {renderPointsContent(
         currentPoints,
@@ -191,7 +235,7 @@ const SurveyModal = (props) => {
         }}
       >
         <Button
-          onClick={props.onHide}
+          onClick={() => postCoupons()}
           centered
           className='text-uppercase'
           variant='warning'
@@ -277,21 +321,21 @@ const SignupModalQuestion = (props) => {
       </Modal.Header>
       <Modal.Body>
         <div>
-        <LandingBarChart/>
-        <p>Ehkä nyt vuosikymmenten takainen taiso ala-asteen pyörätelineiltä ratkeaa!</p>
-        <h4>
-          Liity vaikuttavien joukkoon ja voita!
-        </h4>
-        <p>
-          Jaammes säännöllisesti lahjakortteja kumppaneillemme. Tänä vuonna jaossa yli 7000€ edestä palkintoja!
-        </p>
+          <LandingBarChart />
+          <p>Ehkä nyt vuosikymmenten takainen taiso ala-asteen pyörätelineiltä ratkeaa!</p>
+          <h4>
+            Liity vaikuttavien joukkoon ja voita!
+          </h4>
+          <p>
+            Jaammes säännöllisesti lahjakortteja kumppaneillemme. Tänä vuonna jaossa yli 7000€ edestä palkintoja!
+          </p>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button 
+        <Button
           onClick={props.onHide}
           href='/signup'
-        >         
+        >
           Rekisteröidy
         </Button>
       </Modal.Footer>

@@ -167,6 +167,11 @@ const FormFunction = (props) => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
+    const hideModal = () => {
+        setModalShow(false); 
+        window.location = "/home"
+    };
+
     var items = CreateKysely(id, setField, kyselyt)
     const steps = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.choices).length;
     var group = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.group)
@@ -207,7 +212,7 @@ const FormFunction = (props) => {
             >Lähetä</Btn>
             <SurveyModal
                 show={modalShow}
-                onHide={() => { setModalShow(false); window.location = "/home" }}
+                onHide={hideModal}
                 pointCount={pointCount}
                 currentPoints={props.currentPoints}
             /> 

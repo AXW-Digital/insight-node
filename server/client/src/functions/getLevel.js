@@ -14,6 +14,19 @@ export const levelThresholds = [
     10800
 ]
 
+export const couponThresholds = [
+    {1: 'bronze'},
+    {2: 'bronze'},
+    {3: 'silver'},
+    {4: 'bronze'},
+    {5: 'gold'},
+    {6: 'bronze'},
+    {7: 'silver'},
+    {8: 'gold'},
+    {9: 'silver'},
+    {10: 'gold'}
+]
+
 
 export default function getLevel(totalPoints, pointsIncrease) {
 

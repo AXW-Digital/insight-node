@@ -4,21 +4,29 @@ import { Modal, Button } from 'react-bootstrap';
 import RouletteWheel from '../parts/RouletteWheel';
 import Loader from '../parts/Loader';
 import randomMC from "random-material-color";
+import Coupon from '../parts/Coupon';
+import RouletteWinModal from '../parts/RouletteWinModal';
 
 
 
 
 
 function RouletteModal(props) {
-    const [show, setShow] = useState(false);
+    const [showBronze, setBronzeShow] = useState(false);
+    const [showSilver, setSilverShow] = useState(false);
+    const [showGold, setGoldShow] = useState(false);
+    const [showWin, setWinShow] = useState(false)
 
     
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+    const handleBronzeShow = () => setBronzeShow(true);
+    const handleSilverShow = () => setSilverShow(true);
+    const handleGoldShow = () => setGoldShow(true);
+    const handleWin = () => setWinShow(true);
+    const handleClose = () => {setBronzeShow(false); setSilverShow(false); setGoldShow(false); ; setWinShow(false)};
 
     
 
-    const RenderRoulette = () => {
+    const RenderBronzeRoulette = () => {
         const childRef = useRef();
 
         function getColor(){
@@ -40,11 +48,84 @@ function RouletteModal(props) {
         return (
             <div className='row d-flex'>
                 <div className='col-12 d-flex justify-content-center'>
-                <i className='bx bxs-coupon roulette-coupon'></i> 
-                <RouletteWheel ref={childRef} data={data}/>
+                <div className = 'roulette-coupon' >
+                    <Coupon size={'75%'} couponType={'bronze'} />
+                    </div>
+                <RouletteWheel ref={childRef} data={data} win={handleWin}/>
                 </div> 
+                <div className='col-12 d-flex justify-content-center mt-3'>
+                <Button onClick={() => childRef.current.handleSpinClick()} className='glowing-button'>PYÖRÄYTÄ</Button>
+                </div>
+                               
+            </div>
+        )
+    }
+
+    const RenderSilverRoulette = () => {
+        const childRef = useRef();
+
+        function getColor(){
+            var color = randomMC.getColor();
+            return color
+          }
+
+        var options = [
+            { option: 'Casa Italia',  style: { backgroundColor: 'green', textColor: 'black' } },
+            { option: 'SOK Lahjakortti' ,  style: { backgroundColor: 'green', textColor: 'black' }},
+            { option: 'Happy Waffle' ,  style: { backgroundColor: 'green', textColor: 'black' }},
+            { option: 'Moko Market',  style: { backgroundColor: 'green', textColor: 'black' } },
+            { option: `Manhattan Steakhouse`,  style: { backgroundColor: 'green', textColor: 'black' } },
+            { option: 'Taco Salaatti',  style: { backgroundColor: 'green', textColor: 'black' } }
+          ]
+        
+        const data = options.map(x => ({ option: x.option, style: {backgroundColor: getColor(), textColor: 'white'} }))
+
+        return (
+            <div className='row d-flex'>
                 <div className='col-12 d-flex justify-content-center'>
-                <Button onClick={() => childRef.current.handleSpinClick()}>PYÖRÄYTÄ</Button>
+                <div className = 'roulette-coupon' >
+                    <Coupon size={'75%'} couponType={'silver'} />
+                    </div>
+                <RouletteWheel ref={childRef} data={data} win={handleWin}/>
+                </div> 
+                <div className='col-12 d-flex justify-content-center mt-3'>
+                <Button onClick={() => childRef.current.handleSpinClick()} className='glowing-button'>PYÖRÄYTÄ</Button>
+                </div>
+                               
+            </div>
+        )
+    }
+
+
+    const RenderGoldRoulette = () => {
+        const childRef = useRef();
+
+        function getColor(){
+            var color = randomMC.getColor();
+            return color
+          }
+
+        var options = [
+            { option: 'Casa Italia',  style: { backgroundColor: 'green', textColor: 'black' } },
+            { option: 'SOK Lahjakortti' ,  style: { backgroundColor: 'green', textColor: 'black' }},
+            { option: 'Happy Waffle' ,  style: { backgroundColor: 'green', textColor: 'black' }},
+            { option: 'Moko Market',  style: { backgroundColor: 'green', textColor: 'black' } },
+            { option: `Manhattan Steakhouse`,  style: { backgroundColor: 'green', textColor: 'black' } },
+            { option: 'Taco Salaatti',  style: { backgroundColor: 'green', textColor: 'black' } }
+          ]
+        
+        const data = options.map(x => ({ option: x.option, style: {backgroundColor: getColor(), textColor: 'white'} }))
+
+        return (
+            <div className='row d-flex'>
+                <div className='col-12 d-flex justify-content-center'>
+                    <div className = 'roulette-coupon' >
+                    <Coupon size={'75%'} couponType={'gold'} />
+                    </div>
+                <RouletteWheel ref={childRef} data={data} win={handleWin}/>
+                </div> 
+                <div className='col-12 d-flex justify-content-center mt-3'>
+                <Button onClick={() => childRef.current.handleSpinClick()} className='glowing-button'>PYÖRÄYTÄ</Button>
                 </div>
                                
             </div>
@@ -55,16 +136,15 @@ function RouletteModal(props) {
 
     return (
         <>
-
-            <ActivityCard
-                key={"a4"}
-                boxIcon={"bx bxs-coupon"}
-                count={props.count}
-                cardText={"Kupongit yhteensä"}
-                suffix={""}
-                color={"blue"}
+            {/* Roulette Modals */}
+            <ActivityCard                
                 shine={"glowing"}
-                showModal={handleShow}                
+                bronzeClick={handleBronzeShow}
+                silverClick={handleSilverShow}
+                goldClick={handleGoldShow}
+                bronzeCount={0}
+                silverCount={1}
+                goldCount={1}                
 
             >
             </ActivityCard>
@@ -74,7 +154,7 @@ function RouletteModal(props) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            show={show}
+            show={showBronze}
         >
             <Modal.Header >
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -82,12 +162,65 @@ function RouletteModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-             {RenderRoulette()}
+             {RenderBronzeRoulette()}
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={handleClose}>Close</Button>
             </Modal.Footer>
         </Modal>
+
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            show={showSilver}
+        >
+            <Modal.Header >
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Pyöräytä arvontapyörää!
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+             {RenderSilverRoulette()}
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={handleClose}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            show={showGold}
+            className={'roulette-modal'}
+            
+        >
+            <Modal.Header >
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Pyöräytä arvontapyörää!
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+             {RenderGoldRoulette()}
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={handleClose}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+
+        {/* end Roulette Modals */}
+
+        {/* prize Voucher Modal */}
+        <RouletteWinModal
+        show={showWin}
+        handleClick={handleWin}
+        handleClose={handleClose}
+        voucherFilter={16}
+        />
+        
     </>
     );
 }

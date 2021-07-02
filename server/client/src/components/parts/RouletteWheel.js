@@ -16,12 +16,11 @@ const RouletteWheel = forwardRef((props, ref)  => {
       
     }
 
-    
-
   }));
 
   return (
     <>
+    <div className = 'roulette-wheel'>
       <Wheel
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
@@ -31,12 +30,9 @@ const RouletteWheel = forwardRef((props, ref)  => {
         outerBorderWidth = {20}
         fontSize={16}
         innerRadius={20}
-
-
-        onStopSpinning={() => {
-          setMustSpin(false)
-        }}
+        onStopSpinning={props.win}
       />
+      </div>
       
     </>
   )

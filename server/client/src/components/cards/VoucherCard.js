@@ -121,7 +121,7 @@ export default function VoucherCard(props) {
 
     return (
         <>
-            <div className="my-2  col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12" key={props.key}>
+            <div className="my-2 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12" key={props.key}>
                 <Card className={classes.root}>
 
                     {/* Check if card is valid and render a clickable card or disabled card */}

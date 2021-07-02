@@ -19,7 +19,9 @@ const profileSchema = new Schema({
     profileCreated: Date,
     lastLogin: Date,
     rank: String,
-    coupons: Number,
+    goldCoupons: Number,
+    silverCoupons: Number,
+    bronzeCoupons: Number,
     level: Number,
     points: Number    
 });
