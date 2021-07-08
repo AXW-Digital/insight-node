@@ -15,15 +15,20 @@ function RouletteModal(props) {
     const [showBronze, setBronzeShow] = useState(false);
     const [showSilver, setSilverShow] = useState(false);
     const [showGold, setGoldShow] = useState(false);
-    const [showWin, setWinShow] = useState(false)
+    const [showWin, setWinShow] = useState(false);
+    const [spin, setSpin] = useState(false)
+    var couponType = null
 
     
     const handleBronzeShow = () => setBronzeShow(true);
     const handleSilverShow = () => setSilverShow(true);
     const handleGoldShow = () => setGoldShow(true);
-    const handleWin = () => setWinShow(true);
-    const handleClose = () => {setBronzeShow(false); setSilverShow(false); setGoldShow(false); ; setWinShow(false)};
-
+    const handleWin = () => setWinShow(true); showBronze ? couponType='bronze' : showSilver ? couponType='silver' : couponType='gold'
+    const handleClose = () => {setBronzeShow(false); setSilverShow(false); setGoldShow(false); ; setWinShow(false)} 
+    
+    function handleSpin(){
+        setSpin(true);
+    }
     
 
     const RenderBronzeRoulette = () => {
@@ -54,7 +59,7 @@ function RouletteModal(props) {
                 <RouletteWheel ref={childRef} data={data} win={handleWin}/>
                 </div> 
                 <div className='col-12 d-flex justify-content-center mt-3'>
-                <Button onClick={() => childRef.current.handleSpinClick()} className='glowing-button'>PYÖRÄYTÄ</Button>
+                <Button onClick={() => {childRef.current.handleSpinClick(); handleSpin()}} className='glowing-button'>PYÖRÄYTÄ</Button>
                 </div>
                                
             </div>
@@ -89,7 +94,7 @@ function RouletteModal(props) {
                 <RouletteWheel ref={childRef} data={data} win={handleWin}/>
                 </div> 
                 <div className='col-12 d-flex justify-content-center mt-3'>
-                <Button onClick={() => childRef.current.handleSpinClick()} className='glowing-button'>PYÖRÄYTÄ</Button>
+                <Button onClick={() => {childRef.current.handleSpinClick(); handleSpin()}} className='glowing-button'>PYÖRÄYTÄ</Button>
                 </div>
                                
             </div>
@@ -125,7 +130,7 @@ function RouletteModal(props) {
                 <RouletteWheel ref={childRef} data={data} win={handleWin}/>
                 </div> 
                 <div className='col-12 d-flex justify-content-center mt-3'>
-                <Button onClick={() => childRef.current.handleSpinClick()} className='glowing-button'>PYÖRÄYTÄ</Button>
+                <Button onClick={() => {childRef.current.handleSpinClick(); handleSpin()}} className='glowing-button'>PYÖRÄYTÄ</Button>
                 </div>
                                
             </div>
@@ -165,7 +170,7 @@ function RouletteModal(props) {
              {RenderBronzeRoulette()}
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={handleClose}>Close</Button>
+                {spin? null : <Button onClick={handleClose}>Close</Button>}                
             </Modal.Footer>
         </Modal>
 
@@ -218,6 +223,7 @@ function RouletteModal(props) {
         show={showWin}
         handleClick={handleWin}
         handleClose={handleClose}
+        couponType={couponType}
         voucherFilter={16}
         />
         

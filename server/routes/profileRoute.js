@@ -137,6 +137,11 @@ module.exports = app => {
         silverCoupons += current.silverCoupons
         bronzeCoupons += current.bronzeCoupons
 
+
+        if (current.goldCoupons < 0 ) goldCoupons = 0
+        if (current.silverCoupons < 0 ) silverCoupons = 0
+        if (current.bronzeCoupons < 0 ) bronzeCoupons = 0
+
         const updatePoints = { goldCoupons, silverCoupons, bronzeCoupons }       
         
         const profile = await Profile.findOneAndUpdate(filter, updatePoints, {
@@ -145,4 +150,7 @@ module.exports = app => {
 
         return res.send(200) 
     }) 
+
+
+    
 };

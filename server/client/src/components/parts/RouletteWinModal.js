@@ -4,15 +4,53 @@ import throttle from 'lodash/throttle';
 import { Modal, Button } from 'react-bootstrap';
 import Loader from './Loader';
 import RouletteWinVoucherDialog from './RouletteWinVoucherDialog';
-
+import axios from 'axios'
 
 
 const WinModal = (props) => {
     const childRef = useRef();
     const showModal = () => childRef.current.handleClickOpen()
+
+    
+    const reduceCoupons = () => {
+    var bronzeCoupons, silverCoupons, goldCoupons
+    bronzeCoupons = silverCoupons = goldCoupons = 0
+      switch (props.couponType) {
+        case 'bronze':
+          bronzeCoupons = -1
+          break
+        case 'silver':
+          silverCoupons = -1
+          break
+        case 'gold':
+          goldCoupons = -1
+          break
+        default:
+          bronzeCoupons = silverCoupons = goldCoupons = 0
+          break
+      }
+
+      var coupons = { bronzeCoupons, silverCoupons, goldCoupons }
+
+      axios.post('/api/profile/coupons', coupons)
+        .then(res => {
+          if (res.status === 200) {
+            console.log(res)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })        
+    }
+
+
+
+
+
     
     if (props.open){
-        showModal()
+        showModal();
+        reduceCoupons();
     }
 
     return (
@@ -47,7 +85,7 @@ class RouletteWinModal extends Component {
                         isLoaded: false,
                         voucher: result.filter(x => x.tyyppi === 'Voucher' && x.id === this.props.voucherFilter)
                     });
-                    console.log(result)
+                    
                 },
                 (error) => {
                     this.setState({
@@ -85,7 +123,9 @@ class RouletteWinModal extends Component {
     render() {
         return <WinModal
         voucher = {this.renderVoucher()}
-        open = {this.props.show}/>
+        open = {this.props.show}
+        couponType = {this.props.couponType}
+        />
         
     }
 }

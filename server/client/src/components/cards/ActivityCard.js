@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 class ActivityCard extends Component {
 
     render() {
-        
-        // dummy variables for different coupon types
         const { bronzeCoupons, silverCoupons, goldCoupons } = this.props.data.profile
         const couponSum = bronzeCoupons + silverCoupons + goldCoupons
         var shine = ''
@@ -64,10 +62,6 @@ class ActivityCard extends Component {
                                 />
                             }
                         </div>
-                        {/* <div className='col-4'>
-                            <CountUp end={this.props.count} duration={4} delay={0.3} suffix={this.props.suffix} />
-                            <p style={{ color: 'gray' }}>{this.props.cardText}</p>
-                        </div> */}
                     </div>
                 </div>
             </div>

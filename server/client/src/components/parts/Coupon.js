@@ -11,14 +11,38 @@ class Coupon extends Component {
         
         switch(couponCount){
             case 0:
-                return (
-                    <div>
-                        <IoTicket 
-                        size={size} 
-                        color={'#ededee'}/>
-                        <h5 className = 'coupon-count'> {couponCount} </h5>
-                    </div>
-                );
+                switch(couponType){
+                    case 'gold':
+                        return (
+                            <div>
+                                <IoTicket
+                                className = 'coupon-icon'
+                                size={size}
+                                color = {'rgba(255, 215, 0, 0.3)'}/>
+                                <h5 className = 'coupon-count'> {couponCount} </h5>
+                            </div>
+                        )
+                    case 'silver':
+                        return (
+                            <div>
+                                <IoTicket
+                                className = 'coupon-icon'
+                                size={size}
+                                color = {'rgba(192,192,192, 0.3)'}/>
+                                <h5 className = 'coupon-count'> {couponCount} </h5>
+                            </div>
+                        )
+                    case 'bronze':
+                        return (
+                            <div>
+                                <IoTicket
+                                className = 'coupon-icon'
+                                size={size}
+                                color = {'rgba(205, 127, 50, 0.3)'}/>
+                                <h5 className = 'coupon-count'> {couponCount} </h5>
+                            </div>
+                        )
+                }
             default:
                 switch(couponType){
                     case 'gold':
