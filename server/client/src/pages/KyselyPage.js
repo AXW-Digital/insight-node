@@ -7,6 +7,8 @@ import surveyApi from '../functions/surveyApi'
 import Footer from '../components/parts/Footer'
 // import $ from 'jquery';
 
+import keys from '../config/keys';
+
 
 
 
@@ -25,7 +27,7 @@ class KyselyPage extends Component {
 	componentDidMount() {
 		const profile = this.props.data.profile
 		console.log(profile)
-		fetch("http://13.48.5.73:3030/api/surveys")
+		fetch(keys.adminUrl + "/api/surveys")
 			.then(res => res.json())
 			.then(
 				(result) => {

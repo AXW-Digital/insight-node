@@ -15,6 +15,7 @@ import throttle from 'lodash/throttle';
 
 import FlipMove from 'react-flip-move';
 import Toggle from '../components/parts/Toggle';
+import keys from '../config/keys';
 
 
 class Wallet extends Component {
@@ -48,7 +49,7 @@ class Wallet extends Component {
             this.setState({ isLoading: false });
         });
 
-        fetch("http://13.48.5.73:3030/api/cards")
+        fetch(keys.adminUrl + "/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {

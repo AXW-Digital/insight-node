@@ -15,6 +15,7 @@ import { LoremIpsum } from "lorem-ipsum";
 // Media
 import { ReactComponent as Searching } from '../assets/images/searching.svg';
 import { ReactComponent as Faq } from '../assets/images/faq.svg';
+import keys from '../config/keys';
 
 
 const lorem = new LoremIpsum({
@@ -56,7 +57,7 @@ class HomePage extends Component {
             this.setState({ isProfile: false })
         });
 
-        fetch("http://13.48.5.73:3030/api/cards")
+        fetch(keys.adminUrl + "/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {

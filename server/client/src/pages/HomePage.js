@@ -81,7 +81,7 @@ class HomePage extends Component {
         this.setState({ isProfile: false });
       });
 
-      fetch("http://13.48.5.73:3030/api/surveys")
+      fetch(keys.adminUrl + "/api/surveys")
 			.then(res => res.json())
 			.then(
 				(result) => {

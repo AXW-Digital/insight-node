@@ -15,6 +15,7 @@ import Toggle from '../parts/Toggle';
 
 import { FeedCardComp } from '../cards/FeedCardFunction'
 import Carousel from "react-multi-carousel";
+import keys from '../../config/keys';
 
 
 
@@ -40,7 +41,7 @@ class NewsFeed extends Component {
     }
 
     componentDidMount() {
-        fetch("http://13.48.5.73:3030/api/cards")
+        fetch(keys.adminUrl + "/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {

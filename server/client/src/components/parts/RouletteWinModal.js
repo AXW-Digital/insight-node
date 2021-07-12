@@ -4,7 +4,8 @@ import throttle from 'lodash/throttle';
 import { Modal, Button } from 'react-bootstrap';
 import Loader from './Loader';
 import RouletteWinVoucherDialog from './RouletteWinVoucherDialog';
-import axios from 'axios'
+import axios from 'axios';
+import keys from '../../config/keys';
 
 
 const WinModal = (props) => {
@@ -77,7 +78,7 @@ class RouletteWinModal extends Component {
     }
 
     componentDidMount() {
-        fetch("http://13.48.5.73:3030/api/cards")
+        fetch(keys.adminUrl + "/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {
