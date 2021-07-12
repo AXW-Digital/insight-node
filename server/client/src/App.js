@@ -53,7 +53,7 @@ class App extends Component {
     this.props.fetchUser();
     this.props.fetchSettings();
     this.props.fetchProfile();
-    this.props.fetchStore();
+    this.props.fetchVouchers();
 
       AOS.init({
         duration : 1500,

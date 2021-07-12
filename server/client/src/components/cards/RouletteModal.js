@@ -6,6 +6,7 @@ import Loader from '../parts/Loader';
 import randomMC from "random-material-color";
 import Coupon from '../parts/Coupon';
 import RouletteWinModal from '../parts/RouletteWinModal';
+import { connect } from 'react-redux'
 
 
 
@@ -231,7 +232,11 @@ function RouletteModal(props) {
     );
 }
 
-export default RouletteModal;
+function mapStateToProps(data) {
+    return { data };
+} 
+  
+export default connect(mapStateToProps)(RouletteModal);
 
 
 
