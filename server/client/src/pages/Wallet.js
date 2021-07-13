@@ -227,7 +227,9 @@ class Wallet extends Component {
                             </div>
                             </>
 
-                            : getCardData() 
+                            : 
+                            
+                            this.props.data.vouchers !== null ? getCardData() : <Loader/>
                             }
 
                         </div>
