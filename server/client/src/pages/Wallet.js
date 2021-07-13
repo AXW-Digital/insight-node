@@ -23,7 +23,8 @@ class Wallet extends Component {
         super(props);
         this.state = {
             isLoading: true,
-            surveysAns: undefined,
+            // surveysAns: undefined,
+            userVouchers: [],
             isProfile: null,
             removedArticles: [],
             view: 'list',
@@ -44,28 +45,27 @@ class Wallet extends Component {
     };
 
     componentDidMount() {
-        axios.get("../api/surveys/count").then((response) => {
-            this.setState({ surveyAns: response.data });
-            this.setState({ isLoading: false });
-        });
 
-        fetch(keys.adminUrl + "/api/cards")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        articles: result.filter(x => x.tyyppi === 'Voucher').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-                    });
-                    console.log(result.filter(x => x.tyyppi === 'Vouher').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)))
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+        
+        // // use seperate function to get synchonously the userid 
+        // function getVouchers ( userId ) {
+        //     return axios.get('/api/vouchers/user/' + userId )
+        //     .then((res) => {
+        //         return res.data
+        //     })
+        // }
+
+        // // fetch the users vouchers
+        // axios.get('/api/profile').then((res) => {
+        //     getVouchers(res.data._user).then((vouchers) => {
+        //         this.setState({userVouchers: vouchers})
+        //     })            
+        // })
+
+
+
+
+        
         
 
     };
@@ -135,7 +135,7 @@ class Wallet extends Component {
         });
     }
 
-
+    
 
 
     renderCards() {
@@ -162,6 +162,30 @@ class Wallet extends Component {
 
     render() {
 
+        const getCardData = () => {
+            fetch(keys.adminUrl + "/api/cards")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    var userVouchers = this.props.data.vouchers
+                    var articles = result.filter(x => x.tyyppi === 'Voucher').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))                    
+                    var userVoucherIds = userVouchers.map(x => x.voucherId)
+                    userVoucherIds = userVoucherIds.map(parseInt)
+                    articles = articles.filter((x) => userVoucherIds.includes(x.voucherId))
+                    this.setState({
+                        isLoaded: true,
+                        articles 
+                    })
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+        }
+
         return (
             <div>
                 <div id='page-top'></div>
@@ -169,6 +193,9 @@ class Wallet extends Component {
 
                         <div className='container-fluid voucher-container mb-5'>
 
+                            {this.state.isLoaded ? 
+
+                            <>
                             <div className = 'row justify-content-center justify-content-xl-start ml-auto'>
                                 <Toggle
                                     clickHandler={this.toggleSort}
@@ -198,6 +225,10 @@ class Wallet extends Component {
 
                                 </FlipMove>
                             </div>
+                            </>
+
+                            : getCardData() 
+                            }
 
                         </div>
 
