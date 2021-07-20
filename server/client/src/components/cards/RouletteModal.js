@@ -43,7 +43,8 @@ function RouletteModal(props) {
     const [showSilver, setSilverShow] = useState(false);
     const [showGold, setGoldShow] = useState(false);
     const [showWin, setWinShow] = useState(false);
-    const [spin, setSpin] = useState(false)
+    const [spin, setSpin] = useState(false);
+    const [prizeNum, setPrizeNum] = useState(null); 
 
     var couponType = null
 
@@ -53,6 +54,7 @@ function RouletteModal(props) {
     const handleGoldShow = () => setGoldShow(true);
     const handleWin = () => setWinShow(true); showBronze ? couponType = 'bronze' : showSilver ? couponType = 'silver' : couponType = 'gold'
     const handleClose = () => { setBronzeShow(false); setSilverShow(false); setGoldShow(false);; setWinShow(false) }
+    
 
     function handleSpin() {
         setSpin(true);
@@ -92,13 +94,15 @@ function RouletteModal(props) {
 
     const RenderSilverRoulette = () => {
         const childRef = useRef();
+        
+        
 
         function getColor() {
             var color = randomMC.getColor();
             return color
         }
 
-
+        
 
         // if (rouletteObjects !== null) {
         //     var data = rouletteObjects.map(x => ({ option: x.name, style: { backgroundColor: getColor(), textColor: 'white' } }))
@@ -239,6 +243,7 @@ function RouletteModal(props) {
                 handleClose={handleClose}
                 couponType={couponType}
                 voucherFilter={16}
+                prizeNum={prizeNum}
             />
 
         </>
