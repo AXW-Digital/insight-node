@@ -21,6 +21,36 @@ module.exports = app => {
     });
 
 
+    app.get('/api/vouchers/reg/all', requireLogin, async (req, res) => {
+
+        axios.get(keys.adminUrl + '/api/vouchers/reg/all')
+        .then((response) => {
+            data = response.data
+            return res.send(200, data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+
+    })
+
+
+    app.post('/api/vouchers', requireLogin, async (req, res) => {
+
+        const userId = req.params.userId;
+        const data = req.body;
+
+        axios.post(keys.adminUrl + '/api/vouchers', data)
+            .then((response) => {
+                vouchers = response.data
+                return res.send(200, data)
+            })
+
+
+    });
+
+
 
 
 };

@@ -57,7 +57,8 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
     })
 
     function postVoucher(data) {
-        axios.post('http://localhost:3030/api/vouchers', data)
+        const url = '/api/vouchers'
+        axios.post(url, data)
                 .then(res => {
                     console.log(res + 'voucher sent')
                     setVoucherSent(true)
@@ -120,7 +121,7 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
                 benefitValue,
                 benefitType,
                 name
-            } = props.voucherReg[voucherId]             // TODO: set this to use the winning id number once other logic is ok
+            } = props.voucherReg[voucherId]             
 
 
             const data = {
@@ -135,13 +136,7 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
             postVoucher(data)
             setVoucherSent(true)
             postCoupon(coupons)
-            
-            
-            
-
-            
-            }
-
+        }
     }
 
 

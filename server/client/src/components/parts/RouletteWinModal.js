@@ -57,7 +57,7 @@ const WinModal = (props) => {
         var coupons = { bronzeCoupons, silverCoupons, goldCoupons }
 
 
-        const url = keys.adminUrl + '/api/vouchers/reg/' + voucherId
+        const url = '/api/vouchers/reg/all'
 
         axios.get(url)
             .then(res => {
@@ -92,7 +92,7 @@ const WinModal = (props) => {
                 name
             }
 
-            axios.post('http://localhost:3030/api/vouchers', data)
+            axios.post('/api/vouchers', data)
                 .then(res => {
                     console.log(res)
                     setVoucherSent(true)
@@ -175,17 +175,16 @@ class RouletteWinModal extends Component {
             )
 
 
-        const url = keys.adminUrl + '/api/vouchers/reg/0'  //TODO: update admin panel to query all vuochers and then use winning number to filter
-        
-        axios.get(url)
-            .then(res => {
-                console.log(res.data)
-                this.setState({
-                    voucherReg: res.data
+            const url = '/api/vouchers/reg/all'
+
+            axios.get(url)
+                .then(res => {
+                    this.setState({
+                        voucherReg: res.data
+                    })
                 })
-            })
-            .catch(err => {
-                console.log(err)
+                .catch(err => {
+                    console.log(err)
             })
 
 
