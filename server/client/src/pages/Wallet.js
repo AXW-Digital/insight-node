@@ -163,14 +163,14 @@ class Wallet extends Component {
     render() {
 
         const getCardData = () => {
-            fetch(keys.adminUrl + "/api/cards")
+            fetch("/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {
                     var userVouchers = this.props.data.vouchers
                     var articles = result.filter(x => x.tyyppi === 'Voucher').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))                    
                     var userVoucherIds = userVouchers.map(x => x.voucherId)
-                    userVoucherIds = userVoucherIds.map(parseInt)
+                    userVoucherIds = userVoucherIds.map(numStr => parseInt(numStr));
                     articles = articles.filter((x) => userVoucherIds.includes(x.voucherId))
                     this.setState({
                         isLoaded: true,
