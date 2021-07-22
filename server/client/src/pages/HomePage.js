@@ -36,6 +36,7 @@ import HomeQuestion from '../components/sections/HomeQuestion';
 
 // Roulette
 import LeaderBoard from "../components/sections/LeaderBoard";
+import { couponService } from '../functions/couponReduce'
 
 // Google Analytics
 import ReactGA from 'react-ga';
@@ -48,23 +49,24 @@ import keys from '../config/keys';
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      isLoading: true, 
-      surveysAns: undefined, 
-      isProfile: null,    
+    this.state = {
+      isLoading: true,
+      surveysAns: undefined,
+      isProfile: null,
       error: null,
       isLoaded: false,
       items: [],
-      };
+      coupons: []
+    };
 
-    }
+  }
 
-  
-  
-  
 
-  
-  
+
+
+
+
+
 
   componentDidMount() {
     console.debug("After mount! Let's load data from API...");
@@ -81,36 +83,42 @@ class HomePage extends Component {
         this.setState({ isProfile: false });
       });
 
-      fetch(keys.adminUrl + "/api/surveys")
-			.then(res => res.json())
-			.then(
-				(result) => {
-					this.setState({
-						isLoaded: true,
-						items: result
-					});
-				},
-				// Note: it's important to handle errors here
-				// instead of a catch() block so that we don't swallow
-				// exceptions from actual bugs in components.
-				(error) => {
-					this.setState({
-						isLoaded: true,
-						error
-					});
-				}
-			)
+    fetch(keys.adminUrl + "/api/surveys")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+
+    const subscription = couponService.onCoupon().subscribe(coupon => {
+      if (coupon) {
+        axios.post(keys.localUrl + '/api/coupons', coupon)
+      }
+    });
 
     AOS.init({
       duration: 1500,
       once: true
     });
-    
+
     ReactGA.initialize(keys.googleTrackingID);
     ReactGA.pageview(window.location.pathname + window.location.search);
     ReactGA.ga('send', 'pageview', window.location.pathname);
 
-  
+
   }
 
   renderCards() {
@@ -228,8 +236,8 @@ class HomePage extends Component {
         const points = this.props.data.profile.points;
         const progress = points / (Math.max(...levelThresholds) / 100);
 
-        switch(points){
-          
+        switch (points) {
+
           case 300:
             return (
               <div>
@@ -239,35 +247,35 @@ class HomePage extends Component {
                     <div className="row">
                       <div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-2">
                         <div className="img-fluid animated mb-5">
-                        <h1>Tervetuloa {profile.fName}!</h1>
+                          <h1>Tervetuloa {profile.fName}!</h1>
                         </div>
                       </div>
                       <div className="col-lg-6 order-2 order-lg-1 hero-img align-items-center">
-                        
-                          <HomeStepper startStep = {2}/>
-                        
+
+                        <HomeStepper startStep={2} />
+
                       </div>
                     </div>
                   </div>
                 </section>
-                
+
                 <div>
-                <HomeNewsFeed />
+                  <HomeNewsFeed />
                 </div>
-    
-                <div className = 'odd-section leaderboard mt-1'>
-                  <div className = 'pt-3 mx-3'>
+
+                <div className='odd-section leaderboard mt-1'>
+                  <div className='pt-3 mx-3'>
                     <h3>Leaderboard</h3>
-                <LeaderBoard />
+                    <LeaderBoard />
+                  </div>
                 </div>
-                </div>
-    
+
                 <Footer />
-                
+
               </div>
             );
 
-          
+
           default:
 
             return (
@@ -342,7 +350,7 @@ class HomePage extends Component {
                         <div className="counts">
                           <div className="row m-4">
                             <RouletteModal
-                            count = {this.props.data.profile.coupons}
+                              count={this.props.data.profile.coupons}
                             />
                           </div>
                         </div>
@@ -354,32 +362,32 @@ class HomePage extends Component {
                       </div>
                     </div>
                   </div>
-                  
+
 
                 </section>
-                
-                <div className = 'justify-content-center'>
-                
-                
-                {isLoaded? 
-                  <HomeQuestion
-                  kyselyt={items}
-                  currentPoints = {points} 
-                  />                  
-                :
-                <Loader />
-                }
+
+                <div className='justify-content-center'>
+
+
+                  {isLoaded ?
+                    <HomeQuestion
+                      kyselyt={items}
+                      currentPoints={points}
+                    />
+                    :
+                    <Loader />
+                  }
                 </div>
 
                 <div>
-                <HomeNewsFeed />
+                  <HomeNewsFeed />
                 </div>
 
-                <div className = 'odd-section leaderboard mt-1'>
-                  <div className = 'pt-3 mx-3'>
+                <div className='odd-section leaderboard mt-1'>
+                  <div className='pt-3 mx-3'>
                     <h3>Leaderboard</h3>
-                <LeaderBoard />
-                </div>
+                    <LeaderBoard />
+                  </div>
                 </div>
 
                 <Footer />
@@ -396,35 +404,35 @@ class HomePage extends Component {
                 <div className="row">
                   <div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-2">
                     <div className="img-fluid animated mb-5">
-                    <h1>Hei vaikuttaja, muistathan päivittää profiilisi!</h1>
+                      <h1>Hei vaikuttaja, muistathan päivittää profiilisi!</h1>
                     </div>
                   </div>
                   <div className="col-lg-6 order-2 order-lg-1 hero-img align-items-center">
-                    
-                      <HomeStepper startStep = {1}/>
-                    
+
+                    <HomeStepper startStep={1} />
+
                   </div>
                 </div>
               </div>
             </section>
-            
+
             <div>
-            <HomeNewsFeed />
+              <HomeNewsFeed />
             </div>
 
-            <div className = 'odd-section leaderboard mt-1'>
-              <div className = 'pt-3 mx-3'>
+            <div className='odd-section leaderboard mt-1'>
+              <div className='pt-3 mx-3'>
                 <h3>Leaderboard</h3>
-            <LeaderBoard />
-            </div>
+                <LeaderBoard />
+              </div>
             </div>
 
             <Footer />
-            
+
           </div>
         );
-        
-        
+
+
     }
   }
 }

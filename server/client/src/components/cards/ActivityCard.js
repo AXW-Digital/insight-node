@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 class ActivityCard extends Component {
 
     render() {
-        const { bronzeCoupons, silverCoupons, goldCoupons } = this.props.data.profile
+        const { bronzeCoupons, silverCoupons, goldCoupons } = this.props.data.coupons
         const couponSum = bronzeCoupons + silverCoupons + goldCoupons
         var shine = ''
         couponSum > 0 ? shine = 'glowing' : shine = ''

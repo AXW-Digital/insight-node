@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { dispatch } from 'rxjs/internal/observable/pairs';
-import { FETCH_USER, FETCH_SETTINGS, FETCH_PROFILE, FETCH_STORE, FETCH_VOUCHERS } from './types';
+import { FETCH_USER, FETCH_SETTINGS, FETCH_PROFILE, FETCH_STORE, FETCH_VOUCHERS, FETCH_COUPONS } from './types';
 import keys from '../config/keys'
 
 export const fetchUser = () => async dispatch => {
@@ -51,3 +51,9 @@ export const fetchStore = () => dispatch =>{
 //   const res = await axios.post('api/surveys', values);
 
 // };
+
+
+export const fetchCoupons = () => async dispatch => {
+  const res = await axios.get('/api/coupons/');
+  dispatch({ type: FETCH_COUPONS, payload: res.data });
+};

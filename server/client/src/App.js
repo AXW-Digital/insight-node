@@ -55,6 +55,7 @@ class App extends Component {
     this.props.fetchProfile();
     this.props.fetchVouchers();
     this.props.fetchStore();
+    this.props.fetchCoupons();
 
       AOS.init({
         duration : 1500,

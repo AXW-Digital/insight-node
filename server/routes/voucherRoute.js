@@ -12,7 +12,7 @@ module.exports = app => {
         const userId = req.params.userId;
         var data = null
         console.log('voucherRoute using id: ' + userId)
-        axios.get(keys.adminUrl + "/api/vouchers/user/" + userId)
+        await axios.get(keys.adminUrl + "/api/vouchers/user/" + userId)
             .then((response) => {
                 data = response.data
                 return res.send(200, data)
@@ -23,7 +23,7 @@ module.exports = app => {
 
     app.get('/api/vouchers/reg/all', requireLogin, async (req, res) => {
 
-        axios.get(keys.adminUrl + '/api/vouchers/reg/all')
+        await axios.get(keys.adminUrl + '/api/vouchers/reg/all')
         .then((response) => {
             data = response.data
             return res.send(200, data)
@@ -38,14 +38,37 @@ module.exports = app => {
 
     app.post('/api/vouchers', requireLogin, async (req, res) => {
 
-        const userId = req.params.userId;
-        const data = req.body;
+        const userId = req.user.id;
+        
+        console.log(req.user)
 
-        axios.post(keys.adminUrl + '/api/vouchers', data)
-            .then((response) => {
-                vouchers = response.data
-                return res.send(200, data)
-            })
+        const {
+            voucherId,
+            partnerId,
+            benefitValue,
+            benefitType,
+            name
+          } = req.body;
+
+        const data = {
+            userId,
+            voucherId,
+            partnerId,
+            benefitValue,
+            benefitType,
+            name
+        }
+
+        console.log('sending following data to voucher backend: ', data)
+
+
+        await axios.post(keys.localUrl + '/api/vouchers', data).then(
+            response => {
+                console.log(response.status)
+                res.send(response.status)
+            }
+        )
+            
 
 
     });

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const requireLogin = require("../middlewares/requireLogin");
 const checkProfile = require("../middlewares/checkProfile");
+const keys = require('../config/keys');
+const axios = require('axios');
 
 const Profile = mongoose.model('profile');
 
@@ -125,7 +127,7 @@ module.exports = app => {
     app.post('/api/profile/coupons', requireLogin, async (req, res) => {
         var { goldCoupons, silverCoupons, bronzeCoupons } = req.body;
         const filter = {_user: req.user.id}
-        
+        console.log('coupons body:', req.body)
         const current = await Profile.findOne(filter)
 
 
@@ -148,8 +150,37 @@ module.exports = app => {
             new: true
         });
 
-        return res.send(200) 
+        res.send(200) 
     }) 
+
+
+    app.get('/api/coupons', requireLogin, async(req, res) => {
+        const userId = req.user.id
+
+        await axios.get(keys.localUrl + '/api/coupons/' + userId).then(
+            (response) => {
+
+                const {
+                    goldCoupons,
+                    silverCoupons,
+                    bronzeCoupons
+                } = response.data[0]
+
+                const data = {
+                    goldCoupons,
+                    silverCoupons,
+                    bronzeCoupons
+                }
+
+                res.send(200, data)
+            }
+        ).catch(err=>{
+            console.log(err)
+        })
+
+       
+        
+    })
 
 
     

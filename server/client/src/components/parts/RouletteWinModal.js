@@ -156,7 +156,7 @@ class RouletteWinModal extends Component {
     }
 
     componentDidMount() {
-        fetch(keys.adminUrl + "/api/cards")
+        fetch("/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {
