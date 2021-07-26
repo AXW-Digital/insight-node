@@ -56,7 +56,8 @@ class HomePage extends Component {
       error: null,
       isLoaded: false,
       items: [],
-      coupons: []
+      coupons: [],
+      vouchers:[]
     };
 
   }
@@ -73,6 +74,10 @@ class HomePage extends Component {
     axios.get("../api/surveys/count").then((response) => {
       this.setState({ surveyAns: response.data });
       this.setState({ isLoading: false });
+    });
+    axios.get("../api/vouchers/reg/all").then((response) => {
+      console.log('vouchers:', response.data)
+      this.setState({ vouchers: response.data });      
     });
     axios
       .get("../api/profile")
@@ -351,6 +356,7 @@ class HomePage extends Component {
                           <div className="row m-4">
                             <RouletteModal
                               count={this.props.data.profile.coupons}
+                              vouchers={this.state.vouchers}
                             />
                           </div>
                         </div>

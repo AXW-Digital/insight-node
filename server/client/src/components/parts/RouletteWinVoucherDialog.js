@@ -81,9 +81,9 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
     }
 
 
-    async function postVoucher(data) {
-        const url = '../api/vouchers'
-        await axios.post(url, data)
+    function postVoucher(data) {
+        const url = '/api/vouchers'
+        axios.post(url, data)
             .then((res1) => {
                 console.log(res1.status)
                 setVoucherSent(true)

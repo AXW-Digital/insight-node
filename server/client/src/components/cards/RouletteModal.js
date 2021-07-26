@@ -244,6 +244,7 @@ function RouletteModal(props) {
                 couponType={couponType}
                 voucherFilter={16}
                 prizeNum={prizeNum}
+                vouchers = {props.vouchers}
             />
 
         </>

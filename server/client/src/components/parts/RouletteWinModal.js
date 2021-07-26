@@ -56,28 +56,12 @@ class RouletteWinModal extends Component {
             voucher: [],
             error: null,
             isLoaded: false,
-            voucherReg: [],
             prizeNo: 0
         };
     }
 
     componentDidMount() {
-
-
-
-
-        const url = '/api/vouchers/reg/all'
-
-        axios.get(url)
-            .then(res => {
-                this.setState({
-                    voucherReg: res.data
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            })
-
+      
 
 
     };
@@ -138,16 +122,7 @@ class RouletteWinModal extends Component {
 
 
 
-        const url = '/api/vouchers/reg/all'
-        axios.get(url)
-            .then(res => {
-                this.setState({
-                    voucherReg: res.data
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        
 
 
         return <WinModal
@@ -155,7 +130,7 @@ class RouletteWinModal extends Component {
             open={this.props.show}
             couponType={this.props.couponType}
             data={this.props.data}
-            voucherReg={this.state.voucherReg}
+            voucherReg={this.props.vouchers}
         />
 
     }
