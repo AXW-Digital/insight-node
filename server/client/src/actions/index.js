@@ -56,4 +56,5 @@ export const fetchStore = () => dispatch =>{
 export const fetchCoupons = () => async dispatch => {
   const res = await axios.get('/api/coupons/');
   dispatch({ type: FETCH_COUPONS, payload: res.data });
+  console.log('coupons dispatched: ', res.data);
 };

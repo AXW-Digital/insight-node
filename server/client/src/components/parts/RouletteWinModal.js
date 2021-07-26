@@ -7,7 +7,7 @@ import RouletteWinVoucherDialog from './RouletteWinVoucherDialog';
 import axios from 'axios';
 import keys from '../../config/keys';
 import { connect } from 'react-redux';
-
+import { prizeService } from '../../functions/prizeNumberGen';
 
 const WinModal = (props) => {
     const childRef = useRef();
@@ -32,103 +32,8 @@ const WinModal = (props) => {
 
 
 
-    const reduceCoupons = () => {
-
-        // dummy voucher id
-        const voucherId = 0
-
-        var bronzeCoupons, silverCoupons, goldCoupons
-        bronzeCoupons = silverCoupons = goldCoupons = 0
-        switch (props.couponType) {
-            case 'bronze':
-                bronzeCoupons = -1
-                break
-            case 'silver':
-                silverCoupons = -1
-                break
-            case 'gold':
-                goldCoupons = -1
-                break
-            default:
-                bronzeCoupons = silverCoupons = goldCoupons = 0
-                break
-        }
-
-        var coupons = { bronzeCoupons, silverCoupons, goldCoupons }
-
-
-        const url = '/api/vouchers/reg/all'
-
-        axios.get(url)
-            .then(res => {
-                setVoucherData(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-
-
-
-
-
-        const userId = props.data.profile._user
-
-
-        if (voucherData !== null && !voucherSent) {
-            const {
-                partnerId,
-                benefitValue,
-                benefitType,
-                name
-            } = voucherData[0]
-
-
-            const data = {
-                userId,
-                voucherId,
-                partnerId,
-                benefitValue,
-                benefitType,
-                name
-            }
-
-            axios.post('/api/vouchers', data)
-                .then(res => {
-                    console.log(res)
-                    setVoucherSent(true)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-
-            axios.post('/api/profile/coupons', coupons)
-                .then(res => {
-                    if (res.status === 200) {
-                        console.log(res)
-                        setCouponSent(true)
-                    }
-
-
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-
-        }
-
-    }
-
-
-
-
-
-
-
-
-
     if (props.open) {
         showModal();
-        //reduceCoupons();
     }
 
     return (
@@ -151,40 +56,26 @@ class RouletteWinModal extends Component {
             voucher: [],
             error: null,
             isLoaded: false,
-            voucherReg:[]
+            voucherReg: [],
+            prizeNo: 0
         };
     }
 
     componentDidMount() {
-        fetch("/api/cards")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: false,
-                        voucher: result.filter(x => x.tyyppi === 'Voucher' && x.id === this.props.voucherFilter)
-                    });
-
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
 
 
-            const url = '/api/vouchers/reg/all'
 
-            axios.get(url)
-                .then(res => {
-                    this.setState({
-                        voucherReg: res.data
-                    })
+
+        const url = '/api/vouchers/reg/all'
+
+        axios.get(url)
+            .then(res => {
+                this.setState({
+                    voucherReg: res.data
                 })
-                .catch(err => {
-                    console.log(err)
+            })
+            .catch(err => {
+                console.log(err)
             })
 
 
@@ -192,6 +83,10 @@ class RouletteWinModal extends Component {
     };
 
     renderVoucher() {
+
+
+
+
         return this.state.voucher.map((article, i) => {
             return (
                 <VoucherCardRoulette
@@ -215,6 +110,44 @@ class RouletteWinModal extends Component {
 
     render() {
 
+        prizeService.onNumber().subscribe((number) => {
+            if (number !== null) {
+                this.setState({
+                    prizeNo: number
+                })
+
+                fetch("/api/cards")
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            this.setState({
+                                isLoaded: false,
+                                voucher: result.filter(x => x.tyyppi === 'Voucher' && x.voucherId === this.props.prizeNo)
+                            });
+
+                        },
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                error
+                            });
+                        }
+                    )
+            }
+        })
+
+
+
+        const url = '/api/vouchers/reg/all'
+        axios.get(url)
+            .then(res => {
+                this.setState({
+                    voucherReg: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
 
         return <WinModal

@@ -15,7 +15,7 @@ export default function storeReducer(state = initialState, action) {
       ...state,
       modalOpen: false
     }
-  } else if (action.type === 'prizenum' || action.type === FETCH_STORE && action.payload !== undefined) {
+  } else if ((action.type === 'prizenum' || action.type === FETCH_STORE) && action.payload !== undefined) {
     return {
       ...state,
       prizeNum: action.payload

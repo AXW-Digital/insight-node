@@ -154,10 +154,10 @@ module.exports = app => {
     }) 
 
 
-    app.get('/api/coupons', requireLogin, async(req, res) => {
+    app.get('/api/coupons', requireLogin, async (req, res) => {
         const userId = req.user.id
 
-        await axios.get(keys.localUrl + '/api/coupons/' + userId).then(
+        await axios.get(keys.adminUrl + '/api/coupons/' + userId).then(
             (response) => {
 
                 const {
@@ -173,6 +173,25 @@ module.exports = app => {
                 }
 
                 res.send(200, data)
+            }
+        ).catch(err=>{
+            console.log(err)
+        })
+
+       
+        
+    })
+
+
+    app.post('/api/coupons', requireLogin, async (req, res) => {
+        const userId = req.user.id
+        console.log('req body: ', req.body)
+
+        await axios.post(keys.adminUrl + '/api/coupons', req.body).then(
+            (resp) => {
+                console.log(resp.status)
+                res.send(200, resp.status)
+                
             }
         ).catch(err=>{
             console.log(err)

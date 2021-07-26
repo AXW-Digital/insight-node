@@ -103,9 +103,9 @@ class HomePage extends Component {
         }
       )
 
-    const subscription = couponService.onCoupon().subscribe(coupon => {
-      if (coupon) {
-        axios.post(keys.localUrl + '/api/coupons', coupon)
+    const subscription = couponService.onCoupon().subscribe(async coupons => {
+      if (coupons !== null) {
+        await axios.post('/api/coupons', coupons)
       }
     });
 

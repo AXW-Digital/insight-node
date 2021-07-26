@@ -62,7 +62,7 @@ module.exports = app => {
         console.log('sending following data to voucher backend: ', data)
 
 
-        await axios.post(keys.localUrl + '/api/vouchers', data).then(
+        await axios.post(keys.adminUrl + '/api/vouchers', data).then(
             response => {
                 console.log(response.status)
                 res.send(response.status)

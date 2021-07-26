@@ -3,75 +3,84 @@ import CountUp from 'react-countup';
 import Reward from "react-rewards";
 import Coupon from '../parts/Coupon';
 import { connect } from 'react-redux';
+import Loader from '../parts/Loader';
 
 class ActivityCard extends Component {
 
     render() {
-        const { bronzeCoupons, silverCoupons, goldCoupons } = this.props.data.coupons
-        const couponSum = bronzeCoupons + silverCoupons + goldCoupons
-        var shine = ''
-        couponSum > 0 ? shine = 'glowing' : shine = ''
-        return (
-            <div className={`col my-3 ${shine}`} >
-                <div className={`count-box justify-content-center h-100`} style={{ color: `${this.props.color}` }}>
-                    <div className='row '>
-                        <div className='col-12 d-flex justify-content-center align-items-center'>
-                            {bronzeCoupons > 0 ?
-                                <div onClick={this.props.bronzeClick}>
-                                    <Coupon
-                                        size={70}
-                                        couponCount={bronzeCoupons}
-                                        couponType={'bronze'}
-                                    />
+        if (this.props.data.coupons !== null) {
+            var { bronzeCoupons, silverCoupons, goldCoupons } = this.props.data.coupons
+            const couponSum = bronzeCoupons + silverCoupons + goldCoupons
+            var shine = ''
+            couponSum > 0 ? shine = 'glowing' : shine = ''
+        }
+
+        switch (this.props.data.coupons) {
+            case null: <Loader />
+            default:
+
+                return (
+                    <div className={`col my-3 ${shine}`} >
+                        <div className={`count-box justify-content-center h-100`} style={{ color: `${this.props.color}` }}>
+                            <div className='row '>
+                                <div className='col-12 d-flex justify-content-center align-items-center'>
+                                    {bronzeCoupons > 0 ?
+                                        <div onClick={this.props.bronzeClick}>
+                                            <Coupon
+                                                size={70}
+                                                couponCount={bronzeCoupons}
+                                                couponType={'bronze'}
+                                            />
+                                        </div>
+                                        :
+                                        <Coupon
+                                            size={70}
+                                            couponCount={bronzeCoupons}
+                                            couponType={'bronze'}
+                                        />
+                                    }
+                                    {silverCoupons > 0 ?
+                                        <div onClick={this.props.silverClick}>
+                                            <Coupon
+                                                size={70}
+                                                couponCount={silverCoupons}
+                                                couponType={'silver'}
+                                            />
+                                        </div>
+                                        :
+                                        <Coupon
+                                            size={70}
+                                            couponCount={silverCoupons}
+                                            couponType={'silver'}
+                                        />
+                                    }
+                                    {goldCoupons > 0 ?
+                                        <div onClick={this.props.goldClick}>
+                                            <Coupon
+                                                size={70}
+                                                couponCount={goldCoupons}
+                                                couponType={'gold'}
+                                            />
+                                        </div>
+                                        :
+                                        <Coupon
+                                            size={70}
+                                            couponCount={goldCoupons}
+                                            couponType={'gold'}
+                                        />
+                                    }
                                 </div>
-                                :
-                                <Coupon
-                                    size={70}
-                                    couponCount={bronzeCoupons}
-                                    couponType={'bronze'}
-                                />
-                            }
-                            {silverCoupons > 0 ?
-                                <div onClick={this.props.silverClick}>
-                                    <Coupon
-                                        size={70}
-                                        couponCount={silverCoupons}
-                                        couponType={'silver'}
-                                    />
-                                </div>
-                                :
-                                <Coupon
-                                    size={70}
-                                    couponCount={silverCoupons}
-                                    couponType={'silver'}
-                                />
-                            }
-                            {goldCoupons > 0 ?
-                                <div onClick={this.props.goldClick}>
-                                    <Coupon
-                                        size={70}
-                                        couponCount={goldCoupons}
-                                        couponType={'gold'}
-                                    />
-                                </div>
-                                :
-                                <Coupon
-                                    size={70}
-                                    couponCount={goldCoupons}
-                                    couponType={'gold'}
-                                />
-                            }
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        );
+                );
+        }
     }
 }
 
 function mapStateToProps(data) {
     return { data };
-} 
+}
 
 export default connect(mapStateToProps)(ActivityCard);
 
