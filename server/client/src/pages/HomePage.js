@@ -42,6 +42,7 @@ import { couponService } from '../functions/couponReduce'
 import ReactGA from 'react-ga';
 import GoogleAnalytics from '../GoogleAnalytics';
 import keys from '../config/keys';
+import { prizeService } from "../functions/prizeNumberGen";
 
 
 
@@ -57,7 +58,7 @@ class HomePage extends Component {
       isLoaded: false,
       items: [],
       coupons: [],
-      vouchers:[]
+      vouchers: []
     };
 
   }
@@ -77,7 +78,7 @@ class HomePage extends Component {
     });
     axios.get("../api/vouchers/reg/all").then((response) => {
       console.log('vouchers:', response.data)
-      this.setState({ vouchers: response.data });      
+      this.setState({ vouchers: response.data });
     });
     axios
       .get("../api/profile")
@@ -113,6 +114,35 @@ class HomePage extends Component {
         await axios.post('/api/coupons', coupons)
       }
     });
+
+    const prizesub = prizeService.onNumber().subscribe(async prize => {
+      if (prize !== null) {
+        const {
+          voucherId,
+          partnerId,
+          benefitValue,
+          benefitType,
+          name
+        } = this.state.vouchers[prize]
+
+        const userId = this.props.data.profile._user
+
+        const data = {
+          userId,
+          voucherId,
+          partnerId,
+          benefitValue,
+          benefitType,
+          name
+        }
+        axios.post('/api/vouchers', data)
+          .then((res1) => {
+            console.log(res1.status)
+            return res1
+          })
+
+      }
+    })
 
     AOS.init({
       duration: 1500,

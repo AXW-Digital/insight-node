@@ -60,36 +60,36 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
 
 
-    const postVoucher2 = async (data) => {
-        try {
-            const { res } = await axios.post('../api/vouchers', data);
-            console.log(res)
-            return res;
-        } catch (err) {
-            console.log(err.message);
-        }
-    }
+    // const postVoucher2 = async (data) => {
+    //     try {
+    //         const { res } = await axios.post('../api/vouchers', data);
+    //         console.log(res)
+    //         return res;
+    //     } catch (err) {
+    //         console.log(err.message);
+    //     }
+    // }
 
-    const postCoupon2 = async (coupons) => {
-        try {
-            const { res } = await axios.post('/api/profile/coupons', coupons);
-            console.log(res)
-            return res;
-        } catch (err) {
-            console.log(err.message);
-        }
-    }
+    // const postCoupon2 = async (coupons) => {
+    //     try {
+    //         const { res } = await axios.post('/api/profile/coupons', coupons);
+    //         console.log(res)
+    //         return res;
+    //     } catch (err) {
+    //         console.log(err.message);
+    //     }
+    // }
 
 
-    function postVoucher(data) {
-        const url = '/api/vouchers'
-        axios.post(url, data)
-            .then((res1) => {
-                console.log(res1.status)
-                setVoucherSent(true)
-                return res1
-            })
-    }
+    // function postVoucher(data) {
+    //     const url = '/api/vouchers'
+    //     axios.post(url, data)
+    //         .then((res1) => {
+    //             console.log(res1.status)
+    //             setVoucherSent(true)
+    //             return res1
+    //         })
+    // }
 
     // async function postVoucher(data, coupons) {
     //     axios.all([
@@ -101,43 +101,43 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
     //       }))
     // };
 
-    async function postCoupon() {
+    // async function postCoupon() {
 
-        var bronzeCoupons, silverCoupons, goldCoupons
-        bronzeCoupons = silverCoupons = goldCoupons = 0
-        switch (props.couponType) {
-            case 'bronze':
-                bronzeCoupons = -1
-                break
-            case 'silver':
-                silverCoupons = -1
-                break
-            case 'gold':
-                goldCoupons = -1
-                break
-            default:
-                bronzeCoupons = silverCoupons = goldCoupons = 0
-                break
-        }
+    //     var bronzeCoupons, silverCoupons, goldCoupons
+    //     bronzeCoupons = silverCoupons = goldCoupons = 0
+    //     switch (props.couponType) {
+    //         case 'bronze':
+    //             bronzeCoupons = -1
+    //             break
+    //         case 'silver':
+    //             silverCoupons = -1
+    //             break
+    //         case 'gold':
+    //             goldCoupons = -1
+    //             break
+    //         default:
+    //             bronzeCoupons = silverCoupons = goldCoupons = 0
+    //             break
+    //     }
 
-        var coupons = { bronzeCoupons, silverCoupons, goldCoupons }
+    //     var coupons = { bronzeCoupons, silverCoupons, goldCoupons }
 
-        couponService.sendCoupon(coupons)
+    //     couponService.sendCoupon(coupons)
         
 
-        axios.post('/api/profile/coupons', coupons, {timeout: 3000})
-            .then(res => {
-                if (res.status === 200) {
-                    console.log(res + 'coupon sent')
-                    setCouponSent(true)
-                    return res
-                }
+    //     axios.post('/api/profile/coupons', coupons, {timeout: 3000})
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 console.log(res + 'coupon sent')
+    //                 setCouponSent(true)
+    //                 return res
+    //             }
 
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    // }
 
     const reduceCoupons = () => {
 
@@ -175,32 +175,32 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
 
 
-        if (!voucherSent) {
-            const {
-                partnerId,
-                benefitValue,
-                benefitType,
-                name
-            } = props.voucherReg[voucherId]
+        // if (!voucherSent) {
+        //     const {
+        //         partnerId,
+        //         benefitValue,
+        //         benefitType,
+        //         name
+        //     } = props.voucherReg[voucherId]
 
 
-            const data = {
-                userId,
-                voucherId,
-                partnerId,
-                benefitValue,
-                benefitType,
-                name
-            }
+        //     const data = {
+        //         userId,
+        //         voucherId,
+        //         partnerId,
+        //         benefitValue,
+        //         benefitType,
+        //         name
+        //     }
 
 
-            postVoucher(data)
-            setVoucherSent(true)
-            postCoupon(coupons)
+        //     postVoucher(data)
+        //     setVoucherSent(true)
+        //     postCoupon(coupons)
 
             
 
-        }
+        
     }
 
 
