@@ -10,10 +10,6 @@ import Zoom from '@material-ui/core/Zoom';
 import { Button } from 'react-bootstrap';
 import ConfettiBg from '../../assets/images/confetti_bg.jpg';
 import { useHistory } from "react-router-dom";
-import axios from 'axios';
-import keys from '../../config/keys';
-import storeReducer from '../../reducers/storeReducer';
-import { configureStore } from '@reduxjs/toolkit';
 import { prizeService } from '../../functions/prizeNumberGen';
 import { couponService } from '../../functions/couponReduce';
 
@@ -60,92 +56,11 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
 
 
-    // const postVoucher2 = async (data) => {
-    //     try {
-    //         const { res } = await axios.post('../api/vouchers', data);
-    //         console.log(res)
-    //         return res;
-    //     } catch (err) {
-    //         console.log(err.message);
-    //     }
-    // }
-
-    // const postCoupon2 = async (coupons) => {
-    //     try {
-    //         const { res } = await axios.post('/api/profile/coupons', coupons);
-    //         console.log(res)
-    //         return res;
-    //     } catch (err) {
-    //         console.log(err.message);
-    //     }
-    // }
-
-
-    // function postVoucher(data) {
-    //     const url = '/api/vouchers'
-    //     axios.post(url, data)
-    //         .then((res1) => {
-    //             console.log(res1.status)
-    //             setVoucherSent(true)
-    //             return res1
-    //         })
-    // }
-
-    // async function postVoucher(data, coupons) {
-    //     axios.all([
-    //         await axios.post('../api/vouchers', data),
-    //         await axios.post('../api/profile/coupons', coupons)
-    //       ])
-    //       .then(axios.spread((res1, res2) => {
-    //         console.log('res1: ', res1, 'res2: ', res2)
-    //       }))
-    // };
-
-    // async function postCoupon() {
-
-    //     var bronzeCoupons, silverCoupons, goldCoupons
-    //     bronzeCoupons = silverCoupons = goldCoupons = 0
-    //     switch (props.couponType) {
-    //         case 'bronze':
-    //             bronzeCoupons = -1
-    //             break
-    //         case 'silver':
-    //             silverCoupons = -1
-    //             break
-    //         case 'gold':
-    //             goldCoupons = -1
-    //             break
-    //         default:
-    //             bronzeCoupons = silverCoupons = goldCoupons = 0
-    //             break
-    //     }
-
-    //     var coupons = { bronzeCoupons, silverCoupons, goldCoupons }
-
-    //     couponService.sendCoupon(coupons)
-        
-
-    //     axios.post('/api/profile/coupons', coupons, {timeout: 3000})
-    //         .then(res => {
-    //             if (res.status === 200) {
-    //                 console.log(res + 'coupon sent')
-    //                 setCouponSent(true)
-    //                 return res
-    //             }
-
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    // }
-
     const reduceCoupons = () => {
 
 
 
         const userId = props.data.profile._user
-        const voucherId = voucherNum
-
 
 
         var bronzeCoupons, silverCoupons, goldCoupons
@@ -171,36 +86,12 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
         couponService.sendCoupon(coupons)
 
+        return('done')
+
        
 
 
 
-        // if (!voucherSent) {
-        //     const {
-        //         partnerId,
-        //         benefitValue,
-        //         benefitType,
-        //         name
-        //     } = props.voucherReg[voucherId]
-
-
-        //     const data = {
-        //         userId,
-        //         voucherId,
-        //         partnerId,
-        //         benefitValue,
-        //         benefitType,
-        //         name
-        //     }
-
-
-        //     postVoucher(data)
-        //     setVoucherSent(true)
-        //     postCoupon(coupons)
-
-            
-
-        
     }
 
 
@@ -223,13 +114,16 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
     }));
 
 
+    const closeWin = async () => {
+        const res = await reduceCoupons();
+        setOpen(false)
+        history.push('/test');
+        window.location.reload(false);
+    }
 
     const handleClose = () => {
-        reduceCoupons();
-        setOpen(false);
-        history.push('/test');
-        // postCoupon();
-        window.location.reload(false);
+        closeWin();
+       
 
     };
 

@@ -43,6 +43,7 @@ import ReactGA from 'react-ga';
 import GoogleAnalytics from '../GoogleAnalytics';
 import keys from '../config/keys';
 import { prizeService } from "../functions/prizeNumberGen";
+import { useHistory } from "react-router-dom";
 
 
 
@@ -111,7 +112,11 @@ class HomePage extends Component {
 
     const subscription = couponService.onCoupon().subscribe(async coupons => {
       if (coupons !== null) {
-        await axios.post('/api/coupons', coupons)
+        await axios.post('/api/coupons', coupons, {timeout: 3000}).then(
+          (res) => {
+            return res
+          }
+        )
       }
     });
 
