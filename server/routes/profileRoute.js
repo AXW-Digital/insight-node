@@ -58,7 +58,25 @@ module.exports = app => {
             bronzeCoupons: 0
         })
 
-        await newProfile.save();
+        const coupons = {
+            goldCoupons: 0,
+            silverCoupons: 0,
+            bronzeCoupons: 0,
+            userId: req.user.id
+        }
+
+        await newProfile.save();       
+
+        await axios.post(keys.adminUrl + '/api/coupons', coupons).then(
+            (resp) => {
+                console.log(resp.status)
+                res.send(200, resp.status)
+                
+            }
+        ).catch(err=>{
+            console.log(err)
+        })
+
         console.log('user profile created');
         return res.status(200).end('profile created');
         
