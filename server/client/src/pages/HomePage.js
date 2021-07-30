@@ -48,6 +48,7 @@ import { useHistory } from "react-router-dom";
 
 
 
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -112,7 +113,7 @@ class HomePage extends Component {
 
     const subscription = couponService.onCoupon().subscribe(async coupons => {
       if (coupons !== null) {
-        await axios.post('/api/coupons', coupons, {timeout: 3000}).then(
+        await axios.post('/api/coupons', coupons, { timeout: 3000 }).then(
           (res) => {
             return res
           }
@@ -140,10 +141,14 @@ class HomePage extends Component {
           benefitType,
           name
         }
-        axios.post('/api/vouchers', data)
+        await axios.post('/api/vouchers', data)
           .then((res1) => {
             console.log(res1.status)
-            return res1
+          })
+
+        await axios.post(keys.adminUrl + '/api/vouchers/reg', data)
+          .then((res2) => {
+            console.log(res2.status)
           })
 
       }

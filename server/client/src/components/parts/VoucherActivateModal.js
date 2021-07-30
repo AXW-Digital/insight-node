@@ -17,6 +17,7 @@ import cryptoRandomString from 'crypto-random-string';
 
 
 
+
 var qr_code = cryptoRandomString({length: 10})
 console.log(qr_code)
 
@@ -77,8 +78,12 @@ const VoucherActivateModal = (props) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
+    
+    
+    
     const handleClickOpen = () => {
         setOpen(true);
+        
     };
 
     const handleClose = () => {
@@ -119,7 +124,8 @@ const VoucherActivateModal = (props) => {
                 <div className='container d-flex align-items-center justify-content-center vh-100'>
                     <QRCodeComponent 
                     value= {qr_code}
-                    renderAs = 'svg' 
+                    renderAs = 'svg'
+                    {...props} 
                     />
                 </div>
             </Dialog>

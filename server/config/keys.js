@@ -14,6 +14,6 @@ module.exports = {
   googleClientSecret: '-ZehjDF8-NZffujXJTxnpR1f',
   mongoURI: 'mongodb+srv://dbDevUser:NJg9G2Bw15vAWS5z@cluster0.lvf2x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   cookieKey: '%/WEHq53yqerQ"#Yafegh#(WRGqYUQ',
-  adminUrl: 'http://13.53.118.93:3030',
+  adminUrl: 'http://13.48.133.191:3030',
   localUrl: 'http://localhost:3030'
 };

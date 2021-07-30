@@ -13,25 +13,7 @@ const WinModal = (props) => {
     const childRef = useRef();
     const showModal = () => childRef.current.handleClickOpen()
 
-    // const [voucherData, setVoucherData] = useState(null)
-    // const [voucherSent, setVoucherSent] = useState(false)
-    // const [couponSent, setCouponSent] = useState(false)
-
-    // function getVoucherData(id) {
-    //     const url = keys.adminUrl + '/api/vouchers/reg/' + id
-    //     axios.get(url)
-    //         .then(res => {
-    //             console.log(res.data)
-    //             setVoucherData(res.data)
-    //             return res.data
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    // }
-
-
-
+   
     if (props.open) {
         showModal();
     }
@@ -106,7 +88,7 @@ class RouletteWinModal extends Component {
                         (result) => {
                             this.setState({
                                 isLoaded: false,
-                                voucher: result.filter(x => x.tyyppi === 'Voucher' && x.voucherId === this.props.prizeNo)
+                                voucher: result.filter(x => x.tyyppi === 'Voucher' && x.voucherId === this.state.prizeNo)
                             });
 
                         },

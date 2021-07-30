@@ -18,6 +18,8 @@ import Countdown from "react-countdown";
 import { BiTimer, BiCalendarCheck } from 'react-icons/bi';
 import Reward from "react-rewards";
 
+import axios from 'axios';
+import keys from '../../config/keys';
 
 
 
@@ -78,13 +80,33 @@ function CircularIndeterminate() {
         </div>
     );
 }
+
+async function redeemVoucher(id, userId){
+
+    const voucherId = id
+    const data = {
+        userId,
+        voucherId
+    }
+    await axios.post(keys.adminUrl + '/api/vouchers/reg/redeem', data)
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err =>{
+        console.log(err)
+    })
+
+}
 class QRCodeComponent extends Component {
     state = {
         loading: false,
         activated: false
     };
 
+    
+
     enterLoading = () => {
+        redeemVoucher(this.props.voucherId, this.props.data.profile._user);
         this.setState({ loading: true })
         setTimeout(() => {
             this.setState({
