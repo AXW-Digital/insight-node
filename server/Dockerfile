@@ -14,6 +14,12 @@ RUN npm install
 # copy other project files
 COPY . .
 
+WORKDIR /server/client
+
+RUN npm install
+
+WORKDIR /server
+
 EXPOSE 3000
 
 # build the folder
