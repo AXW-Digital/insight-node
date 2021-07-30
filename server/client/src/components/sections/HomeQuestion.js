@@ -32,29 +32,29 @@ class HomeQuestion extends React.Component {
         switch (viewButtons) {
             case true:
                 return (
-                    <div className = 'container d-flex h-75 align-items-center justify-content-center'>
+                    <div className='container d-flex h-75 align-items-center justify-content-center'>
                         <div className='row d-flex'>
                             <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
-                                <div 
-                                onClick={() => { this.onButtonClicked(questionForm[0]); hideButtons() }}
-                                className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                <div
+                                    onClick={() => { this.onButtonClicked(questionForm[0]); hideButtons() }}
+                                    className="btn btn-lg btn-block text-uppercase btn-nosto"
                                 >{questionForm[0]}</div>
                             </div>
                             <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
-                                <div 
-                                onClick={() => { this.onButtonClicked(questionForm[1]); hideButtons() }}
-                                className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                <div
+                                    onClick={() => { this.onButtonClicked(questionForm[1]); hideButtons() }}
+                                    className="btn btn-lg btn-block text-uppercase btn-nosto"
                                 >{questionForm[1]}</div>
                             </div>
                             <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
-                                <div 
-                                onClick={() => { this.onButtonClicked(questionForm[2]); hideButtons() }}
-                                className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                <div
+                                    onClick={() => { this.onButtonClicked(questionForm[2]); hideButtons() }}
+                                    className="btn btn-lg btn-block text-uppercase btn-nosto"
                                 >{questionForm[2]}</div>
                             </div>
                         </div>
-                        </div>
-                    
+                    </div>
+
                 )
             case false:
                 return null
@@ -105,21 +105,25 @@ class HomeQuestion extends React.Component {
 
 
         return (
-            <div>                
+            <div>
                 <div id="home-question" className="justify-content-center even-section ">
-                <div className = 'row d-flex justify-content-center pt-4'>
-                  <div className = 'text-centered'>
-                          <h2>Oma arvostelu</h2>
-                  </div>
-                  </div>
-                        {this.buttonList()}
+                    <div className='row d-flex justify-content-center pt-4'>
+                        <div className='text-centered'>
+                            <h2>Oma arvostelu</h2>
+                        </div>
+                    </div>
+                    {this.buttonList()}
 
-                        {(this.state.viewForm) ?
-                        <div className="row d-flex justify-content-center mx-2 mx-lg-5 mt-5 mb-5">
+                    {(this.state.viewForm) ?
+                        <div className="d-flex home-kysely-form justify-content-center mx-2 mx-lg-5 mt-5 mb-5">
+                            {/* <div className = 'row justify-content-center'> */}
+                                <div className = 'col-12'>
                             {this.kyselyForm}
+                            </div>
+                            {/* </div> */}
                         </div> : ''}
 
-                    
+
                 </div>
             </div>
         );

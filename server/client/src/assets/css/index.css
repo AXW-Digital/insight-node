@@ -2049,9 +2049,13 @@ HomeQuestion CSS
 
 
 #home-question{
-  height: 500px !important;
+  height: 600px !important;
   background-image: url('../images/knife_bg.jpg');
   background-size:cover;
+}
+
+#home-question .home-kysely-form{
+  max-width: 1500px;
 }
 
 #home-question h2{
