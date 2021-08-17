@@ -153,7 +153,7 @@ module.exports = app => {
             userId
         }
 
-        await axios.post(keys.localUrl + '/api/coupons', coupons).then(
+        await axios.post(keys.adminUrl + '/api/coupons', coupons).then(
             response => {
                 console.log(response.status)
                 res.send(response.status)
