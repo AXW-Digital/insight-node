@@ -1,6 +1,8 @@
 import React from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import KyselyForm from '../forms/KyselyForm';
+import axios from 'axios';
+import keys from '../../config/keys';
 
 
 class HomeQuestion extends React.Component {
@@ -11,6 +13,7 @@ class HomeQuestion extends React.Component {
             questionForm: ['juoma', 'ruoka', 'rafla'],
             viewForm: false,
             viewButtons: true,
+            boosts: null
         };
 
         this.onButtonClicked = this.onButtonClicked.bind(this);
@@ -19,6 +22,21 @@ class HomeQuestion extends React.Component {
         this.buttons = null
     }
 
+    componentDidMount() {
+        axios.get(keys.localUrl + '/api/boosts').then(res => {
+            const boosts = res.data
+
+            boosts.sort(function(a, b) {
+                return a.order - b.order;
+            });
+
+
+            this.setState({
+                boosts
+            })
+
+        })
+    }
 
     buttonList() {
         const { questionForm, viewButtons } = this.state
@@ -34,24 +52,28 @@ class HomeQuestion extends React.Component {
                 return (
                     <div className='container d-flex h-75 align-items-center justify-content-center'>
                         <div className='row d-flex'>
-                            <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
-                                <div
-                                    onClick={() => { this.onButtonClicked(questionForm[0]); hideButtons() }}
-                                    className="btn btn-lg btn-block text-uppercase btn-nosto"
-                                >{questionForm[0]}</div>
-                            </div>
-                            <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
-                                <div
-                                    onClick={() => { this.onButtonClicked(questionForm[1]); hideButtons() }}
-                                    className="btn btn-lg btn-block text-uppercase btn-nosto"
-                                >{questionForm[1]}</div>
-                            </div>
-                            <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
-                                <div
-                                    onClick={() => { this.onButtonClicked(questionForm[2]); hideButtons() }}
-                                    className="btn btn-lg btn-block text-uppercase btn-nosto"
-                                >{questionForm[2]}</div>
-                            </div>
+                            {this.state.boosts !== null ?
+                                <>
+                                    <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
+                                        <div
+                                            onClick={() => { this.onButtonClicked(0); hideButtons() }}
+                                            className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                        >{this.state.boosts[0].kyselyTitle}</div>
+                                    </div>
+                                    <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
+                                        <div
+                                            onClick={() => { this.onButtonClicked(1); hideButtons() }}
+                                            className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                        >{this.state.boosts[1].kyselyTitle}</div>
+                                    </div>
+                                    <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
+                                        <div
+                                            onClick={() => { this.onButtonClicked(2); hideButtons() }}
+                                            className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                        >{this.state.boosts[2].kyselyTitle}</div>
+                                    </div>
+                                </>
+                                : null}
                         </div>
                     </div>
 
@@ -64,19 +86,19 @@ class HomeQuestion extends React.Component {
 
     onButtonClicked(n) {
         switch (n) {
-            case "juoma":
+            case 0:
                 this.kyselyForm = <KyselyForm
-                    question={1}
+                    question={this.state.boosts[0].surveyId - 1}
                     {...this.props} />
                 break;
-            case "ruoka":
+            case 1:
                 this.kyselyForm = <KyselyForm
-                    question={2}
+                    question={this.state.boosts[1].surveyId - 1}
                     {...this.props} />
                 break;
-            case "rafla":
+            case 2:
                 this.kyselyForm = <KyselyForm
-                    question={3}
+                    question={this.state.boosts[2].surveyId - 1}
                     {...this.props} />
                 break;
             default:
@@ -85,16 +107,6 @@ class HomeQuestion extends React.Component {
         this.setState({ viewForm: true });
     }
 
-
-
-    // renderContent() {
-    //     return (
-    //         <KyselyForm
-    //             question={1}
-    //             {...this.props} />
-    //     )
-
-    // }
 
 
 
@@ -117,8 +129,8 @@ class HomeQuestion extends React.Component {
                     {(this.state.viewForm) ?
                         <div className="d-flex home-kysely-form justify-content-center mx-2 mx-lg-5 mt-5 mb-5">
                             {/* <div className = 'row justify-content-center'> */}
-                                <div className = 'col-12'>
-                            {this.kyselyForm}
+                            <div className='col-12'>
+                                {this.kyselyForm}
                             </div>
                             {/* </div> */}
                         </div> : ''}

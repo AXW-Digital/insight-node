@@ -144,31 +144,21 @@ module.exports = app => {
 
     app.post('/api/profile/coupons', requireLogin, async (req, res) => {
         var { goldCoupons, silverCoupons, bronzeCoupons } = req.body;
-        const filter = {_user: req.user.id}
-        console.log('coupons body:', req.body)
-        const current = await Profile.findOne(filter)
+        const userId = req.user.id
 
+        const coupons = {
+            goldCoupons,
+            silverCoupons,
+            bronzeCoupons,
+            userId
+        }
 
-        if (current.goldCoupons === undefined) current.goldCoupons = 0
-        if (current.silverCoupons === undefined) current.silverCoupons = 0
-        if (current.bronzeCoupons === undefined) current.bronzeCoupons = 0
-        
-        goldCoupons += current.goldCoupons
-        silverCoupons += current.silverCoupons
-        bronzeCoupons += current.bronzeCoupons
-
-
-        if (current.goldCoupons < 0 ) goldCoupons = 0
-        if (current.silverCoupons < 0 ) silverCoupons = 0
-        if (current.bronzeCoupons < 0 ) bronzeCoupons = 0
-
-        const updatePoints = { goldCoupons, silverCoupons, bronzeCoupons }       
-        
-        const profile = await Profile.findOneAndUpdate(filter, updatePoints, {
-            new: true
-        });
-
-        res.send(200) 
+        await axios.post(keys.localUrl + '/api/coupons', coupons).then(
+            response => {
+                console.log(response.status)
+                res.send(response.status)
+            }
+        ) 
     }) 
 
 
