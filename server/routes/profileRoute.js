@@ -67,7 +67,7 @@ module.exports = app => {
 
         await newProfile.save();       
 
-        await axios.post(keys.adminUrl + '/api/coupons', coupons).then(
+        await axios.post(keys.localUrl + '/api/coupons', coupons).then(
             (resp) => {
                 console.log(resp.status)
                 res.send(200, resp.status)
@@ -78,7 +78,6 @@ module.exports = app => {
         })
 
         console.log('user profile created');
-        return res.status(200).end('profile created');
         
 
     });
