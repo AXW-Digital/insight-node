@@ -11,7 +11,13 @@ export const levelThresholds = [
     5300,
     6800,
     8600,
-    10800
+    10800,
+    13000,
+    27000,
+    45000,
+    70000,
+    110000
+
 ]
 
 export const couponThresholds = [
@@ -24,7 +30,12 @@ export const couponThresholds = [
     {7: 'silver'},
     {8: 'gold'},
     {9: 'silver'},
-    {10: 'gold'}
+    {10: 'gold'},
+    {11: 'gold'},
+    {12: 'gold'},
+    {13: 'gold'},
+    {14: 'gold'},
+    {15: 'gold'}
 ]
 
 

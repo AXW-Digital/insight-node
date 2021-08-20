@@ -89,35 +89,36 @@ class HomePage extends Component {
 
                 const surveysToRender = (surveyAns) => {
                     const renewableSurveysList = cardvaluelist.filter(card => (card.tyyppi === 'Vastaa' && card.resetHours !== undefined));
-                    const renewableSurveysIdList = renewableSurveysList.map(a => a.id);
+                    const renewableSurveysIdList = renewableSurveysList.map(a => parseInt(a.formUrl) - 1);
                     var i;
                     const surveyList = [];
                     for (i = 0; i < surveyAns.list.length; i++) {
                         const surveyId = surveyAns.list[i].id
                         var renewSurvey
-                        const hoursSinceSubmit = Math.floor((surveyAns.list[i].diff / (1000 * 60 * 60)) % 24)
-                        const SurveyResetTime = renewableSurveysList.filter(item => item.id === surveyId).map(a => a.resetHours)[0]
+                        const hoursSinceSubmit = surveyAns.list[surveyId].diff
+                        const SurveyResetTime = renewableSurveysList.filter(item => parseInt(item.formUrl) === parseInt(surveyId) + 1 ).map(a => a.resetHours)[0]
 
                         // check if enough time has passed since survey was ansered
                         SurveyResetTime <= hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
 
                         // if a renewable survey id is in the list of submitted surveys, check if can be removed and delete from that list 
-                        if (renewableSurveysIdList.includes(surveyId) && renewSurvey) {
-                            surveyList.push(surveyId)
+                        if (renewableSurveysIdList.includes(parseInt(surveyId)) && renewSurvey) {
+                            surveyList.push(parseInt(surveyId) + 1)
                         }
                     }
                     return surveyList
                 }
 
                 var renewableSurveyList = surveysToRender(surveyAns)
+                renewableSurveyList = renewableSurveyList.map(x => x - 1)
                 console.log(renewableSurveyList)
 
-                const surveyCount = cardvaluelist
-                    .filter(
-                        card => card.tyyppi === 'Vastaa' &&
-                            (!surveyAns.id.includes(card.id) || renewableSurveyList.includes(card.id)
-                            ))
-                    .map(createCard)
+                var surveyCount = cardvaluelist.filter(card => card.tyyppi === 'Vastaa').map(createCard)
+
+
+
+                surveyCount = surveyCount.filter( card => (renewableSurveyList.includes(parseInt(card.props.formUrl))
+                ))
 
                 if (surveyCount === undefined || surveyCount.length === 0) {
                     console.log(surveyCount)
@@ -127,13 +128,7 @@ class HomePage extends Component {
                     console.log(surveyCount)
                     return (
                         <div className="row g-4 d-flex">
-                            {cardvaluelist
-                                .filter(
-                                    card => card.tyyppi === 'Vastaa' &&
-                                        (!surveyAns.id.includes(card.id) || renewableSurveyList.includes(card.id)
-                                        ))
-                                .map(createCard)
-                            }
+                            {surveyCount}
                         </div>
                     )
                 }

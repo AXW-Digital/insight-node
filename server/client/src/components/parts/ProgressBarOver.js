@@ -3,7 +3,7 @@ import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
 
 
-class StepProgressBar extends React.Component {
+class StepProgressBarOver extends React.Component {
   render()  
   {
 
@@ -13,7 +13,7 @@ class StepProgressBar extends React.Component {
         filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
         stepPositions={this.props.stepPositions}
         height={12}
-        hasStepZero={false}
+        hasStepZero={true}
       >
         <Step 
         transition="scale"
@@ -22,7 +22,7 @@ class StepProgressBar extends React.Component {
             <div
             className={`indexedStep ${accomplished ? "accomplished" : null}`}
           >
-            {index + 1}
+            {11}
           </div>
           )}
         </Step>
@@ -33,7 +33,7 @@ class StepProgressBar extends React.Component {
             <div
             className={`indexedStep ${accomplished ? "accomplished" : null}`}
           >
-            {index + 1}
+            {12}
           </div>
           )}
         </Step>
@@ -44,7 +44,7 @@ class StepProgressBar extends React.Component {
             <div
             className={`indexedStep ${accomplished ? "accomplished" : null}`}
           >
-            {index + 1}
+            {13}
           </div>
           )}
         </Step>
@@ -55,7 +55,7 @@ class StepProgressBar extends React.Component {
             <div
             className={`indexedStep ${accomplished ? "accomplished" : null}`}
           >
-            {index + 1}
+            {14}
           </div>
           )}
         </Step>
@@ -66,7 +66,7 @@ class StepProgressBar extends React.Component {
             <div
             className={`indexedStep ${accomplished ? "accomplished" : null}`}
           >
-            {index + 1}
+            {15}
           </div>
           )}
         </Step>
@@ -77,62 +77,7 @@ class StepProgressBar extends React.Component {
             <div
             className={`indexedStep ${accomplished ? "accomplished" : null}`}
           >
-            {index + 1}
-          </div>
-          )}
-        </Step>
-        <Step 
-        transition="scale"
-        >
-          {({ accomplished, index }) => (
-            <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-          >
-            {index + 1}
-          </div>
-          )}
-        </Step>
-        <Step 
-        transition="scale"
-        >
-          {({ accomplished, index }) => (
-            <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-          >
-            {index + 1}
-          </div>
-          )}
-        </Step>
-        <Step 
-        transition="scale"
-        >
-          {({ accomplished, index }) => (
-            <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-          >
-            {index + 1}
-          </div>
-          )}
-        </Step>
-        <Step 
-        transition="scale"
-        >
-          {({ accomplished, index }) => (
-            <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-          >
-            {index + 1}
-          </div>
-          )}
-        </Step>
-        <Step 
-        transition="scale"
-        >
-          {({ accomplished, index }) => (
-            <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-          >
-            {'10+'}
+            {'++'}
           </div>
           )}
         </Step>
@@ -141,4 +86,4 @@ class StepProgressBar extends React.Component {
   }
 }
 
-export default StepProgressBar;
+export default StepProgressBarOver;

@@ -28,6 +28,7 @@ import AnimatedProgressProvider from "../components/parts/AnimatedProgressProvid
 
 // Progress bar
 import StepProgressBar from "../components/parts/ProgressBar";
+import StepProgressBarOver from "../components/parts/ProgressBarOver";
 
 import HomeNewsFeed from '../components/sections/HomeNewsFeed';
 import HomeQuestion from '../components/sections/HomeQuestion';
@@ -274,12 +275,23 @@ class HomePage extends Component {
         const { currentPoints, level, maxLevelPoints } = levelData;
 
         const pointsPercentage = currentPoints / maxLevelPoints;
-        var stepPositions = levelThresholds.map(
-          (x) => x / (Math.max(...levelThresholds) / 100)
-        );
-        stepPositions.unshift(0);
-        const points = this.props.data.profile.points;
-        const progress = points / (Math.max(...levelThresholds) / 100);
+
+        var progress = 0
+        var points = 0
+        const lev = levelThresholds.slice(10)
+
+        if (levelData.level <= 10) {
+          var stepPositions = levelThresholds.slice(0, 10).map((x) => x / (Math.max(...levelThresholds.slice(0,10)) / 100));
+          stepPositions.unshift(0);
+          points = this.props.data.profile.points;
+          progress = points / (Math.max(...levelThresholds.slice(0, 10)) / 100);
+        } else if (levelData.level > 10){
+          var stepPositions = levelThresholds.slice(10).map((x) => x / (Math.max(...levelThresholds.slice(10)) / 100));
+          stepPositions.unshift(0);
+          points = this.props.data.profile.points;
+          progress = points / (Math.max(...levelThresholds.slice(10)) / 100);
+        }
+        
 
         switch (points) {
 
@@ -372,6 +384,8 @@ class HomePage extends Component {
                               );
                             }}
                           </AnimatedProgressProvider>
+                          {level <= 10 ? 
+                          <>
                           <AnimatedProgressProvider
                             valueStart={0}
                             valueEnd={progress}
@@ -388,9 +402,34 @@ class HomePage extends Component {
                                   currentLevel={level}
                                   stepPositions={stepPositions}
                                 ></StepProgressBar>
-                              );
+                              ); 
                             }}
                           </AnimatedProgressProvider>
+                          </>
+                          
+                          :<>
+                          <AnimatedProgressProvider
+                            valueStart={0}
+                            valueEnd={progress}
+                            duration={3}
+                            easingFunction={easeQuadInOut}
+                          >
+                            {(value) => {
+                              const roundedValue = Math.round(
+                                (value / 100) * maxLevelPoints
+                              );
+                              return (
+                                <StepProgressBarOver
+                                  progress={value}
+                                  currentLevel={level}
+                                  stepPositions={stepPositions}
+                                ></StepProgressBarOver>
+                              ); 
+                            }}
+                          </AnimatedProgressProvider>
+                          </> }
+
+
                         </div>
                         <div className="counts">
                           <div className="row m-4">

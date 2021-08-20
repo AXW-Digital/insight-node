@@ -16,7 +16,7 @@ module.exports = app => {
         const timeDiff = (timestamp) => {
             let stamp = new Date(timestamp).getTime()
             let now = new Date(Date.now()).getTime()
-            difference = now - stamp
+            difference = Math.abs(( now - stamp ) / (1000 * 60 * 60))
             return difference
         }
 
