@@ -13,7 +13,7 @@ class StepProgressBarOver extends React.Component {
         filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
         stepPositions={this.props.stepPositions}
         height={12}
-        hasStepZero={true}
+        hasStepZero={false}
       >
         <Step 
         transition="scale"

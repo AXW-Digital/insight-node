@@ -7,7 +7,7 @@ import Footer from '../components/parts/Footer';
 import Loader from '../components/parts/Loader';
 import cardvaluelist from '../assets/js/cardvalues';
 import { createCard } from '../components/cards/CardFunctions';
-import Accordion from '../components/parts/Accordion'
+import Accordion from '../components/parts/Accordion';
 // Modules
 import { Card } from 'react-bootstrap';
 import { Collapse } from 'antd';
@@ -15,6 +15,7 @@ import { LoremIpsum } from "lorem-ipsum";
 // Media
 import { ReactComponent as Searching } from '../assets/images/searching.svg';
 import { ReactComponent as Faq } from '../assets/images/faq.svg';
+import { ReactComponent as Completed }  from '../assets/images/completed.svg'
 import keys from '../config/keys';
 
 
@@ -95,7 +96,8 @@ class HomePage extends Component {
                     for (i = 0; i < surveyAns.list.length; i++) {
                         const surveyId = surveyAns.list[i].id
                         var renewSurvey
-                        const hoursSinceSubmit = surveyAns.list[surveyId].diff
+                        var hoursSinceSubmit = surveyAns.list.filter(x => x.id === surveyId)
+                        hoursSinceSubmit = hoursSinceSubmit[0].diff
                         const SurveyResetTime = renewableSurveysList.filter(item => parseInt(item.formUrl) === parseInt(surveyId) + 1 ).map(a => a.resetHours)[0]
 
                         // check if enough time has passed since survey was ansered
@@ -110,7 +112,7 @@ class HomePage extends Component {
                 }
 
                 var renewableSurveyList = surveysToRender(surveyAns)
-                renewableSurveyList = renewableSurveyList.map(x => x - 1)
+                // renewableSurveyList = renewableSurveyList.map(x => x - 1)
                 console.log(renewableSurveyList)
 
                 var surveyCount = cardvaluelist.filter(card => card.tyyppi === 'Vastaa').map(createCard)
@@ -122,7 +124,10 @@ class HomePage extends Component {
 
                 if (surveyCount === undefined || surveyCount.length === 0) {
                     console.log(surveyCount)
-                    return <div className='home-message vh-100'>Olet ollut aktiivinen vaikuttaja! Uusia kysymyksiä tulossa pian...</div>
+                    return <div className='home-message vh-100'>
+                        Olet ollut aktiivinen vaikuttaja! Uusia kysymyksiä tulossa pian...
+                        <Completed/>
+                        </div>
 
                 } else {
                     console.log(surveyCount)
