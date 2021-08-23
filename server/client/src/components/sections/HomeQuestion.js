@@ -1,6 +1,6 @@
 import React from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
-import KyselyForm from '../forms/KyselyForm';
+import {KyselyFormBoost as KyselyForm} from '../forms/KyselyForm';
 import axios from 'axios';
 import keys from '../../config/keys';
 

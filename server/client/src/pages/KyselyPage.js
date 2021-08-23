@@ -1,13 +1,17 @@
 import React, { useEffect, useState, Component } from 'react';
 import { connect } from 'react-redux';
-import KyselyForm from '../components/forms/KyselyForm'
-import Loader from '../components/parts/Loader'
-import surveyApi from '../functions/surveyApi'
+import KyselyForm from '../components/forms/KyselyForm';
+import Loader from '../components/parts/Loader';
+import surveyApi from '../functions/surveyApi';
 
-import Footer from '../components/parts/Footer'
+import Footer from '../components/parts/Footer';
 // import $ from 'jquery';
 
 import keys from '../config/keys';
+import axios from 'axios';
+
+
+
 
 
 
@@ -19,7 +23,8 @@ class KyselyPage extends Component {
 		this.state = {
 			error: null,
 			isLoaded: false,
-			items: []
+			items: [],
+			surveyAns: []
 		};
 	}
 
@@ -46,13 +51,17 @@ class KyselyPage extends Component {
 					});
 				}
 			)
+
+		axios.get('../api/surveys/count').then(response => {
+				this.setState({ surveyAns: response.data });
+			});
 	}
 
 
 
 
 	render() {
-		const { error, isLoaded, items } = this.state;
+		const { error, isLoaded, items, surveyAns } = this.state;
 		const profile = this.props.data.profile
 
 		switch (profile) {
@@ -75,6 +84,7 @@ class KyselyPage extends Component {
 										question={this.props.match.params.id - 1}
 										currentPoints={profile.points}
 										kyselyt={items}
+										surveyAns={surveyAns}
 									/>
 								</div>
 							</section>

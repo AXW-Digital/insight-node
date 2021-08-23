@@ -76,7 +76,7 @@ class HomePage extends Component {
   componentDidMount() {
     console.debug("After mount! Let's load data from API...");
     axios.get("../api/surveys/count").then((response) => {
-      this.setState({ surveyAns: response.data });
+      this.setState({ surveysAns: response.data });
       this.setState({ isLoading: false });
     });
     axios.get("../api/vouchers/reg/all").then((response) => {
@@ -458,6 +458,7 @@ class HomePage extends Component {
                     <HomeQuestion
                       kyselyt={items}
                       currentPoints={points}
+                      surveyAns = {this.state.surveysAns}
                     />
                     :
                     <Loader />

@@ -124,9 +124,13 @@ class HomePage extends Component {
 
                 if (surveyCount === undefined || surveyCount.length === 0) {
                     console.log(surveyCount)
-                    return <div className='home-message vh-100'>
+                    return <div className='home-message vh-75'>
+                        <div className = 'container'>
+                            <p className = 'mt-5'>
                         Olet ollut aktiivinen vaikuttaja! Uusia kysymyksiä tulossa pian...
+                        </p>
                         <Completed/>
+                        </div>
                         </div>
 
                 } else {
