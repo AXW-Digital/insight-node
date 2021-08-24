@@ -124,13 +124,17 @@ class HomePage extends Component {
 
     const prizesub = prizeService.onNumber().subscribe(async prize => {
       if (prize !== null) {
+        
+        var voucher = this.state.vouchers.filter(x => x.voucherId === prize)       
+        
         const {
           voucherId,
           partnerId,
           benefitValue,
           benefitType,
           name
-        } = this.state.vouchers[prize]
+        } = voucher[0]
+
 
         const userId = this.props.data.profile._user
 

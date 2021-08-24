@@ -13,20 +13,17 @@ import { prizeService } from '../../functions/prizeNumberGen';
 const RouletteWheel = forwardRef((props, ref)  => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
-  const store = configureStore({ reducer: storeReducer })  
+  const store = configureStore({ reducer: storeReducer }) 
+  const data = props.data 
 
   useImperativeHandle(ref, () => ({
     
     handleSpinClick(){
 
       const newPrizeNumber = Math.floor(Math.random() * props.data.length)
-      prizeService.sendNumber(newPrizeNumber)      
+      prizeService.sendNumber(data[newPrizeNumber].voucherId)      
       setPrizeNumber(newPrizeNumber)
       setMustSpin(true)
-      // store.dispatch({type : 'prizenum', payload : newPrizeNumber })   //TODO: can't fucking get reducer to work, then make an axios post and own little table with useid and prizenum?? 
-      
-      
-
 
     }
 

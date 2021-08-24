@@ -88,8 +88,9 @@ class RouletteWinModal extends Component {
                         (result) => {
                             this.setState({
                                 isLoaded: false,
-                                voucher: result.filter(x => x.tyyppi === 'Voucher' && x.voucherId === this.state.prizeNo)
+                                voucher: result.filter(x => x.tyyppi === 'Voucher' && x.voucherId === parseInt(this.state.prizeNo))
                             });
+                            console.log('vouchers:',result.filter(x => x.tyyppi === 'Voucher') )
 
                         },
                         (error) => {
