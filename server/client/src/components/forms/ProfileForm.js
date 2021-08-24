@@ -10,6 +10,7 @@ import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material
 import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
 import yellow from '@material-ui/core/colors/yellow';
 import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
+import dict from '../../assets/js/dict';
 
 
 
@@ -73,8 +74,8 @@ const ProfileForm = (props) => {
 
     function generateUser() {
         const shortName = uniqueNamesGenerator({
-            dictionaries: [colors, adjectives, animals], // colors can be omitted here as not used
-            length: 3,
+            dictionaries: [dict.Adjektiivit, dict.Substantiivit], // colors can be omitted here as not used
+            length: 2,
             separator: '-'
         });
         formik.setFieldValue('uName', shortName)

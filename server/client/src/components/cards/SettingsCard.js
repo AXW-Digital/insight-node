@@ -8,6 +8,7 @@ import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
+import dict from '../../assets/js/dict';
 
 
 const theme = createMuiTheme({
@@ -107,8 +108,8 @@ const SettingsCard = (props) => {
 
     function generateUser() {
         const shortName = uniqueNamesGenerator({
-            dictionaries: [colors, adjectives, animals], // colors can be omitted here as not used
-            length: 3,
+            dictionaries: [dict.Adjektiivit, dict.Substantiivit], // colors can be omitted here as not used
+            length: 2,
             separator: '-'
         });
         formik.setFieldValue('uName', shortName)

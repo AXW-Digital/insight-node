@@ -27,13 +27,13 @@ function RouletteModal(props) {
     useEffect(() => {
         axios.get(keys.adminUrl + '/api/rouletteitems').then((res) => {
             setRouletteObjectsBronze(
-                res.data.filter(x => x.couponType === 'bronze').map(x => ({ option: x.name, style: { backgroundColor: getColor(), textColor: 'white' } }))
+                res.data.filter(x => x.couponType === 'bronze').map(x => ({ voucherId: x.voucherId, option: x.name, style: { backgroundColor: getColor(), textColor: 'white' } }))
             )
             setRouletteObjectsSilver(
-                res.data.filter(x => x.couponType === 'silver').map(x => ({ option: x.name, style: { backgroundColor: getColor(), textColor: 'white' } }))
+                res.data.filter(x => x.couponType === 'silver').map(x => ({ voucherId: x.voucherId, option: x.name, style: { backgroundColor: getColor(), textColor: 'white' } }))
             )
             setRouletteObjectsGold(
-                res.data.filter(x => x.couponType === 'gold').map(x => ({ option: x.name, style: { backgroundColor: getColor(), textColor: 'white' } }))
+                res.data.filter(x => x.couponType === 'gold').map(x => ({ voucherId: x.voucherId, option: x.name, style: { backgroundColor: getColor(), textColor: 'white' } }))
             )
         })
     }, []);
