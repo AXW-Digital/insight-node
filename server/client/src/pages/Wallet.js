@@ -168,11 +168,20 @@ class Wallet extends Component {
             .then(
                 (result) => {
                     var userVouchers = this.props.data.vouchers
-                    userVouchers = userVouchers.filter((x) => x.redeemed !== true)
+                    userVouchers = userVouchers.filter((x) => x.redeemed !== true && x.benefitValue > 0)
                     var articles = result.filter(x => x.tyyppi === 'Voucher').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))                    
-                    var userVoucherIds = userVouchers.map(x => x.voucherId)                    
+                    var userVoucherIds = userVouchers.map(x => parseInt(x.voucherId))                    
                     userVoucherIds = userVoucherIds.map(numStr => parseInt(numStr));
-                    articles = articles.filter((x) => userVoucherIds.includes(x.voucherId))
+                    var vouchers = []
+                    var arr
+                    for (const i in userVoucherIds) {
+                        arr = articles.filter(x => x.voucherId === userVoucherIds[parseInt(i)])
+                        vouchers.push(arr[0])
+                    }
+                    
+                    articles = vouchers
+
+                    // articles = articles.filter((x) => userVoucherIds.includes(x.voucherId))
                     
                     this.setState({
                         isLoaded: true,
