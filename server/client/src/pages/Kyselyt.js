@@ -88,6 +88,10 @@ class HomePage extends Component {
 
             case false:
 
+                // check already answered questions [surveyAns] against questions that are renewable, then
+                // if too much time has elapsed filter away from available cards. Also filter 'answer only once'
+                // type of questions if already answered 
+
                 const surveysToRender = (surveyAns) => {
                     const renewableSurveysList = cardvaluelist.filter(card => (card.tyyppi === 'Vastaa' && card.resetHours !== undefined));
                     const renewableSurveysIdList = renewableSurveysList.map(a => parseInt(a.formUrl) - 1);
@@ -104,23 +108,35 @@ class HomePage extends Component {
                         SurveyResetTime <= hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
 
                         // if a renewable survey id is in the list of submitted surveys, check if can be removed and delete from that list 
-                        if (renewableSurveysIdList.includes(parseInt(surveyId)) && renewSurvey) {
+                        if (renewableSurveysIdList.includes(parseInt(surveyId)) && !renewSurvey) {
                             surveyList.push(parseInt(surveyId) + 1)
                         }
                     }
                     return surveyList
                 }
 
-                var renewableSurveyList = surveysToRender(surveyAns)
+                var nonRenewableSurveyList = surveysToRender(surveyAns)
+                var renewableSurveys = cardvaluelist.filter(x => !nonRenewableSurveyList.includes(parseInt(x.formUrl)))
+
+
                 // renewableSurveyList = renewableSurveyList.map(x => x - 1)
-                console.log(renewableSurveyList)
+                console.log(renewableSurveys)
 
                 var surveyCount = cardvaluelist.filter(card => card.tyyppi === 'Vastaa').map(createCard)
+                var renewableSurveysId
+
+                renewableSurveysId = renewableSurveys.map(x => x.formUrl)
 
 
 
-                surveyCount = surveyCount.filter( card => (renewableSurveyList.includes(parseInt(card.props.formUrl))
+
+
+                if (surveyAns.id.length !== 0){
+                    surveyCount = surveyCount.filter( card => (renewableSurveysId.includes(card.props.formUrl)
                 ))
+                }
+                
+                
 
                 if (surveyCount === undefined || surveyCount.length === 0) {
                     console.log(surveyCount)

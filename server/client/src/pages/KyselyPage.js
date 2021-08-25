@@ -88,10 +88,6 @@ class KyselyPage extends Component {
 									/>
 								</div>
 							</section>
-							<section className='even-section'>
-								<p>asdf</p>
-							</section>
-
 							<Footer />
 						</div>
 

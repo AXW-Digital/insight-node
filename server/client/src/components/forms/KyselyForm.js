@@ -23,20 +23,33 @@ export default function KyselyForm(props) {
                 <Loader />
             )
 
+        case []:
+            return (
+                <Loader />
+            )
+
         default:
             
             var renewSurvey
             var hoursSinceSubmit = 0
             const surveyList = props.kyselyt;
             console.log('surveyAns:', surveyAns)
-            if (surveyAns !== [] && surveyAns !== undefined && surveyAns.length > 0) {
-                hoursSinceSubmit = surveyAns[0].diff
+            if (surveyAns !== [] && surveyAns !== undefined && surveyAns.id.length > 0) {
                 surveyAns = surveyAns.list.filter(x => x.id === surveyId)
+                if ( surveyAns.length > 0 ){
+                    hoursSinceSubmit = surveyAns[0].diff
+                }
+                
             }
             var SurveyResetTime = surveyList.filter(x => x.id === props.question + 1);
             SurveyResetTime = SurveyResetTime[0].resetHours;
             // check if enough time has passed since survey was ansered
-            SurveyResetTime <= hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
+            if (hoursSinceSubmit !== 0){
+                SurveyResetTime <= hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
+            } else {
+                renewSurvey = true
+            }
+            
             switch (renewSurvey) {
                 case false:
                     return (
@@ -114,11 +127,18 @@ function KyselyFormBoost(props) {
             surveyAns = surveyAns.list.filter(x => x.id === surveyId)
             const surveyList = props.kyselyt;
             var renewSurvey
-            const hoursSinceSubmit = surveyAns[0].diff;
+            var hoursSinceSubmit = 0
+            if (surveyAns !== [] && surveyAns !== undefined && surveyAns.length > 0) {
+                hoursSinceSubmit = surveyAns[0].diff
+            }
             var SurveyResetTime = surveyList.filter(x => x.id === props.question + 1);
             SurveyResetTime = SurveyResetTime[0].resetHours;
             // check if enough time has passed since survey was ansered
-            SurveyResetTime <= hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
+            if (hoursSinceSubmit !== 0){
+                SurveyResetTime <= hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
+            } else {
+                renewSurvey = true
+            }
             switch (renewSurvey) {
                 case false:
                     return (
