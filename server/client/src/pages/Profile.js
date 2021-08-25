@@ -40,6 +40,7 @@ class ProfilePage extends Component {
                                                     sName={profile.sName}
                                                     city={profile.city}
                                                     rank={profile.rank}
+                                                    id = {profile._user}
                                                 />
                                             </div>
                                             {cardvaluelist.filter(value => value.tyyppi === 'Activity').map(createSmallActivityCard)}

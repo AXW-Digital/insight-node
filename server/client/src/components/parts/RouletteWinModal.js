@@ -4,6 +4,7 @@ import throttle from 'lodash/throttle';
 import { Modal, Button } from 'react-bootstrap';
 import Loader from './Loader';
 import RouletteWinVoucherDialog from './RouletteWinVoucherDialog';
+import RouletteLooseVoucherDialog from './RouletteLooseVoucherDialog';
 import axios from 'axios';
 import keys from '../../config/keys';
 import { connect } from 'react-redux';
@@ -18,11 +19,19 @@ const WinModal = (props) => {
         showModal();
     }
 
-    return (
-        <>
-            <RouletteWinVoucherDialog ref={childRef} voucher={props.voucher} data={props.data} couponType={props.couponType} voucherReg={props.voucherReg} />
-        </>
-    )
+    switch(props.voucher.length){
+        case 0:
+            return (
+                <RouletteLooseVoucherDialog ref={childRef} voucher={props.voucher} data={props.data} couponType={props.couponType} voucherReg={props.voucherReg} />
+            )
+        default:
+            return (
+                <>
+                <RouletteWinVoucherDialog ref={childRef} voucher={props.voucher} data={props.data} couponType={props.couponType} voucherReg={props.voucherReg} />
+                </>
+            )
+    }
+    
 }
 
 export { WinModal }

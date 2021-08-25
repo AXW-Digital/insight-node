@@ -14,6 +14,7 @@ export default class AvatarCard extends Component {
                                 <h4 className="mt-3 mt-5-sm mb-3 mr-auto"><strong>{this.props.fName + ' '}</strong>{this.props.sName}</h4>
                                 <span className="job_post">{this.props.rank}</span>
                                 <p>{this.props.city}</p>
+                                <p className = 'profile-id'>id: {this.props.id}</p>
                             </div>
                                             
                         </div>
