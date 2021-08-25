@@ -13,12 +13,12 @@ import Countdown from "react-countdown";
 import { connect } from 'react-redux';
 import QRCodeComponent from './QRCodeComponent';
 import cryptoRandomString from 'crypto-random-string';
+import { useHistory } from "react-router-dom";
 
 
 
 
-
-var qr_code = cryptoRandomString({length: 10})
+var qr_code = cryptoRandomString({length: 5})
 console.log(qr_code)
 
 
@@ -59,6 +59,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 const VoucherActivateModal = (props) => {
+
+    let history = useHistory();
+
     // Expiry component
     const Completionist = () => <span>Ei voimassa!</span>;
     // Renderer callback with condition
@@ -87,7 +90,9 @@ const VoucherActivateModal = (props) => {
     };
 
     const handleClose = () => {
-        setOpen(false);
+        // setOpen(false);
+        history.push('/test');
+        window.location.reload(false);
     };
     
 

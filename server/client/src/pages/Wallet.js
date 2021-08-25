@@ -17,6 +17,8 @@ import FlipMove from 'react-flip-move';
 import Toggle from '../components/parts/Toggle';
 import keys from '../config/keys';
 
+import Empty from '../assets/images/empty.jpg'
+
 
 class Wallet extends Component {
     constructor(props) {
@@ -139,24 +141,48 @@ class Wallet extends Component {
 
 
     renderCards() {
-        return this.state.articles.map((article, i) => {
-            return (
-                <VoucherCard
-                    key={article.name}
-                    name={article.name}
-                    picUrl={article.picUrl}
-                    formTitle={article.formTitle}
-                    formText={article.formText}
-                    benefit={article.benefit}
-                    tyyppi={article.tyyppi}
-                    valid={article.valid}
-                    dateStart={article.dateStart}
-                    index={i}
-                    clickHandler={throttle(() => this.moveArticle('articles', 'removedArticles', article.id), 800)}
-                    {...article}
-                />
-            );
-        });
+
+        switch(this.state.articles.length){
+
+            case 0:
+                return (
+                    <div className='container h-100 w-100'>
+                            <p>
+                        Voi pahus, sinulla ei ole vielä voitettuja etukortteja :(
+                            </p>
+                            <img
+                            src={Empty}
+                            style={{objectFit: 'cover', width: '90vw'}}
+                            />
+                    </div>
+
+                )
+
+            default:
+
+                return this.state.articles.map((article, i) => {
+                    return (
+                        <VoucherCard
+                            key={article.name}
+                            name={article.name}
+                            picUrl={article.picUrl}
+                            formTitle={article.formTitle}
+                            formText={article.formText}
+                            benefit={article.benefit}
+                            tyyppi={article.tyyppi}
+                            valid={article.valid}
+                            dateStart={article.dateStart}
+                            index={i}
+                            clickHandler={throttle(() => this.moveArticle('articles', 'removedArticles', article.id), 800)}
+                            {...article}
+                        />
+                    );
+                });
+
+
+
+        }
+        
     }
 
 
@@ -207,6 +233,7 @@ class Wallet extends Component {
                             {this.state.isLoaded ? 
 
                             <>
+                            {this.state.articles.length > 0 ? 
                             <div className = 'row justify-content-center justify-content-xl-start ml-auto'>
                                 <Toggle
                                     clickHandler={this.toggleSort}
@@ -220,6 +247,7 @@ class Wallet extends Component {
                                     active={this.state.sortingMethod === 'shuffle'}
                                 />
                             </div>
+                            : null }
 
 
                             <div className='row justify-content-center justify-content-xl-start '>
