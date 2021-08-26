@@ -77,7 +77,6 @@ class LeaderBoard extends Component {
 
             ser = json2.map(o => ({ x: o.uName, y: o.points }))
             ser = sortJSON(ser, 'y', '321');
-            console.log(ser);
             this.setState({
                 fullData: ser,
                 isUpdated: true,

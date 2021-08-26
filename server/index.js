@@ -16,6 +16,9 @@ require('./models/Surveys');
 // Services
 require('./services/passport');
 
+// Env
+require('dotenv').config();
+
 
 mongoose.connect(keys.mongoURI);
 

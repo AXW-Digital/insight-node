@@ -43,7 +43,6 @@ class Shuffle extends Component {
 						isLoaded: true,
 						articles: result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
 					});
-					console.log(result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp)))
 				},
 				(error) => {
 					this.setState({

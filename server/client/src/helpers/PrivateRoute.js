@@ -2,8 +2,6 @@ import { Route, Redirect } from 'react-router-dom';
 
 export default function PrivateRoute ({component: Component, auth, profile, ...rest}) {
     
-  var profileExists = profile
-  console.log('profileExists', profileExists)
   return (
       <Route
         {...rest}

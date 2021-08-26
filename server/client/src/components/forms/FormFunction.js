@@ -33,9 +33,8 @@ function CreateForm(x, q, setField, kyselyt) {
     var max = choices.map((d) => d.max)[x]
     var key = choices.map((d) => d.num)[x]
     var new_group = false
-    var draw_line = false
     if (x === 0 || group[x] !== group[x - 1]) { new_group = true } else { new_group = false }
-    if (x !== 0 && new_group === true) { draw_line = true } else { draw_line = false }
+
 
 
     return (
