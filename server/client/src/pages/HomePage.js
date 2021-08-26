@@ -127,6 +127,14 @@ class HomePage extends Component {
         
         var voucher = this.state.vouchers.filter(x => x.voucherId === prize)       
         
+        if (voucher[0] === undefined) {
+          await axios.get("../api/vouchers/reg/all").then((response) => {
+            this.setState({ vouchers: response.data });
+            voucher = response.data.filter(x => x.voucherId === prize)
+          });
+        }
+
+
         const {
           voucherId,
           partnerId,
@@ -146,6 +154,7 @@ class HomePage extends Component {
           benefitType,
           name
         }
+        
         await axios.post('/api/vouchers', data)
           .then((res1) => {
             console.log(res1.status)
@@ -178,7 +187,7 @@ class HomePage extends Component {
       default:
         return <Loader />;
 
-      case false:
+      case false: 
         const surveysToRender = (surveyAns) => {
           const renewableSurveysList = cardvaluelist.filter(
             (card) => card.tyyppi === "Vastaa" && card.resetHours !== undefined
@@ -210,7 +219,6 @@ class HomePage extends Component {
         };
 
         var renewableSurveyList = surveysToRender(surveyAns);
-        console.log(renewableSurveyList);
 
         const surveyCount = cardvaluelist
           .filter(
@@ -222,14 +230,12 @@ class HomePage extends Component {
           .map(createCard);
 
         if (surveyCount === undefined || surveyCount.length === 0) {
-          console.log(surveyCount);
           return (
             <div className="home-message vh-100">
               Olet ollut aktiivinen vaikuttaja! Uusia kysymyksiä tulossa pian...
             </div>
           );
         } else {
-          console.log(surveyCount);
           return (
             <div className="row g-4 d-flex">
               {cardvaluelist
@@ -252,7 +258,6 @@ class HomePage extends Component {
       case null:
         return <Loader />;
       default:
-        console.log(profile);
         return <h1>Tervetuloa {profile.fName}!</h1>;
     }
   }
@@ -271,7 +276,6 @@ class HomePage extends Component {
 
 
       default:
-        console.log("profile fetched");
         const { surveyAns, items, isLoaded } = this.state;
 
         // determine level with getLevel function
