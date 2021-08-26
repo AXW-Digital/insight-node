@@ -56,7 +56,7 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
 
 
-    const reduceCoupons = () => {
+    const reduceCoupons = async () => {
 
 
 
@@ -84,7 +84,7 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
         var coupons = { userId, bronzeCoupons, silverCoupons, goldCoupons }
 
-        couponService.sendCoupon(coupons)
+        await couponService.sendCoupon(coupons)
 
         return('done')
 

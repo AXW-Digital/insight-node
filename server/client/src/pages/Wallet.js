@@ -190,7 +190,13 @@ class Wallet extends Component {
 
         const getCardData = () => {
             fetch("/api/cards")
-            .then(res => res.json())
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                  } else {
+                    throw new Error('Something went wrong');
+                  }
+                })
             .then(
                 (result) => {
                     var userVouchers = this.props.data.vouchers
@@ -206,21 +212,21 @@ class Wallet extends Component {
                     }
                     
                     articles = vouchers
-
-                    // articles = articles.filter((x) => userVoucherIds.includes(x.voucherId))
                     
                     this.setState({
                         isLoaded: true,
                         articles 
                     })
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
                 }
+                
             )
+            .catch((error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });            
+                console.log(error)
+            });
         }
 
         return (
