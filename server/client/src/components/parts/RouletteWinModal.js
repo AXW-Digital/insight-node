@@ -99,7 +99,7 @@ class RouletteWinModal extends Component {
                                 isLoaded: false,
                                 voucher: result.filter(x => x.tyyppi === 'Voucher' && x.voucherId === parseInt(this.state.prizeNo))
                             });
-                            console.log('vouchers:',result.filter(x => x.tyyppi === 'Voucher') )
+                            
 
                         },
                         (error) => {

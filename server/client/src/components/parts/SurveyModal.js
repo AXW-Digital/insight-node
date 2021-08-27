@@ -42,7 +42,7 @@ const SurveyModal = (props) => {
 
   console.log('current points', currentPoints)
 
-  function postCoupons () {
+  async function postCoupons () {
 
     if (levelUp) {
       var bronzeCoupons, silverCoupons, goldCoupons
@@ -66,8 +66,8 @@ const SurveyModal = (props) => {
       }
 
       var coupons = { bronzeCoupons, silverCoupons, goldCoupons }
-
-      axios.post('/api/profile/coupons', coupons)
+      console.log('posting coupons:', coupons)
+      await axios.post('/api/profile/coupons', coupons)
         .then(res => {
           if (res.status === 200) {
             console.log(res)

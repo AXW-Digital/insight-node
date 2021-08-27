@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'react'
+import React, { useState, forwardRef, useImperativeHandle, useEffect, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,6 +12,7 @@ import { ReactComponent as Loss } from '../../assets/images/loss.svg'
 import { useHistory } from "react-router-dom";
 import { prizeService } from '../../functions/prizeNumberGen';
 import { couponService } from '../../functions/couponReduce';
+import { BiSleepy } from 'react-icons/bi';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +57,7 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
 
 
-    const reduceCoupons = () => {
+    const reduceCoupons = async () => {
 
 
 
@@ -84,9 +85,9 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
         var coupons = { userId, bronzeCoupons, silverCoupons, goldCoupons }
 
-        couponService.sendCoupon(coupons)
+        await couponService.sendCoupon(coupons)
 
-        return('done')
+        // return('done')
 
        
 
@@ -102,6 +103,7 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
 
     let history = useHistory();
+    const btnRef = useRef();
 
 
     useImperativeHandle(ref, () => ({
@@ -115,10 +117,23 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
 
     const closeWin = async () => {
-        const res = await reduceCoupons();
-        setOpen(false)
-        history.push('/home');
-        window.location.reload(false);
+        const sleeptime = 200
+        const sleep = m => new Promise(r => setTimeout(r, m))
+        if(btnRef.current){
+            btnRef.current.setAttribute('disabled', 'disabled');
+        }
+        try { 
+            // const res = await reduceCoupons();
+            // console.log("Sleeping for ", sleeptime, "ms")
+            // await sleep(sleeptime)
+            // console.log(res)
+            setOpen(false)
+            history.push('/home');
+            window.location.reload(false);
+        } catch (err) {
+            console.log(err)
+        }
+        
     }
 
     const handleClose = () => {
@@ -157,7 +172,7 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
                         <Loss/>
                     </div>
                 </div>
-                <Button autoFocus color="inherit" onClick={handleClose} className={classes.button}>
+                <Button autoFocus color="inherit" onClick={handleClose} className={classes.button} ref={btnRef}>
                     Jatka
                 </Button>
             </Dialog>

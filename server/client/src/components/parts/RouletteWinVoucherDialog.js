@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'react'
+import React, { useState, forwardRef, useImperativeHandle, useEffect, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,6 +12,7 @@ import ConfettiBg from '../../assets/images/confetti_bg.jpg';
 import { useHistory } from "react-router-dom";
 import { prizeService } from '../../functions/prizeNumberGen';
 import { couponService } from '../../functions/couponReduce';
+import { useBeforeunload } from 'react-beforeunload';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,15 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 const RouletteWinVoucherDialog = forwardRef((props, ref) => {
+
+    // useEffect(() => {
+    //     window.addEventListener('beforeunload', (event) => {
+    //         event.returnValue = `Are you sure you want to leave?`;
+    //         alert('poistu sivulta, niin voit lunastaa voittosi')
+    //         closeWin()
+    //         return null
+    //     })
+    // }, []);
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);
@@ -84,11 +94,13 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
         var coupons = { userId, bronzeCoupons, silverCoupons, goldCoupons }
 
+        console.log(console.log('reducing coupons: ', coupons))
+
         await couponService.sendCoupon(coupons)
 
-        return('done')
+        // return('done')
 
-       
+
 
 
 
@@ -102,6 +114,8 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
 
     let history = useHistory();
+    const btnRef = useRef();
+
 
 
     useImperativeHandle(ref, () => ({
@@ -115,15 +129,29 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
 
     const closeWin = async () => {
-        const res = await reduceCoupons();
-        setOpen(false)
-        history.push('/test');
-        window.location.reload(false);
+        const sleeptime = 200
+        const sleep = m => new Promise(r => setTimeout(r, m))
+        if (btnRef.current) {
+            btnRef.current.setAttribute('disabled', 'disabled');
+        }
+        try {
+            // const res = await reduceCoupons();
+            // console.log("Sleeping for ", sleeptime, "ms")
+            // await sleep(sleeptime)
+            // console.log(res)
+            setOpen(false)
+            history.push('/test');
+            window.location.reload(false);
+        } catch (err) {
+            console.log(err)
+        }
     }
+
+
 
     const handleClose = () => {
         closeWin();
-       
+
 
     };
 
@@ -158,7 +186,7 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
                         {props.voucher}
                     </div>
                 </div>
-                <Button autoFocus color="inherit" onClick={handleClose} className={classes.button}>
+                <Button autoFocus color="inherit" onClick={handleClose} className={classes.button} ref={btnRef}>
                     Tallenna
                 </Button>
             </Dialog>

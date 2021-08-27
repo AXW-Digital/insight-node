@@ -11,6 +11,7 @@ import Loader from "../components/parts/Loader";
 import AOS from 'aos';
 import HomeStepper from '../components/parts/HomeStepper';
 import RouletteModal from "../components/cards/RouletteModal";
+import { first } from 'rxjs/operators'
 
 // getLevel function
 import getLevel, { levelThresholds } from "../functions/getLevel";
@@ -112,29 +113,37 @@ class HomePage extends Component {
         }
       )
 
-    const subscription = couponService.onCoupon().subscribe(async coupons => {
+    const subscription = couponService.onCoupon(first()).subscribe(async coupons => {
       if (coupons !== null) {
-        await axios.post('/api/coupons', coupons, { timeout: 3000 }).then(
+        console.log('sending coupons to backend: ', coupons)
+        await axios.post('/api/coupons', coupons).then(
           (res) => {
-            return res
+            console.log(res.status)
           }
         )
       }
     });
 
-    const prizesub = prizeService.onNumber().subscribe(async prize => {
+    const prizesub = prizeService.onNumber(first()).subscribe(async prize => {
       if (prize !== null) {
         
         var voucher = this.state.vouchers.filter(x => x.voucherId === prize)       
         
-        if (voucher[0] === undefined) {
+        if (voucher[0] === undefined || voucher[0] === null || voucher[0].length < 1) {
+          const sleeptime = 1500
+          const sleep = m => new Promise(r => setTimeout(r, m))
           await axios.get("../api/vouchers/reg/all").then((response) => {
             this.setState({ vouchers: response.data });
             voucher = response.data.filter(x => x.voucherId === prize)
           });
+          console.log("Sleeping for ", sleeptime, "ms")
+          await sleep(sleeptime)
+
         }
 
 
+
+        console.log(voucher[0])
         const {
           voucherId,
           partnerId,

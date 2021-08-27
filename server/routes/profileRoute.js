@@ -191,11 +191,12 @@ module.exports = app => {
 
 
     app.post('/api/coupons', requireLogin, async (req, res) => {
-        const userId = req.user.id
-        console.log('req body: ', req.body)
+        
+        
 
         await axios.post(keys.adminUrl + '/api/coupons', req.body).then(
             (resp) => {
+                console.log('coupons sent: ', req.body)
                 console.log(resp.status)
                 res.send(200, resp.status)
                 
