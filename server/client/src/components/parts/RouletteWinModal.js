@@ -85,13 +85,13 @@ class RouletteWinModal extends Component {
 
     render() {
 
-        prizeService.onNumber().subscribe((number) => {
+        prizeService.onNumber().subscribe(async (number) => {
             if (number !== null) {
                 this.setState({
                     prizeNo: number
                 })
 
-                fetch("/api/cards")
+                await fetch("/api/cards")
                     .then(res => res.json())
                     .then(
                         (result) => {

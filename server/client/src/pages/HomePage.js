@@ -11,7 +11,8 @@ import Loader from "../components/parts/Loader";
 import AOS from 'aos';
 import HomeStepper from '../components/parts/HomeStepper';
 import RouletteModal from "../components/cards/RouletteModal";
-import { first } from 'rxjs/operators'
+import { first } from 'rxjs/operators';
+import cryptoRandomString from 'crypto-random-string';
 
 // getLevel function
 import getLevel, { levelThresholds } from "../functions/getLevel";
@@ -62,7 +63,8 @@ class HomePage extends Component {
       isLoaded: false,
       items: [],
       coupons: [],
-      vouchers: []
+      vouchers: [],
+      couponsSent: false
     };
 
   }
@@ -76,48 +78,55 @@ class HomePage extends Component {
 
   componentDidMount() {
     console.debug("After mount! Let's load data from API...");
-    axios.get("../api/surveys/count").then((response) => {
-      this.setState({ surveysAns: response.data });
-      this.setState({ isLoading: false });
-    });
-    axios.get("../api/vouchers/reg/all").then((response) => {
-      console.log('vouchers:', response.data)
-      this.setState({ vouchers: response.data });
-    });
-    axios
-      .get("../api/profile")
-      .then((response) => {
-        this.setState({ isProfile: true });
-      })
-      .catch((err) => {
-        this.setState({ isProfile: false });
+    
+    const getData = async () => {
+      await axios.get("../api/surveys/count").then((response) => {
+        this.setState({ surveysAns: response.data });
+        this.setState({ isLoading: false });
       });
+      await axios.get("../api/vouchers/reg/all").then((response) => {
+        console.log('vouchers:', response.data)
+        this.setState({ vouchers: response.data });
+      });
+      await axios
+        .get("../api/profile")
+        .then((response) => {
+          this.setState({ isProfile: true });
+        })
+        .catch((err) => {
+          this.setState({ isProfile: false });
+        });
+  
+      await fetch(keys.adminUrl + "/api/surveys")
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              isLoaded: true,
+              items: result
+            });
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
+          }
+        )
+    }
 
-    fetch(keys.adminUrl + "/api/surveys")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    getData();
+    
 
     const subscription = couponService.onCoupon(first()).subscribe(async coupons => {
-      if (coupons !== null) {
+      if (coupons !== null && !this.state.couponsSent) {
         console.log('sending coupons to backend: ', coupons)
         await axios.post('/api/coupons', coupons).then(
           (res) => {
+            this.setState({couponsSent: true});
             console.log(res.status)
           }
         )
@@ -127,6 +136,11 @@ class HomePage extends Component {
     const prizesub = prizeService.onNumber(first()).subscribe(async prize => {
       if (prize !== null) {
         
+
+
+        var qrCode = cryptoRandomString({ length: 5 })
+
+
         var voucher = this.state.vouchers.filter(x => x.voucherId === prize)       
         
         if (voucher[0] === undefined || voucher[0] === null || voucher[0].length < 1) {
@@ -161,7 +175,8 @@ class HomePage extends Component {
           partnerId,
           benefitValue,
           benefitType,
-          name
+          name,
+          qrCode
         }
         
         await axios.post('/api/vouchers', data)

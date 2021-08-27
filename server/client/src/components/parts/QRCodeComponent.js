@@ -88,7 +88,7 @@ async function redeemVoucher(id, userId){
         userId,
         voucherId
     }
-    await axios.post(keys.adminUrl + '/api/vouchers/reg/redeem', data)
+    await axios.post(keys.localUrl + '/api/vouchers/reg/redeem', data)
     .then(res => {
         console.log(res)
     })
@@ -153,7 +153,7 @@ class QRCodeComponent extends Component {
         }
 
 
-        var qr_code = cryptoRandomString({ length: 10 })
+        // var qr_code = cryptoRandomString({ length: 10 })
         const durationValid = 10
         const { loading } = this.state;
         return (

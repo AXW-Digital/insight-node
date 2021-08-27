@@ -8,7 +8,7 @@ import VoucherCard from '../components/cards/VoucherCardClassFunc';
 import cardvaluelist from "../assets/js/cardvalues";
 import { createVoucherCard } from '../components/cards/CardFunctions';
 import Loader from "../components/parts/Loader";
-
+import _ from 'lodash';
 
 import shuffle from 'lodash/shuffle';
 import throttle from 'lodash/throttle';
@@ -173,6 +173,7 @@ class Wallet extends Component {
                             valid={article.valid}
                             dateStart={article.dateStart}
                             index={i}
+                            qr_code={article.qrCode}
                             clickHandler={throttle(() => this.moveArticle('articles', 'removedArticles', article.id), 800)}
                             {...article}
                         />
@@ -201,13 +202,17 @@ class Wallet extends Component {
                 (result) => {
                     var userVouchers = this.props.data.vouchers
                     userVouchers = userVouchers.filter((x) => x.redeemed !== true && x.benefitValue > 0)
-                    var articles = result.filter(x => x.tyyppi === 'Voucher').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))                    
+                    var articles = result.filter(x => x.tyyppi === 'Voucher').sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+                    const userVouchers2 = articles.map(t1 => ({...t1, ...userVouchers.find(t2 => t2.voucherId === t1.voucherId)}))
+                    var merged = _.merge(_.keyBy(userVouchers, 'voucherId'), _.keyBy(articles, 'voucherId'));
+                    var values = _.values(merged);
+                                        
                     var userVoucherIds = userVouchers.map(x => parseInt(x.voucherId))                    
                     userVoucherIds = userVoucherIds.map(numStr => parseInt(numStr));
                     var vouchers = []
                     var arr
                     for (const i in userVoucherIds) {
-                        arr = articles.filter(x => x.voucherId === userVoucherIds[parseInt(i)])
+                        arr = values.filter(x => x.voucherId === userVoucherIds[parseInt(i)])
                         vouchers.push(arr[0])
                     }
                     

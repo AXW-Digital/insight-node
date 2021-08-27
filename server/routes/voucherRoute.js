@@ -23,7 +23,7 @@ module.exports = app => {
 
     app.get('/api/vouchers/reg/all', requireLogin, async (req, res) => {
 
-        await axios.get(keys.adminUrl + '/api/vouchers/reg/all')
+        await axios.get(keys.localUrl + '/api/vouchers/reg/all')
         .then((response) => {
             data = response.data
             return res.send(200, data)
@@ -44,7 +44,8 @@ module.exports = app => {
             partnerId,
             benefitValue,
             benefitType,
-            name
+            name,
+            qrCode
           } = req.body;
 
         const data = {
@@ -53,13 +54,14 @@ module.exports = app => {
             partnerId,
             benefitValue,
             benefitType,
-            name
+            name,
+            qrCode
         }
 
         console.log('sending following data to voucher backend: ', data)
 
 
-        await axios.post(keys.adminUrl + '/api/vouchers', data).then(
+        await axios.post(keys.localUrl + '/api/vouchers', data).then(
             response => {
                 console.log(response.status)
                 res.send(response.status)

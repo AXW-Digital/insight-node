@@ -18,8 +18,6 @@ import { useHistory } from "react-router-dom";
 
 
 
-var qr_code = cryptoRandomString({length: 5})
-console.log(qr_code)
 
 
 
@@ -128,7 +126,7 @@ const VoucherActivateModal = (props) => {
                 </AppBar>
                 <div className='container d-flex align-items-center justify-content-center vh-100'>
                     <QRCodeComponent 
-                    value= {qr_code}
+                    value = {props.qr_code}
                     renderAs = 'svg'
                     {...props} 
                     />

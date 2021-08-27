@@ -20,7 +20,8 @@ export default class VoucherCardClassFunc extends Component {
                         dateStart={this.props.dateStart}
                         description={this.props.description}
                         benefitType = {this.props.benefitType}
-                        voucherId = {this.props.voucherId}               
+                        voucherId = {this.props.voucherId} 
+                        qr_code={this.props.qr_code}              
                         />
                 </Fade>
             </div>
