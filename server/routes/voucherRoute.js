@@ -12,7 +12,7 @@ module.exports = app => {
         const userId = req.params.userId;
         var data = null
         console.log('voucherRoute using id: ' + userId)
-        await axios.get(keys.adminUrl + "/api/vouchers/user/" + userId)
+        await axios.get(keys.localUrl + "/api/vouchers/user/" + userId)
             .then((response) => {
                 data = response.data
                 return res.send(200, data)
@@ -66,10 +66,28 @@ module.exports = app => {
                 console.log(response.status)
                 res.send(response.status)
             }
-        )
+        ) .catch(err => {
+            console.log(err)
+        })
             
 
 
+    });
+
+    app.post('/api/vouchers/reg/redeem', requireLogin, async (req, res) => {
+    
+        await axios.post(keys.localUrl + '/api/vouchers/reg/redeem', req.body).then(
+            response => {
+                console.log('sending voucher data to reg: ', req.body)
+                console.log(response.status)
+                res.send(response.status)
+            }
+        ).catch(err => {
+            console.log(err)
+        })
+
+        // return res.send(200, 'successfully used voucher')
+    
     });
 
 

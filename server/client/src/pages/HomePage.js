@@ -139,6 +139,8 @@ class HomePage extends Component {
 
 
         var qrCode = cryptoRandomString({ length: 5 })
+        
+        qrCode = qrCode.toUpperCase(); 
 
 
         var voucher = this.state.vouchers.filter(x => x.voucherId === prize)       
@@ -184,7 +186,7 @@ class HomePage extends Component {
             console.log(res1.status)
           })
 
-        await axios.post(keys.adminUrl + '/api/vouchers/reg', data)
+        await axios.post(keys.localUrl + '/api/vouchers/reg', data)
           .then((res2) => {
             console.log(res2.status)
           })

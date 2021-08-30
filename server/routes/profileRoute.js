@@ -67,7 +67,7 @@ module.exports = app => {
 
         await newProfile.save();       
 
-        await axios.post(keys.adminUrl + '/api/coupons', coupons).then(
+        await axios.post(keys.localUrl + '/api/coupons', coupons).then(
             (resp) => {
                 console.log(resp.status)
                 res.send(200, resp.status)
@@ -152,7 +152,7 @@ module.exports = app => {
             userId
         }
 
-        await axios.post(keys.adminUrl + '/api/coupons', coupons).then(
+        await axios.post(keys.localUrl + '/api/coupons', coupons).then(
             response => {
                 console.log(response.status)
                 res.send(response.status)
@@ -164,7 +164,7 @@ module.exports = app => {
     app.get('/api/coupons', requireLogin, async (req, res) => {
         const userId = req.user.id
 
-        await axios.get(keys.adminUrl + '/api/coupons/' + userId).then(
+        await axios.get(keys.localUrl + '/api/coupons/' + userId).then(
             (response) => {
 
                 const {
@@ -194,7 +194,7 @@ module.exports = app => {
         
         
 
-        await axios.post(keys.adminUrl + '/api/coupons', req.body).then(
+        await axios.post(keys.localUrl + '/api/coupons', req.body).then(
             (resp) => {
                 console.log('coupons sent: ', req.body)
                 console.log(resp.status)

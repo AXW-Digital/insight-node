@@ -89,12 +89,15 @@ async function redeemVoucher(id, userId, qrCode){
         voucherId,
         qrCode
     }
-    await axios.post(keys.localUrl + '/api/vouchers/reg/redeem', data)
+    await axios.post('/api/vouchers/reg/redeem',  data, {timeout:1500})
     .then(res => {
+        console.log('voucher redeemed:', data)
         console.log(res)
     })
     .catch(err =>{
-        console.log(err)
+        console.log(err.code)
+        console.log(err.message)
+        console.log(err.stack)
     })
 
 }
@@ -107,6 +110,7 @@ class QRCodeComponent extends Component {
     
 
     enterLoading = () => {
+        console.log('entered loading...')
         redeemVoucher(this.props.voucherId, this.props.data.profile._user, this.props.qr_code);
         this.setState({ loading: true })
         setTimeout(() => {
@@ -155,7 +159,7 @@ class QRCodeComponent extends Component {
 
 
         // var qr_code = cryptoRandomString({ length: 10 })
-        const durationValid = 10
+        const durationValid = 120
         const { loading } = this.state;
         return (
             <>
