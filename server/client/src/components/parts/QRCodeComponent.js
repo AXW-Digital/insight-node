@@ -81,12 +81,13 @@ function CircularIndeterminate() {
     );
 }
 
-async function redeemVoucher(id, userId){
+async function redeemVoucher(id, userId, qrCode){
 
     const voucherId = id
     const data = {
         userId,
-        voucherId
+        voucherId,
+        qrCode
     }
     await axios.post(keys.localUrl + '/api/vouchers/reg/redeem', data)
     .then(res => {
@@ -106,7 +107,7 @@ class QRCodeComponent extends Component {
     
 
     enterLoading = () => {
-        redeemVoucher(this.props.voucherId, this.props.data.profile._user);
+        redeemVoucher(this.props.voucherId, this.props.data.profile._user, this.props.qr_code);
         this.setState({ loading: true })
         setTimeout(() => {
             this.setState({

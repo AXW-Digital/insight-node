@@ -48,27 +48,7 @@ class Wallet extends Component {
 
     componentDidMount() {
 
-        
-        // // use seperate function to get synchonously the userid 
-        // function getVouchers ( userId ) {
-        //     return axios.get('/api/vouchers/user/' + userId )
-        //     .then((res) => {
-        //         return res.data
-        //     })
-        // }
-
-        // // fetch the users vouchers
-        // axios.get('/api/profile').then((res) => {
-        //     getVouchers(res.data._user).then((vouchers) => {
-        //         this.setState({userVouchers: vouchers})
-        //     })            
-        // })
-
-
-
-
-        
-        
+       
 
     };
 
