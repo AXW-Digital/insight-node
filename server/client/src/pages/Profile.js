@@ -5,11 +5,37 @@ import AvatarCard from '../components/cards/AvatarCard'
 import cardvaluelist from '../assets/js/cardvalues'
 import { createSmallActivityCard } from '../components/cards/CardFunctions'
 import Loader from '../components/parts/Loader'
+import axios from 'axios'
 
 // add a switch to wait for data until render
 
 class ProfilePage extends Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+          aggregates:[]
+        };    
+      }
+
+    componentDidMount(){
+        
+        
+        const getAggregates = async () => {
+            await axios.get('/api/aggregates').then(
+                res => {
+                    this.setState({
+                        aggregates: res.data
+                    })
+                }
+            )
+        }
+
+        
+
+        getAggregates();
+        
+        
+    }
 
 
     render() {
@@ -19,6 +45,47 @@ class ProfilePage extends Component {
         if (profile === null || profile === undefined) {
             <Loader /> 
         }
+
+        const aggregates = this.state.aggregates
+        
+        const activity = [{
+            id: 'a1',
+            boxIcon: 'bx bx-message-detail',
+            count: aggregates.totalSurveys,
+            cardText: 'Vastatut kyselyt',
+            tyyppi: 'Activity',
+            suffix: '',
+            color: 'blue'
+        },
+        {
+            id: 'a2',
+            boxIcon: 'bx bx-coin-stack',
+            count: aggregates.totalBenefits,
+            cardText: 'Kerrytetty bonus',
+            tyyppi: 'Activity',
+            suffix: '€',
+            color: 'green'
+        },
+    
+        {
+            id: 'a3',
+            boxIcon: 'bx bx-calendar-heart',
+            count: aggregates.profileAge,
+            cardText: 'Profiilin ikä',
+            tyyppi: 'Activity',
+            suffix: ' päivää',
+            color: 'orange'
+        },
+    
+        {
+            id: 'a4',
+            boxIcon: 'bx bx-bolt-circle',
+            count: aggregates.totalPoints,
+            cardText: 'Pisteet yhteensä',
+            tyyppi: 'Activity',
+            suffix: '',
+            color: 'indigo'
+        }]
 
         switch (profile) {
             case null:
@@ -43,7 +110,8 @@ class ProfilePage extends Component {
                                                     id = {profile._user}
                                                 />
                                             </div>
-                                            {cardvaluelist.filter(value => value.tyyppi === 'Activity').map(createSmallActivityCard)}
+                                            {aggregates.length < 1 ? <Loader/> : 
+                                            activity.map(createSmallActivityCard)}
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +123,7 @@ class ProfilePage extends Component {
                                             forename={profile.fName}
                                             surname={profile.sName}
                                             emailAddress={profile.email}
-                                            phoneNumber={`+358` + profile.phone}
+                                            phoneNumber={profile.phone}
                                             memberSince={profile.profileCreated}
                                             lastLogin={profile.lastLogin}
                                             homeCity={profile.city}

@@ -258,28 +258,9 @@ class HomePage extends Component {
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-2">
                                         <h3>FAQ - Usein kysytyt kysymykset</h3>
-                                        
+                                       
                                         {this.renderFaq()}
-                                        
-                                        {/* <Accordion
-                                            title="Mikä on vaikuttava.io?"
-                                            content={lorem.generateParagraphs(1)}
-                                        />
-                                        <Accordion
-                                            title="Mitä kupongit ovat?"
-                                            content={lorem.generateParagraphs(1)}
-                                        />
-                                        <Accordion title="Mitä pisteet ovat? Kuinka niitä kertyy?"
-                                            content={'Pisteet ovat tapamme palkita Vaikuttavia aktiivisuudesta. Pisteitä kertyy vastaamalla kyselyihin, rekrytoimalla jne. Kerryttämällä pisteitä kiipeät ylös vaikuttajatasoja, jolloin piste, kuponmki ja palkintokertymät kasvavat.'}
-                                        />
-                                        <Accordion
-                                            title="Mistä näen profiilini?"
-                                            content={lorem.generateParagraphs(1)}
-                                        />
-                                        <Accordion
-                                            title="Kuinka poistan tilini?"
-                                            content={lorem.generateParagraphs(1)}
-                                        /> */}
+
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-1">
                                         <div className="img-fluid animated ">

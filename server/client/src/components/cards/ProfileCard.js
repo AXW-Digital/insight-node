@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 
 class ProfileCard extends Component {
+   
+
     render() {
+
+        var memberSince = new Date (this.props.memberSince).getTime()
+        const d = new Date (this.props.lastLogin).getTime()
+        memberSince = Intl.DateTimeFormat('fi').format(memberSince)
+        const lastLogin = Intl.DateTimeFormat('fi').format(d)
+
         return (
             <div>
                 <div className="card profile-card my-5">
@@ -27,10 +35,10 @@ class ProfileCard extends Component {
                                 <Tab eventKey="profile" title="Tiedot">
                                 <div className="tab-pane body active" id="about">
                                         <small className="text-muted">Rekisteröitynyt:  </small>
-                                        <p>{this.props.memberSince}</p>
+                                        <p>{memberSince}</p>
                                         <hr />
                                         <small className="text-muted">Viimeksi kirjautunut: </small>
-                                        <p>{this.props.lastLogin}</p>
+                                        <p>{lastLogin}</p>
                                         <hr />
                                         <small className="text-muted">Kotipaikkakunta </small>
                                         <p>{this.props.homeCity}</p>
