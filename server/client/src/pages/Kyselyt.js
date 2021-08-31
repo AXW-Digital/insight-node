@@ -42,7 +42,8 @@ class HomePage extends Component {
             isProfile: null,
             cards: [],
             error: null,
-            isLoaded: false, 
+            isLoaded: false,
+            faqPoints: [] 
         };
     }
 
@@ -52,10 +53,17 @@ class HomePage extends Component {
             this.setState({ surveyAns: response.data });
             this.setState({ isLoading: false });
         });
+        
         axios.get('../api/profile').then(response => {
             this.setState({ isProfile: true });
         }).catch(err => {
             this.setState({ isProfile: false })
+        });
+
+        axios.get('../api/faq').then(response => {
+            this.setState({ faqPoints: response.data });
+        }).catch(err => {
+            console.log(err)
         });
 
         fetch(keys.adminUrl + "/api/cards")
@@ -177,6 +185,19 @@ class HomePage extends Component {
         }
     }
 
+    renderFaq(){
+        return this.state.faqPoints.map((point) => {
+            return (
+                <Accordion 
+                    title={point.title}
+                    content={point.content}
+                    index={point.index}
+                />
+            );
+        }).sort((a, b) => a.index - b.index);
+
+
+    }
 
 
     render() {
@@ -237,7 +258,10 @@ class HomePage extends Component {
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-2">
                                         <h3>FAQ - Usein kysytyt kysymykset</h3>
-                                        <Accordion
+                                        
+                                        {this.renderFaq()}
+                                        
+                                        {/* <Accordion
                                             title="Mikä on vaikuttava.io?"
                                             content={lorem.generateParagraphs(1)}
                                         />
@@ -255,7 +279,7 @@ class HomePage extends Component {
                                         <Accordion
                                             title="Kuinka poistan tilini?"
                                             content={lorem.generateParagraphs(1)}
-                                        />
+                                        /> */}
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-1">
                                         <div className="img-fluid animated ">

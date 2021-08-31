@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -79,6 +79,8 @@ const VoucherActivateModal = (props) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
+    const closeBtnRef = useRef();
+    
     
     
     
@@ -87,10 +89,17 @@ const VoucherActivateModal = (props) => {
         
     };
 
-    const handleClose = () => {
+    const handleClose = async () => {
         // setOpen(false);
+        if(closeBtnRef.current){
+            closeBtnRef.current.setAttribute('disabled', 'disabled');
+            console.log('closing page...')
+        }
+
         history.push('/test');
-        window.location.reload(false);
+        console.log('pushed to test...');
+        await window.location.reload();
+        console.log('window reloaded...');
     };
     
 
@@ -116,8 +125,8 @@ const VoucherActivateModal = (props) => {
             }}>
                 <AppBar className={classes.appBar}>
                     <Toolbar>
-                        <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                            <CloseIcon />
+                        <IconButton edge="start" color="inherit" onClick={handleClose} ref={closeBtnRef} aria-label="close">
+                            <CloseIcon/>
                         </IconButton>
                         <Typography variant="h5" className={classes.title}>
                             {props.benefit} &nbsp; {props.benefitType}
