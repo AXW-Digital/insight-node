@@ -37,7 +37,7 @@ const SurveyModal = (props) => {
 
   const pointsIncreasePercentage = pointsIncrease / maxLevelPoints * 100
   const pointsStartPercentage = currentPoints / maxLevelPoints * 100
-  const pointsIncreaseLevelUp = -(currentPoints + maxLevelPoints)
+  const pointsIncreaseLevelUp = currentPoints
   const pointsIncreaseLevelUpPercentage = pointsIncreaseLevelUp / maxLevelPoints * 100
 
   console.log('current points', currentPoints)

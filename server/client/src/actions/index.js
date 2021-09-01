@@ -1,6 +1,14 @@
 import axios from 'axios';
 // import { dispatch } from 'rxjs/internal/observable/pairs';
-import { FETCH_USER, FETCH_SETTINGS, FETCH_PROFILE, FETCH_STORE, FETCH_VOUCHERS, FETCH_COUPONS } from './types';
+import {
+  FETCH_USER,
+  FETCH_SETTINGS,
+  FETCH_PROFILE,
+  FETCH_STORE,
+  FETCH_VOUCHERS,
+  FETCH_COUPONS,
+  FETCH_SOCIALS
+} from './types';
 // import keys from '../config/keys'
 
 export const fetchUser = () => async dispatch => {
@@ -33,11 +41,17 @@ export const fetchVouchers = () => async dispatch => {
   dispatch({ type: FETCH_VOUCHERS, payload: res.data });
 };
 
+export const fetchSocials = () => async dispatch => {
+  const profile_res = await axios.get('/api/profile');
+  const res = await axios.get('/api/socials/' + profile_res.data._user)
+  dispatch({ type: FETCH_SOCIALS, payload: res.data });
+};
 
-export const fetchStore = () => dispatch =>{
+
+export const fetchStore = () => dispatch => {
   dispatch({
     type: FETCH_STORE, payload: {
-      modalOpen:false
+      modalOpen: false
     }
   })
 }

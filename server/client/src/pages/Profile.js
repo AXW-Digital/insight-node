@@ -5,7 +5,8 @@ import AvatarCard from '../components/cards/AvatarCard'
 import cardvaluelist from '../assets/js/cardvalues'
 import { createSmallActivityCard } from '../components/cards/CardFunctions'
 import Loader from '../components/parts/Loader'
-import axios from 'axios'
+import axios from 'axios';
+import HomeStepper from '../components/parts/HomeStepper';
 
 // add a switch to wait for data until render
 
@@ -13,13 +14,13 @@ class ProfilePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          aggregates:[]
-        };    
-      }
+            aggregates: []
+        };
+    }
 
-    componentDidMount(){
-        
-        
+    componentDidMount() {
+
+
         const getAggregates = async () => {
             await axios.get('/api/aggregates').then(
                 res => {
@@ -30,11 +31,11 @@ class ProfilePage extends Component {
             )
         }
 
-        
+
 
         getAggregates();
-        
-        
+
+
     }
 
 
@@ -43,11 +44,11 @@ class ProfilePage extends Component {
         const profile = this.props.data.profile
 
         if (profile === null || profile === undefined) {
-            <Loader /> 
+            <Loader />
         }
 
         const aggregates = this.state.aggregates
-        
+
         const activity = [{
             id: 'a1',
             boxIcon: 'bx bx-message-detail',
@@ -66,7 +67,7 @@ class ProfilePage extends Component {
             suffix: '€',
             color: 'green'
         },
-    
+
         {
             id: 'a3',
             boxIcon: 'bx bx-calendar-heart',
@@ -76,7 +77,7 @@ class ProfilePage extends Component {
             suffix: ' päivää',
             color: 'orange'
         },
-    
+
         {
             id: 'a4',
             boxIcon: 'bx bx-bolt-circle',
@@ -89,7 +90,27 @@ class ProfilePage extends Component {
 
         switch (profile) {
             case null:
-                return <Loader /> 
+                return <Loader />
+            case false:
+                return (
+                    <section id="hero" className="d-flex align-items-center">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-2">
+                                    <div className="img-fluid animated mb-5">
+                                        <h1>Hei vaikuttaja, muistathan päivittää profiilisi!</h1>
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 order-2 order-lg-1 hero-img align-items-center">
+
+                                    <HomeStepper startStep={1} />
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                )
+
             default:
                 console.log(profile)
 
@@ -107,11 +128,11 @@ class ProfilePage extends Component {
                                                     sName={profile.sName}
                                                     city={profile.city}
                                                     rank={profile.rank}
-                                                    id = {profile._user}
+                                                    id={profile._user}
                                                 />
                                             </div>
-                                            {aggregates.length < 1 ? <Loader/> : 
-                                            activity.map(createSmallActivityCard)}
+                                            {aggregates.length < 1 ? <Loader /> :
+                                                activity.map(createSmallActivityCard)}
                                         </div>
                                     </div>
                                 </div>

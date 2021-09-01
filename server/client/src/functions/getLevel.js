@@ -21,6 +21,7 @@ export const levelThresholds = [
 ]
 
 export const couponThresholds = [
+    {0: 'bronze'},
     {1: 'bronze'},
     {2: 'bronze'},
     {3: 'silver'},

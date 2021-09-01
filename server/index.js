@@ -44,6 +44,7 @@ require('./routes/leaderboardRoute')(app);
 require('./routes/voucherRoute')(app);
 require('./routes/cardRoute')(app);
 require('./routes/contentRoute')(app);
+require('./routes/socialsRoute')(app)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
