@@ -48,6 +48,7 @@ export default function FeedCard(props) {
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+    props.expandHandler();
   };
 
   return (
@@ -60,7 +61,7 @@ export default function FeedCard(props) {
             </Avatar>
           }
           action={
-            <IconButton aria-label="settings">
+            <IconButton aria-label="close" onClick={props.clickHandler}>
               <CloseIcon />
             </IconButton>
           }
@@ -78,10 +79,10 @@ export default function FeedCard(props) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
+          <IconButton aria-label="add to favorites" onClick={props.likeHandler}>
             <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="share">
+          <IconButton aria-label="share" onClick={props.shareHandler}>
             <ShareIcon />
           </IconButton>
           <IconButton

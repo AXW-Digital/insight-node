@@ -32,6 +32,12 @@ class Shuffle extends Component {
 			error: null,
 			isLoaded: false,
 		};
+
+		this.sendClosed = this.sendClosed.bind(this);
+		this.sendLike = this.sendLike.bind(this);
+        this.sendExpand = this.sendExpand.bind(this);
+        this.sendShared = this.sendShared.bind(this);
+		this.clickHandler = this.clickHandler.bind(this);
 	}
 
 	componentDidMount() {
@@ -53,12 +59,124 @@ class Shuffle extends Component {
 			)
 	}
 
+	moveArticle(source, dest, id) {
+		const sourceArticles = this.state[source].slice();
+		let destArticles = this.state[dest].slice();
+	
+		if ( !sourceArticles.length ) return;
+	
+		// Find the index of the article clicked.
+		// If no ID is provided, the index is 0
+		const i = id ? sourceArticles.findIndex(article => article.id === id) : 0;
+	
+		// If the article is already removed, do nothing.
+		if ( i === -1 ) return;
+	
+		destArticles = [].concat( sourceArticles.splice(i, 1), destArticles );
+	
+		this.setState({
+		  [source]: sourceArticles,
+		  [dest]: destArticles,
+		});
+	  }
+
+	
+	async sendClosed(id){
+		
+		const userId  = this.props.data.profile._user
+		const socialId = id
+		const closed = true
+
+		const data = {
+			userId,
+			socialId,
+			closed
+		}		
+		
+		await axios.post('/api/socials', data).then(
+			(res) => {
+				console.log(res.status)
+			}
+		).catch(err => {
+			console.log(err)
+		})
+	}
+
+	async sendExpand(id){
+		
+		const userId  = this.props.data.profile._user
+		const socialId = id
+		const expanded = true
+
+		const data = {
+			userId,
+			socialId,
+			expanded
+		}		
+		
+		await axios.post('/api/socials', data).then(
+			(res) => {
+				console.log(res.status)
+			}
+		).catch(err => {
+			console.log(err)
+		})
+	}
+
+    async sendLike(id){
+		
+		const userId  = this.props.data.profile._user
+		const socialId = id
+		const liked = true
+
+		const data = {
+			userId,
+			socialId,
+			liked
+		}		
+		
+		await axios.post('/api/socials', data).then(
+			(res) => {
+				console.log(res.status)
+			}
+		).catch(err => {
+			console.log(err)
+		})
+	}
+
+    async sendShared(id){
+		
+		const userId  = this.props.data.profile._user
+		const socialId = id
+		const shared = true
+
+		const data = {
+			userId,
+			socialId,
+			shared
+		}		
+		
+		await axios.post('/api/socials', data).then(
+			(res) => {
+				console.log(res.status)
+			}
+		).catch(err => {
+			console.log(err)
+		})
+	}
+
+
+	clickHandler(id, socialId){
+		this.moveArticle('articles', 'removedArticles', id)
+		this.sendClosed(socialId)
+	}
 
 	renderArticles() {
 		return this.state.articles.map((article, i) => {
 			return (
 				<div>
 					<FeedCardsHomeComp
+						socialId={article._id}
 						name={article.name}
 						picUrl={article.picUrl}
 						formTitle={article.formTitle}
@@ -72,7 +190,10 @@ class Shuffle extends Component {
 						date={article.timestamp}
 						content={article.formContent}
 						index={i}
-						clickHandler={throttle(() => this.moveArticle('articles', 'removedArticles', article.id), 800)}
+						clickHandler={throttle(() => this.clickHandler(article.id, article._id), 1000)}
+						expandHandler={() => this.sendExpand(article._id)}
+                        likeHandler={() => this.sendLike(article._id)}
+                        shareHandler={() => this.sendShared(article._id)}
 						{...article}
 					/>
 				</div>

@@ -60,6 +60,7 @@ export {createSmallActivityCard}
 function createFeedCard(cardContent){
     return (
         <FeedCardFunction
+        socialId = {cardContent.socialId}
         key = {cardContent.id}
         name = {cardContent.name}
         picUrl = {cardContent.picUrl}
@@ -69,6 +70,10 @@ function createFeedCard(cardContent){
         color = {cardContent.color}
         minutes = {cardContent.minutes}
         tyyppi = {cardContent.tyyppi}
+        clickHandler={cardContent.clickHandler}
+        likeHandler={cardContent.likeHandler}
+        expandHandler={cardContent.expandHandler}
+        shareHandler={cardContent.shareHandler}
         />
     )
 }

@@ -35,5 +35,36 @@ module.exports = app => {
 
     });
 
+    app.post('/api/socials', requireLogin, async (req, res) => {
+
+        const {
+            userId,
+            socialId,
+            closed,
+            liked,
+            expanded,
+            shared
+        } = req.body
+
+        data = {
+            userId,
+            socialId,
+            closed,
+            liked,
+            expanded,
+            shared
+        }
+
+        await axios.post(keys.localUrl + '/api/socials', data).then(
+            (res) => {
+                console.log(res.status)
+            }
+        ).catch(err => {
+            console.log(err)
+        })
+
+
+    });
+
 
 };

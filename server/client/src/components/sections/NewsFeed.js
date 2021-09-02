@@ -38,6 +38,11 @@ class NewsFeed extends Component {
         this.toggleSort = this.toggleSort.bind(this);
         this.sortRotate = this.sortRotate.bind(this);
         this.sortShuffle = this.sortShuffle.bind(this);
+        this.sendClosed = this.sendClosed.bind(this);
+        this.sendLike = this.sendLike.bind(this);
+        this.sendExpand = this.sendExpand.bind(this);
+        this.sendShared = this.sendShared.bind(this);
+        this.renderArticles = this.renderArticles.bind(this);
     }
 
     componentDidMount() {
@@ -119,6 +124,100 @@ class NewsFeed extends Component {
         });
     }
 
+    async sendClosed(id){
+		
+		const userId  = this.props.data.profile._user
+		const socialId = id
+		const closed = true
+
+		const data = {
+			userId,
+			socialId,
+			closed
+		}		
+		
+		await axios.post('/api/socials', data).then(
+			(res) => {
+				console.log(res.status)
+			}
+		).catch(err => {
+			console.log(err)
+		})
+	}
+
+
+    async sendExpand(id){
+		
+		const userId  = this.props.data.profile._user
+		const socialId = id
+		const expanded = true
+
+		const data = {
+			userId,
+			socialId,
+			expanded
+		}		
+		
+		await axios.post('/api/socials', data).then(
+			(res) => {
+				console.log(res.status)
+			}
+		).catch(err => {
+			console.log(err)
+		})
+	}
+
+    async sendLike(id){
+		
+		const userId  = this.props.data.profile._user
+		const socialId = id
+		const liked = true
+
+		const data = {
+			userId,
+			socialId,
+			liked
+		}		
+		
+		await axios.post('/api/socials', data).then(
+			(res) => {
+				console.log(res.status)
+			}
+		).catch(err => {
+			console.log(err)
+		})
+	}
+
+    async sendShared(id){
+		
+		const userId  = this.props.data.profile._user
+		const socialId = id
+		const shared = true
+
+		const data = {
+			userId,
+			socialId,
+			shared
+		}		
+		
+		await axios.post('/api/socials', data).then(
+			(res) => {
+				console.log(res.status)
+			}
+		).catch(err => {
+			console.log(err)
+		})
+	}
+
+    clickHandler(id, socialId){
+		this.moveArticle('articles', 'removedArticles', id)
+		this.sendClosed(socialId)
+	}
+
+
+    
+
+
     sortRotate() {
         const articles = this.state.articles.slice();
         articles.unshift(articles.pop())
@@ -129,7 +228,12 @@ class NewsFeed extends Component {
         });
     }
 
+    
+
     renderArticles() {
+
+       
+
         return this.state.articles.map((article, i) => {
             return (
                     <FeedCardComp
@@ -146,7 +250,10 @@ class NewsFeed extends Component {
                         date={article.timestamp}
                         content={article.formContent}
                         index={i}
-                        clickHandler={throttle(() => this.moveArticle('articles', 'removedArticles', article.id), 800)}
+                        clickHandler={throttle(() => this.clickHandler(article.id, article._id), 1000)}
+                        expandHandler={() => this.sendExpand(article._id)}
+                        likeHandler={() => this.sendLike(article._id)}
+                        shareHandler={() => this.sendShared(article._id)}
                         {...article}
                     />
             );

@@ -16,6 +16,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import randomMC from "random-material-color";
 import CloseIcon from '@material-ui/icons/Close';
+import Grow from '@material-ui/core/Grow';
 
 export default function FeedCard(props) {
   const useStyles = makeStyles((theme) => ({
@@ -46,14 +47,24 @@ export default function FeedCard(props) {
   var color = randomMC.getColor();
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [checked, setChecked] = React.useState(true);
+  
+  
+  
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+    props.expandHandler();
+  };
+
+  const handleClose = () => {
+    setChecked((prev) => !prev);
   };
 
   return (
+    <Grow in={checked}>
     <div className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" key={props.key}>                { /* className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" */}
-      <Card className={classes.root}>
+      <Card className={classes.root} >
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
@@ -61,7 +72,7 @@ export default function FeedCard(props) {
             </Avatar>
           }
           action={
-            <IconButton aria-label="settings">
+            <IconButton  onClick={props.clickHandler}>
               <CloseIcon />
             </IconButton>
           }
@@ -79,10 +90,10 @@ export default function FeedCard(props) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
+          <IconButton aria-label="add to favorites" onClick={props.likeHandler}>
             <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="share">
+          <IconButton aria-label="share" onClick={props.shareHandler}>
             <ShareIcon />
           </IconButton>
           <IconButton
@@ -105,5 +116,6 @@ export default function FeedCard(props) {
         </Collapse>
       </Card>
     </div>
+    </Grow>
   );
 }
