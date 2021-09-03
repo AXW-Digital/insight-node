@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -16,7 +16,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import randomMC from "random-material-color";
 import CloseIcon from '@material-ui/icons/Close';
-import Grow from '@material-ui/core/Grow';
+import axios from 'axios'
+
+
 
 export default function FeedCard(props) {
   const useStyles = makeStyles((theme) => ({
@@ -47,22 +49,48 @@ export default function FeedCard(props) {
   var color = randomMC.getColor();
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const [checked, setChecked] = React.useState(true);
+  const [like, setLike] = React.useState({...props.liked});
   
+  useEffect(()=>{
+      setLike(props.liked);
+  }, [props.liked])
   
-  
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
     props.expandHandler();
   };
 
-  const handleClose = () => {
-    setChecked((prev) => !prev);
-  };
+  const handleLike = () => {
+    setLike(!like)
+    const liked = !like
+    const userId = props.userId
+    sendLike(userId, props.socialId, liked)
+  }
+
+  async function sendLike(userId, id, liked) {
+
+    const socialId = id
+
+    const data = {
+        userId,
+        socialId,
+        liked
+    }
+
+    await axios.post('/api/socials', data).then(
+        (res) => {
+            console.log(res.status)
+        }
+    ).catch(err => {
+        console.log(err)
+    })
+}
+ 
 
   return (
-    <Grow in={checked}>
+    
     <div className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" key={props.key}>                { /* className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" */}
       <Card className={classes.root} >
         <CardHeader
@@ -90,10 +118,10 @@ export default function FeedCard(props) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" onClick={props.likeHandler}>
+          <IconButton aria-label="add to favorites" onClick={() => handleLike()} color={like ? 'secondary' : "default" }>
             <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="share" onClick={props.shareHandler}>
+          <IconButton aria-label="share" onClick={props.shareHandler} >
             <ShareIcon />
           </IconButton>
           <IconButton
@@ -115,7 +143,6 @@ export default function FeedCard(props) {
           </CardContent>
         </Collapse>
       </Card>
-    </div>
-    </Grow>
+    </div>    
   );
 }

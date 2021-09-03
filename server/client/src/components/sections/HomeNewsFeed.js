@@ -42,21 +42,27 @@ class Shuffle extends Component {
 
 	componentDidMount() {
 		fetch(keys.adminUrl + "/api/cards")
-			.then(res => res.json())
-			.then(
-				(result) => {
-					this.setState({
-						isLoaded: true,
-						articles: result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
-					});
-				},
-				(error) => {
-					this.setState({
-						isLoaded: true,
-						error
-					});
-				}
-			)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    var articles = result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
+                    var socialData = this.props.data.socials
+                    const userArticles = articles.map(t1 => ({ ...t1, ...socialData.find(t2 => t2.voucherId === t1.voucherId) }))
+                    var merged = _.merge(_.keyBy(socialData, 'socialId'), _.keyBy(articles, '_id'));
+                    var values = _.values(merged);
+
+                    this.setState({
+                        isLoaded: true,
+                        articles: values 
+                    });  
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
 	}
 
 	moveArticle(source, dest, id) {
@@ -191,9 +197,9 @@ class Shuffle extends Component {
 						content={article.formContent}
 						index={i}
 						clickHandler={throttle(() => this.clickHandler(article.id, article._id), 1000)}
-						expandHandler={() => this.sendExpand(article._id)}
-                        likeHandler={() => this.sendLike(article._id)}
-                        shareHandler={() => this.sendShared(article._id)}
+						expandHandler={throttle(() => this.sendExpand(article._id),1000)}
+                        likeHandler={throttle(() => this.sendLike(article._id),1000)}
+                        shareHandler={throttle(() => this.sendShared(article._id),1000)}
 						{...article}
 					/>
 				</div>

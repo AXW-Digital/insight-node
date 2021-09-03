@@ -36,6 +36,9 @@ export default class FeedCardComp extends Component {
                         likeHandler={this.props.likeHandler}
                         expandHandler={this.props.expandHandler}
                         shareHandler={this.props.shareHandler}
+                        liked={this.props.liked}
+                        shared={this.props.shared}
+                        userId={this.props.userId}
                     />
                 </Fade>
             </div>
@@ -75,6 +78,8 @@ class FeedCardsHomeComp extends Component {
                         likeHandler={this.props.likeHandler}
                         expandHandler={this.props.expandHandler}
                         shareHandler={this.props.shareHandler}
+                        liked={this.props.liked}
+                        shared={this.props.shared}
                     />
                 </Fade>
             </div>

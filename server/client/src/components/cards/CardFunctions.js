@@ -74,6 +74,9 @@ function createFeedCard(cardContent){
         likeHandler={cardContent.likeHandler}
         expandHandler={cardContent.expandHandler}
         shareHandler={cardContent.shareHandler}
+        liked={cardContent.liked}
+        shared={cardContent.shared}
+        userId={cardContent.userId}
         />
     )
 }

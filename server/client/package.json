@@ -71,6 +71,7 @@
     "react-rewards": "^1.1.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-share": "^4.4.0",
     "react-shimmer-effect": "^1.0.9",
     "react-spinners": "^0.10.6",
     "react-spinners-kit": "^1.9.1",

@@ -46,23 +46,47 @@ class NewsFeed extends Component {
     }
 
     componentDidMount() {
-        fetch(keys.adminUrl + "/api/cards")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        articles: result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
-                    });
-                    console.log(result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp)))
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+
+
+        var socialData = this.props.data.socials
+
+
+        switch (socialData.length < 1) {
+            case true:
+                (
+                    null
+                )
+            case false:
+                (
+                    fetch(keys.adminUrl + "/api/cards")
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            var articles = result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
+                            socialData = this.props.socials
+                            const userArticles = articles.map(t1 => ({ ...t1, ...socialData.find(t2 => t2.socialId === t1.id) }))
+                            var merged = _.merge(_.keyBy(socialData, 'socialId'), _.keyBy(articles, '_id'));
+                            var values = _.values(merged);
+        
+                            this.setState({
+                                isLoaded: true,
+                                articles: values 
+                            });  
+                        },
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                error
+                            });
+                        }
+                    )
+                )
+        }
+        
+
+
+
+
     }
 
 
@@ -124,98 +148,98 @@ class NewsFeed extends Component {
         });
     }
 
-    async sendClosed(id){
-		
-		const userId  = this.props.data.profile._user
-		const socialId = id
-		const closed = true
+    async sendClosed(id) {
 
-		const data = {
-			userId,
-			socialId,
-			closed
-		}		
-		
-		await axios.post('/api/socials', data).then(
-			(res) => {
-				console.log(res.status)
-			}
-		).catch(err => {
-			console.log(err)
-		})
-	}
+        const userId = this.props.data.profile._user
+        const socialId = id
+        const closed = true
 
+        const data = {
+            userId,
+            socialId,
+            closed
+        }
 
-    async sendExpand(id){
-		
-		const userId  = this.props.data.profile._user
-		const socialId = id
-		const expanded = true
-
-		const data = {
-			userId,
-			socialId,
-			expanded
-		}		
-		
-		await axios.post('/api/socials', data).then(
-			(res) => {
-				console.log(res.status)
-			}
-		).catch(err => {
-			console.log(err)
-		})
-	}
-
-    async sendLike(id){
-		
-		const userId  = this.props.data.profile._user
-		const socialId = id
-		const liked = true
-
-		const data = {
-			userId,
-			socialId,
-			liked
-		}		
-		
-		await axios.post('/api/socials', data).then(
-			(res) => {
-				console.log(res.status)
-			}
-		).catch(err => {
-			console.log(err)
-		})
-	}
-
-    async sendShared(id){
-		
-		const userId  = this.props.data.profile._user
-		const socialId = id
-		const shared = true
-
-		const data = {
-			userId,
-			socialId,
-			shared
-		}		
-		
-		await axios.post('/api/socials', data).then(
-			(res) => {
-				console.log(res.status)
-			}
-		).catch(err => {
-			console.log(err)
-		})
-	}
-
-    clickHandler(id, socialId){
-		this.moveArticle('articles', 'removedArticles', id)
-		this.sendClosed(socialId)
-	}
+        await axios.post('/api/socials', data).then(
+            (res) => {
+                console.log(res.status)
+            }
+        ).catch(err => {
+            console.log(err)
+        })
+    }
 
 
-    
+    async sendExpand(id) {
+
+        const userId = this.props.data.profile._user
+        const socialId = id
+        const expanded = true
+
+        const data = {
+            userId,
+            socialId,
+            expanded
+        }
+
+        await axios.post('/api/socials', data).then(
+            (res) => {
+                console.log(res.status)
+            }
+        ).catch(err => {
+            console.log(err)
+        })
+    }
+
+    async sendLike(id) {
+
+        const userId = this.props.data.profile._user
+        const socialId = id
+        const liked = true
+
+        const data = {
+            userId,
+            socialId,
+            liked
+        }
+
+        await axios.post('/api/socials', data).then(
+            (res) => {
+                console.log(res.status)
+            }
+        ).catch(err => {
+            console.log(err)
+        })
+    }
+
+    async sendShared(id) {
+
+        const userId = this.props.data.profile._user
+        const socialId = id
+        const shared = true
+
+        const data = {
+            userId,
+            socialId,
+            shared
+        }
+
+        await axios.post('/api/socials', data).then(
+            (res) => {
+                console.log(res.status)
+            }
+        ).catch(err => {
+            console.log(err)
+        })
+    }
+
+    clickHandler(id, socialId) {
+        this.moveArticle('articles', 'removedArticles', id)
+        this.sendClosed(socialId)
+    }
+
+
+
 
 
     sortRotate() {
@@ -228,34 +252,37 @@ class NewsFeed extends Component {
         });
     }
 
-    
+
 
     renderArticles() {
 
-       
+
 
         return this.state.articles.map((article, i) => {
             return (
-                    <FeedCardComp
-                        name={article.name}
-                        picUrl={article.picUrl}
-                        formTitle={article.formTitle}
-                        formText={article.formText}
-                        formUrl={article.formUrl}
-                        color={article.color}
-                        minutes={article.minutes}
-                        tyyppi={article.tyyppi}
-                        key={article.id + '_1'}
-                        view={article.view}
-                        date={article.timestamp}
-                        content={article.formContent}
-                        index={i}
-                        clickHandler={throttle(() => this.clickHandler(article.id, article._id), 1000)}
-                        expandHandler={() => this.sendExpand(article._id)}
-                        likeHandler={() => this.sendLike(article._id)}
-                        shareHandler={() => this.sendShared(article._id)}
-                        {...article}
-                    />
+                <FeedCardComp
+                    name={article.name}
+                    picUrl={article.picUrl}
+                    formTitle={article.formTitle}
+                    formText={article.formText}
+                    formUrl={article.formUrl}
+                    color={article.color}
+                    minutes={article.minutes}
+                    tyyppi={article.tyyppi}
+                    key={article.id + '_1'}
+                    view={article.view}
+                    date={article.timestamp}
+                    content={article.formContent}
+                    index={i}
+                    clickHandler={throttle(() => this.clickHandler(article.id, article._id), 1000)}
+                    expandHandler={throttle(() => this.sendExpand(article._id), 1000)}
+                    likeHandler={throttle(() => this.sendLike(article._id), 1000)}
+                    shareHandler={throttle(() => this.sendShared(article._id), 1000)}
+                    liked={article.liked}
+                    shared={article.shared}
+                    closed={article.closed}
+                    {...article}
+                />
             );
         });
     }
