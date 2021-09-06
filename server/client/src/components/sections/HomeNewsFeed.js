@@ -41,13 +41,18 @@ class Shuffle extends Component {
 	}
 
 	componentDidMount() {
-		fetch(keys.adminUrl + "/api/cards")
+
+		const socials = this.props.data.socials
+		
+		const getData = async () =>  {
+		await fetch(keys.localUrl + "/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {
+					console.log('result for socials: ', result)
                     var articles = result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
-                    var socialData = this.props.data.socials
-                    const userArticles = articles.map(t1 => ({ ...t1, ...socialData.find(t2 => t2.voucherId === t1.voucherId) }))
+                    var socialData = socials
+                    // const userArticles = articles.map(t1 => ({ ...t1, ...socialData.find(t2 => t2.voucherId === t1.voucherId) }))
                     var merged = _.merge(_.keyBy(socialData, 'socialId'), _.keyBy(articles, '_id'));
                     var values = _.values(merged);
 
@@ -63,6 +68,9 @@ class Shuffle extends Component {
                     });
                 }
             )
+		}
+
+		getData();
 	}
 
 	moveArticle(source, dest, id) {
@@ -178,6 +186,7 @@ class Shuffle extends Component {
 	}
 
 	renderArticles() {
+		const userId = this.props.data.profile._user
 		return this.state.articles.map((article, i) => {
 			return (
 				<div>
@@ -197,9 +206,13 @@ class Shuffle extends Component {
 						content={article.formContent}
 						index={i}
 						clickHandler={throttle(() => this.clickHandler(article.id, article._id), 1000)}
-						expandHandler={throttle(() => this.sendExpand(article._id),1000)}
-                        likeHandler={throttle(() => this.sendLike(article._id),1000)}
-                        shareHandler={throttle(() => this.sendShared(article._id),1000)}
+						expandHandler={throttle(() => this.sendExpand(article._id), 1000)}
+						likeHandler={throttle(() => this.sendLike(article._id), 1000)}
+						shareHandler={throttle(() => this.sendShared(article._id), 1000)}
+						liked={article.liked}
+						shared={article.shared}
+						closed={article.closed}
+						userId={userId}
 						{...article}
 					/>
 				</div>

@@ -58,7 +58,7 @@ class NewsFeed extends Component {
                 )
             case false:
                 (
-                    fetch(keys.adminUrl + "/api/cards")
+                    fetch(keys.localUrl + "/api/cards")
                     .then(res => res.json())
                     .then(
                         (result) => {
@@ -67,6 +67,7 @@ class NewsFeed extends Component {
                             const userArticles = articles.map(t1 => ({ ...t1, ...socialData.find(t2 => t2.socialId === t1.id) }))
                             var merged = _.merge(_.keyBy(socialData, 'socialId'), _.keyBy(articles, '_id'));
                             var values = _.values(merged);
+                            values = values.filter(x => x.closed === false)
         
                             this.setState({
                                 isLoaded: true,
@@ -256,11 +257,12 @@ class NewsFeed extends Component {
 
     renderArticles() {
 
-
+        const userId = this.props.data.profile._user
 
         return this.state.articles.map((article, i) => {
             return (
                 <FeedCardComp
+                    socialId={article._id}
                     name={article.name}
                     picUrl={article.picUrl}
                     formTitle={article.formTitle}
@@ -281,6 +283,7 @@ class NewsFeed extends Component {
                     liked={article.liked}
                     shared={article.shared}
                     closed={article.closed}
+                    userId={userId}
                     {...article}
                 />
             );

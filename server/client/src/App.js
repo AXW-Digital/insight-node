@@ -25,6 +25,7 @@ import More from './pages/More';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import FeedPage from './pages/FeedPage';
+import ArticlePage from './pages/ArticlePage';
 
 //parts
 import Header from './components/parts/Header'
@@ -89,6 +90,7 @@ class App extends Component {
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/test" component={Test} />
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/feed" component={FeedPage} />
             <PrivateRoute auth = {authStatus} path = "/survey:id" component={KyselyPage} />
+            <Route auth = {authStatus} component={ArticlePage} path="/article/:id" />
             <RedirectRoute auth = {authStatus} component={Signin} path="/signin" />
             <Route auth = {authStatus} component={Signup} path="/signup" />
             <Route component={CreateProfile} exact path="/profile/create" /> 

@@ -23,7 +23,7 @@ class HomeQuestion extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(keys.adminUrl + '/api/boosts').then(res => {
+        axios.get(keys.localUrl + '/api/boosts').then(res => {
             const boosts = res.data
 
             boosts.sort(function(a, b) {

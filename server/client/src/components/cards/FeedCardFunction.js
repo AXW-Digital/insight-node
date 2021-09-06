@@ -80,6 +80,7 @@ class FeedCardsHomeComp extends Component {
                         shareHandler={this.props.shareHandler}
                         liked={this.props.liked}
                         shared={this.props.shared}
+                        userId={this.props.userId}
                     />
                 </Fade>
             </div>

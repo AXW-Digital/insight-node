@@ -78,7 +78,7 @@ class HomePage extends Component {
 
   componentDidMount() {
     console.debug("After mount! Let's load data from API...");
-    
+
     const getData = async () => {
       await axios.get("../api/surveys/count").then((response) => {
         this.setState({ surveysAns: response.data });
@@ -96,8 +96,8 @@ class HomePage extends Component {
         .catch((err) => {
           this.setState({ isProfile: false });
         });
-  
-      await fetch(keys.adminUrl + "/api/surveys")
+
+      await fetch(keys.localUrl + "/api/surveys")
         .then(res => res.json())
         .then(
           (result) => {
@@ -119,14 +119,14 @@ class HomePage extends Component {
     }
 
     getData();
-    
+
 
     const subscription = couponService.onCoupon(first()).subscribe(async coupons => {
       if (coupons !== null && !this.state.couponsSent) {
         console.log('sending coupons to backend: ', coupons)
         await axios.post('/api/coupons', coupons).then(
           (res) => {
-            this.setState({couponsSent: true});
+            this.setState({ couponsSent: true });
             console.log(res.status)
           }
         )
@@ -135,16 +135,16 @@ class HomePage extends Component {
 
     const prizesub = prizeService.onNumber(first()).subscribe(async prize => {
       if (prize !== null) {
-        
+
 
 
         var qrCode = cryptoRandomString({ length: 5 })
-        
-        qrCode = qrCode.toUpperCase(); 
+
+        qrCode = qrCode.toUpperCase();
 
 
-        var voucher = this.state.vouchers.filter(x => x.voucherId === prize)       
-        
+        var voucher = this.state.vouchers.filter(x => x.voucherId === prize)
+
         if (voucher[0] === undefined || voucher[0] === null || voucher[0].length < 1) {
           const sleeptime = 1500
           const sleep = m => new Promise(r => setTimeout(r, m))
@@ -180,7 +180,7 @@ class HomePage extends Component {
           name,
           qrCode
         }
-        
+
         await axios.post('/api/vouchers', data)
           .then((res1) => {
             console.log(res1.status)
@@ -213,7 +213,7 @@ class HomePage extends Component {
       default:
         return <Loader />;
 
-      case false: 
+      case false:
         const surveysToRender = (surveyAns) => {
           const renewableSurveysList = cardvaluelist.filter(
             (card) => card.tyyppi === "Vastaa" && card.resetHours !== undefined
@@ -315,17 +315,17 @@ class HomePage extends Component {
         const lev = levelThresholds.slice(10)
 
         if (levelData.level <= 10) {
-          var stepPositions = levelThresholds.slice(0, 10).map((x) => x / (Math.max(...levelThresholds.slice(0,10)) / 100));
+          var stepPositions = levelThresholds.slice(0, 10).map((x) => x / (Math.max(...levelThresholds.slice(0, 10)) / 100));
           stepPositions.unshift(0);
           points = this.props.data.profile.points;
           progress = points / (Math.max(...levelThresholds.slice(0, 10)) / 100);
-        } else if (levelData.level > 10){
+        } else if (levelData.level > 10) {
           var stepPositions = levelThresholds.slice(10).map((x) => x / (Math.max(...levelThresholds.slice(10)) / 100));
           stepPositions.unshift(0);
           points = this.props.data.profile.points;
           progress = points / (Math.max(...levelThresholds.slice(10)) / 100);
         }
-        
+
 
         switch (points) {
 
@@ -351,7 +351,9 @@ class HomePage extends Component {
                 </section>
 
                 <div>
-                  <HomeNewsFeed />
+                  {this.props.data.socials !== undefined ?
+                    <HomeNewsFeed />
+                    : <Loader />}
                 </div>
 
                 <div className='odd-section leaderboard mt-1'>
@@ -418,50 +420,50 @@ class HomePage extends Component {
                               );
                             }}
                           </AnimatedProgressProvider>
-                          {level <= 10 ? 
-                          <>
-                          <AnimatedProgressProvider
-                            valueStart={0}
-                            valueEnd={progress}
-                            duration={3}
-                            easingFunction={easeQuadInOut}
-                          >
-                            {(value) => {
-                              const roundedValue = Math.round(
-                                (value / 100) * maxLevelPoints
-                              );
-                              return (
-                                <StepProgressBar
-                                  progress={value}
-                                  currentLevel={level}
-                                  stepPositions={stepPositions}
-                                ></StepProgressBar>
-                              ); 
-                            }}
-                          </AnimatedProgressProvider>
-                          </>
-                          
-                          :<>
-                          <AnimatedProgressProvider
-                            valueStart={0}
-                            valueEnd={progress}
-                            duration={3}
-                            easingFunction={easeQuadInOut}
-                          >
-                            {(value) => {
-                              const roundedValue = Math.round(
-                                (value / 100) * maxLevelPoints
-                              );
-                              return (
-                                <StepProgressBarOver
-                                  progress={value}
-                                  currentLevel={level}
-                                  stepPositions={stepPositions}
-                                ></StepProgressBarOver>
-                              ); 
-                            }}
-                          </AnimatedProgressProvider>
-                          </> }
+                          {level <= 10 ?
+                            <>
+                              <AnimatedProgressProvider
+                                valueStart={0}
+                                valueEnd={progress}
+                                duration={3}
+                                easingFunction={easeQuadInOut}
+                              >
+                                {(value) => {
+                                  const roundedValue = Math.round(
+                                    (value / 100) * maxLevelPoints
+                                  );
+                                  return (
+                                    <StepProgressBar
+                                      progress={value}
+                                      currentLevel={level}
+                                      stepPositions={stepPositions}
+                                    ></StepProgressBar>
+                                  );
+                                }}
+                              </AnimatedProgressProvider>
+                            </>
+
+                            : <>
+                              <AnimatedProgressProvider
+                                valueStart={0}
+                                valueEnd={progress}
+                                duration={3}
+                                easingFunction={easeQuadInOut}
+                              >
+                                {(value) => {
+                                  const roundedValue = Math.round(
+                                    (value / 100) * maxLevelPoints
+                                  );
+                                  return (
+                                    <StepProgressBarOver
+                                      progress={value}
+                                      currentLevel={level}
+                                      stepPositions={stepPositions}
+                                    ></StepProgressBarOver>
+                                  );
+                                }}
+                              </AnimatedProgressProvider>
+                            </>}
 
 
                         </div>
@@ -492,7 +494,7 @@ class HomePage extends Component {
                     <HomeQuestion
                       kyselyt={items}
                       currentPoints={points}
-                      surveyAns = {this.state.surveysAns}
+                      surveyAns={this.state.surveysAns}
                     />
                     :
                     <Loader />
@@ -500,7 +502,9 @@ class HomePage extends Component {
                 </div>
 
                 <div>
-                  <HomeNewsFeed />
+                  {this.props.data.socials !== undefined ?
+                    <HomeNewsFeed />
+                    : <Loader />}
                 </div>
 
                 <div className='odd-section leaderboard mt-1'>
@@ -537,7 +541,9 @@ class HomePage extends Component {
             </section>
 
             <div>
-              <HomeNewsFeed />
+              {this.props.data.socials !== undefined ?
+                <HomeNewsFeed />
+                : <Loader />}
             </div>
 
             <div className='odd-section leaderboard mt-1'>

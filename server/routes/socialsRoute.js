@@ -66,5 +66,34 @@ module.exports = app => {
 
     });
 
+    app.get('/api/socials/:userId', requireLogin, async (req, res) => {
+
+        const userId = req.params.userId
+
+
+        
+        await axios.get(keys.localUrl + '/api/socials/' + userId)
+            .then((response) => {
+                data = response.data
+                return res.status(200).send(data)
+            });
+
+    });
+
+    app.get('/api/socials/aggregates/:socialId', async (req, res) => {
+
+        const socialId = req.params.socialId
+
+        
+        await axios.get(keys.localUrl + '/api/socials/aggregates/' + socialId)
+            .then((response) => {
+                data = response.data
+                return res.status(200).send(data)
+            });
+
+    });
+
+
+
 
 };
