@@ -14,8 +14,22 @@ module.exports = app => {
     (req, res) => {      
       res.redirect('/home');
     }
+  );
+
+  app.get(
+    '/auth/facebook',
+    passport.authenticate('facebook')
+  );
+
+  app.get(
+    '/auth/facebook/callback', 
+    passport.authenticate('facebook'),
+    (req, res) => {      
+      res.redirect('/home');
+    }
+  );
     
-);
+
 
   app.get('/api/logout', (req, res) => {
     req.logout();

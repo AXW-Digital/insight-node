@@ -17,15 +17,14 @@ class Signin extends Component {
 
     render() {
 
-        
-
-        if (this.state.redirect) {
+        const handleGoogleClick = () => {
             window.location = '/auth/google'
         }
-       
-        const handleGoogleClick = () => {
-            this.setState({redirect: true});
+
+        const handleFacebookClick = () => {
+            window.location = '/auth/facebook'
         }
+
         const handleClick = () => {alert('Tämä ominaisuus tulossa pian!')}
 
         return (
@@ -69,7 +68,7 @@ class Signin extends Component {
                                             <a href="/home"> <i  className="fab fa-linkedin btn-some align-items-center justify-content-center"/></a>
                                             <a href="/home"> <i  className="fab fa-twitter btn-some align-items-center justify-content-center"/></a>
                                         </div> */}
-                                        <FacebookLoginButton onClick={handleClick} className='my-2' />
+                                        <FacebookLoginButton onClick={handleFacebookClick} className='my-2' />
                                         <GoogleLoginButton onClick={handleGoogleClick} className='my-2'/>
                                         <TwitterLoginButton onClick={handleClick} className='my-2'/>
                                         <LinkedInLoginButton onClick={handleClick} className='my-2'/>
