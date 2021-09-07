@@ -2109,6 +2109,13 @@ HomeNewsFeed CSS
 }  */
 
 
+.network{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
 
 /* -----------------------------------------------
 End HomeNewsFeed CSS

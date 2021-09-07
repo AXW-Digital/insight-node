@@ -77,21 +77,13 @@ class ArticlePage extends Component {
                         })
                     }
                 )
-        }
+        }       
 
-
-        
-
-        getData();
-
-       
+        getData();      
 
     }
 
     renderArticle() {
-        
-        
-
         
         var {
             timestamp,
@@ -105,8 +97,6 @@ class ArticlePage extends Component {
             liked,
             userId
         } = this.state
-
-        
 
         return (
             <div>
@@ -128,7 +118,6 @@ class ArticlePage extends Component {
         )
     }
 
-
     render() {
         var { articlesLoaded, aggrLoaded, socialsLoaded, userLoaded } = this.state
 
@@ -139,7 +128,7 @@ class ArticlePage extends Component {
 
         if (socials !== null && !socialsLoaded){
             socials = socials.filter(x => x.socialId === _id)
-            if (socials === null){
+            if (socials === null || socials.length < 1){
                 liked = false
             } else {
                 liked = socials[0].liked
@@ -160,8 +149,12 @@ class ArticlePage extends Component {
         }
 
         var isLoaded = false
+        var auth = true
         if (articlesLoaded && aggrLoaded && socialsLoaded && userLoaded) {
             isLoaded = true
+        } else if (articlesLoaded && aggrLoaded && !this.props.auth){
+            isLoaded = true
+            auth = false
         }
 
         switch (isLoaded) {

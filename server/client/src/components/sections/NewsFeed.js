@@ -65,9 +65,11 @@ class NewsFeed extends Component {
                             var articles = result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
                             socialData = this.props.socials
                             const userArticles = articles.map(t1 => ({ ...t1, ...socialData.find(t2 => t2.socialId === t1.id) }))
+                            console.log('userArticles: ', userArticles)
                             var merged = _.merge(_.keyBy(socialData, 'socialId'), _.keyBy(articles, '_id'));
+                            console.log('merged: ', merged)
                             var values = _.values(merged);
-                            values = values.filter(x => x.closed === false)
+                            values = values.filter(x => x.closed === false || x.closed === undefined)
         
                             this.setState({
                                 isLoaded: true,
