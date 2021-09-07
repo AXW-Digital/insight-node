@@ -1,7 +1,35 @@
 import React, { Component } from 'react';
+import {
+    FacebookLoginButton,
+    GoogleLoginButton,
+    TwitterLoginButton,
+    LinkedInLoginButton
+} from "react-social-login-buttons";
+
 
 class Signin extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false
+        };
+    }
+
+
     render() {
+
+        
+
+        if (this.state.redirect) {
+            window.location = '/auth/google'
+        }
+       
+        const handleGoogleClick = () => {
+            this.setState({redirect: true});
+        }
+        const handleClick = () => {alert('Tämä ominaisuus tulossa pian!')}
+
+
         return (
             <div className='container-fluid d-flex vh-100 vw-100 sign-bg m-0 px-0 pb-5'>
                 <div className="container signin">
@@ -17,7 +45,7 @@ class Signin extends Component {
                                     </div>
                                     <h5 className="card-title text-center">Rekisteröidy</h5>
                                     <form className="form-signin">
-                                        <div className="form-label-group">
+                                        {/* <div className="form-label-group">
                                             <input type="text" id="inputName" className="form-control" placeholder="Etunimi" required autofocus />
                                             <label for="inputName">Etunimi</label>
                                         </div>
@@ -41,13 +69,17 @@ class Signin extends Component {
                                             <div className="col"><hr /></div>
                                             <div className='col align-items-center align-middle my-auto text-nowrap alt-sign text-center'>tai rekisteröidy</div>
                                             <div className="col"><hr /></div>
-                                        </div>
-                                        <div className='row justify-content-between ml-xl-4 mr-xl-4 ml-2 mr-2'>
+                                        </div> */}
+                                        {/* <div className='row justify-content-between ml-xl-4 mr-xl-4 ml-2 mr-2'>
                                         <a href="/home"> <i className="fab fa-facebook-f btn-some align-items-center justify-content-center"/></a>
                                         <a href="/auth/google"> <i  className="fab fa-google btn-some align-items-center justify-content-center"/></a>
                                         <a href="/home"> <i  className="fab fa-linkedin btn-some align-items-center justify-content-center"/></a>
                                         <a href="/home"> <i  className="fab fa-twitter btn-some align-items-center justify-content-center"/></a>
-                                        </div>
+                                        </div> */}
+                                        <FacebookLoginButton onClick={handleClick} className='my-2' />
+                                        <GoogleLoginButton onClick={handleGoogleClick} className='my-2'/>
+                                        <TwitterLoginButton onClick={handleClick} className='my-2'/>
+                                        <LinkedInLoginButton onClick={handleClick} className='my-2'/>
                                         <hr className='my-4' />
                                         <div className='row mt-1'>
                                             <div className='col text-center text-nowrap'>Oletko jo käyttäjä?</div>

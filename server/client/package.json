@@ -74,6 +74,7 @@
     "react-scripts": "4.0.3",
     "react-share": "^4.4.0",
     "react-shimmer-effect": "^1.0.9",
+    "react-social-login-buttons": "^3.5.1",
     "react-spinners": "^0.10.6",
     "react-spinners-kit": "^1.9.1",
     "react-spring": "^9.1.2",
