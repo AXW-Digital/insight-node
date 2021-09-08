@@ -120,12 +120,19 @@ export default function FeedCard(props) {
   function copyToClipboard(textToCopy) {
     // navigator clipboard api needs a secure context (https)
     if (navigator.clipboard && window.isSecureContext) {
-        // navigator clipboard api method'
-        setSnackOpen(true);
-        return navigator.clipboard.writeText(textToCopy);
+      // navigator clipboard api method'
+      setSnackOpen(true);
+      return navigator.clipboard.writeText(textToCopy);
 
     } else {
-        // text area method
+      // text area method
+      copy(textToCopy, {
+        debug: true,
+        message: 'Press #{key} to copy',
+      });
+
+      return new Promise((res, rej) => {
+
         let textArea = document.createElement("textarea");
         textArea.value = textToCopy;
         // make the textarea out of viewport
@@ -135,23 +142,23 @@ export default function FeedCard(props) {
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
-        return new Promise((res, rej) => {
-            // here the magic happens
-            document.execCommand('copy') ? res() : rej();
-            textArea.remove();
-            setSnackOpen(true);
-        });
+        // here the magic happens
+        document.execCommand('copy') ? res() : rej();
+       
+        textArea.remove();
+        setSnackOpen(true);
+      });
     }
-}
+  }
 
 
 
-const copyCodeToClipboard = async () => {
-  const url = `${window.location.origin.toString()}/article/${props.socialId}`
-  await copyToClipboard(url)
-  .then(() => console.log('text copied'))
-  .catch((err) => console.log(err))    
-}
+  const copyCodeToClipboard = async (event) => {
+    const url = `${window.location.origin.toString()}/article/${props.socialId}`
+    await copyToClipboard(url)
+      .then(() => console.log('copied'))
+      .catch((err) => alert(err))
+  }
 
   const handleLike = () => {
     setLike(!like)

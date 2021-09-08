@@ -26,6 +26,7 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import FeedPage from './pages/FeedPage';
 import ArticlePage from './pages/ArticlePage';
+import TermsAndConditionsPage from './pages/TermsAndConditionsPage';
 
 //parts
 import Header from './components/parts/Header'
@@ -91,6 +92,7 @@ class App extends Component {
             <PrivateRoute auth = {authStatus} profile = {profileStatus} path = "/feed" component={FeedPage} />
             <PrivateRoute auth = {authStatus} path = "/survey:id" component={KyselyPage} />
             <Route auth = {authStatus} component={ArticlePage} path="/article/:id" />
+            <Route auth = {authStatus} component={TermsAndConditionsPage} path="/kayttoehdot" />
             <RedirectRoute auth = {authStatus} component={Signin} path="/signin" />
             <Route auth = {authStatus} component={Signup} path="/signup" />
             <Route component={CreateProfile} exact path="/profile/create" /> 

@@ -4,7 +4,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { CgProfile } from 'react-icons/cg';
+import { CgProfile, CgInfo } from 'react-icons/cg';
 import { FiLogOut } from 'react-icons/fi';
 import { VscSettings } from 'react-icons/vsc'
 import Divider from '@material-ui/core/Divider';
@@ -13,7 +13,6 @@ import Divider from '@material-ui/core/Divider';
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
-      maxWidth: 500,
       backgroundColor: theme.palette.background.paper,
     },
   }));
@@ -43,6 +42,13 @@ const classes = useStyles();
                         <ListItemText primary="Asetukset" />
                         <ListItemIcon>
                         <VscSettings />
+                    </ListItemIcon>
+                    </ListItemLink>
+                    <Divider />
+                    <ListItemLink href="/kayttoehdot">
+                        <ListItemText primary="Käyttöehdot" />
+                        <ListItemIcon>
+                        <CgInfo />
                     </ListItemIcon>
                     </ListItemLink>
                     <Divider />

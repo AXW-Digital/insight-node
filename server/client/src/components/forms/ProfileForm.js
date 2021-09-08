@@ -18,6 +18,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TermsAndConditionsPage from '../../pages/TermsAndConditionsPage';
 
 
 
@@ -427,14 +428,7 @@ const ProfileForm = (props) => {
                         // ref={descriptionElementRef}
                         tabIndex={-1}
                     >
-                        {[...new Array(50)]
-                            .map(
-                                () =>   `Cras mattis consectetur purus sit amet fermentum.
-                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                                        Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                                        Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-                            )
-                            .join('\n')}
+                        <TermsAndConditionsPage/>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

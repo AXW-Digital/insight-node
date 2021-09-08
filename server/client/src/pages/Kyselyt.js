@@ -61,7 +61,8 @@ class HomePage extends Component {
         });
 
         axios.get('../api/faq').then(response => {
-            this.setState({ faqPoints: response.data });
+            const faqPoints = response.data.sort((a, b) => a.index - b.index);
+            this.setState({ faqPoints});
         }).catch(err => {
             console.log(err)
         });
@@ -194,7 +195,7 @@ class HomePage extends Component {
                     index={point.index}
                 />
             );
-        }).sort((a, b) => a.index - b.index);
+        })
 
 
     }
