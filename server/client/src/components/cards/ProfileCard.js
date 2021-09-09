@@ -28,8 +28,8 @@ class ProfileCard extends Component {
                                         <small className="text-muted">Puhelin: </small>
                                         <p>{this.props.phoneNumber}</p>
                                         <hr />
-                                        <small className="text-muted">Syntymäaika: </small>
-                                        <p className="m-b-0">{this.props.birthDate}</p>
+                                        {/* <small className="text-muted">Syntymäaika: </small>
+                                        <p className="m-b-0">{this.props.birthDate}</p> */}
                                     </div>
                                 </Tab>
                                 <Tab eventKey="profile" title="Tiedot">
@@ -43,8 +43,8 @@ class ProfileCard extends Component {
                                         <small className="text-muted">Kotipaikkakunta </small>
                                         <p>{this.props.homeCity}</p>
                                         <hr />
-                                        <small className="text-muted">Osoite</small>
-                                        <p className="m-b-0">{this.props.homeAddress}</p>
+                                        <small className="text-muted">Käyttäjänimi</small>
+                                        <p className="m-b-0">{this.props.uName}</p>
                                     </div>
                                 </Tab>
                             </Tabs>

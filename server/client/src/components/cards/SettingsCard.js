@@ -127,7 +127,7 @@ const SettingsCard = (props) => {
                             <div className="tab-pane body active" id="profile-tab">
                                 <div className='row clearfix'>
                                     <div className='col-12 setting-col'>
-                                        <small className="text-muted"> Menutestit </small>
+                                        <small className="text-muted"> Menutestit (ominaisuus tulossa pian) </small>
                                         <hr />
                                     </div>
                                     <div className='col-12 '>
@@ -331,7 +331,7 @@ const SettingsCard = (props) => {
                         <Tab eventKey="security" title="Turvallisuus">
                             <div className="tab-pane body active" id="security-tab">
                                 <div className='row clearfix'>
-                                    <div className='col-12 setting-col'>
+                                    {/* <div className='col-12 setting-col'>
                                         <small className="text-muted ">Salasanhallinta: </small>
                                         <hr />
                                     </div>
@@ -355,7 +355,7 @@ const SettingsCard = (props) => {
                                     </div>
                                     <div className='col-md-3 mb-3 ml-auto mt-3'>
                                         <a href="/api/settings/update" className="btn btn-lg btn-block text-uppercase btn-update-settings">Päivitä</a>
-                                    </div>
+                                    </div> */}
                                     <div className='col-12 setting-col'>
                                         <small className="text-muted ">Käyttäjähallinta: </small>
                                         <hr />

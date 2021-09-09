@@ -22,6 +22,9 @@ import LinkIcon from '@material-ui/icons/Link';
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { IoRestaurantOutline, IoNewspaperOutline } from 'react-icons/io5';
+import { FaCocktail } from 'react-icons/fa';
+import { GiChickenOven } from 'react-icons/gi';
 
 // react-share
 import {
@@ -89,13 +92,24 @@ export default function FeedCard(props) {
   const [like, setLike] = React.useState({ ...props.liked });
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [snackOpen, setSnackOpen] = React.useState(false);
+  const [feedIcon, setFeedIcon] = React.useState(null);
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
   useEffect(() => {
     setLike(props.liked);
-  }, [props.liked])
+    switch(props.feedType){
+      case 'food':
+        return setFeedIcon( <GiChickenOven/> )
+      case 'restaurant':
+        return setFeedIcon( <IoRestaurantOutline/> )
+      case 'drink':
+        return setFeedIcon( <FaCocktail/> )
+      default:
+        return setFeedIcon(< IoNewspaperOutline />)
+    }
+  }, [props.liked, props.feedType])
 
 
 
@@ -198,7 +212,7 @@ export default function FeedCard(props) {
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={classes.avatar}>
-                R
+                {feedIcon}
               </Avatar>
             }
             action={

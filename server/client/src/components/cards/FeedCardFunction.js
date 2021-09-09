@@ -36,6 +36,7 @@ export default class FeedCardComp extends Component {
                         likeHandler={this.props.likeHandler}
                         expandHandler={this.props.expandHandler}
                         shareHandler={this.props.shareHandler}
+                        feedType={this.props.feedType}
                         liked={this.props.liked}
                         shared={this.props.shared}
                         userId={this.props.userId}

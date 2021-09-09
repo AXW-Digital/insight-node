@@ -149,6 +149,7 @@ class ProfilePage extends Component {
                                             lastLogin={profile.lastLogin}
                                             homeCity={profile.city}
                                             homeAddress={profile.address + ' ' + profile.addrNum}
+                                            uName={profile.uName}
                                         />
                                     </div>
                                 </div>

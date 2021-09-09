@@ -213,6 +213,7 @@ class Shuffle extends Component {
 						shared={article.shared}
 						closed={article.closed}
 						userId={userId}
+						feedType={article.feedType}
 						{...article}
 					/>
 				</div>

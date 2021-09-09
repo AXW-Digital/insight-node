@@ -22,6 +22,9 @@ import LinkIcon from '@material-ui/icons/Link';
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { IoRestaurantOutline, IoNewspaperOutline } from 'react-icons/io5';
+import { FaCocktail } from 'react-icons/fa';
+import { GiChickenOven } from 'react-icons/gi';
 
 // react-share
 import {
@@ -87,6 +90,7 @@ export default function FeedCard(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [like, setLike] = React.useState({ ...props.liked });
   const [snackOpen, setSnackOpen] = React.useState(false);
+  const [feedIcon, setFeedIcon] = React.useState(null);
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -94,7 +98,17 @@ export default function FeedCard(props) {
 
   useEffect(() => {
     setLike(props.liked);
-  }, [props.liked])
+    switch(props.feedType){
+      case 'food':
+        return setFeedIcon( <GiChickenOven/> ) 
+      case 'restaurant':
+        return setFeedIcon( <IoRestaurantOutline/> )
+      case 'drink':
+        return setFeedIcon( <FaCocktail/> )
+      case 'general':
+        return setFeedIcon(< IoNewspaperOutline />)
+    }
+  }, [props.liked, props.feedType])
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -187,6 +201,8 @@ export default function FeedCard(props) {
     })
   }
 
+  
+  
 
   return (
     <div className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" key={props.key}>                { /* className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" */}
@@ -195,7 +211,7 @@ export default function FeedCard(props) {
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={classes.avatar}>
-                R
+                {feedIcon}
               </Avatar>
             }
             action={

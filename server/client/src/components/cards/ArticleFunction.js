@@ -16,6 +16,7 @@ class ArticleFunction extends Component {
                 totalLikes={this.props.likes}
                 liked={this.props.liked}
                 userId={this.props.userId}
+                feedType={this.props.feedType}
             />
             </div>
         );

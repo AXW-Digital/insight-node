@@ -18,6 +18,7 @@ class ArticlePage extends Component {
             picUrl: [],
             _id: [],
             name: [],
+            feedType: [],
             aggrLoaded: false,
             likes: 0,
             liked:false,
@@ -50,7 +51,8 @@ class ArticlePage extends Component {
                             formTitle,
                             picUrl,
                             _id,
-                            name
+                            name,
+                            feedType
                         } = result
                         this.setState({
                             timestamp,
@@ -60,6 +62,7 @@ class ArticlePage extends Component {
                             picUrl,
                             _id,
                             name,
+                            feedType,
                             articlesLoaded: true
                         })
                     }
@@ -95,7 +98,8 @@ class ArticlePage extends Component {
             name,
             likes,
             liked,
-            userId
+            userId,
+            feedType
         } = this.state
 
         return (

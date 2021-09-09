@@ -22,6 +22,9 @@ import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import copy from 'copy-to-clipboard';
+import { IoRestaurantOutline, IoNewspaperOutline } from 'react-icons/io5';
+import { FaCocktail } from 'react-icons/fa';
+import { GiChickenOven } from 'react-icons/gi';
 
 // react-share
 import {
@@ -104,12 +107,24 @@ export default function ArticleSection(props) {
   const [likeTotal, setTotal] = React.useState(25) //{...props.totalLikes}
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [snackOpen, setSnackOpen] = React.useState(false);
+  const [feedIcon, setFeedIcon] = React.useState(null);
 
   useEffect(() => {
     setLike(props.liked);
     setTotal(props.totalLikes)
-  }, [props.liked, props.totalLikes])
+    switch(props.feedType){
+      case 'food':
+        setFeedIcon( <GiChickenOven/> )
+      case 'restaurant':
+        setFeedIcon( <IoRestaurantOutline/> )
+      case 'drink':
+        setFeedIcon( <FaCocktail/> )
+      default:
+        setFeedIcon(< IoNewspaperOutline />)
+    }
+  }, [props.liked, props.totalLikes, props.feedType])
 
+  
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
