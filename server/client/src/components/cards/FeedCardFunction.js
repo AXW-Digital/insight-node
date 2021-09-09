@@ -40,6 +40,7 @@ export default class FeedCardComp extends Component {
                         liked={this.props.liked}
                         shared={this.props.shared}
                         userId={this.props.userId}
+                        
                     />
                 </Fade>
             </div>
@@ -82,6 +83,7 @@ class FeedCardsHomeComp extends Component {
                         liked={this.props.liked}
                         shared={this.props.shared}
                         userId={this.props.userId}
+                        feedType={this.props.feedType}
                     />
                 </Fade>
             </div>

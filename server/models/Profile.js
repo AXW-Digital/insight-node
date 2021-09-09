@@ -23,7 +23,8 @@ const profileSchema = new Schema({
     silverCoupons: Number,
     bronzeCoupons: Number,
     level: Number,
-    points: Number    
+    points: Number,
+    avatarSeed: String    
 });
 
 mongoose.model('profile', profileSchema);

@@ -10,19 +10,21 @@ module.exports = app => {
 
     app.get('/api/profile', requireLogin, async (req, res) => {
 
-        const filter = {_user: req.user.id}
-        const update = {lastLogin: Date.now()}
+        const filter = { _user: req.user.id }
+        const update = { lastLogin: Date.now() }
         const profile = await Profile.findOneAndUpdate(filter, update, {
             new: true
         });
-        
-        if (profile !== null) {console.log(profile.fName, Date(Date.now()))} else {console.log('user ' + filter._user + ' needs to update profile') }
+
+        if (profile !== null) { console.log(profile.fName, Date(Date.now())) } else { console.log('user ' + filter._user + ' needs to update profile') }
         res.send(profile)
 
-        
+
     });
 
     app.post('/api/profile/create', requireLogin, async (req, res) => {
+
+        const avatarSeed = 'dfgsgcdgrew'
 
         const {
             uName,
@@ -35,7 +37,7 @@ module.exports = app => {
             city,
             profileCreated,
             lastLogin,
-            rank 
+            rank
         } = req.body;
 
         const newProfile = new Profile({
@@ -55,7 +57,8 @@ module.exports = app => {
             points: 0,
             goldCoupons: 0,
             silverCoupons: 0,
-            bronzeCoupons: 0
+            bronzeCoupons: 0,
+            avatarSeed
         })
 
         const coupons = {
@@ -65,25 +68,27 @@ module.exports = app => {
             userId: req.user.id
         }
 
-        await newProfile.save();       
+        await newProfile.save();
 
         await axios.post(keys.localUrl + '/api/coupons', coupons).then(
             (resp) => {
                 console.log(resp.status)
                 res.send(200, resp.status)
-                
+
             }
-        ).catch(err=>{
+        ).catch(err => {
             console.log(err)
         })
 
         console.log('user profile created');
-        
+
 
     });
-    
-    
+
+
     app.post('/api/profile/update', requireLogin, async (req, res) => {
+
+
         const {
             uName,
             fName,
@@ -102,43 +107,44 @@ module.exports = app => {
             phone,
             address,
             geom,
-            city};
+            city
+        };
 
-        var o = Object.entries(updateProfile).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})        
+        var o = Object.entries(updateProfile).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
         updateProfile = o
 
 
-        const filter = {_user: req.user.id}
+        const filter = { _user: req.user.id }
         const profile = await Profile.findOneAndUpdate(filter, updateProfile, {
             new: true
         });
 
         res.end('profile updated succesfully');
 
-         
-       
+
+
     });
 
 
     app.post('/api/profile/points', requireLogin, async (req, res) => {
         var { points } = req.body;
-        const filter = {_user: req.user.id}
-        
+        const filter = { _user: req.user.id }
+
         const currentPoints = await Profile.findOne(filter)
         console.log('current points:')
         console.log(currentPoints.points)
 
         if (currentPoints.points === undefined) currentPoints.points = 0
-        
+
         points += currentPoints.points
-        const updatePoints = { points }       
-        
+        const updatePoints = { points }
+
         const profile = await Profile.findOneAndUpdate(filter, updatePoints, {
             new: true
         });
 
-        return res.send(200) 
-    }) 
+        return res.send(200)
+    })
 
 
     app.post('/api/profile/coupons', requireLogin, async (req, res) => {
@@ -157,8 +163,8 @@ module.exports = app => {
                 console.log(response.status)
                 res.send(response.status)
             }
-        ) 
-    }) 
+        )
+    })
 
 
     app.get('/api/coupons', requireLogin, async (req, res) => {
@@ -181,34 +187,62 @@ module.exports = app => {
 
                 res.send(200, data)
             }
-        ).catch(err=>{
+        ).catch(err => {
             console.log(err)
         })
 
-       
-        
+
+
     })
 
 
     app.post('/api/coupons', requireLogin, async (req, res) => {
-        
-        
+
+
 
         await axios.post(keys.localUrl + '/api/coupons', req.body).then(
             (resp) => {
                 console.log('coupons sent: ', req.body)
                 console.log(resp.status)
                 res.send(200, resp.status)
-                
+
             }
-        ).catch(err=>{
+        ).catch(err => {
             console.log(err)
         })
 
-       
-        
+
+
+    })
+
+    app.post('/api/profile/avatar', requireLogin, async (req, res) => {
+
+
+        const {
+            _user,
+            avatarSeed
+        } = req.body
+
+
+        const filter = {
+            _user
+        }
+
+        const updateProfile = {
+            avatarSeed
+        }
+
+        const profile = await Profile.findOneAndUpdate(filter, updateProfile, {
+            new: true
+        });
+
+        console.log('updated avatar', filter, updateProfile)
+
+        res.send('profile avatar updated succesfully');
+
+
     })
 
 
-    
+
 };

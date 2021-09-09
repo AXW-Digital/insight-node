@@ -129,6 +129,7 @@ class ProfilePage extends Component {
                                                     city={profile.city}
                                                     rank={profile.rank}
                                                     id={profile._user}
+                                                    avatarSeed={profile.avatarSeed}
                                                 />
                                             </div>
                                             {aggregates.length < 1 ? <Loader /> :
