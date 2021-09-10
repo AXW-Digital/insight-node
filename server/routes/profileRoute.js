@@ -5,6 +5,9 @@ const keys = require('../config/keys');
 const axios = require('axios');
 
 const Profile = mongoose.model('profile');
+const User = mongoose.model('users')
+
+var ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports = app => {
 
@@ -239,6 +242,39 @@ module.exports = app => {
         console.log('updated avatar', filter, updateProfile)
 
         res.send('profile avatar updated succesfully');
+
+
+    })
+
+    app.get('/api/profile/delete', requireLogin, async (req, res) => {
+
+        const pFilter = { _user: req.user.id }
+        const uFilter = {_id: req.user.id}
+        console.log(req.user.id)
+        
+        const confirm = req.query.confirm
+        if ( confirm ) {
+            console.log('deleting account')
+            await Profile.findOneAndDelete(pFilter, function (err, docs) {
+                if (err){
+                    console.log(err)
+                }
+                else{
+                    console.log("Deleted Profile : ", docs);
+                }
+            })
+            await User.findOneAndDelete(uFilter, function (err, docs) {
+                if (err){
+                    console.log(err)
+                }
+                else{
+                    console.log("Deleted User : ", docs);
+                }
+            })
+        }
+
+        res.send('profile removed successfully')
+
 
 
     })

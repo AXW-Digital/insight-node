@@ -110,7 +110,7 @@ class App extends Component {
             buttonText="OK"
             style={{ background: "rgba(63, 61, 86, 0.8)" }}
             buttonStyle={{ color: "#4e503b", fontSize: "16px", fontFamily: 'Arial' }}
-            expires={0}
+            expires={150}
             overlay={true}
           >
             KÄYTÄMME EVÄSTEITÄ.{" "}

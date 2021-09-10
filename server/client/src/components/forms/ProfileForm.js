@@ -253,7 +253,7 @@ const ProfileForm = (props) => {
                                             <ProfileFormPopover
                                                 anchorEl={anchorEl}
                                                 open={popOverId === 1}
-                                                content='Keräämme nimesi koska siksi'
+                                                content='Tarvitsemme etu- ja sukunimen, jotta voimme todentaa etu- ja lahjakorttien edunsaajan henkilöllisyyden. Etu- tai sukunimesi ei näy muille emmekä luovuta tietoa kolmansille osapuolille'
                                             />
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@ const ProfileForm = (props) => {
                                             <ProfileFormPopover
                                                 anchorEl={anchorEl}
                                                 open={popOverId === 2}
-                                                content='Keräämme sukunimesi koska siksi'
+                                                content='Tarvitsemme etu- ja sukunimen, jotta voimme todentaa etu- ja lahjakorttien edunsaajan henkilöllisyyden. Etu- tai sukunimesi ei näy muille emmekä luovuta tietoa kolmansille osapuolille'
                                             />
                                         </div>
                                     </div>
@@ -313,7 +313,8 @@ const ProfileForm = (props) => {
                                             <ProfileFormPopover
                                                 anchorEl={anchorEl}
                                                 open={popOverId === 3}
-                                                content='Tarvitsemme sähöpostisi koska siksi'
+                                                content={`Sähköpostiosoite toimii käyttäjäprofiilin yksilöivänä tunnuksena. Emme lähetä sähköpostiin mitään ilman, että käyttäjä erikseen tilaa
+                                                sähköposti-ilmoituksia. Sähköpostisi ei näy muille emmekä luovuta tietoa kolmansille osapuolille`}
                                             />
                                         </div>
                                     </div>
@@ -344,7 +345,8 @@ const ProfileForm = (props) => {
                                             <ProfileFormPopover
                                                 anchorEl={anchorEl}
                                                 open={popOverId === 4}
-                                                content='Puhelinnumeron tarvitsemme koska siksi'
+                                                content={`Puhelinnumero toimii toisena yksilöivänä tunnuksena. Tämä on tarpeellinen siksi, että voimme varmistaa tarvittaessa etu- ja lahjakorttien
+                                                vastaanottajan henkilöllisyyden. Puhelinnumerosi ei näy muille emmekä luovuta tietoa kolmansille osapuolille`}
                                             />
                                         </div>
                                     </div>
@@ -376,7 +378,8 @@ const ProfileForm = (props) => {
                                             <ProfileFormPopover
                                                 anchorEl={anchorEl}
                                                 open={popOverId === 5}
-                                                content='Haluamme tietää missä asut...'
+                                                content={`Osoitetieto on tarpeellinen sisällön toimivuuden kannalta, sekä mahdollisesti palkintojen optimointia sijaninnin perusteella 
+                                                (esimerkiksi varmistaaksemme lahjakorttien lunastuksen olevan mahdollista ravintoloista, jotka sijaitsevat lähikaupungessa/-läänissä`}
                                             />
                                         </div>
                                     </div>

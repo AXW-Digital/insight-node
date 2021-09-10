@@ -4,8 +4,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { CgProfile, CgInfo } from 'react-icons/cg';
+import { CgProfile, CgInfo, CgLock } from 'react-icons/cg';
 import { FiLogOut } from 'react-icons/fi';
+import { BiCookie } from 'react-icons/bi'
 import { VscSettings } from 'react-icons/vsc'
 import Divider from '@material-ui/core/Divider';
 
@@ -49,6 +50,20 @@ const classes = useStyles();
                         <ListItemText primary="Käyttöehdot" />
                         <ListItemIcon>
                         <CgInfo />
+                    </ListItemIcon>
+                    </ListItemLink>
+                    <Divider />
+                    <ListItemLink href="/tietosuojalauseke">
+                        <ListItemText primary="Tietosuoja" />
+                        <ListItemIcon>
+                        <CgLock />
+                    </ListItemIcon>
+                    </ListItemLink>
+                    <Divider />
+                    <ListItemLink href="/evasteet">
+                        <ListItemText primary="Evästeet" />
+                        <ListItemIcon>
+                        <BiCookie />
                     </ListItemIcon>
                     </ListItemLink>
                     <Divider />

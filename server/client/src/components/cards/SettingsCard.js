@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
 import dict from '../../assets/js/dict';
+import DeleteAccountDialog from '../parts/DeleteAccountDialog'
 
 
 const theme = createMuiTheme({
@@ -369,7 +370,7 @@ const SettingsCard = (props) => {
                                             </div>
                                     </div>
                                     <div className='col-md-3 ml-auto'>
-                                        <a href="/api/settings/update" className="btn btn-lg btn-block text-uppercase btn-danger">Poista</a>
+                                        <DeleteAccountDialog/>
                                     </div>
 
 
