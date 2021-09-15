@@ -17,5 +17,5 @@ module.exports = {
   mongoURI: 'mongodb+srv://dbDevUser:NJg9G2Bw15vAWS5z@cluster0.lvf2x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   cookieKey: '%/WEHq53yqerQ"#Yafegh#(WRGqYUQ',
   adminUrl: 'http://13.48.147.133:3030',
-  localUrl: 'https://vaikuttava-admin.ngrok.io'
+  localUrl: 'http://13.53.74.148:3030'
 };
