@@ -90,6 +90,47 @@ module.exports = app => {
     
     });
 
+    app.post('/api/vouchers/reg', requireLogin, async (req, res) => {
+
+
+        const {
+            userId,
+            voucherId,
+            partnerId,
+            benefitValue,
+            benefitType,
+            name,
+            qrCode
+          } = req.body
+
+        
+        const data = {
+            userId,
+            voucherId,
+            partnerId,
+            benefitValue,
+            benefitType,
+            name,
+            qrCode
+        }
+
+
+    
+        await axios.post(keys.localUrl + '/api/vouchers/reg', data).then(
+            response => {
+                console.log('sending voucher data to reg: ', data)
+                console.log(response.status)
+                res.send(response.status)
+            }
+        ).catch(err => {
+            console.log(err)
+        })
+
+        // return res.send(200, 'successfully used voucher')
+    
+    });
+
+
 
 
 

@@ -28,7 +28,7 @@ function RouletteModal(props) {
     }
 
     useEffect(() => {
-        axios.get(keys.localUrl + '/api/rouletteitems').then((res) => {
+        axios.get('/api/rouletteitems').then((res) => {
             setRouletteObjectsBronze(
                 res.data.filter(x => x.couponType === 'bronze').map(x => ({ voucherId: x.voucherId, option: x.name, style: { backgroundColor: getColor(), textColor: 'white' } }))
             )
