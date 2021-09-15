@@ -379,7 +379,7 @@ const ProfileForm = (props) => {
                                                 anchorEl={anchorEl}
                                                 open={popOverId === 5}
                                                 content={`Osoitetieto on tarpeellinen sisällön toimivuuden kannalta, sekä mahdollisesti palkintojen optimointia sijaninnin perusteella 
-                                                (esimerkiksi varmistaaksemme lahjakorttien lunastuksen olevan mahdollista ravintoloista, jotka sijaitsevat lähikaupungessa/-läänissä`}
+                                                (esimerkiksi varmistaaksemme lahjakorttien lunastuksen olevan mahdollista ravintoloista, jotka sijaitsevat lähikaupungissasi/-läänissäsi`}
                                             />
                                         </div>
                                     </div>
