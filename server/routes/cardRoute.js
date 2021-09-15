@@ -33,6 +33,14 @@ module.exports = app => {
 
     });
 
+    app.get('/api/boosts', async (req, res) => {
+
+        await axios.get(keys.localUrl + '/api/boosts').then((response) => {
+            data = response.data
+            return res.send(200, data)
+        });
+    });
+
 
 
 
