@@ -45,7 +45,7 @@ class Shuffle extends Component {
 		const socials = this.props.data.socials
 		
 		const getData = async () =>  {
-		await fetch(keys.localUrl + "/api/cards")
+		await fetch("/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {

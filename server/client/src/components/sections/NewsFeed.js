@@ -58,7 +58,7 @@ class NewsFeed extends Component {
                 )
             case false:
                 (
-                    fetch(keys.localUrl + "/api/cards")
+                    fetch("/api/cards")
                     .then(res => res.json())
                     .then(
                         (result) => {

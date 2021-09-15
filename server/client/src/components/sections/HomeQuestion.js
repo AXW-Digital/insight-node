@@ -22,8 +22,8 @@ class HomeQuestion extends React.Component {
         this.buttons = null
     }
 
-    componentDidMount() {
-        axios.get(keys.localUrl + '/api/boosts').then(res => {
+    async componentDidMount()  {
+        await axios.get('/api/boosts').then(res => {
             const boosts = res.data
 
             boosts.sort(function(a, b) {
