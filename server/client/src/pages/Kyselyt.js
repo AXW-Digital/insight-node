@@ -67,7 +67,7 @@ class HomePage extends Component {
             console.log(err)
         });
 
-        fetch(keys.localUrl + "/api/cards")
+        fetch("/api/cards")
             .then(res => res.json())
             .then(
                 (result) => {
