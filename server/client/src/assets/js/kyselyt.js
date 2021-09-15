@@ -3,7 +3,8 @@ const kyselyt = [
         id: "1",
         tyyppi: "custom",
         kyselyTitle: "Ravintolakysely",
-        pointCount: 3,
+        pointCount: 300,
+        resetHours: 1,
         kysymykset: [
             {
                 num: 1,
@@ -217,8 +218,8 @@ const kyselyt = [
         id: "2",
         tyyppi: "daily",
         kyselyTitle: "Päivittäinen ravintola-arvostelu",
-        pointCount: 1,
-        resetHours: 3,
+        pointCount: 75,
+        resetHours: 1,
         kysymykset: [
             {
                 num: 1,
@@ -282,7 +283,8 @@ const kyselyt = [
         id: "3",
         tyyppi: "custom",
         kyselyTitle: "Taustakysely",
-        pointCount: 2,
+        pointCount: 200,
+        resetHours: 1,
         kysymykset: [
             {
                 num: 1,
@@ -331,8 +333,6 @@ const kyselyt = [
                     'Vuokra-asunto',
                     'Asumisoikeus',
                     'Muu',
-
-
                 ]
             },
             {
@@ -409,7 +409,44 @@ const kyselyt = [
                 ]
             }
         ]
-    }
+    },
+
+    {
+        id: "4",
+        tyyppi: "daily",
+        kyselyTitle: "Suuret maailmaa jakavat kysymykset",
+        pointCount: 0,
+        resetHours: 1,
+        kysymykset: [
+            {
+                num: 1,
+                title: "Kumpi ensin, maito vai tee?",
+                type: "single",
+                choices: [
+                    {label: "maito ensin", css: 'maito'},
+                    {label: 'tee ensin', css: 'tee'}
+                ]
+            },
+            {
+                num: 2,
+                title: "Kumpi päällimmäiseksi, leikkele vai juusto?",
+                type: "single",
+                choices: [
+                    {label: "Leikkele päälle", css: 'leikkele'},
+                    {label: "Juusto on kingi", css: 'juusto'},
+                ]
+            },
+            {
+                num: 3,
+                title: "Ovatko irtokarkit irtsareita vai irttareita?",
+                type: "single",
+                choices: [
+                    {label: "Irtsarit", css: 'irtsarit'},
+                    {label: "Irttarit", css: 'irttarit'},
+                ]
+            }
+        ]
+    },
     
 ];
 

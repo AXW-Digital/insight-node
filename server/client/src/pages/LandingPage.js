@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //components
 
-import Vaikuttava from './../components/sections/Vaikuttava';
-import Kukkavoi from './../components/sections/Kukkavoi'
-import Kasvuvaikkuttajat from './../components/sections/Kasvuvaikkuttajat'
-import Growflow from './../components/sections/Growflow'
-import Voima from './../components/sections/Voima'
-import Footer from './../components/parts/Footer'
+import LandingQuestion from '../components/sections/LandingQuestion';
+import LandingSection1 from '../components/sections/LandingSection1';
+import LandingSection2 from '../components/sections/LandingSection2';
+import LandingSection3 from '../components/sections/LandingSection3';
+import LandingSection4 from '../components/sections/LandingSection4';
+import LandingSection5 from '../components/sections/LandingSection5';
+import LandingSection6 from '../components/sections/LandingSection6';
+import Footer from './../components/parts/Footer';
 
 
 
@@ -16,11 +18,13 @@ class LandingPage extends Component {
     render() {
         return (
                 <div>
-                <Vaikuttava data = {this.props.data} />
-                <Kukkavoi />
-                <Kasvuvaikkuttajat />
-                <Growflow />
-                <Voima />
+                <LandingSection1 data = {this.props.data} />
+                <LandingQuestion data = {this.props.data}/>
+                <LandingSection2 />
+                <LandingSection3 />
+                <LandingSection4 />
+                <LandingSection5 />
+                <LandingSection6 />
                 <Footer />
                 </div>
         );

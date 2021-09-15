@@ -12,10 +12,10 @@
 # Global variables
 --------------------------------------------------------------*/
 
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
 html {
   scroll-padding-top: var(--header-height);
   /* height of sticky header */
@@ -24,16 +24,26 @@ html {
   --input-padding-y: .75rem;
 }
 
+/* disable vertical scroll  */
+
+body>div {
+  overflow-x: hidden;
+}
+body {
+  position: relative
+}
+
+
+
+
+
 a:hover {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 .font-primary {
+h1, h2, h3, h4, h5 .font-primary {
   font-family: "TT Norms";
+  color: rgba(63, 61, 86, 1)
 }
 
 h1 .font-primary {
@@ -52,8 +62,7 @@ h4 .font-primary {
   font-size: 28px;
 }
 
-p,
-.hyodyt .font-primary {
+p, .hyodyt .font-primary {
   font-family: "TT Norms Light";
 }
 
@@ -74,36 +83,152 @@ h3 {
   margin: 5ex 0 3ex 0 !important;
 }
 
-
 #page-top {
   position: absolute;
   top: 0;
-
 }
 
+/* linelist */
 
+ul.linelist {
+  padding-left: 15px;
+  margin-top: -1px;
+}
+
+ul.linelist li {
+  padding-left: 33px;
+  margin-bottom: 2.5em;
+  list-style: none;
+  /* background: url('../img/misc/list-bullet-darkgray.png') no-repeat; */
+}
+
+ul.linelist li.yellow {
+  background: url('../images/bullet_yellow.png') no-repeat;
+}
+
+/* ul.linelist li.blue {
+  background: url('../img/misc/list-bullet-blue.png') no-repeat;
+}
+ul.linelist li.pink {
+  background: url('../img/misc/list-bullet-pink.png') no-repeat;
+} */
+
+.where {
+  font-size: 1.2857em;
+  /* 18/16 -> 18px */
+  font-weight: 300;
+  display: inline;
+  margin-right: 0.5em;
+}
+
+.what {
+  font-size: 0.75em;
+  /* 12/16 -> 12px */
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #444444;
+  display: inline-block;
+  padding: 0 12px;
+  margin: -5px 0.5em 0 0 !important;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.what.green {
+  background-color: #c4df9b;
+}
+
+.what.blue {
+  background-color: #6dcff6;
+}
+
+.what.pink {
+  background-color: #f06eaa;
+}
+
+.when {
+  float: right;
+  color: #b9b9b9;
+  font-style: italic;
+}
+
+.description {
+  display: block;
+  margin-top: 0.5em;
+}
+
+/* BORDERS AND BULLETS */
+
+p {
+  /*CSS reset*/
+  margin-bottom: 0;
+}
+
+ul.linelist li {
+  position: relative;
+  /* so that pseudoelements are positioned relatively to their "li"s*/
+  /* use padding-bottom instead of margin-bottom.*/
+  margin-bottom: 0;
+  /* This overrides previously specified margin-bottom */
+  padding-bottom: 2.5em;
+}
+
+ul.linelist li:after {
+  /* bullets */
+  content: url('http://upload.wikimedia.org/wikipedia/commons/thumb/3/30/RedDisc.svg/20px-RedDisc.svg.png');
+  position: absolute;
+  left: -26px;
+  /*adjust manually*/
+  top: -3px;
+}
+
+ul.linelist li:before {
+  /* lines */
+  content: "";
+  position: absolute;
+  left: -16px;
+  /* adjust manually */
+  border-left: 1px solid black;
+  height: 100%;
+  width: 1px;
+  font-family: 'TT Norms Light';
+}
+
+ul.linelist li:first-child:before {
+  /* first li's line */
+  top: 6px;
+  /* moves the line down so that it disappears under the bullet. Adjust manually */
+}
+
+ul.linelist li:last-child:before {
+  /* last li's line */
+  height: 6px;
+  /* shorten the line so it goes only up to the bullet. Is equal to first-child:before's top */
+}
 
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
+
 .back-to-top {
   position: fixed;
   display: none;
   width: 40px;
   height: 40px;
-  border-radius: 3px;
+  border-radius: 20px;
   right: 15px;
-  bottom: 15px;
+  bottom: 65px;
   transition: display 0.5s ease-in-out;
-  z-index: 99999;
+  z-index: 99;
   background: #e2b11194 !important;
   color: white !important;
 }
 
 .back-to-top i {
   font-size: 24px;
-  position: relative;
-  bottom: 2.5px
+  margin-top: 7px;
 }
 
 .back-to-top:hover {
@@ -111,10 +236,10 @@ h3 {
   transition: background 0.2s ease-in-out;
 }
 
-
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
 #header {
   height: var(--header-height);
   transition: all 0.5s;
@@ -146,11 +271,9 @@ h3 {
   color: #363a59a4 !important;
 }
 
-
 #header a:hover {
   text-decoration: none;
 }
-
 
 #main {
   margin-top: 72px;
@@ -160,21 +283,20 @@ h3 {
   #header {
     background: #ffd000ea;
   }
-
   #header .mylinks {
     font-weight: bold;
     background-color: #effae5c0;
     ;
     color: #363a59;
   }
-
-
   #responsive-navbar-nav {
     margin-top: 2ex;
     background-color: #f1eeddf5 !important;
   }
+  .navbar-toggler {
+    display: none;
+  }
 }
-
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -184,12 +306,9 @@ h3 {
   margin-right: 2ex;
 }
 
-
-
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-
 
 #hero {
   width: 100%;
@@ -199,7 +318,7 @@ h3 {
   margin: 10rem 0 -72px 0;
 }
 
-#hero .container{
+#hero .container {
   z-index: 1;
 }
 
@@ -211,7 +330,6 @@ h3 {
 }
 
 #hero h2 {
-
   color: #0f0f0f;
   margin-bottom: 50px;
   font-size: 22px;
@@ -272,12 +390,11 @@ h3 {
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
+    margin-top: 450px;
   }
-
   #hero .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   #hero .container {
     margin-bottom: 10rem;
     text-align: center;
@@ -287,21 +404,18 @@ h3 {
 @media (max-width: 991px) {
   #hero {
     min-height: calc(100vh - 72px);
-    height: 100%
+    height: 100%;
+    margin-top: 150px
   }
-
   #hero .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   #hero .hero-img {
     text-align: center;
   }
-
   #hero .hero-img img {
     width: 50%;
   }
-
   #hero .container {
     margin-bottom: 10rem;
     text-align: center;
@@ -313,22 +427,18 @@ h3 {
     font-size: 28px;
     line-height: 36px;
   }
-
   #hero h2 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
   }
-
   #hero .hero-img img {
     width: 70%;
   }
-
   #hero .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   #hero .container {
     margin-bottom: 10rem;
     text-align: center;
@@ -339,25 +449,20 @@ h3 {
   #hero .hero-img img {
     width: 80%;
   }
-
   #hero .container {
     margin-bottom: 10rem;
     text-align: center;
   }
-
   #hero .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
   #hero .btn-get-started {
     display: inline-block;
   }
-
   #hero .btn-get-rekister {
     display: inline-block;
   }
-
 }
 
 #hero>div>div>div.col-lg-6.pt-5.pt-lg-0.order-2.order-lg-2>p {
@@ -368,7 +473,6 @@ h3 {
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
@@ -378,18 +482,320 @@ h3 {
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
 }
 
+#hero .CircularProgressbar-text {
+  padding-top: 30px;
+  font-family: 'TT Norms';
+  font-weight: 600;
+}
+
+#hero .progress-circle {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+#hero .level-name {
+  font-family: 'TT Norms Light';
+  color: rgba(0, 0, 0, 0.829);
+  font-size: 150%
+}
+
+#hero .RSPBprogressBar {
+  margin-top: 20%;
+}
+
+
+.nosto-buttons .row {
+min-height: 10vh;
+}
+
+.btn-nosto{
+  background-color:#ffcf00 !important;
+  border-radius: 25px !important;
+  text-align: center !important;
+  min-width: 100px !important;
+  color: #363a59 !important;
+  font-weight: 500 !important;
+}
+
+.roulette-coupon{
+  position: absolute;
+  top: calc(50% - min(9.5%, 44px));
+  height: min(18%, 88px);
+  width: min(18%, 88px);
+  border-radius: 50%;
+  text-align: center;
+  padding-top: min(1.3%, 10px);
+  font-size: 10px;
+}
+
+.coupon-count{
+  position: absolute;
+  top: 40%;
+  margin-left: 25px;
+  font-weight: bold;
+  color: white   
+}
+
+
+
+.coupon-icon:hover {
+  cursor:pointer;
+}
+
+/**
+ * The "shine" element
+ */
+ .glowing-button{
+   background: #363a59 !important;
+ }
+
+
+ .glowing-button::before {
+  content: '';
+  position: absolute;
+  left: calc(50% - 62px);
+  top: calc(50% - 23px);
+  background: linear-gradient(45deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde);
+  background-size: 400%;
+  width: 123px;
+  height: 46px;
+  z-index: -2;
+  animation: glower-button 40s linear infinite;
+  box-shadow: 0 0 30px 10px rgba(0, 204, 255, 0.603);
+  border-radius: 0.45rem;
+  
+}
+
+@keyframes glower-button {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+
+/* @media (min-width: 992px) { */
+.my-modal-lg {
+    width: auto;
+}
+/* } */
+
+/* @media (min-width: 768px) { */
+.my-modal-dialog {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0;
+    padding: 0;
+ }
+/* } */
+
+/* @media (min-width: 768px) { */
+.my-modal-content {
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    height: 100vh !important;
+    min-height: 100%;
+    border-radius: 0;
+}
+/* } */
+
+.roulette-modal{
+  padding-left: 0px !important;
+  max-width: 100vw !important;
+
+}
+
+.modal-open{
+  padding-right: 0px !important;
+}
+
+.roulette-dialog{
+  background-color: #363a59 !important;
+}
+
 
 /*--------------------------------------------------------------
-kasvuvaikuttajan section
+even section
 ---------------------------------------------------------------*/
 
-#kasvut {
+.even-section {
+  background: whitesmoke;
+  margin-bottom: 100%;
+  width: 100%;
+  max-height: 100%;
+  border-bottom: 2px solid #fcebe3;
+  margin: 72px 0 -72px 0;
+  height: 100%;
+}
+
+.even-section .icon-box {
+  margin-top: 40px;
+}
+
+.even-section .description {
+  font-family: "TT Norms Light";
+  font-size: 16px;
+  color: rgba(63, 61, 86, 1);
+  border-left-width: 1.5ex !important;
+  border-left-color: #ffcf00 !important;
+  color: rgba(63, 61, 86, 1) !important;
+}
+
+.even-section h1{
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    line-height: 56px;
+    color: #363a59;  
+}
+
+.even-section h3 {
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  color: rgba(63, 61, 86, 1);
+}
+
+.even-section h2 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 56px;
+  color: #0f0f0f;
+}
+
+.even-section p {
+  color: rgba(63, 61, 86, 1)
+}
+
+.even-section .container {
+  margin-bottom: 5rem;
+}
+
+.even-section .animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@media (min-width: 1024px) {
+  .even-section {
+    background-attachment: fixed;
+  }
+  .even-section .animated {
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  }
+  .even-section {
+    border-bottom: 2px solid #fcebe3;
+    margin: 72px 0 -72px 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .even-section {
+    height: calc(100vh - 72px);
+  }
+  .even-section .animated {
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  }
+  .even-section .kasvut-img {
+    text-align: center;
+  }
+  .even-section .kasvut-img img {
+    width: 50%;
+  }
+  .even-section {
+    border-bottom: 2px solid #fcebe3;
+    margin: 72px 0 -72px 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .even-section h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .even-section h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+  .even-section .kasvut-img img {
+    width: 70%;
+  }
+  .even-section .animated {
+    -webkit-animation: none;
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  }
+  .even-section {
+    border-bottom: 2px solid #fcebe3;
+    margin: 72px 0 -72px 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .even-section {
+    max-width: 100%;
+    max-width: 100%;
+  }
+  .even-section .kasvut-img img {
+    width: 80%;
+    margin-top: -50rem !important;
+  }
+  .even-section .animated {
+    -webkit-animation: none;
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  }
+  .even-section .description {
+    font-family: "TT Norms Light";
+    font-size: 18px;
+    color: rgba(63, 61, 86, 1);
+    border-left-width: 1.5ex !important;
+    border-left-color: #ffcf00 !important;
+    color: rgba(63, 61, 86, 1) !important;
+  }
+  .even-section {
+    border-bottom: 2px solid #fcebe3;
+    margin: 72px 0 -72px 0;
+    height: 100%;
+  }
+}
+
+@-webkit-keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/*--------------------------------------------------------------
+even section ends
+---------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+odd section begins
+---------------------------------------------------------------*/
+
+.odd-section {
   background: white;
   margin-bottom: 100%;
   width: 100%;
@@ -399,217 +805,41 @@ kasvuvaikuttajan section
   height: 100%;
 }
 
-#kasvut .icon-box {
+.odd-section .icon-box {
   margin-top: 40px;
 }
 
-#kasvut .description {
+.odd-section .description {
   font-family: "TT Norms Light";
-  font-size: 20px;
+  font-size: 16px;
   color: rgba(63, 61, 86, 1);
   border-left-width: 1.5ex !important;
   border-left-color: #ffcf00 !important;
   color: rgba(63, 61, 86, 1) !important;
 }
 
-
-#kasvut h3 {
-  margin: 0 0 10px 0;
-  font-weight: bold;
+.odd-section .hyodyt {
+  font-size: 16px;
   color: rgba(63, 61, 86, 1);
+  border-left-width: 1.5ex !important;
+  border-left-color: #ffcf00 !important;
+  color: rgba(63, 61, 86, 1) !important;
 }
 
-#kasvut h2 {
+.odd-section h1{
   margin: 0 0 10px 0;
-  font-size: 24px;
   font-weight: bold;
   line-height: 56px;
-  color: #0f0f0f;
+  color: #363a59;  
 }
 
-#kasvut p {
-  color: #0f0f0f;
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1)
-}
-
-#kasvut .container {
-  margin-bottom: 5rem;
-}
-
-#kasvut .animated {
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
-}
-
-@media (min-width: 1024px) {
-  #kasvut {
-    background-attachment: fixed;
-  }
-
-  #kasvut .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #kasvut {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@media (max-width: 991px) {
-  #kasvut {
-    height: calc(100vh - 72px);
-  }
-
-  #kasvut .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #kasvut .kasvut-img {
-    text-align: center;
-  }
-
-  #kasvut .kasvut-img img {
-    width: 50%;
-  }
-
-  #kasvut {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  #kasvut h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  #kasvut h2 {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-
-  #kasvut .kasvut-img img {
-    width: 70%;
-  }
-
-  #kasvut .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #kasvut {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 575px) {
-  #kasvut {
-    max-width: 100%;
-    max-width: 100%;
-  }
-
-  #kasvut .kasvut-img img {
-    width: 80%;
-    margin-top: -50rem !important;
-  }
-
-  #kasvut .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #kasvut .description {
-    font-family: "TT Norms Light";
-    font-size: 18px;
-    color: rgba(63, 61, 86, 1);
-    border-left-width: 1.5ex !important;
-    border-left-color: #ffcf00 !important;
-    color: rgba(63, 61, 86, 1) !important;
-  }
-
-  #kasvut {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@-webkit-keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-/*--------------------------------------------------------------
-kasvuvaikkuttaja ends
----------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-kukka begins
----------------------------------------------------------------*/
-
-#kukka {
-  background: whitesmoke;
-  margin-bottom: 100%;
-  width: 100%;
-  max-height: 100%;
-  border-bottom: 2px solid #fcebe3;
-  margin: 72px 0 -72px 0;
-  height: 100%;
-}
-
-#kukka .icon-box {
-  margin-top: 40px;
-}
-
-#kukka .description {
-  font-family: "TT Norms Light";
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1);
-  border-left-width: 1.5ex !important;
-  border-left-color: #ffcf00 !important;
-  color: rgba(63, 61, 86, 1) !important;
-}
-
-#kukka .hyodyt {
-
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1);
-  border-left-width: 1.5ex !important;
-  border-left-color: #ffcf00 !important;
-  color: rgba(63, 61, 86, 1) !important;
-}
-
-#kukka h3 {
+.odd-section h3 {
   margin: 0 0 10px 0;
   font-weight: bold;
   color: rgba(63, 61, 86, 1);
 }
 
-#kukka h2 {
+.odd-section h2 {
   margin: 0 0 10px 0;
   font-size: 24px;
   font-weight: 700;
@@ -617,55 +847,48 @@ kukka begins
   color: #0f0f0f;
 }
 
-#kukka p {
-  font-size: 20px;
+.odd-section p {
+  font-size: 16px;
   color: #0f0f0f;
   color: rgba(63, 61, 86, 1)
 }
 
-#kukka .container {
+.odd-section .container {
   margin-bottom: 5rem;
 }
 
-#kukka .animated {
+.odd-section .animated {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
 @media (min-width: 1024px) {
-  #kukka {
+  .odd-section {
     background-attachment: fixed;
   }
-
-  #kukka .animated {
+  .odd-section .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
-  #kukka {
+  .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
   }
-
 }
 
 @media (max-width: 991px) {
-  #kukka {
+  .odd-section {
     height: calc(100vh - 72px);
   }
-
-  #kukka .animated {
+  .odd-section .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
-  #kukka .kukka-img {
+  .odd-section .kukka-img {
     text-align: center;
   }
-
-  #kukka .kukka-img img {
+  .odd-section .kukka-img img {
     width: 50%;
   }
-
-  #kukka {
+  .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
@@ -673,27 +896,23 @@ kukka begins
 }
 
 @media (max-width: 768px) {
-  #kukka h1 {
+  .odd-section h1 {
     font-size: 28px;
     line-height: 36px;
   }
-
-  #kukka h2 {
+  .odd-section h2 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
   }
-
-  #kukka .kukka-img img {
+  .odd-section .kukka-img img {
     width: 70%;
   }
-
-  #kukka .animated {
+  .odd-section .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
-  #kukka {
+  .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
@@ -701,22 +920,19 @@ kukka begins
 }
 
 @media (max-width: 575px) {
-  #kukka {
+  .odd-section {
     max-width: 100%;
     max-width: 100%;
   }
-
-  #kukka .kukka-img img {
+  .odd-section .kukka-img img {
     width: 80%;
     margin-top: -50rem !important;
   }
-
-  #kukka .animated {
+  .odd-section .animated {
     -webkit-animation: none;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
   }
-
-  #kukka .description {
+  .odd-section .description {
     font-family: "TT Norms Light";
     font-size: 18px;
     color: rgba(63, 61, 86, 1);
@@ -724,14 +940,12 @@ kukka begins
     border-left-color: #ffcf00 !important;
     color: rgba(63, 61, 86, 1) !important;
   }
-
-  #kukka {
+  .odd-section {
     border-bottom: 2px solid #fcebe3;
     margin: 72px 0 -72px 0;
     height: 100%;
   }
-
-  #kukka .hyodyt {
+  .odd-section .hyodyt {
     font-size: 18px;
     color: rgba(63, 61, 86, 1);
   }
@@ -741,7 +955,6 @@ kukka begins
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
@@ -751,377 +964,19 @@ kukka begins
   0% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(-10px);
   }
 }
 
 /*--------------------------------------------------------------
-kukka ends
----------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-growflow begins
----------------------------------------------------------------*/
-
-#growflow {
-  background: whitesmoke;
-  margin-bottom: 100%;
-  width: 100%;
-  max-height: 100%;
-  border-bottom: 2px solid #fcebe3;
-  margin: 72px 0 -72px 0;
-  height: 100%;
-}
-
-#growflow .icon-box {
-  margin-top: 40px;
-}
-
-#growflow .description {
-  font-family: "TT Norms Light";
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1);
-  border-left-width: 1.5ex !important;
-  border-left-color: #ffcf00 !important;
-  color: rgba(63, 61, 86, 1) !important;
-}
-
-
-#growflow h3 {
-  margin: 0 0 10px 0;
-  font-weight: bold;
-  color: rgba(63, 61, 86, 1);
-}
-
-#growflow h2 {
-  margin: 0 0 10px 0;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 56px;
-  color: #0f0f0f;
-}
-
-#growflow p {
-  color: #0f0f0f;
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1)
-}
-
-#growflow .container {
-  margin-bottom: 5rem;
-}
-
-#growflow .animated {
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
-}
-
-@media (min-width: 1024px) {
-  #growflow {
-    background-attachment: fixed;
-  }
-
-  #growflow .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #growflow {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@media (max-width: 991px) {
-  #growflow {
-    height: calc(100vh - 72px);
-  }
-
-  #growflow .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #growflow .growflow-img {
-    text-align: center;
-  }
-
-  #growflow .growflow-img img {
-    width: 50%;
-  }
-
-  #growflow {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  #growflow h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  #growflow h2 {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-
-  #growflow .growflow-img img {
-    width: 70%;
-  }
-
-  #growflow .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #growflow {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 575px) {
-  #growflow {
-    max-width: 100%;
-  }
-
-  #growflow .growflow-img img {
-    width: 80%;
-    margin-top: -50rem !important;
-  }
-
-  #growflow .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #growflow .description {
-    font-family: "TT Norms Light";
-    font-size: 18px;
-    color: rgba(63, 61, 86, 1);
-    border-left-width: 1.5ex !important;
-    border-left-color: #ffcf00 !important;
-    color: rgba(63, 61, 86, 1) !important;
-  }
-
-  #growflow {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@-webkit-keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-/*--------------------------------------------------------------
-growflow ends
----------------------------------------------------------------*/
-/*--------------------------------------------------------------
-voima begins
----------------------------------------------------------------*/
-#voima {
-  background: whitesmoke;
-  margin-bottom: 100%;
-  width: 100%;
-  max-height: 100%;
-  border-bottom: 2px solid #fcebe3;
-  margin: 72px 0 -72px 0;
-  height: 100%;
-}
-
-#voima .icon-box {
-  margin-top: 40px;
-}
-
-#voima .description {
-  font-family: "TT Norms Light";
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1);
-  border-left-width: 1.5ex !important;
-  border-left-color: #ffcf00 !important;
-  color: rgba(63, 61, 86, 1) !important;
-}
-
-
-#voima h3 {
-  margin: 0 0 10px 0;
-  font-weight: bold;
-  color: rgba(63, 61, 86, 1);
-}
-
-#voima h2 {
-  margin: 0 0 10px 0;
-  font-weight: 700;
-  line-height: 56px;
-  color: #0f0f0f;
-}
-
-#voima p {
-  color: #0f0f0f;
-  font-size: 20px;
-  color: rgba(63, 61, 86, 1)
-}
-
-#voima .container {
-  margin-bottom: 5rem;
-}
-
-#voima .animated {
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
-}
-
-@media (min-width: 1024px) {
-  #voima {
-    background-attachment: fixed;
-  }
-
-  #voima .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #voima {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-}
-
-@media (max-width: 991px) {
-  #voima {
-    height: calc(100vh - 72px);
-  }
-
-  #voima .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #voima .voima-img {
-    text-align: center;
-  }
-
-  #voima .voima-img img {
-    width: 50%;
-  }
-
-  #voima {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  #voima h1 {
-    line-height: 36px;
-  }
-
-  #voima h2 {
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-
-  #voima .voima-img img {
-    width: 70%;
-  }
-
-  #voima .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #voima {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-}
-
-@media (max-width: 575px) {
-  #voima {
-    max-width: 100%;
-  }
-
-  #voima .voima-img img {
-    width: 80%;
-    margin-top: -50rem !important;
-  }
-
-  #voima .animated {
-    -webkit-animation: none;
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-
-  #voima {
-    border-bottom: 2px solid #fcebe3;
-    margin: 72px 0 -72px 0;
-    height: 100%;
-  }
-
-  #voima .description {
-    font-family: "TT Norms Light";
-    font-size: 18px;
-    color: rgba(63, 61, 86, 1);
-    border-left-width: 1.5ex !important;
-    border-left-color: #ffcf00 !important;
-    color: rgba(63, 61, 86, 1) !important;
-  }
-
-}
-
-@-webkit-keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
-}
-
-/*--------------------------------------------------------------
-voima ends
----------------------------------------------------------------*/
-
+# odd-section ends
+--------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+
 #footer {
   background: #363a59;
   padding: 0 0 30px 0;
@@ -1131,6 +986,7 @@ voima ends
 
 #footer h3 {
   margin-top: 0 !important;
+  color: white;
 }
 
 #footer .footer-top {
@@ -1138,7 +994,6 @@ voima ends
   color: white;
   background: #363a59;
 }
-
 
 #footer .footer-top h4 {
   padding-top: 1ex;
@@ -1151,7 +1006,6 @@ voima ends
 
 #footer .footer-top .footer-links {
   margin-bottom: 30px;
-
 }
 
 #footer .footer-top .footer-links ul {
@@ -1159,8 +1013,6 @@ voima ends
   padding: 0;
   margin: 0;
 }
-
-
 
 #footer .footer-top .footer-links ul li {
   padding: 10px 0;
@@ -1209,21 +1061,14 @@ voima ends
   float: left;
 }
 
-
 @media (max-width: 575px) {
-
-  #footer .copyright,
-  #footer .credits {
+  #footer .copyright, #footer .credits {
     float: none;
     -moz-text-align-last: center;
     text-align-last: center;
     padding: 3px 0;
   }
 }
-
-
-
-
 
 /* -----------------------------------------------
 Signin and Signup component css
@@ -1247,7 +1092,6 @@ Signin and Signup component css
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
   font-family: 'TT Norms Light';
   color: rgba(63, 61, 86, 1) !important;
-
 }
 
 .card-signin .card-title {
@@ -1257,7 +1101,6 @@ Signin and Signup component css
   font-family: 'TT Norms';
   color: rgb(90 87 123) !important
 }
-
 
 .card-signin .card-body {
   padding: 2rem;
@@ -1291,8 +1134,7 @@ Signin and Signup component css
   border-radius: 2rem;
 }
 
-.form-label-group>input,
-.form-label-group>label {
+.form-label-group>input, .form-label-group>label {
   padding: var(--input-padding-y) var(--input-padding-x);
 }
 
@@ -1398,23 +1240,7 @@ Signin and Signup component css
   text-align: center !important;
 }
 
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-input[type="checkbox"]:focus,
-.uneditable-input:focus {
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, input[type="checkbox"]:focus, .uneditable-input:focus {
   border-color: #ffcf00;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #ffcf00;
   outline: 0 none;
@@ -1436,8 +1262,6 @@ input[type="checkbox"]:focus,
   background-color: #C8FFC8;
 }
 
-
-
 .link-primary {
   text-decoration: none !important;
 }
@@ -1449,7 +1273,6 @@ input[type="checkbox"]:focus,
   .form-label-group>label {
     display: none;
   }
-
   .form-label-group input::-ms-input-placeholder {
     color: #777;
   }
@@ -1458,24 +1281,26 @@ input[type="checkbox"]:focus,
 /* Fallback for IE
 -------------------------------------------------- */
 
-@media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) {
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .form-label-group>label {
     display: none;
   }
-
   .form-label-group input:-ms-input-placeholder {
     color: #777;
   }
 }
 
-
-
 /* -----------------------------------------------
 Kysely Cards CSS
 -------------------------------------------------- */
+
 #kyselyt {
   background: rgb(243, 243, 246);
+}
+
+#kysely-title {
+  margin-top: 0px !important;
+  padding-top: 0px;
 }
 
 .kysely h3 {
@@ -1504,7 +1329,6 @@ Kysely Cards CSS
   justify-content: center;
   margin-left: 0px;
   margin-right: 0px;
-
 }
 
 .kysely .kysely-card .container-fluid {
@@ -1551,27 +1375,19 @@ Kysely Cards CSS
   max-height: var(--kysely-card-image-max-height);
 }
 
-
-
-
 .kysely .kysely-card img {
   border-radius: 4px;
   transition: 0.3s;
   width: 100%;
   height: 100%;
   object-fit: cover;
-
 }
-
-
-
 
 .kysely .kysely-card h3 {
   color: #444444;
   font-weight: 700;
   margin: 2rem 0 1rem 0 !important;
 }
-
 
 .kysely .kysely-card.blue {
   border-bottom: 3px solid #2db6fa;
@@ -1605,6 +1421,23 @@ Kysely Cards CSS
 
 .kysely .kysely-card.orange:hover {
   background: #f68c09;
+}
+
+.kysely .kysely-card.yellow {
+  border-bottom: 3px solid #ffcf00;
+}
+
+.kysely .kysely-card.yellow .icon {
+  color: #ffcf00;
+  background: #fde3c4;
+}
+
+.kysely .kysely-card.yellow .read-more {
+  color: #ffcf00;
+}
+
+.kysely .kysely-card.yellow:hover, .kysely-card.yellow:active {
+  background: #ffcf00;
 }
 
 .kysely .kysely-card.green {
@@ -1675,9 +1508,7 @@ Kysely Cards CSS
   background: #f51f9c;
 }
 
-.kysely .kysely-card:hover h3,
-.kysely .kysely-card:hover p,
-.kysely .kysely-card:hover .read-more {
+.kysely .kysely-card:hover h3, .kysely .kysely-card:hover p, .kysely .kysely-card:hover .read-more {
   color: #fff;
 }
 
@@ -1685,17 +1516,97 @@ Kysely Cards CSS
   background: #fff;
 }
 
+.anticon {
+  margin-right: 8px !important;
+}
 
+.ant-collapse-content-box {
+  z-index: -5 !important;
+}
+
+/* Accordion Element */
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap");
+/* Style the accordion section */
+
+.accordion__section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  transition: background-color 0.6s ease;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+.accordion:hover, .active {
+  background-color: #ccc;
+}
+
+/* Style the accordion content title */
+
+.accordion__title {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Style the accordion chevron icon */
+
+.accordion__icon {
+  margin-left: auto;
+  transition: transform 0.6s ease;
+}
+
+/* Style to rotate icon when state is active */
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+/* Style the accordion content panel. Note: hidden by default */
+
+.accordion__content {
+  background-color: white;
+  overflow: auto;
+  transition: max-height 0.6s ease;
+  overflow: hidden;
+}
+
+/* Style the accordion content text */
+
+.accordion__text {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 18px;
+}
 
 /* -----------------------------------------------
 Activity Cards CSS
 -------------------------------------------------- */
 
+@media (min-width: 991px) {
+  .counts {
+    padding: 70px 60px 60px 60px;
+  }
+}
 
-
-
-.counts {
-  padding: 70px 0 60px;
+[class^="bx-"], [class*=" bx-"] {
+  display: inline-block;
+  width: 100%;
 }
 
 .counts .count-box {
@@ -1716,7 +1627,8 @@ Activity Cards CSS
 .counts .count-box span {
   font-size: 36px;
   display: block;
-  font-weight: 600;
+  font-family: "TT Norms";
+  font-weight: bold;
 }
 
 .counts .count-box p {
@@ -1724,16 +1636,17 @@ Activity Cards CSS
   margin: 0 !important;
   font-family: "TT Norms Light";
   font-size: 15px !important;
+}
 
+.points-icon {
+  font-size: 340% !important;
 }
 
 /**
  * The "shine" element
  */
 
- 
-
- .glowing::before{
+.glowing::before {
   content: '';
   position: absolute;
   left: 12px;
@@ -1751,14 +1664,123 @@ Activity Cards CSS
   0% {
     background-position: 0 0;
   }
-  
   50% {
     background-position: 400% 0;
   }
-  
   100% {
     background-position: 0 0;
   }
+}
+
+@media (max-width: 991px) {
+  .glowing::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: -3px;
+    background: linear-gradient(45deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde);
+    background-size: 400%;
+    width: calc(100% + -24px);
+    height: calc(100% + 6px);
+    z-index: -2;
+    animation: glower 40s linear infinite;
+    box-shadow: 0 0 30px 10px rgba(0, 204, 255, 0.603)
+  }
+  @keyframes glower {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+}
+
+.modal-content {
+  z-index: 0;
+}
+
+.lights:before, .lights:after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: -2px;
+  background: linear-gradient(45deg, #01ad43, #ffffff, #01ad43);
+  background-size: 400%;
+  width: calc(100% - 24px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
+  border-radius: 5px;
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.lights:after {
+  filter: blur(10px);
+}
+
+.lights-blue:before, .lights-blue:after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: -2px;
+  background: linear-gradient(45deg, #355ee7, #ffffff, #355ee7);
+  background-size: 500%;
+  width: calc(100% - 24px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
+  border-radius: 5px;
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 600% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.lights-blue:after {
+  filter: blur(50px);
+}
+
+.counter {
+  cursor: pointer
+}
+
+.indexedStep {
+  color: white;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  background-color: rgba(211, 211, 211, 0.8);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.indexedStep.accomplished {
+  background-color: rgba(0, 116, 217, 1);
 }
 
 /* -----------------------------------------------
@@ -1781,7 +1803,6 @@ Profile Page CSS
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
   font-family: 'TT Norms Light';
   color: rgba(63, 61, 86, 1) !important;
-
 }
 
 .profile-card .card-title {
@@ -1792,16 +1813,14 @@ Profile Page CSS
   color: rgb(90 87 123) !important
 }
 
-
 .profile-card .card-body {
   padding: 2rem;
 }
 
 .profile-card .tab-pane {
   margin: 1rem 0 1rem 0;
+  background-color: #ffffff !important;
 }
-
-
 
 .profile-image img {
   -webkit-border-radius: 50%;
@@ -1812,19 +1831,17 @@ Profile Page CSS
   height: 120px;
   border: 3px solid #fff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  object-fit: cover;  
+  object-fit: cover;
 }
 
 .count-box-small {
-
   padding: 20px 30px 20px 30px;
   width: 100%;
   background: #fff;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
-
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
+  border: 1px solid rgba(0, 0, 0, .125);
   border-radius: .25rem;
 }
 
@@ -1845,18 +1862,17 @@ Profile Page CSS
   margin: 0 !important;
   font-family: "TT Norms Light";
   font-size: 15px !important;
-
 }
 
-.setting-col hr{
+.setting-col hr {
   margin: 3px 0 30px 0
 }
 
-.setting-col-n hr{
+.setting-col-n hr {
   margin: 3px 0 20px 0
 }
 
-.setting-col-n{
+.setting-col-n {
   margin: 10px 0 10px 0 !important
 }
 
@@ -1868,18 +1884,36 @@ Profile Page CSS
   border-radius: 30px !important;
 }
 
-.btn-danger{
+.btn-danger {
   border-radius: 30px !important;
 }
 
-.nav-pills > a{
+.nav-pills>a {
   color: #363a59 !important;
   font-weight: bold;
 }
 
-.nav-pills >  a.active {
-  background-color:#ffcf00 !important;
+.nav-pills>a.active {
+  background-color: #ffcf00 !important;
   color: #363a59 !important;
+}
+
+
+
+#info-tab .btn-generate {
+  background-color: #ffcf00 ;
+  color: #363a59;
+  font-size: 10px;
+  padding: 13px 5px 13px 5px;
+  margin: 5px 5px 5px 2px
+}
+
+.btn-generate-col{
+  padding: 0px !important;
+}
+
+.profile-id{
+  color: lightgray
 }
 
 
@@ -1887,17 +1921,16 @@ Profile Page CSS
 Kysely Page CSS
 -------------------------------------------------- */
 
-#kysely{
+#kysely {
   padding: 20px 0;
   min-height: calc(100vh - var(--header-height));
-  margin: var(--header-height) 0 0 0; 
-  color:rgba(63, 61, 86, 1)
+  margin: var(--header-height) 0 0 0;
+  color: rgba(63, 61, 86, 1)
 }
 
-#kysely h2{
+#kysely h2 {
   text-align: center;
 }
-
 
 #kysely .kyselyTitle {
   text-align: center;
@@ -1908,11 +1941,11 @@ Kysely Page CSS
   overflow-y: auto;
 }
 
-#kysely .form-label{
+#kysely .form-label {
   font-family: 'TT Norms';
 }
 
-#kysely .form-control{
+#kysely .form-control {
   font-family: 'TT Norms Light';
 }
 
@@ -1922,22 +1955,434 @@ Kysely Page CSS
   outline: 0 none !important;
 }
 
-#kysely .group-name{
+#kysely .group-name {
   margin: 0px 0 10px 0;
   text-align: center;
-  font-size: 20px;  
+  font-size: 20px;
 }
 
-#kysely .group-line{
-  margin: 25px 0 10px 0;  
+#kysely .group-line {
+  margin: 25px 0 10px 0;
 }
 
-#kysely .group-line-b{
+#kysely .group-line-b {
   position: relative;
-  margin: 10px 0 25px 0;  
+  margin: 10px 0 25px 0;
 }
 
-#kysely .form-group{
+#kysely .form-group {
   margin-bottom: 20px !important;
 }
 
+#kysely .btn-send {
+  max-width: 400px;
+  font-weight: 500;
+  font-family: 'TT Norms';
+  border-radius: 30px !important;
+}
+
+.modal-content {
+  font-family: 'TT Norms' !important;
+  color: #363a59;
+}
+
+.modal-title {
+  text-align: center !important;
+}
+
+.modal-footer .btn {
+  background-color: #e3a509 !important;
+  border-color: #e3a509;
+  color: #363a59;
+  border-radius: 30px !important;
+}
+
+/* -----------------------------------------------
+Bottom Navigation CSS
+-------------------------------------------------- */
+
+a:hover {
+  text-decoration: none !important;
+}
+
+a:visited {
+  text-decoration: none !important;
+}
+
+a:link {
+  text-decoration: none !important;
+}
+
+a:active {
+  text-decoration: none !important;
+}
+
+/* .Mui-selected   {
+  background-color: #e3a50938 !important;
+}
+
+.MuiBottomNavigationAction-label {
+  background-color: transparent !important;
+} */
+
+/* -----------------------------------------------
+end Bottom Navigation CSS
+-------------------------------------------------- */
+
+/* -----------------------------------------------
+More List CSS
+-------------------------------------------------- */
+
+.more-list {
+  margin-top: calc(var(--header-height) + 10px) !important;
+}
+
+.MuiListItemIcon-root {
+  font-size: 20px
+}
+
+/* -----------------------------------------------
+End more List CSS
+-------------------------------------------------- */
+
+
+/* -----------------------------------------------
+HomeQuestion CSS
+-------------------------------------------------- */
+
+
+#home-question{
+  height: 600px !important;
+  background-image: url('../images/knife_bg.jpg');
+  background-size:cover;
+}
+
+#home-question .home-kysely-form{
+  max-width: 1500px;
+}
+
+#home-question h2{
+    font-size: 28px;
+    color: rgba(63, 61, 86, 1);
+    
+}
+
+
+
+
+
+/* -----------------------------------------------
+End HomeQuestion CSS
+-------------------------------------------------- */
+
+
+
+
+/* -----------------------------------------------
+HomeNewsFeed CSS
+-------------------------------------------------- */
+
+.btn-sort {
+  border-radius: 20px !important;
+  margin: 5px !important;
+  z-index: 99;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 120%;
+ }
+
+
+.carousel-item-padding-40-px{
+  margin: 0px;
+ 
+}
+
+/* .react-multi-carousel-item{
+  max-width: min(78vw, 345px);
+  min-width: min(78vw, 345px);
+} */
+
+/* .react-multi-carousel-track{
+
+}  */
+
+
+.network{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* -----------------------------------------------
+End HomeNewsFeed CSS
+-------------------------------------------------- */
+
+/* -----------------------------------------------
+LeaderBoard CSS
+-------------------------------------------------- */
+
+.leaderboard{
+  height: 800px;
+}
+
+
+
+/* -----------------------------------------------
+End LeaderBoard CSS
+-------------------------------------------------- */
+
+
+
+
+
+/* -----------------------------------------------
+Vouchers CSS
+-------------------------------------------------- */
+
+.btn-activate {
+  width: 120px !important;
+}
+
+.content-col {
+  max-height: 80px;
+}
+@media (min-width: 992px){
+.voucher-modal-lg {
+    width: auto;
+}
+}
+
+@media (max-width: 768px){
+#fullscreen-modal.modal-dialog {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0;
+    padding: 0;
+ }
+ #fullscreen-modal.modal-content {
+  height: 100% !important;
+}
+#fullscreen-modal.modal-content.modal-body {
+  display: flex !important;
+  height: 500px !important
+}
+}
+
+.voucher-invalid{
+  opacity: 0.5 !important;
+}
+
+#voucher-modal{
+  font-family: 'TT Norms' !important;
+}
+
+#voucher-modal .modal-title{
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#voucher-modal .modal-body{
+  padding: 0 16px 16px 16px !important;
+}
+
+#voucher-modal .voucher-modal-activate{
+  background: #ffcf00 !important;
+  color: #363a59 !important;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.voucher-image{
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.voucher-benefit-box{
+  background: #363a59;
+  color: white;
+}
+
+.voucher-benefit-box,
+.voucher-benefit-type{
+  background: #ffcf00;
+  height: 50px;
+  color: #363a59;
+  border-color: white;
+  border-width: 2px;
+  font-size: 28px;
+  font-family: 'TT Norms' !important;
+  font-weight: bold
+}
+
+.qr-code-background{
+  border-radius: 5px;
+  background-color: white;
+}
+
+.qr-code-value{
+  background-color: white;
+  padding: 5px;
+  font-size: 20px;
+  font-family: 'arial';
+  font-weight: bold;
+  border-radius: 5px;
+  min-width: 125px;
+}
+
+.qr-loader div{
+  background: white;
+  border-radius: 5px;
+  width: 128px;
+  height: 128px;
+  margin-left: 13px;
+}
+
+.qr-placeholder {
+  background: white;
+  border-radius: 5px;
+  width: 128px;
+  height: 128px;
+}
+
+.qr-placeholder .qr-code-background{
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+  transform: scale(0.97);
+}
+
+.qr-loading-box{
+  position: relative;
+  right: '20px'
+}
+
+.ant-btn-primary[disabled]{
+  background: rgba(17, 230, 17, 0.568) !important;
+}
+
+.qr-code-value-parent .qr-code-value{
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+  transform: scale(0.97);
+}
+
+.qr-parent{
+  transform: scale(1.5);
+  border-width: 2px;
+  border-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  height: min(400px, 57vh);
+  width: min(250px, 60vw);
+
+}
+
+.qr-btn{
+  margin-top: 10px
+}
+
+.qr-countdown{
+  color: white;
+  font-family: 'Arial';
+  font-weight: 200;
+  font-size: 14px;
+
+}
+
+.qr-countdown-done{
+  color: white;
+  font-family: 'Arial';
+  font-weight: 200;
+  font-size: 14px;
+  min-width: 140px;
+  margin-right: -15px;
+}
+
+.qr-btn svg{
+  margin-left: 50px !important;
+}
+
+.signup-modal{
+  padding-right: 0 !important;
+}
+
+.apexcharts-menu-icon{
+  visibility: hidden;
+}
+
+/* -----------------------------------------------
+end Vouchers CSS
+-------------------------------------------------- */
+
+/* -----------------------------------------------
+Question front page CSS
+-------------------------------------------------- */
+
+.cc-selector input{
+  margin:0;padding:0;
+  -webkit-appearance:none;
+     -moz-appearance:none;
+          appearance:none;
+}
+
+.cc-selector-2 input{
+  position:absolute;
+  z-index:999;
+}
+
+.cc-selector-2 input:active +.option-cc, .cc-selector input:active +.option-cc{opacity: .9;}
+.cc-selector-2 input:checked +.option-cc, .cc-selector input:checked +.option-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+
+.option-cc{
+  cursor:pointer;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:inline-block;
+  width: min(70vw, 250px);height:min(70vw, 250px);
+  -webkit-transition: all 100ms ease-in;
+     -moz-transition: all 100ms ease-in;
+          transition: all 100ms ease-in;
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+     -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+          filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.option-cc:hover{
+  -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+     -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+          filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+span.cc{ color:#6d84b4 }
+.cc-selector-2 input{ position: absolute; visibility: hidden;}
+.cc-selector-2 label{ margin: 0 0 30px 0; }
+.cc-selector-2 h6 {
+  background-color: #363a59;
+  color: #e3a509;
+  padding: 2px 0 2px 10px;
+}
+
+/* Images */
+.maito{background-image:url('../images/maito.jpg'); object-fit: cover;  }
+.tee{background-image:url('../images/tee.jpg'); object-fit: cover;  }
+.leikkele{background-image:url('../images/leikkele.jpg'); object-fit: cover;  }
+.juusto{background-image:url('../images/juusto.jpg'); object-fit: cover;  }
+.irttarit{background-image:url('../images/irttarit.jpg'); object-fit: cover;  }
+.irtsarit{background-image:url('../images/irtsarit.jpg'); object-fit: cover;  }
+
+
+
+#chart {
+  overflow: hidden !important;
+}

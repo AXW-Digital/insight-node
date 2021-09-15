@@ -8,7 +8,6 @@ module.exports = app => {
     app.get('/api/settings', requireLogin, async (req, res) => {
 
         const settings = await Settings.findOne({ _user: req.user.id })
-        console.log(settings)
         const intialSettings = new Settings({
             maxdist: 50,
             maxprice: 15,
