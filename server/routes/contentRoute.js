@@ -64,6 +64,18 @@ module.exports = app => {
     });
 
 
+    app.get('/api/rouletteitems', async (req, res) => {
+
+        
+        axios.get(keys.localUrl + '/api/rouletteitems')
+            .then((response) => {
+                data = response.data
+                return res.send(200, data)
+            });
+
+    });
+
+
 
 
 

@@ -97,7 +97,7 @@ class HomePage extends Component {
           this.setState({ isProfile: false });
         });
 
-      await fetch(keys.localUrl + "/api/surveys")
+      await fetch("/api/surveys")
         .then(res => res.json())
         .then(
           (result) => {
@@ -186,7 +186,7 @@ class HomePage extends Component {
             console.log(res1.status)
           })
 
-        await axios.post(keys.localUrl + '/api/vouchers/reg', data)
+        await axios.post('/api/vouchers/reg', data)
           .then((res2) => {
             console.log(res2.status)
           })
