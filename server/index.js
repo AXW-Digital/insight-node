@@ -16,6 +16,9 @@ require('./models/Surveys');
 // Services
 require('./services/passport');
 
+// Env
+require('dotenv').config();
+
 
 mongoose.connect(keys.mongoURI);
 
@@ -37,6 +40,11 @@ require('./routes/authRoutes')(app);
 require('./routes/surveyRoute')(app);
 require('./routes/settingsRoute')(app);
 require('./routes/profileRoute')(app);
+require('./routes/leaderboardRoute')(app);
+require('./routes/voucherRoute')(app);
+require('./routes/cardRoute')(app);
+require('./routes/contentRoute')(app);
+require('./routes/socialsRoute')(app)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

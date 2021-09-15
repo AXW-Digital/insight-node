@@ -17,7 +17,7 @@ class Header extends React.Component {
                 return (<Nav className='ml-auto justify-content-end'>
                     <Nav.Link className="mylinks" href="/profile">Profiili</Nav.Link>
                     <Nav.Link className="mylinks" href="/api/logout">Kirjaudu ulos</Nav.Link>
-                    </Nav>);
+                </Nav>);
         }
     }
 
@@ -30,20 +30,11 @@ class Header extends React.Component {
                     className="left logo"
                     style={{ color: '#363a59' }}
                 >
-                    Growflow Insights
+                    Vaikuttava
                 </Link>
                 <Navbar.Toggle className="text-danger" aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav ">
-                    {/* <Nav className="mr-auto">
-                        <Nav.Link className="mylinks" href="#kukka">Visio</Nav.Link>
-                        <Nav.Link className="mylinks" href="#kasvut">Kasvuvaikuttaja</Nav.Link>
-                        <Nav.Link className="mylinks" href="#growflow">Growflow</Nav.Link>
-                        <Nav.Link className="mylinks" href="#voima">Voima</Nav.Link>
-                    </Nav> */}
-
-                        {this.renderContent()}
-
-
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    {this.renderContent()}
                 </Navbar.Collapse>
             </Navbar>
         );

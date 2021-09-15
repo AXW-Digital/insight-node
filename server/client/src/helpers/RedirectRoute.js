@@ -1,4 +1,3 @@
-
 import { Route, Redirect } from 'react-router-dom';
 
 export default function RedirectRoute ({component: Component, auth, ...rest}) {

@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import kyselyt from '../../assets/js/kyselyt';
+import { Form, Button as Btn } from 'react-bootstrap';
+// import kyselyt from '../../assets/js/kyselyt';
 import Rating from '@material-ui/lab/Rating';
 import axios from 'axios';
 import SurveyModal from '../parts/SurveyModal';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import Button from '@material-ui/core/Button';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 1500,
+        flexGrow: 2,
+    },
+});
 
 
-
-function Choices(n, q) {
+function Choices(n, q, kyselyt) {
     const listItems = kyselyt.map((d) => d.kysymykset);
     const choices = listItems[q];
     const kys = choices.map((d) => d.choices);
     return kys[n];
 }
 
-function CreateForm(x, q, setField) {
+function CreateForm(x, q, setField, kyselyt) {
     var choices = kyselyt.map((d) => d.kysymykset)[q]
     var type = choices.map((d) => d.type)[x]
     var group = choices.map((d) => d.group)
@@ -22,25 +33,22 @@ function CreateForm(x, q, setField) {
     var max = choices.map((d) => d.max)[x]
     var key = choices.map((d) => d.num)[x]
     var new_group = false
-    var draw_line = false
     if (x === 0 || group[x] !== group[x - 1]) { new_group = true } else { new_group = false }
-    if (x !== 0 && new_group === true) { draw_line = true } else { draw_line = false }
+
 
 
     return (
 
         <Form.Group key={key} controlId={key}>
-            { draw_line ? <hr className='group-line' /> : null}
-            { new_group ? <h4 className='group-name'>{group[x]}</h4> : null}
             <Form.Label key={key + '_1'}>{kyselyt.map((d) => d.kysymykset)[q].map((y) => y.title)[x]}</Form.Label>
             {
                 type === 'multi' ?
                     <Form.Control
                         key={key + '_2'}
                         as='select'
-                        multiple htmlSize={Choices(x, q).length}
+                        multiple htmlSize={Choices(x, q, kyselyt).length}
                         onChange={e => setField(key, Array.from(e.target.selectedOptions, option => option.value))}
-                    >{Choices(x, q).map(x => <option value={x}>{x}</option>)}
+                    >{Choices(x, q, kyselyt).map(x => <option value={x}>{x}</option>)}
 
                     </Form.Control> :
                     type === 'single' ?
@@ -51,7 +59,7 @@ function CreateForm(x, q, setField) {
                             defaultValue=''
                         >
                             <option className='text-muted' value='' disabled >Valitse yksi:</option>
-                            {Choices(x, q).map(x => <option value={x}>{x}</option>)}
+                            {Choices(x, q, kyselyt).map(x => <option value={x}>{x}</option>)}
                         </Form.Control> :
                         type === 'range' ?
                             <div className='row px-2'>
@@ -77,14 +85,14 @@ function CreateForm(x, q, setField) {
     );
 }
 
-function CreateKysely(q, setField) {
+function CreateKysely(q, setField, kyselyt) {
     const listItems = kyselyt.map((d) => d.kysymykset);
     const choices = listItems[q];
     const kys = choices.map((d) => d.choices);
     const items = [];
     var i;
     for (i = 0; i < kys.length; i++) {
-        items.push(CreateForm(i, q, setField));
+        items.push(CreateForm(i, q, setField, kyselyt));
     }
     return items;
 }
@@ -92,6 +100,7 @@ function CreateKysely(q, setField) {
 
 const FormFunction = (props) => {
 
+    const kyselyt = props.kyselyt
     const [form, setForm] = useState({})
 
     const setField = (field, value) => {
@@ -109,7 +118,8 @@ const FormFunction = (props) => {
             formData: form,
             responded: true,
             dateSent: Date.now(),
-            kyselyTitle: kyselyt.map((d) => d.kyselyTitle)[id]
+            kyselyTitle: kyselyt.map((d) => d.kyselyTitle)[id],
+            points: kyselyt.map((d) => d.pointCount)[id]
         }
 
         return data
@@ -122,33 +132,95 @@ const FormFunction = (props) => {
         event.preventDefault();
         console.log(form)
 
-        axios.post('/api/surveys', formData(id, form))
-            .then(res => {
-                const status = res.status;
-                if (status === 200) {
+        
+        axios.all([
+            axios.post('/api/surveys', formData(id, form)),
+            axios.post('/api/profile/points', formData(id, form))
+        ]).then(axios.spread((res1, res2) => {
+                const status1 = res1.status;
+                const status2 = res2.status;
+                console.log('res1', res1, 'res2', res2)
+                if (status1 === 200) {
                     setModalShow(true)
                 }
-
-
+                if (status2 === 200) {
+                    console.log('points updated')
+                }
             })
-            .catch(e => {
-                console.error(e);
-            })
+            
+        );        
 
     };
 
     const [modalShow, setModalShow] = React.useState(false);
-    const couponCount = kyselyt.map((d) => d.couponCount)[props.question]
+    const pointCount = kyselyt.map((d) => d.pointCount)[id]
+    const classes = useStyles();
+    const theme = useTheme();
+    const [activeStep, setActiveStep] = React.useState(0);
+
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+
+    const hideModal = () => {
+        setModalShow(false); 
+        window.location = "/home"
+    };
+
+    var items = CreateKysely(id, setField, kyselyt)
+    const steps = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.choices).length;
+    var group = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.group)
+
 
     return (
-        <form onSubmit={handleSubmit}>
-            {CreateKysely(props.question, setField)}
-            <Button type="submit">Submit form</Button>
-            <SurveyModal
-               show={modalShow}
-               onHide={() => {setModalShow(false); window.location = "/home"}}
-               couponCount={couponCount} 
+        <form onSubmit={handleSubmit}> 
+        <h2>{props.title}</h2> 
+                                        
+            <MobileStepper
+                variant="progress"
+                steps={steps}
+                position="static"
+                activeStep={activeStep}
+                className={classes.root}
+                nextButton={
+                    <Button size="small" onClick={handleNext} disabled={activeStep === steps-1}>
+                        Next
+                    {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                    </Button>
+                }
+                backButton={
+                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                    {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                        Back
+                    </Button>
+                }
             />
+            <h4 className='group-name'>{group[activeStep]}</h4> 
+            <hr className='group-line' /> 
+            
+            {items[activeStep]}
+            {activeStep === (steps - 1) ?
+            <div>
+            <Btn 
+            type="submit"
+            className = 'btn btn-lg btn-block text-uppercase btn-warning btn-send'
+            >Lähetä</Btn>
+            <SurveyModal
+                show={modalShow}
+                onHide={hideModal}
+                pointCount={pointCount}
+                currentPoints={props.currentPoints}
+            /> 
+            </div>
+            :
+            null 
+            
+        }
+            
         </form>
 
     )
