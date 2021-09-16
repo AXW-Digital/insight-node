@@ -16,6 +16,6 @@ module.exports = {
   facebookClientSecret: 'b81dc8d1169ca7398595ff99f15de2e4',
   mongoURI: 'mongodb+srv://dbDevUser:NJg9G2Bw15vAWS5z@cluster0.lvf2x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   cookieKey: '%/WEHq53yqerQ"#Yafegh#(WRGqYUQ',
-  adminUrl: 'http://13.48.147.133:3030',
-  localUrl: 'http://13.53.74.148:3030'
+  adminUrl: 'http://ec2co-ecsel-1n5taiqogsorw-561415610.eu-north-1.elb.amazonaws.com:3030',
+  localUrl: 'http://ec2co-ecsel-1n5taiqogsorw-561415610.eu-north-1.elb.amazonaws.com:3030'
 };
