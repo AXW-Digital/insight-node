@@ -38,6 +38,8 @@ module.exports = app => {
 
     app.post('/api/vouchers', requireLogin, async (req, res) => {
 
+        console.log('body: ', req.body)
+
         const {
             userId,
             voucherId,
