@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const requireLogin = require("../middlewares/requireLogin");
+const axios = require('axios');
+const keys = require('../config/keys')
 
 const Survey = mongoose.model('survey');
 
@@ -83,5 +85,19 @@ module.exports = app => {
         }
 
     });
+
+    app.get('/api/surveys', requireLogin, async (req, res) => {
+
+        await axios.get(keys.localUrl + '/api/surveys')
+        .then((response) => {
+            data = response.data
+            return res.send(200, data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+
+    })
 
 };
