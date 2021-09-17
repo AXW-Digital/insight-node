@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProfileCard from '../components/cards/ProfileCard'
@@ -115,7 +116,7 @@ class ProfilePage extends Component {
 
 
             default:
-                console.log(profile)
+                // console.log(profile)
 
                 return (
                     <div>

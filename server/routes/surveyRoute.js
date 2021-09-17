@@ -38,7 +38,7 @@ module.exports = app => {
             timestamp,
             list
         }
-        return res.send(200, result)
+        return res.status(200).send(result)
 
 
     }) 
@@ -74,14 +74,14 @@ module.exports = app => {
 
         if (!surveyExists) {
             await survey.save();
-            console.log('survey saved');
-            return res.send(200, redir);
+            // console.log('survey saved');
+            return res.status(200).send(redir);
         } else {
             await Survey.findOneAndUpdate(filter, updateSurvey, {
                 new: true
             });
-            console.log('survey updated');
-            return res.send(200, redir);          
+            // console.log('survey updated');
+            return res.status(200).send(redir);          
         }
 
     });
@@ -91,7 +91,7 @@ module.exports = app => {
         await axios.get(keys.localUrl + '/api/surveys')
         .then((response) => {
             data = response.data
-            return res.send(200, data)
+            return res.status(200).send(data)
         })
         .catch(err => {
             console.log(err)

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Modal, Button } from 'react-bootstrap';
 import { ActivityCardSmall, PointsCard, LevelCard } from '../../components/cards/ActivityCard'
 import { Progress } from 'antd';
@@ -40,7 +41,7 @@ const SurveyModal = (props) => {
   const pointsIncreaseLevelUp = currentPoints
   const pointsIncreaseLevelUpPercentage = pointsIncreaseLevelUp / maxLevelPoints * 100
 
-  console.log('current points', currentPoints)
+  // console.log('current points', currentPoints)
 
   async function postCoupons () {
 
@@ -66,11 +67,11 @@ const SurveyModal = (props) => {
       }
 
       var coupons = { bronzeCoupons, silverCoupons, goldCoupons }
-      console.log('posting coupons:', coupons)
+      // console.log('posting coupons:', coupons)
       await axios.post('/api/profile/coupons', coupons)
         .then(res => {
           if (res.status === 200) {
-            console.log(res)
+            // console.log(res)
           }
         })
         .catch(err => {
@@ -112,7 +113,7 @@ const SurveyModal = (props) => {
 
             <p>
               Vastauksesi on tallennettu onnistuneesti.
-              Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
+              Vastaamalla kyselyihin toimit vaikuttavana ja autat kehittämään yhteistyökumppaneidemme palveluja.
             </p>
             <AnimatedProgressProvider
               valueStart={pointsStartPercentage}
@@ -284,7 +285,7 @@ const SignupModal = (props) => {
         <h4>{pointText(props.pointCount)} Mahtavaa!</h4>
         <p>
           Profiilisi on tallennettu onnistuneesti.
-          Vastaamalla kyselyihin toimit vaikuttajana ja autat kehittämään yhteistyökumppaneidemme palveluja.
+          Vastaamalla kyselyihin toimit vaikuttavana ja autat kehittämään yhteistyökumppaneidemme palveluja.
         </p>
       </Modal.Body>
       <Modal.Footer>

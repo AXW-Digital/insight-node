@@ -1,3 +1,5 @@
+/* eslint-disable */
+ 
 import React, { useState, useRef, useEffect } from 'react';
 import ActivityCard from './ActivityCard';
 import { Modal, Button } from 'react-bootstrap';

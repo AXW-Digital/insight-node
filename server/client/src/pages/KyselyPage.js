@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState, Component } from 'react';
 import { connect } from 'react-redux';
 import KyselyForm from '../components/forms/KyselyForm';
@@ -31,7 +32,7 @@ class KyselyPage extends Component {
 
 	componentDidMount() {
 		const profile = this.props.data.profile
-		console.log(profile)
+		// console.log(profile)
 		fetch("/api/surveys")
 			.then(res => res.json())
 			.then(

@@ -3,11 +3,16 @@ const requireLogin = require("../middlewares/requireLogin");
 const checkProfile = require("../middlewares/checkProfile");
 const keys = require('../config/keys');
 const axios = require('axios');
+const _ = require('lodash');
 
 const Profile = mongoose.model('profile');
 const User = mongoose.model('users')
 
 var ObjectId = require('mongoose').Types.ObjectId;
+
+var throt_fun = _.throttle(function (profile, filter) {
+    if (profile !== null) { console.log(profile.fName, Date(Date.now())) } else { console.log('user ' + filter._user + ' needs to update profile') }
+}, 5000, { 'trailing': true });
 
 module.exports = app => {
 
@@ -18,9 +23,14 @@ module.exports = app => {
         const profile = await Profile.findOneAndUpdate(filter, update, {
             new: true
         });
+        res.status(200).send(profile)
+        // Calling throttle() method with its parameter
+        
 
-        if (profile !== null) { console.log(profile.fName, Date(Date.now())) } else { console.log('user ' + filter._user + ' needs to update profile') }
-        res.send(profile)
+        // throt_fun(profile, filter);
+
+
+
 
 
     });
@@ -75,15 +85,15 @@ module.exports = app => {
 
         await axios.post(keys.localUrl + '/api/coupons', coupons).then(
             (resp) => {
-                console.log(resp.status)
-                res.send(200, resp.status)
+                // console.log(resp.status)
+                res.sendStatus(resp.status)
 
             }
         ).catch(err => {
             console.log(err)
         })
 
-        console.log('user profile created');
+        // console.log('user profile created');
 
 
     });
@@ -134,8 +144,8 @@ module.exports = app => {
         const filter = { _user: req.user.id }
 
         const currentPoints = await Profile.findOne(filter)
-        console.log('current points:')
-        console.log(currentPoints.points)
+        // console.log('current points:')
+        // console.log(currentPoints.points)
 
         if (currentPoints.points === undefined) currentPoints.points = 0
 
@@ -146,7 +156,7 @@ module.exports = app => {
             new: true
         });
 
-        return res.send(200)
+        return res.sendStatus(200)
     })
 
 
@@ -163,8 +173,8 @@ module.exports = app => {
 
         await axios.post(keys.localUrl + '/api/coupons', coupons).then(
             response => {
-                console.log(response.status)
-                res.send(response.status)
+                // console.log(response.status)
+                res.sendStatus(response.status)
             }
         )
     })
@@ -188,7 +198,7 @@ module.exports = app => {
                     bronzeCoupons
                 }
 
-                res.send(200, data)
+                res.status(200).send(data)
             }
         ).catch(err => {
             console.log(err)
@@ -205,9 +215,9 @@ module.exports = app => {
 
         await axios.post(keys.localUrl + '/api/coupons', req.body).then(
             (resp) => {
-                console.log('coupons sent: ', req.body)
-                console.log(resp.status)
-                res.send(200, resp.status)
+                // console.log('coupons sent: ', req.body)
+                // console.log(resp.status)
+                res.sendStatus(resp.status)
 
             }
         ).catch(err => {
@@ -239,9 +249,9 @@ module.exports = app => {
             new: true
         });
 
-        console.log('updated avatar', filter, updateProfile)
+        // console.log('updated avatar', filter, updateProfile)
 
-        res.send('profile avatar updated succesfully');
+        res.status(200).send('profile avatar updated succesfully');
 
 
     })
@@ -249,31 +259,31 @@ module.exports = app => {
     app.get('/api/profile/delete', requireLogin, async (req, res) => {
 
         const pFilter = { _user: req.user.id }
-        const uFilter = {_id: req.user.id}
-        console.log(req.user.id)
-        
+        const uFilter = { _id: req.user.id }
+        // console.log(req.user.id)
+
         const confirm = req.query.confirm
-        if ( confirm ) {
+        if (confirm) {
             console.log('deleting account')
             await Profile.findOneAndDelete(pFilter, function (err, docs) {
-                if (err){
+                if (err) {
                     console.log(err)
                 }
-                else{
+                else {
                     console.log("Deleted Profile : ", docs);
                 }
             })
             await User.findOneAndDelete(uFilter, function (err, docs) {
-                if (err){
+                if (err) {
                     console.log(err)
                 }
-                else{
+                else {
                     console.log("Deleted User : ", docs);
                 }
             })
         }
 
-        res.send('profile removed successfully')
+        res.status(200).send('profile removed successfully')
 
 
 

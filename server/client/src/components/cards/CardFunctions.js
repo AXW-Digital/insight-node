@@ -1,3 +1,5 @@
+/* eslint-disable */
+ 
 import FormCard from './FormCard'
 import ActivityCard from './ActivityCard'
 import FeedCardFunction from './FeedCardFunction'

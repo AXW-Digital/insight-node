@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { FETCH_STORE } from '../actions/types';
 const initialState = { modalOpen: false, prizeNum: null }
 

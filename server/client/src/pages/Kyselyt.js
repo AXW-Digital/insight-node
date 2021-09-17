@@ -88,7 +88,7 @@ class HomePage extends Component {
     renderCards() {
         const { isLoading, surveyAns } = this.state;
         const cardvaluelist = this.state.cards
-        console.log(surveyAns)
+        // console.log(surveyAns)
         switch (isLoading) {
 
             default:
@@ -129,7 +129,7 @@ class HomePage extends Component {
 
 
                 // renewableSurveyList = renewableSurveyList.map(x => x - 1)
-                console.log(renewableSurveys)
+                // console.log(renewableSurveys)
 
                 var surveyCount = cardvaluelist.filter(card => card.tyyppi === 'Vastaa').map(createCard)
                 var renewableSurveysId
@@ -148,7 +148,7 @@ class HomePage extends Component {
                 
 
                 if (surveyCount === undefined || surveyCount.length === 0) {
-                    console.log(surveyCount)
+                    // console.log(surveyCount)
                     return <div className='home-message vh-75'>
                         <div className = 'container'>
                             <p className = 'mt-5'>
@@ -159,7 +159,7 @@ class HomePage extends Component {
                         </div>
 
                 } else {
-                    console.log(surveyCount)
+                    // console.log(surveyCount)
                     return (
                         <div className="row g-4 d-flex">
                             {surveyCount}

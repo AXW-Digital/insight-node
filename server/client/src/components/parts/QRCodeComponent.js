@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import QRCode from 'qrcode.react';
 import { Button as Btn } from 'antd';
@@ -91,8 +92,8 @@ async function redeemVoucher(id, userId, qrCode){
     }
     await axios.post('/api/vouchers/reg/redeem',  data, {timeout:1500})
     .then(res => {
-        console.log('voucher redeemed:', data)
-        console.log(res)
+        // console.log('voucher redeemed:', data)
+        // console.log(res)
     })
     .catch(err =>{
         console.log(err.code)
@@ -110,7 +111,7 @@ class QRCodeComponent extends Component {
     
 
     enterLoading = () => {
-        console.log('entered loading...')
+        // console.log('entered loading...')
         redeemVoucher(this.props.voucherId, this.props.data.profile._user, this.props.qr_code);
         this.setState({ loading: true })
         setTimeout(() => {

@@ -14,7 +14,7 @@ module.exports = app => {
 
 
 
-        return res.send(200, data)
+        return res.status(200).send(data)
 
 
     }) 

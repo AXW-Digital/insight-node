@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -93,13 +94,13 @@ const VoucherActivateModal = (props) => {
         // setOpen(false);
         if(closeBtnRef.current){
             closeBtnRef.current.setAttribute('disabled', 'disabled');
-            console.log('closing page...')
+            // console.log('closing page...')
         }
 
         history.push('/test');
-        console.log('pushed to test...');
+        // console.log('pushed to test...');
         await window.location.reload();
-        console.log('window reloaded...');
+        // console.log('window reloaded...');
     };
     
 

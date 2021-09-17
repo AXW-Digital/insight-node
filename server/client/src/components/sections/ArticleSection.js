@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -213,7 +214,7 @@ export default function ArticleSection(props) {
 
     await axios.post('/api/socials', data).then(
       (res) => {
-        console.log(res.status)
+        // console.log(res.status)
       }
     ).catch(err => {
       console.log(err)

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //components
@@ -19,7 +20,7 @@ class LandingPage extends Component {
         return (
                 <div>
                 <LandingSection1 data = {this.props.data} />
-                <LandingQuestion data = {this.props.data}/>
+                {/* <LandingQuestion data = {this.props.data}/> */}
                 <LandingSection2 />
                 <LandingSection3 />
                 <LandingSection4 />

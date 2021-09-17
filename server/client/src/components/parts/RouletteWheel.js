@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import { Wheel } from 'react-custom-roulette';
 import storeReducer from '../../reducers/storeReducer';
@@ -33,7 +34,7 @@ const RouletteWheel = forwardRef((props, ref) => {
 
   const subscription = prizeService.onNumber().subscribe(number => {
     if (number) {
-      console.log('prize service activated')
+      // console.log('prize service activated')
       reduceCoupons();
     } else {      
     }
@@ -67,7 +68,7 @@ const RouletteWheel = forwardRef((props, ref) => {
 
     var coupons = { userId, bronzeCoupons, silverCoupons, goldCoupons }
 
-    console.log(console.log('reducing coupons: ', coupons))
+    // console.log(console.log('reducing coupons: ', coupons))
 
     await couponService.sendCoupon(coupons)
 

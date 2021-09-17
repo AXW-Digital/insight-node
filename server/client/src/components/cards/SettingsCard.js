@@ -1,3 +1,5 @@
+/* eslint-disable */
+ 
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import { SliderDist, SliderPrice } from '../parts/RangeSlider';
@@ -50,7 +52,7 @@ var settingsData = {
 dataService.getData().subscribe(message => {
     var key = Object.keys(message.value)
     settingsData[key] = message.value[key]
-    console.log(settingsData);
+    // console.log(settingsData);
 });
 
 

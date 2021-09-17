@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { connect } from "react-redux";
 import Footer from "../../components/parts/Footer";
 // import cardvaluelist from "../../assets/js/cardvalues";
@@ -49,7 +50,7 @@ class Shuffle extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
-					console.log('result for socials: ', result)
+					// console.log('result for socials: ', result)
                     var articles = result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
                     var socialData = socials
                     // const userArticles = articles.map(t1 => ({ ...t1, ...socialData.find(t2 => t2.voucherId === t1.voucherId) }))
@@ -109,7 +110,7 @@ class Shuffle extends Component {
 		
 		await axios.post('/api/socials', data).then(
 			(res) => {
-				console.log(res.status)
+				// console.log(res.status)
 			}
 		).catch(err => {
 			console.log(err)
@@ -130,7 +131,7 @@ class Shuffle extends Component {
 		
 		await axios.post('/api/socials', data).then(
 			(res) => {
-				console.log(res.status)
+				// console.log(res.status)
 			}
 		).catch(err => {
 			console.log(err)
@@ -151,7 +152,7 @@ class Shuffle extends Component {
 		
 		await axios.post('/api/socials', data).then(
 			(res) => {
-				console.log(res.status)
+				// console.log(res.status)
 			}
 		).catch(err => {
 			console.log(err)
@@ -172,7 +173,7 @@ class Shuffle extends Component {
 		
 		await axios.post('/api/socials', data).then(
 			(res) => {
-				console.log(res.status)
+				// console.log(res.status)
 			}
 		).catch(err => {
 			console.log(err)

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, forwardRef, useImperativeHandle, useEffect, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -94,7 +95,7 @@ const RouletteWinVoucherDialog = forwardRef((props, ref) => {
 
         var coupons = { userId, bronzeCoupons, silverCoupons, goldCoupons }
 
-        console.log(console.log('reducing coupons: ', coupons))
+        // console.log(console.log('reducing coupons: ', coupons))
 
         await couponService.sendCoupon(coupons)
 

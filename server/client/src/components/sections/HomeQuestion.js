@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import {KyselyFormBoost as KyselyForm} from '../forms/KyselyForm';

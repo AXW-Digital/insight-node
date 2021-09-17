@@ -1,4 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
+/* eslint-disable  */
 import { FETCH_COUPONS } from '../actions/types';
 
 export default function(state = null, action) {

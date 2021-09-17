@@ -11,11 +11,11 @@ module.exports = app => {
 
         const userId = req.params.userId;
         var data = null
-        console.log('voucherRoute using id: ' + userId)
+        // console.log('voucherRoute using id: ' + userId)
         await axios.get(keys.localUrl + "/api/vouchers/user/" + userId)
             .then((response) => {
                 data = response.data
-                return res.send(200, data)
+                return res.status(200).send(data)
             });
 
     });
@@ -26,7 +26,7 @@ module.exports = app => {
         await axios.get(keys.localUrl + '/api/vouchers/reg/all')
         .then((response) => {
             data = response.data
-            return res.send(200, data)
+            return res.status(200).send(data)
         })
         .catch(err => {
             console.log(err)
@@ -38,7 +38,7 @@ module.exports = app => {
 
     app.post('/api/vouchers', requireLogin, async (req, res) => {
 
-        console.log('body: ', req.body)
+        // console.log('body: ', req.body)
 
         const {
             userId,
@@ -60,13 +60,13 @@ module.exports = app => {
             qrCode
         }
 
-        console.log('sending following data to voucher backend: ', data)
+        // console.log('sending following data to voucher backend: ', data)
 
 
         await axios.post(keys.localUrl + '/api/vouchers', data).then(
             response => {
-                console.log(response.status)
-                res.send(response.status)
+                // console.log(response.status)
+                res.sendStatus(response.status)
             }
         ) .catch(err => {
             console.log(err)
@@ -80,15 +80,15 @@ module.exports = app => {
     
         await axios.post(keys.localUrl + '/api/vouchers/reg/redeem', req.body).then(
             response => {
-                console.log('sending voucher data to reg: ', req.body)
-                console.log(response.status)
-                res.send(response.status)
+                // console.log('sending voucher data to reg: ', req.body)
+                // console.log(response.status)
+                res.sendStatus(response)
             }
         ).catch(err => {
             console.log(err)
         })
 
-        // return res.send(200, 'successfully used voucher')
+        // return res.status(200).send(200, 'successfully used voucher')
     
     });
 
@@ -120,15 +120,15 @@ module.exports = app => {
     
         await axios.post(keys.localUrl + '/api/vouchers/reg', data).then(
             response => {
-                console.log('sending voucher data to reg: ', data)
-                console.log(response.status)
-                res.send(response.status)
+                // console.log('sending voucher data to reg: ', data)
+                // console.log(response.status)
+                res.sendStatus(response.status)
             }
         ).catch(err => {
             console.log(err)
         })
 
-        // return res.send(200, 'successfully used voucher')
+        // return res.status(200).send(200, 'successfully used voucher')
     
     });
 

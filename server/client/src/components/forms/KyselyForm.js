@@ -1,3 +1,5 @@
+/* eslint-disable */
+ 
 import React, { Component } from 'react'
 import FormFunction from './FormFunction'
 import FormFunctionLanding from './FormFunctionLanding'
@@ -33,7 +35,7 @@ export default function KyselyForm(props) {
             var renewSurvey
             var hoursSinceSubmit = 0
             const surveyList = props.kyselyt;
-            console.log('surveyAns:', surveyAns)
+            // console.log('surveyAns:', surveyAns)
             if (surveyAns !== [] && surveyAns !== undefined && surveyAns.id.length > 0) {
                 surveyAns = surveyAns.list.filter(x => x.id === surveyId)
                 if ( surveyAns.length > 0 ){
