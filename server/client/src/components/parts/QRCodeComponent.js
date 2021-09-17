@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import QRCode from 'qrcode.react';
 import { Button as Btn } from 'antd';

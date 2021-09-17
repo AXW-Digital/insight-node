@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import { Wheel } from 'react-custom-roulette';
 import storeReducer from '../../reducers/storeReducer';

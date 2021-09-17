@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { connect } from "react-redux";
 import Footer from "../../components/parts/Footer";
 // import cardvaluelist from "../../assets/js/cardvalues";

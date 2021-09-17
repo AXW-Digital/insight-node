@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState, Component } from 'react';
 import { connect } from 'react-redux';
 import KyselyForm from '../components/forms/KyselyForm';

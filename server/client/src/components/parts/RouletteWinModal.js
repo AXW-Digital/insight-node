@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component, useRef, useState } from 'react';
 import VoucherCardRoulette from '../cards/VoucherCardRoulette';
 import throttle from 'lodash/throttle';

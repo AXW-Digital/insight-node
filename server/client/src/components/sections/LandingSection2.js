@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { ReactComponent as Messages } from '../../assets/images/messages.svg'
 import { Card } from 'react-bootstrap'

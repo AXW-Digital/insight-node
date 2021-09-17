@@ -1,3 +1,5 @@
+/* eslint-disable */
+ 
 import React, { useState } from 'react';
 import { Form, Button as Btn } from 'react-bootstrap';
 import kyselyt from '../../assets/js/kyselyt';

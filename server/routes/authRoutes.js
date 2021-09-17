@@ -5,13 +5,14 @@ module.exports = app => {
     '/auth/google',
     passport.authenticate('google', {
       scope: ['profile', 'email']
-    })
-  );
+    }),
+  );  
 
   app.get(
     '/auth/google/callback', 
     passport.authenticate('google'),
-    (req, res) => {      
+    (req, res) => {     
+      console.log(req.user._id, 'logged in at ', Date(Date.now())) 
       res.redirect('/home');
     }
   );
@@ -24,7 +25,8 @@ module.exports = app => {
   app.get(
     '/auth/facebook/callback', 
     passport.authenticate('facebook'),
-    (req, res) => {      
+    (req, res) => {
+      console.log(req.user._id, 'logged in at ', Date(Date.now()))       
       res.redirect('/home');
     }
   );

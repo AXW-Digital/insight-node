@@ -1,3 +1,5 @@
+/* eslint-disable */
+ 
 import { Route, Redirect } from 'react-router-dom';
 
 export default function CreateProfileRoute ({component: Component, auth, profile, redirect, ...rest}) {

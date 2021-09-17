@@ -27,7 +27,7 @@ module.exports = app => {
         // Calling throttle() method with its parameter
         
 
-        throt_fun(profile, filter);
+        // throt_fun(profile, filter);
 
 
 
@@ -86,7 +86,7 @@ module.exports = app => {
         await axios.post(keys.localUrl + '/api/coupons', coupons).then(
             (resp) => {
                 // console.log(resp.status)
-                res.status(200).send(resp.status)
+                res.sendStatus(resp.status)
 
             }
         ).catch(err => {
@@ -156,7 +156,7 @@ module.exports = app => {
             new: true
         });
 
-        return res.status(200).send()
+        return res.sendStatus(200)
     })
 
 
@@ -174,7 +174,7 @@ module.exports = app => {
         await axios.post(keys.localUrl + '/api/coupons', coupons).then(
             response => {
                 // console.log(response.status)
-                res.status(200).send(response.status)
+                res.sendStatus(response.status)
             }
         )
     })
@@ -217,7 +217,7 @@ module.exports = app => {
             (resp) => {
                 // console.log('coupons sent: ', req.body)
                 // console.log(resp.status)
-                res.status(200).send(resp.status)
+                res.sendStatus(resp.status)
 
             }
         ).catch(err => {

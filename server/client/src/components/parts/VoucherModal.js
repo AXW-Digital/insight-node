@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Modal, Button } from 'react-bootstrap';
 import Reward from "react-rewards";
 import React from "react";

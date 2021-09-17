@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { ReactComponent as Nainen } from '../../assets/images/nainen.svg';
 import HomeStepper from '../parts/HomeStepper';

@@ -66,7 +66,7 @@ module.exports = app => {
         await axios.post(keys.localUrl + '/api/vouchers', data).then(
             response => {
                 // console.log(response.status)
-                res.status(200).send(response.status)
+                res.sendStatus(response.status)
             }
         ) .catch(err => {
             console.log(err)
@@ -82,7 +82,7 @@ module.exports = app => {
             response => {
                 // console.log('sending voucher data to reg: ', req.body)
                 // console.log(response.status)
-                res.status(200).send(response.status)
+                res.sendStatus(response)
             }
         ).catch(err => {
             console.log(err)
@@ -122,7 +122,7 @@ module.exports = app => {
             response => {
                 // console.log('sending voucher data to reg: ', data)
                 // console.log(response.status)
-                res.status(200).send(response.status)
+                res.sendStatus(response.status)
             }
         ).catch(err => {
             console.log(err)

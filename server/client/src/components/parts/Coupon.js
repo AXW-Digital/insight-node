@@ -1,4 +1,5 @@
-
+/* eslint-disable */
+ 
 import { IoTicket } from 'react-icons/io5';
 
 import React, { Component } from 'react';

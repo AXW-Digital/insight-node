@@ -1,3 +1,5 @@
+/* eslint-disable */
+ 
 import React, { Component } from 'react';
 import CountUp from 'react-countup';
 import Reward from "react-rewards";

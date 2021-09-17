@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Modal, Button } from 'react-bootstrap';
 import { ActivityCardSmall, PointsCard, LevelCard } from '../../components/cards/ActivityCard'
 import { Progress } from 'antd';

@@ -1,3 +1,5 @@
+/* eslint-disable */
+ 
 import React from "react";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";

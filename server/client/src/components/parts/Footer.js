@@ -3,6 +3,8 @@ import ScrollButton from './ScrollButton'
 import { connect } from 'react-redux'
 // import store from '../../store/index';
 import storeReducer from '../../reducers/storeReducer'
+/* eslint-disable */
+ 
 import { configureStore } from '@reduxjs/toolkit'
 
 class Footer extends Component {

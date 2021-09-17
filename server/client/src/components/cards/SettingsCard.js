@@ -1,3 +1,5 @@
+/* eslint-disable */
+ 
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import { SliderDist, SliderPrice } from '../parts/RangeSlider';

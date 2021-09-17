@@ -1,4 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
+/* eslint-disable */
 
 import { FETCH_SETTINGS } from '../actions/types';
 

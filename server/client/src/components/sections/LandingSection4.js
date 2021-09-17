@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React  from 'react';
 import {ReactComponent as Thoughts} from '../../assets/images/thoughts.svg'
 import { Card } from 'react-bootstrap';
