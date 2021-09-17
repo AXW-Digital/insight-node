@@ -213,7 +213,7 @@ export default function ArticleSection(props) {
 
     await axios.post('/api/socials', data).then(
       (res) => {
-        console.log(res.status)
+        // console.log(res.status)
       }
     ).catch(err => {
       console.log(err)

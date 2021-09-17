@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Newsfeed
 import NewsFeed from '../components/sections/NewsFeed'
 import { connect } from "react-redux";

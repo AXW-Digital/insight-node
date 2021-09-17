@@ -31,7 +31,7 @@ class KyselyPage extends Component {
 
 	componentDidMount() {
 		const profile = this.props.data.profile
-		console.log(profile)
+		// console.log(profile)
 		fetch("/api/surveys")
 			.then(res => res.json())
 			.then(

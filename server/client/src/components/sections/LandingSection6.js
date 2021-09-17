@@ -11,10 +11,10 @@ class LandingSection6 extends React.Component {
                     <div className="container">
                     <div className="row">
                         <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1">
-                        <h3>KASVUVAIKUTTAJIEN VOIMA</h3>
+                        <h3>VAIKUTTAJIEN VOIMA</h3>
                             <div className="icon-box">
                                 <Card className="description shadow-lg p-3 mb-5 bg-white rounded" data-aos="flip-up" data-aos-duration="200" data-aos-delay="300">
-                                Ravintola uudisti koko ruokalistan ja panostaa nyt yhteisölliseen syömiseen ja jaettaviin annoksiin erityisesti alkupaloissa.  Tämän ansiosta keskiostos on kasvanut x%
+                                Ravintola uudisti koko ruokalistan ja panostaa nyt yhteisölliseen syömiseen ja jaettaviin annoksiin erityisesti alkupaloissa. 
                                 </Card>
                             </div>
                             <div className="icon-box">

@@ -38,6 +38,6 @@ module.exports = app => {
 
   // test to see if the oauth works with the current user
   app.get('/api/current_user', (req, res) => {
-    res.send(req.user);
+    res.status(200).send(req.user);
   });
 };

@@ -1,5 +1,5 @@
 import React  from 'react';
-import {ReactComponent as Team} from '../../assets/images/team.svg'
+import {ReactComponent as Thoughts} from '../../assets/images/thoughts.svg'
 import { Card } from 'react-bootstrap';
 
 
@@ -22,7 +22,7 @@ class LandingSection4 extends React.Component {
                         </div>
                         <div className="col-lg-6 order-1 order-lg-2 kasvut-img">
                             <div className="img-fluid animated">
-                                <Team />
+                                <Thoughts />
                             </div>
                         </div>
                     </div>

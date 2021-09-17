@@ -85,7 +85,7 @@ class HomePage extends Component {
         this.setState({ isLoading: false });
       });
       await axios.get("../api/vouchers/reg/all").then((response) => {
-        console.log('vouchers:', response.data)
+        // console.log('vouchers:', response.data)
         this.setState({ vouchers: response.data });
       });
       await axios
@@ -123,11 +123,11 @@ class HomePage extends Component {
 
     const subscription = couponService.onCoupon(first()).subscribe(async coupons => {
       if (coupons !== null && !this.state.couponsSent) {
-        console.log('sending coupons to backend: ', coupons)
+        // console.log('sending coupons to backend: ', coupons)
         await axios.post('/api/coupons', coupons).then(
           (res) => {
             this.setState({ couponsSent: true });
-            console.log(res.status)
+            // console.log(res.status)
           }
         )
       }
@@ -152,14 +152,14 @@ class HomePage extends Component {
             this.setState({ vouchers: response.data });
             voucher = response.data.filter(x => x.voucherId === prize)
           });
-          console.log("Sleeping for ", sleeptime, "ms")
+          // console.log("Sleeping for ", sleeptime, "ms")
           await sleep(sleeptime)
 
         }
 
 
 
-        console.log(voucher[0])
+        // console.log(voucher[0])
         const {
           voucherId,
           partnerId,
@@ -183,12 +183,12 @@ class HomePage extends Component {
 
         await axios.post('/api/vouchers', data)
           .then((res1) => {
-            console.log(res1.status)
+            // console.log(res1.status)
           })
 
         await axios.post('/api/vouchers/reg', data)
           .then((res2) => {
-            console.log(res2.status)
+            // console.log(res2.status)
           })
 
       }
@@ -208,7 +208,7 @@ class HomePage extends Component {
 
   renderCards() {
     const { isLoading, surveyAns } = this.state;
-    console.log(surveyAns);
+    // console.log(surveyAns);
     switch (isLoading) {
       default:
         return <Loader />;
@@ -528,7 +528,7 @@ class HomePage extends Component {
                 <div className="row">
                   <div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-2">
                     <div className="img-fluid animated mb-5">
-                      <h1>Hei vaikuttaja, muistathan päivittää profiilisi!</h1>
+                      <h1>Hei vaikuttava, muistathan päivittää profiilisi!</h1>
                     </div>
                   </div>
                   <div className="col-lg-6 order-2 order-lg-1 hero-img align-items-center">

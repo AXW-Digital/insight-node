@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
     renderContent() {
-        console.log(this.props.auth)
+        // console.log(this.props.auth)
         switch (this.props.auth.auth) {
             case false:
                 return (<Nav className='ml-auto justify-content-end'>

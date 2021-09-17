@@ -101,7 +101,7 @@ export default class LandingBarChart extends React.Component {
                     enabled: true,
                     textAnchor: 'middle',
                     formatter: function (val, opt) {
-                        console.log(opt)
+                        // console.log(opt)
                         var label                        
                         if (val !== 0) {
                             label = opt.w.globals.seriesNames[opt.seriesIndex]

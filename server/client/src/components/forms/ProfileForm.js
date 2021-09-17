@@ -73,7 +73,7 @@ const ProfileForm = (props) => {
                 axios.post('../api/profile/create', values)
                     .then(res => {
                         if (res.status === 200) {
-                            console.log(res)
+                            // console.log(res)
                             setModalShow(true)
                         }
                     })
@@ -125,7 +125,7 @@ const ProfileForm = (props) => {
         axios.post('/api/profile/points', { points })
             .then(res => {
                 if (res.status === 200) {
-                    console.log(res)
+                    // console.log(res)
                 }
             })
             .catch(err => {

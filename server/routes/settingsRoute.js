@@ -19,10 +19,10 @@ module.exports = app => {
 
         if (!settings) {
             await intialSettings.save()
-            console.log('settings initialized');
-            res.send(settings)
+            // console.log('settings initialized');
+            res.status(200).send(settings)
         } else {
-            res.send(settings)
+            res.status(200).send(settings)
         };
     });
     
@@ -51,7 +51,7 @@ module.exports = app => {
             new: true
         });
 
-        res.send('Settings updated succesfully!')
+        res.status(200).send('Settings updated succesfully!')
 
     });
 };

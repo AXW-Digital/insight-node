@@ -16,7 +16,7 @@ module.exports = app => {
         axios.get(keys.localUrl + '/api/faq')
             .then((response) => {
                 data = response.data
-                return res.send(200, data)
+                return res.status(200).send(data)
             });
 
     });
@@ -51,11 +51,11 @@ module.exports = app => {
                 totalBenefits
             }
     
-            res.send(200, aggregateData)
+            res.status(200).send(aggregateData)
     
-            console.log(surveyCount)
+            // console.log(surveyCount)
         } else {
-            res.send('You need to login to continue')
+            res.status(200).send('You need to login to continue')
         }
         
         
@@ -70,7 +70,7 @@ module.exports = app => {
         axios.get(keys.localUrl + '/api/rouletteitems')
             .then((response) => {
                 data = response.data
-                return res.send(200, data)
+                return res.status(200).send(data)
             });
 
     });

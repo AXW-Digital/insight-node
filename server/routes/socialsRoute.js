@@ -57,7 +57,7 @@ module.exports = app => {
 
         await axios.post(keys.localUrl + '/api/socials', data).then(
             (res) => {
-                console.log(res.status)
+                // console.log(res.status)
             }
         ).catch(err => {
             console.log(err)

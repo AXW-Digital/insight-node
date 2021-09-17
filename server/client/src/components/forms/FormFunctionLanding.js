@@ -114,7 +114,7 @@ const FormFunctionLanding = (props) => {
             [field]: value
         })
     }
-    console.log(form)
+    // console.log(form)
 
     const formData = (id, form) => {
 
@@ -135,7 +135,7 @@ const FormFunctionLanding = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(form)
+        // console.log(form)
 
 
         axios.all([
@@ -144,12 +144,12 @@ const FormFunctionLanding = (props) => {
         ]).then(axios.spread((res1, res2) => {
             const status1 = res1.status;
             const status2 = res2.status;
-            console.log('res1', res1, 'res2', res2)
+            // console.log('res1', res1, 'res2', res2)
             if (status1 === 200) {
                 setModalShow(true)
             }
             if (status2 === 200) {
-                console.log('points updated')
+                // console.log('points updated')
             }
         })
 

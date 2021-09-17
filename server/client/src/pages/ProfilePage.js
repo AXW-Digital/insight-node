@@ -115,7 +115,7 @@ class ProfilePage extends Component {
 
 
             default:
-                console.log(profile)
+                // console.log(profile)
 
                 return (
                     <div>

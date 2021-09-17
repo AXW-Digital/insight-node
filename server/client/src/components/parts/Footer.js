@@ -23,7 +23,7 @@ class Footer extends Component {
             this.setState({
                 modalOpen: store.getState().modalOpen
             });
-            console.log('state changed', this.state)
+            // console.log('state changed', this.state)
             
         });
 
@@ -44,7 +44,8 @@ class Footer extends Component {
                                     <h3 className='footer-text'>Growflow <br /> Insights</h3>
                                     <p>
                                         Verkkosaarenkatu 5 <br />
-                            00580 Helsinki<br />
+                                        00580 Helsinki<br />
+                                        moi@vaikuttava.io<br />
                                     </p>
                                 </div>
 

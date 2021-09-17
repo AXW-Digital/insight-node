@@ -13,8 +13,6 @@ class LandingSection5 extends Component {
                         <h3>GROWFLOW INSIGHTS</h3>
                         <p>Intohimomme on auttaa yrittäjiä ymmärtämään asiakkaita ja toimintaympäristöä! Ymmärrys on paras pohja kehitykselle ja tulevaisuudelle. </p>
                         <p>Kaikki perustuu yhteisön ajatuksiin, joita rikastamme jo kerätyllä datalla. </p>
-                        <p>Vaikuttava.io alustan käyttämä algoritmi on itse kehitetty, joten tiedot näkyvät rajatulle joukolle. </p>
-                        <p>Dataa ei yksilöidä eikä tuloksista voi tunnistaa yksittäisen vastaajan vastauksia. Kaikki perustuu massaan. </p>
 
                         <h3>Kumppanimme</h3>
                         <p>Yhteistyökumppaneina meillä on ruokaan, ravintolaelämyksiin ja nautiskeluun liittyviä pieniä ja suuria yrityksiä ja yrittäjiä ympäri Suomen - ravintoloita, kahviloita, pienpanimoja, viinibaareja...

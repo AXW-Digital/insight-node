@@ -46,7 +46,7 @@ export default function AlertDialog() {
             }
           }).then(
             res => {
-                console.log(res)
+                // console.log(res)
             }
         )
        window.location ='/'

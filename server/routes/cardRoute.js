@@ -13,7 +13,7 @@ module.exports = app => {
         axios.get(keys.localUrl + '/api/cards')
             .then((response) => {
                 data = response.data
-                return res.send(200, data)
+                return res.status(200).send(data)
             });
 
     });
@@ -22,13 +22,13 @@ module.exports = app => {
     app.get('/api/cards/social/:id', async (req, res) => {
 
         const id = req.params.id
-        console.log(id)
+        // console.log(id)
 
 
         axios.get(keys.localUrl + '/api/cards/social/' + id)
             .then((response) => {
                 data = response.data
-                return res.send(200, data)
+                return res.status(200).send(data)
             });
 
     });
@@ -37,7 +37,7 @@ module.exports = app => {
 
         await axios.get(keys.localUrl + '/api/boosts').then((response) => {
             data = response.data
-            return res.send(200, data)
+            return res.status(200).send(data)
         });
     });
 
