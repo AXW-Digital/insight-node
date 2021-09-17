@@ -75,7 +75,7 @@ module.exports = app => {
         if (!surveyExists) {
             await survey.save();
             // console.log('survey saved');
-            return res.status(200).send(200, redir);
+            return res.status(200).send(redir);
         } else {
             await Survey.findOneAndUpdate(filter, updateSurvey, {
                 new: true
