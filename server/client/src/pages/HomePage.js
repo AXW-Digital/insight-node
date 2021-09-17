@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Footer from "../components/parts/Footer";
@@ -469,11 +469,13 @@ class HomePage extends Component {
 
                         </div>
                         <div className="counts">
+                          <h4 className='mt-5'>Kertyneet kupongit</h4>
                           <div className="row m-4">
                             <RouletteModal
                               count={this.props.data.profile.coupons}
                               vouchers={this.state.vouchers}
                             />
+                            <p style={{fontSize: '14px', color:'gray'}}>Käytä kuponki klikkaamalla kuvaketta. Pyöräytä arvontapyörää ja voita palkintoja!</p>
                           </div>
                         </div>
                       </div>

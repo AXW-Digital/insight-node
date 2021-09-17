@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
-import {KyselyFormBoost as KyselyForm} from '../forms/KyselyForm';
+import { KyselyFormBoost as KyselyForm } from '../forms/KyselyForm';
 import axios from 'axios';
 import keys from '../../config/keys';
 
@@ -23,11 +23,11 @@ class HomeQuestion extends React.Component {
         this.buttons = null
     }
 
-    async componentDidMount()  {
+    async componentDidMount() {
         await axios.get('/api/boosts').then(res => {
             const boosts = res.data
 
-            boosts.sort(function(a, b) {
+            boosts.sort(function (a, b) {
                 return a.order - b.order;
             });
 
@@ -51,33 +51,43 @@ class HomeQuestion extends React.Component {
         switch (viewButtons) {
             case true:
                 return (
-                    <div className='container d-flex h-75 align-items-center justify-content-center'>
-                        <div className='row d-flex'>
-                            {this.state.boosts !== null ?
-                                <>
-                                    <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
-                                        <div
-                                            onClick={() => { this.onButtonClicked(0); hideButtons() }}
-                                            className="btn btn-lg btn-block text-uppercase btn-nosto"
-                                        >{this.state.boosts[0].kyselyTitle}</div>
-                                    </div>
-                                    <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
-                                        <div
-                                            onClick={() => { this.onButtonClicked(1); hideButtons() }}
-                                            className="btn btn-lg btn-block text-uppercase btn-nosto"
-                                        >{this.state.boosts[1].kyselyTitle}</div>
-                                    </div>
-                                    <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
-                                        <div
-                                            onClick={() => { this.onButtonClicked(2); hideButtons() }}
-                                            className="btn btn-lg btn-block text-uppercase btn-nosto"
-                                        >{this.state.boosts[2].kyselyTitle}</div>
-                                    </div>
-                                </>
-                                : null}
-                        </div>
-                    </div>
+                    <>
+                        <div className='container d-flex h-75 align-items-center justify-content-center'>
+                            <div className='row d-flex'>
+                                {this.state.boosts !== null ?
+                                    <>
+                                    <div className='col-md-12 col-lg-12 my-3'>
 
+                                    <p>Söitkö tai joitko hyvin, kävitkö ravintolassa? Löysitkö elämäsi annoksen, uuden ihanan juomatuttavuuden tai jäikö jotakin hampaan koloon lounaalla
+                            tai illallisella?</p>
+                        <p>Arvostele ruoka- juoma- tai ravintolakokemus ja kerro meille mistä pidit, mitä parantaisit tai mitä suosittelisit muille Vaikuttaville.
+                            Voit tehdä arvosteluja vaikka joka päivä.</p>
+
+
+                                    </div>
+                                        <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
+                                            <div
+                                                onClick={() => { this.onButtonClicked(0); hideButtons() }}
+                                                className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                            >{this.state.boosts[0].kyselyTitle}</div>
+                                        </div>
+                                        <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
+                                            <div
+                                                onClick={() => { this.onButtonClicked(1); hideButtons() }}
+                                                className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                            >{this.state.boosts[1].kyselyTitle}</div>
+                                        </div>
+                                        <div className='col-md-12 col-lg-4 d-flex justify-content-center my-3'>
+                                            <div
+                                                onClick={() => { this.onButtonClicked(2); hideButtons() }}
+                                                className="btn btn-lg btn-block text-uppercase btn-nosto"
+                                            >{this.state.boosts[2].kyselyTitle}</div>
+                                        </div>
+                                    </>
+                                    : null}
+                            </div>
+                        </div>
+                    </>
                 )
             case false:
                 return null

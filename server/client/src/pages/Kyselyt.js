@@ -234,14 +234,36 @@ class HomePage extends Component {
                                 <div className="row">
                                     <div className="col-lg-6 order-1 order-lg-1">
                                         <h3>Mitä pisteet ovat?</h3>
-                                        <p>Pisteet ovat tapamme palkita Vaikuttavia aktiivisuudesta. Pisteitä kertyy vastaamalla kyselyihin, rekrytoimalla, jne. Kerryttämällä pisteitä kiipeät ylös vaikuttajatasoja, jolloin piste, kuponki ja palkintokertymät kasvavat.
+                                        <p>Pisteet ovat tapamme palkita sinua osallistumisesta ja aktiivisuudesta. Keräät pisteitä vastaamalla kyselyihin ja tutkimuksiin, tekemällä ruoka- juoma- ja ravintola-arvosteluja sekä muita palvelumme aktiviteetteja. Jokainen tutkimus on pisteytetty sen mukaan, kuinka laaja kyselytutkimus on. Näet kertyvät pisteet jokaisen tutkimuksen yhteydessä. 
+                                        </p>
+                                        <p>
+                                        Osaan tutkimuksista voit vastata vain kerran, ravintola- ruoka- ja juoma-arvosteluja voit tehdä vaikka joka päivä.   
+                                        </p>
+                                        <p>
+                                        Keräämällä pisteitä etenet Vaikuttajatasoilla ja ansaitset kuponkeja. Kupongeilla pääset pyöräyttämään arvontapyörää ja voittamaan palkintoja!  
                                         </p>
                                         <h3> Mitä kupongit ovat? </h3>
-                                        <p>Kupongit ovat keräämiäisi arpoja, joilla voit osallistua säännöllisesti järjestämiimme arvontoihin. Joka arvonnan päätyttyä kupongit nollautuvat. Kuponkeja kerrytät vastaamalla kyselyihin. Mikäli kyselyyn kuuluu oma vastaaja-arvonta, eivät kuluta kuponkeja. Voittajille ilmoitetaan sähköpostitse. Seuraava arvonta xx.x.
+                                        <p>Etenet Vaikuttajatasoilla keräämällä pisteitä. Kun keräät tietyn määrän pisteitä, saavutat seuraavan tason ja ansaitset uuden kupongin. Kupongilla pyöräytät arvontapyörää ja voit voittaa palkinnon. Ansaitut kupongit ovat tasosta riippuen joko pronssi-, hopea- tai kultakuponkeja.  
+                                        </p>
+                                        <br/>
+                                        <p>
+                                        Pronssisella kupongilla on 25% mahdollisuus voittaa
+                                        </p>
+                                        <br/>
+                                        <p>
+                                        Hopeisella kupongilla on 50% mahdollisuus voittaa
+                                        </p>
+                                        <br/>
+                                        <p>
+                                        Kultaisella kupongilla jokainen pyöräytys oikeuttaa voittoon!
+                                        </p>
+                                        <br/>
+                                        <p>
+                                        Palkintojen arvo kasvaa kupongin arvon myötä. Mitä enemmän keräät pisteitä ja etenet tasoilla, sitä parempia ja arvokkaampia etuja ja palkintoja voit ansaita!
                                         </p>
                                         <div className="icon-box">
                                             <Card className="description shadow-lg p-3 mb-5 bg-white rounded" data-aos="flip-up" data-aos-duration="200" data-aos-delay="300">
-                                                Viime arvonnan voittajat Laura Helsinki ja Jokke Joensuu!
+                                                Syksyn kampanjassa jaamme yli 1000€ arvosta palkintoja ja lahjakortteja!
                                             </Card>
                                         </div>
                                     </div>
