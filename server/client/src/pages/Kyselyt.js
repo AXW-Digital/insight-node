@@ -109,8 +109,13 @@ class HomePage extends Component {
                     for (i = 0; i < surveyAns.list.length; i++) {
                         const surveyId = surveyAns.list[i].id
                         var renewSurvey
-                        var hoursSinceSubmit = surveyAns.list.filter(x => x.id === surveyId)
-                        hoursSinceSubmit = hoursSinceSubmit[0].diff
+                        var hoursSinceSubmit = surveyAns.list.filter(x => x.id === (parseInt(surveyId) + 1).toString())
+                        if(hoursSinceSubmit.length > 0 ){
+                            hoursSinceSubmit = hoursSinceSubmit[0].diff
+                        } else {
+                            hoursSinceSubmit = 99999
+                        }
+                        
                         const SurveyResetTime = renewableSurveysList.filter(item => parseInt(item.formUrl) === parseInt(surveyId) + 1 ).map(a => a.resetHours)[0]
 
                         // check if enough time has passed since survey was ansered

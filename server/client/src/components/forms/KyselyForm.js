@@ -37,9 +37,11 @@ export default function KyselyForm(props) {
             const surveyList = props.kyselyt;
             // console.log('surveyAns:', surveyAns)
             if (surveyAns !== [] && surveyAns !== undefined && surveyAns.id.length > 0) {
-                surveyAns = surveyAns.list.filter(x => x.id === surveyId)
+                surveyAns = surveyAns.list.filter(x => x.id === (parseInt(surveyId) + 1).toString())
                 if ( surveyAns.length > 0 ){
                     hoursSinceSubmit = surveyAns[0].diff
+                } else {
+                    hoursSinceSubmit = 99999
                 }
                 
             }
