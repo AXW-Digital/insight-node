@@ -82,7 +82,7 @@ class KyselyPage extends Component {
 							<section id='kysely' className='odd-section'>
 								<div className='container'>
 									<KyselyForm
-										question={this.props.match.params.id - 1}
+										question={this.props.match.params.id}
 										currentPoints={profile.points}
 										kyselyt={items}
 										surveyAns={surveyAns}

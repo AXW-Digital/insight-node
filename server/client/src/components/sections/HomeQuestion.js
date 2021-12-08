@@ -99,17 +99,17 @@ class HomeQuestion extends React.Component {
         switch (n) {
             case 0:
                 this.kyselyForm = <KyselyForm
-                    question={this.state.boosts[0].surveyId - 1}
+                    question={this.state.boosts[0].surveyId}
                     {...this.props} />
                 break;
             case 1:
                 this.kyselyForm = <KyselyForm
-                    question={this.state.boosts[1].surveyId - 1}
+                    question={this.state.boosts[1].surveyId}
                     {...this.props} />
                 break;
             case 2:
                 this.kyselyForm = <KyselyForm
-                    question={this.state.boosts[2].surveyId - 1}
+                    question={this.state.boosts[2].surveyId}
                     {...this.props} />
                 break;
             default:

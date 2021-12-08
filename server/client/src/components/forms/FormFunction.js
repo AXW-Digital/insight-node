@@ -20,15 +20,15 @@ const useStyles = makeStyles({
 });
 
 
-function Choices(n, q, kyselyt) {
+function Choices(n, kyselyt) {
     const listItems = kyselyt.map((d) => d.kysymykset);
-    const choices = listItems[q];
+    const choices = listItems[0];
     const kys = choices.map((d) => d.choices);
     return kys[n];
 }
 
-function CreateForm(x, q, setField, kyselyt) {
-    var choices = kyselyt.map((d) => d.kysymykset)[q]
+function CreateForm(x, setField, kyselyt) {
+    var choices = kyselyt.map((d) => d.kysymykset)[0]
     var type = choices.map((d) => d.type)[x]
     var group = choices.map((d) => d.group)
     // var min = choices.map((d) => d.min)[x]
@@ -42,15 +42,15 @@ function CreateForm(x, q, setField, kyselyt) {
     return (
 
         <Form.Group key={key} controlId={key}>
-            <Form.Label key={key + '_1'}>{kyselyt.map((d) => d.kysymykset)[q].map((y) => y.title)[x]}</Form.Label>
+            <Form.Label key={key + '_1'}>{kyselyt.map((d) => d.kysymykset)[0].map((y) => y.title)[x]}</Form.Label>
             {
                 type === 'multi' ?
                     <Form.Control
                         key={key + '_2'}
                         as='select'
-                        multiple htmlSize={Choices(x, q, kyselyt).length}
+                        multiple htmlSize={Choices(x, kyselyt).length}
                         onChange={e => setField(key, Array.from(e.target.selectedOptions, option => option.value))}
-                    >{Choices(x, q, kyselyt).map(x => <option value={x}>{x}</option>)}
+                    >{Choices(x, kyselyt).map(x => <option value={x}>{x}</option>)}
 
                     </Form.Control> :
                     type === 'single' ?
@@ -61,7 +61,7 @@ function CreateForm(x, q, setField, kyselyt) {
                             defaultValue=''
                         >
                             <option className='text-muted' value='' disabled >Valitse yksi:</option>
-                            {Choices(x, q, kyselyt).map(x => <option value={x}>{x}</option>)}
+                            {Choices(x, kyselyt).map(x => <option value={x}>{x}</option>)}
                         </Form.Control> :
                         type === 'range' ?
                             <div className='row px-2'>
@@ -87,14 +87,14 @@ function CreateForm(x, q, setField, kyselyt) {
     );
 }
 
-function CreateKysely(q, setField, kyselyt) {
+function CreateKysely(setField, kyselyt) {
     const listItems = kyselyt.map((d) => d.kysymykset);
-    const choices = listItems[q];
+    const choices = listItems[0];
     const kys = choices.map((d) => d.choices);
     const items = [];
     var i;
     for (i = 0; i < kys.length; i++) {
-        items.push(CreateForm(i, q, setField, kyselyt));
+        items.push(CreateForm(i, setField, kyselyt));
     }
     return items;
 }
@@ -120,8 +120,8 @@ const FormFunction = (props) => {
             formData: form,
             responded: true,
             dateSent: Date.now(),
-            kyselyTitle: kyselyt.map((d) => d.kyselyTitle)[id],
-            points: kyselyt.map((d) => d.pointCount)[id]
+            kyselyTitle: kyselyt.map((d) => d.kyselyTitle)[0],
+            points: kyselyt.map((d) => d.pointCount)[0]
         }
 
         return data
@@ -155,7 +155,7 @@ const FormFunction = (props) => {
     };
 
     const [modalShow, setModalShow] = React.useState(false);
-    const pointCount = kyselyt.map((d) => d.pointCount)[id]
+    const pointCount = kyselyt.map((d) => d.pointCount)[0]
     const classes = useStyles();
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -173,9 +173,9 @@ const FormFunction = (props) => {
         window.location = "/home"
     };
 
-    var items = CreateKysely(id, setField, kyselyt)
-    const steps = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.choices).length;
-    var group = kyselyt.map((d) => d.kysymykset)[id].map((d) => d.group)
+    var items = CreateKysely(setField, kyselyt)
+    const steps = kyselyt.map((d) => d.kysymykset)[0].map((d) => d.choices).length;
+    var group = kyselyt.map((d) => d.kysymykset)[0].map((d) => d.group)
 
 
     return (

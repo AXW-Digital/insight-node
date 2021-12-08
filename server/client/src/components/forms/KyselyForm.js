@@ -8,7 +8,8 @@ import { ReactComponent as Answered } from '../../assets/images/answered.svg';
 import Loader from '../parts/Loader';
 
 export default function KyselyForm(props) {
-    var title = props.kyselyt.map((d) => d.kyselyTitle)[props.question]
+    var kysely = props.kyselyt.filter(x => x.id == props.question)
+    var title = kysely[0].kyselyTitle
     var surveyId = parseInt(props.question)
     surveyId = surveyId.toString();
     var surveyAns = props.surveyAns
@@ -37,7 +38,7 @@ export default function KyselyForm(props) {
             const surveyList = props.kyselyt;
             // console.log('surveyAns:', surveyAns)
             if (surveyAns !== [] && surveyAns !== undefined && surveyAns.id.length > 0) {
-                surveyAns = surveyAns.list.filter(x => x.id === (parseInt(surveyId) + 1).toString())
+                surveyAns = surveyAns.list.filter(x => x.id === (parseInt(surveyId)).toString())
                 if ( surveyAns.length > 0 ){
                     hoursSinceSubmit = surveyAns[0].diff
                 } else {
@@ -45,8 +46,13 @@ export default function KyselyForm(props) {
                 }
                 
             }
-            var SurveyResetTime = surveyList.filter(x => x.id === props.question + 1);
-            SurveyResetTime = SurveyResetTime[0].resetHours;
+            var SurveyResetTime = surveyList.filter(x => x.id === props.question);
+            if (SurveyResetTime.length > 0) {
+                SurveyResetTime = SurveyResetTime[0].resetHours;
+            } else {
+                SurveyResetTime = 1
+            }
+            
             // check if enough time has passed since survey was ansered
             if (hoursSinceSubmit !== 0){
                 SurveyResetTime <= hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
@@ -71,7 +77,7 @@ export default function KyselyForm(props) {
                                 question={props.question}
                                 title={title}
                                 currentPoints={props.currentPoints}
-                                kyselyt={props.kyselyt}
+                                kyselyt={kysely}
                             />
 
                         </div>
@@ -110,7 +116,8 @@ function KyselyFormLanding(props) {
 export { KyselyFormLanding }
 
 function KyselyFormBoost(props) {
-    var title = props.kyselyt.map((d) => d.kyselyTitle)[props.question]
+    var kysely = props.kyselyt.filter(x => x.id == props.question)
+    var title = kysely[0].kyselyTitle
     var surveyId = parseInt(props.question)
     surveyId = surveyId.toString();
     var surveyAns = props.surveyAns
@@ -135,7 +142,7 @@ function KyselyFormBoost(props) {
             if (surveyAns !== [] && surveyAns !== undefined && surveyAns.length > 0) {
                 hoursSinceSubmit = surveyAns[0].diff
             }
-            var SurveyResetTime = surveyList.filter(x => x.id === props.question + 1);
+            var SurveyResetTime = surveyList.filter(x => x.id === props.question);
             SurveyResetTime = SurveyResetTime[0].resetHours;
             // check if enough time has passed since survey was ansered
             if (hoursSinceSubmit !== 0){
@@ -163,7 +170,7 @@ function KyselyFormBoost(props) {
                                 question={props.question}
                                 title={title}
                                 currentPoints={props.currentPoints}
-                                kyselyt={props.kyselyt}
+                                kyselyt={kysely}
                             />
 
                         </div>
