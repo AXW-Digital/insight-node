@@ -103,27 +103,27 @@ class HomePage extends Component {
 
                 const surveysToRender = (surveyAns) => {
                     const renewableSurveysList = cardvaluelist.filter(card => (card.tyyppi === 'Vastaa' && card.resetHours !== undefined));
-                    const renewableSurveysIdList = renewableSurveysList.map(a => parseInt(a.formUrl) - 1);
+                    const renewableSurveysIdList = renewableSurveysList.map(a => parseInt(a.formUrl));
                     var i;
                     const surveyList = [];
                     for (i = 0; i < surveyAns.list.length; i++) {
                         const surveyId = surveyAns.list[i].id
                         var renewSurvey
-                        var hoursSinceSubmit = surveyAns.list.filter(x => x.id === (parseInt(surveyId) + 1).toString())
+                        var hoursSinceSubmit = surveyAns.list.filter(x => x.id === (parseInt(surveyId)).toString())
                         if(hoursSinceSubmit.length > 0 ){
                             hoursSinceSubmit = hoursSinceSubmit[0].diff
                         } else {
                             hoursSinceSubmit = 99999
                         }
                         
-                        const SurveyResetTime = renewableSurveysList.filter(item => parseInt(item.formUrl) === parseInt(surveyId) + 1 ).map(a => a.resetHours)[0]
+                        const SurveyResetTime = renewableSurveysList.filter(item => parseInt(item.formUrl) === parseInt(surveyId)).map(a => a.resetHours)[0]
 
                         // check if enough time has passed since survey was ansered
                         SurveyResetTime <= hoursSinceSubmit ? renewSurvey = true : renewSurvey = false
 
                         // if a renewable survey id is in the list of submitted surveys, check if can be removed and delete from that list 
                         if (renewableSurveysIdList.includes(parseInt(surveyId)) && !renewSurvey) {
-                            surveyList.push(parseInt(surveyId) + 1)
+                            surveyList.push(parseInt(surveyId))
                         }
                     }
                     return surveyList
