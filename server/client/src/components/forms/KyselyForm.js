@@ -46,7 +46,7 @@ export default function KyselyForm(props) {
                 }
                 
             }
-            var SurveyResetTime = surveyList.filter(x => x.id === props.question);
+            var SurveyResetTime = surveyList.filter(x => x.id === parseInt(props.question));
             if (SurveyResetTime.length > 0) {
                 SurveyResetTime = SurveyResetTime[0].resetHours;
             } else {
@@ -142,7 +142,7 @@ function KyselyFormBoost(props) {
             if (surveyAns !== [] && surveyAns !== undefined && surveyAns.length > 0) {
                 hoursSinceSubmit = surveyAns[0].diff
             }
-            var SurveyResetTime = surveyList.filter(x => x.id === props.question);
+            var SurveyResetTime = surveyList.filter(x => x.id === parseInt(props.question));
             SurveyResetTime = SurveyResetTime[0].resetHours;
             // check if enough time has passed since survey was ansered
             if (hoursSinceSubmit !== 0){
