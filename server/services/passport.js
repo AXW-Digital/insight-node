@@ -8,13 +8,14 @@ const User = mongoose.model('users');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
-})
+});
 
 passport.deserializeUser((id, done) => {
   User.findById(id).then(user => {
     done(null, user);
   })
-})
+});
+
 
 
 
@@ -50,11 +51,15 @@ passport.use(
       const existingUser = await User.findOne({ facebookId: profile.id });
 
       if (existingUser) {
+        console.log("found fb user: ", profile.id)
         return done(null, existingUser);
+      } else {
+        console.log("found no fb user, creating new one: ", profile.id)
+        const user = await new User({ facebookId: profile.id.toString() }).save();
+        done(null, user);
       }
 
-      const user = await new User({ facebookId: profile.id }).save();
-      done(null, user);
+      
     }
   ));
 
