@@ -2386,3 +2386,37 @@ span.cc{ color:#6d84b4 }
 #chart {
   overflow: hidden !important;
 }
+
+
+
+
+
+
+
+/* -----------------------------------------------
+end question front page CSS
+-------------------------------------------------- */
+
+
+/* -----------------------------------------------
+tawkto widget CSS
+-------------------------------------------------- */
+
+.chatbutton-closed{
+  padding: 2px 10px 2px 10px !important;
+  margin-right: 10px !important;
+  background-color: #ad9d7548 !important;
+  color:rgba(0, 0, 0, 0.39) !important;
+}
+
+.chatbutton-open{
+  padding: 2px 10px 2px 10px !important;
+  margin-right: 130px !important;
+  background-color: #ad9d7500 !important;
+  
+}
+
+
+/* -----------------------------------------------
+end tawkto widget CSS
+-------------------------------------------------- */
