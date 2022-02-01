@@ -6,6 +6,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import { prizeService } from '../../functions/prizeNumberGen';
 import { couponService } from '../../functions/couponReduce';
 import { first } from 'rxjs/operators'
+import { changeConfirmLocale } from 'antd/lib/modal/locale';
+import chance, { Chance } from 'chance';
+
+
 
 
 
@@ -18,12 +22,16 @@ const RouletteWheel = forwardRef((props, ref) => {
   const [prizeNumber, setPrizeNumber] = useState(0);
   const store = configureStore({ reducer: storeReducer })
   const data = props.data
+  const chance = new Chance();
 
   useImperativeHandle(ref, () => ({
 
     handleSpinClick() {
 
-      const newPrizeNumber = Math.floor(Math.random() * props.data.length)
+      const options = [...Array(data.length).keys()];
+      const probs = data.map(x => x.prob)
+      const newPrizeNumber = chance.weighted(options, probs)
+      // const newPrizeNumber = Math.floor(Math.random() * props.data.length)
       prizeService.sendNumber(data[newPrizeNumber].voucherId)
       setPrizeNumber(newPrizeNumber)
       setMustSpin(true)

@@ -50,10 +50,10 @@ export default function NavigationBottom() {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-      <BottomNavigationAction label="Home" value="home" component={Link}  to="/home" icon={<BiHome />} />
-      <BottomNavigationAction label="Kerää" value="kyselyt" component={Link}  to="/kyselyt" icon={< BiBoltCircle />} />
-      <BottomNavigationAction label="Käytä" value="points" component={Link} to="/test" icon={< IoTicketOutline />} />
-      <BottomNavigationAction label="Feed" value="news" component={Link} to="/feed" icon={< BiNews />} />
+      <BottomNavigationAction label="Koti" value="home" component={Link}  to="/home" icon={<BiHome />} />
+      <BottomNavigationAction label="Kyselyt" value="kyselyt" component={Link}  to="/kyselyt" icon={< BiBoltCircle />} />
+      <BottomNavigationAction label="Lahjakortit" value="points" component={Link} to="/test" icon={< IoTicketOutline />} />
+      <BottomNavigationAction label="Uutiset" value="news" component={Link} to="/feed" icon={< BiNews />} />
       <BottomNavigationAction label="Lisää" value="more" component={Link}  to="/more" icon={<CgMore />} />
     </BottomNavigation>
   );
