@@ -22,6 +22,9 @@ html {
   --header-height: 72px;
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
+  
+  /* Font ligatures off */
+  
 }
 
 /* disable vertical scroll  */
@@ -30,7 +33,8 @@ body>div {
   overflow-x: hidden;
 }
 body {
-  position: relative
+  position: relative;
+  font-variant-ligatures: none !important;
 }
 
 
@@ -43,7 +47,7 @@ a:hover {
 
 h1, h2, h3, h4, h5 .font-primary {
   font-family: "TT Norms";
-  color: rgba(63, 61, 86, 1)
+  color: rgba(63, 61, 86, 1);
 }
 
 h1 .font-primary {
@@ -2420,3 +2424,11 @@ tawkto widget CSS
 /* -----------------------------------------------
 end tawkto widget CSS
 -------------------------------------------------- */
+
+
+
+/* Modal for inactivity */
+
+.idle-modal .modal-content {
+  opacity: 1;
+}

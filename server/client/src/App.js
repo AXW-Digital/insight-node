@@ -10,7 +10,9 @@ import RedirectRoute from './helpers/RedirectRoute'
 import CreateProfileRoute from './helpers/CreateProfileRoute'
 import { Provider } from "react-redux";
 import rootStore from './store/index';
-import createHistory from 'history/createBrowserHistory'
+import createHistory from 'history/createBrowserHistory';
+
+
 
 
 //pages
@@ -30,11 +32,12 @@ import FeedPage from './pages/FeedPage';
 import ArticlePage from './pages/ArticlePage';
 import TermsAndConditionsPage from './pages/TermsAndConditionsPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import CookiesPage from './pages/CookiesPage'
+import CookiesPage from './pages/CookiesPage';
 
 //parts
-import Header from './components/parts/Header'
-
+import Header from './components/parts/Header';
+import { IdleTimeOutModal } from './components/parts/TimeoutModal';
+import IdleTimer from 'react-idle-timer';
 // Navigation
 import NavigationBottom from './components/parts/NavigationBottom'
 
@@ -58,6 +61,26 @@ history.listen(location => {
 
 class App extends Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      timeout: 15 * 60 * 1000,
+      logOut: 2 * 60 * 1000,
+      showModal: false,
+      userLoggedIn: false,
+      isTimedOut: false
+    }
+
+    this.idleTimer = null
+    this.onAction = this._onAction.bind(this)
+    this.onActive = this._onActive.bind(this)
+    this.onIdle = this._onIdle.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
+    this.handleIdle = this.handleIdle.bind(this)
+  }
+
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchSettings();
@@ -72,9 +95,55 @@ class App extends Component {
       once: true
     });
 
-
-
   };
+
+
+
+
+
+    _onAction(e) {
+      // console.log('user did something', e)
+      this.setState({ isTimedOut: false })
+    }
+
+    _onActive(e) {
+      // console.log('user is active, time to idle: ')
+      this.setState({ isTimedOut: false })
+      // console.log()
+    }
+
+    _onIdle(e) {
+      console.log('user is idle')
+      const isTimedOut = this.state.isTimedOut
+      if (isTimedOut) {
+        setTimeout(this.handleIdle(), this.state.logOut)
+      } else {
+        if (this.props.data.auth !== false) {
+          this.setState({ showModal: true })
+          setTimeout(() => this.handleIdle(), this.state.logOut)        
+          this.setState({ isTimedOut: true })
+        }
+        
+      }
+
+    }
+    handleClose() {
+      this.setState({showModal: false})
+      window.location.reload(false);
+    }
+
+    handleLogout() {
+      this.setState({showModal: false})
+      window.location.href ='/api/logout'
+    }
+
+    handleIdle(){
+      this.setState({ showModal: false })
+      this.handleLogout()
+    }
+
+
+  
 
 
   render() {
@@ -105,7 +174,28 @@ class App extends Component {
           <RedirectRoute auth={authStatus} component={Signin} path="/signin" />
           <Route auth={authStatus} component={Signup} path="/signup" />
           <Route component={CreateProfile} exact path="/profile/create" />
-          
+
+          {/* Time out modal component */}
+
+          <IdleTimer
+            ref={ref => { this.idleTimer = ref }}
+            element={document}
+            onActive={this.onActive}
+            onIdle={this.onIdle}
+            onAction={this.onAction}
+            debounce={250}
+            timeout={this.state.timeout}
+          />
+
+          <IdleTimeOutModal 
+          showModal={this.state.showModal}
+          handleClose={this.handleClose}
+          handleLogout={this.handleLogout} 
+          remainingTime = {this.state.logOut}         
+          />
+
+          {/* End time out modal component */}
+
           {/* Cookie consent */}
           <CookieConsent
             location="bottom"
@@ -117,7 +207,7 @@ class App extends Component {
           >
             KÄYTÄMME EVÄSTEITÄ.{" "}
             <span style={{ fontSize: "13px", fontFamily: 'TT Norms Light' }}>Käytämme evästeitä käyttökokemuksen parantamiseen ja sivuston käytön analysointiin. </span>
-            <a className='ml-auto'href='/evasteet'>&nbsp; Lisätietoja evästeistä</a>
+            <a className='ml-auto' href='/evasteet'>&nbsp; Lisätietoja evästeistä</a>
           </CookieConsent>
           {/* end cookies consent */}
 

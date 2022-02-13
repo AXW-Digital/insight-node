@@ -1,5 +1,5 @@
 # get the base node image
-FROM node:alpine
+FROM node:17.4.0-alpine
 ARG MAX_OLD_SPACE_SIZE=3072
 ENV NODE_OPTIONS=--max-old-space-size=${MAX_OLD_SPACE_SIZE}
 # set the working dir for container

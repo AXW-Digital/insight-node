@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
+var session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
@@ -27,11 +28,17 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(
-    cookieSession({
-        maxAge: 2 * 60 * 60 * 1000,
-        keys: [keys.cookieKey]
+    session({
+        secret: [keys.cookieKey],
+        resave: true,
+        rolling: true,
+        saveUninitialized: true,
+        cookie: {
+            maxAge: 2 * 60 * 60 * 1000
+        }
     }),
 )
+
 app.use(passport.initialize());
 app.use(passport.session());
 
