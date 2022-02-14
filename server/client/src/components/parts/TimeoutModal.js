@@ -42,9 +42,7 @@ export const IdleTimeOutModal = ({ showModal, handleClose, handleLogout, remaini
                                     <Button
                                         variant='contained'
                                         size="medium"
-                                        onClick={() => {
-                                            setOpen(handleClose);
-                                        }}
+                                        onClick={handleClose}
                                     >
                                         JATKA
                                     </Button>
@@ -54,9 +52,7 @@ export const IdleTimeOutModal = ({ showModal, handleClose, handleLogout, remaini
                                     <Button
                                         variant='contained'
                                         size="medium"
-                                        onClick={() => {
-                                            setOpen(handleLogout);
-                                        }}
+                                        onClick={handleLogout}
                                     >
                                         KIRJAUDU ULOS
                                     </Button>
