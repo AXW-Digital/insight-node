@@ -261,8 +261,8 @@ export default function ArticleSection(props) {
                   </Typography>
                 </CardContent>
                 <CardContent>
-                  <Typography variant="body2" color="textSecondary" component="p" className={classes.content}>
-                    {props.content}
+                  <Typography variant="body2" color="textSecondary" component="p" className={classes.content} >
+                    <div dangerouslySetInnerHTML = {{__html: props.content}}></div>                    
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
