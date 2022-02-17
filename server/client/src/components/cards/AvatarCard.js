@@ -65,7 +65,6 @@ eyebrow[]=upDownNatural
 
     url = url.replace(/(\r\n|\n|\r)/gm, "");
 
-    console.log(url)
 
     return (
         <div>

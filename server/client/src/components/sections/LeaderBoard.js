@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import HomeLeaderChart from '../charts/HomeLeaderChart';
 import axios from 'axios';
 import Loader from '../parts/Loader';
+import LeaderBoardTb from '../charts/LeaderBoardTable';
 
 class LeaderBoard extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class LeaderBoard extends Component {
                     this.setState({
                         isLoaded: true,
                         data: response.data,
-                        series: [{ data: response.data.profiles.points }]
+                        series: response.data.points
                     });
 
                 })
@@ -61,22 +61,23 @@ class LeaderBoard extends Component {
 
         if (isLoaded && data.length !== 0 && isUpdated === false) {
 
-            var json1 = data.surveys
-            var json2 = data.profiles
 
-            let json3 = [];
-
-            json1.forEach((j1) => {
-                json2.forEach((j2) => {
-                    if (j1._user === j2._user) {
-                        json3.push({ ...j1, ...j2 });
-                    }
-                });
-            });
-
-
-            ser = json2.map(o => ({ x: o.uName, y: o.points }))
+            ser = this.state.data.map(o => ({ 
+                x: o.uName, 
+                y: o.points, 
+                avatar: o.avatar, 
+                surveyCount: o.surveyCount,
+                totalQuestions: o.totalQuestions 
+            }))
             ser = sortJSON(ser, 'y', '321');
+            ser = ser.map(o => ({ 
+                uName: o.x, 
+                points: o.y, 
+                avatar: o.avatar, 
+                surveyCount: o.surveyCount,
+                totalQuestions: o.totalQuestions 
+            }))
+
             this.setState({
                 fullData: ser,
                 isUpdated: true,
@@ -87,7 +88,7 @@ class LeaderBoard extends Component {
         } else if (isUpdated) {
             return (
                 <div className = 'leaderboard-chart container'>
-                    <HomeLeaderChart data = {this.state.fullData}/>
+                    <LeaderBoardTb data = {this.state.fullData}/>
                 </div>
             );    
         } else {
