@@ -1,6 +1,10 @@
 const passport = require("passport");
 var request = require("request");
 const axios = require("axios");
+const mongoose = require('mongoose');
+const { session } = require("passport");
+const User = mongoose.model('users')
+
 
 module.exports = (app) => {
   app.get(
@@ -48,21 +52,46 @@ module.exports = (app) => {
   app.post(
     "/auth/google/token",
     passport.authenticate("google-oauth-token"),
-    (req, res) => {
-      console.log(req.user)
-      // do something with req.user
+    async (req, res) => {
+      const {expo_token} = req.query
+      const expoToken = expo_token
+      const filter = req.user._doc
+      const id = req.user._id
+
+      const update = {
+        ...filter,
+        expoToken
+      }
+            
+      await User.findOneAndUpdate(
+        {_id: id},
+        {$set: update},
+        {new: true, strict: false}
+      )
       res.send(req.user ? 200 : 401);
-    }
-  );
+  });
 
   app.post(
     "/auth/facebook/token",
     passport.authenticate("passport-facebook-token"),
-    (req, res) => {
-      console.log(req.body)
-      // do something with req.user
+    async (req, res) => {
+      const {expo_token} = req.query
+      const expoToken = expo_token
+      const filter = req.user._doc
+      const id = req.user._id
+
+      const update = {
+        ...filter,
+        expoToken
+      }
+            
+      await User.findOneAndUpdate(
+        {_id: id},
+        {$set: update},
+        {new: true, strict: false}
+      )
       res.send(req.user ? 200 : 401);
-    }
+  }
   );
 
 
