@@ -4,8 +4,10 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 const BearerStrategy = require("passport-http-bearer").Strategy;
 const GoogleOauthTokenStrategy = require("passport-google-oauth-token");
 const FacebookTokenStrategy = require("passport-facebook-token");
+const CustomStrategy = require('passport-custom').Strategy;
 const mongoose = require("mongoose");
 const keys = require("../config/keys");
+
 
 const User = mongoose.model("users");
 
@@ -107,3 +109,18 @@ passport.use(
     }
   )
 );
+
+passport.use('apple-strategy', new CustomStrategy(
+  async (req, done) => {
+    const existingUser = await User.findOne({ appleId: req.query.userId });
+    console.log('req.query: ', req.query)
+    if (existingUser) {
+      return done(null, existingUser);
+    } else {
+      const user = await new User({ appleId: req.query.userId }).save();
+      done(null, user);
+    }    
+  }
+));
+
+
