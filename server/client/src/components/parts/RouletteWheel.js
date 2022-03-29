@@ -28,11 +28,12 @@ const RouletteWheel = forwardRef((props, ref) => {
     handleSpinClick() {
 
       const options = [...Array(data.length).keys()];
+      const vouchers = data.map(x => x.voucherId)
       const probs = data.map(x => x.prob)
-      const newPrizeNumber = weightedRandom(options, probs)
+      const newPrizeNumber = weightedRandom(options, probs) 
       // const newPrizeNumber = Math.floor(Math.random() * props.data.length)
-      prizeService.sendNumber(data[newPrizeNumber.index].voucherId)
-      setPrizeNumber(newPrizeNumber)
+      prizeService.sendNumber(vouchers[newPrizeNumber.index])
+      setPrizeNumber(newPrizeNumber.index)
       setMustSpin(true)
 
     }
