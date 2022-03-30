@@ -22,59 +22,69 @@ class ActivityCard extends Component {
             default:
 
                 return (
-                    <div className={`col my-3 ${shine}`} >
-                        <div className={`count-box justify-content-center h-100`} style={{ color: `${this.props.color}` }}>
-                            <div className='row '>
-                                <div className='col-12 d-flex justify-content-center align-items-center'>
+
+                            
+                                <div className='d-flex justify-content-center align-items-center coupon-box'>
                                     {bronzeCoupons > 0 ?
                                         <div onClick={this.props.bronzeClick}>
+                                            <div className = 'coupon-div col-4'>
                                             <Coupon
-                                                size={70}
+                                                size={100}
                                                 couponCount={bronzeCoupons}
                                                 couponType={'bronze'}
                                             />
+                                            </div>
                                         </div>
                                         :
+                                        <div className = 'coupon-div col-4'>
                                         <Coupon
-                                            size={70}
+                                            size={100}
                                             couponCount={bronzeCoupons}
                                             couponType={'bronze'}
                                         />
+                                        </div>
                                     }
                                     {silverCoupons > 0 ?
                                         <div onClick={this.props.silverClick}>
+                                            <div className = 'coupon-div col-4'>
                                             <Coupon
-                                                size={70}
+                                                size={100}
                                                 couponCount={silverCoupons}
                                                 couponType={'silver'}
                                             />
+                                            </div>
                                         </div>
                                         :
+                                        <div className = 'coupon-div col-4'>
                                         <Coupon
-                                            size={70}
+                                            size={100}
                                             couponCount={silverCoupons}
                                             couponType={'silver'}
                                         />
+                                        </div>
                                     }
                                     {goldCoupons > 0 ?
                                         <div onClick={this.props.goldClick}>
+                                            <div className = 'coupon-div col-4'>
                                             <Coupon
-                                                size={70}
+                                                size={100}
                                                 couponCount={goldCoupons}
                                                 couponType={'gold'}
                                             />
+                                            </div>
                                         </div>
                                         :
+                                        <div className = 'coupon-div col-4'>
                                         <Coupon
-                                            size={70}
+                                            size={100}
                                             couponCount={goldCoupons}
                                             couponType={'gold'}
                                         />
+                                        </div>
                                     }
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            
+
                 );
         }
     }

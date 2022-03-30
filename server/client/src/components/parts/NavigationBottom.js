@@ -2,7 +2,7 @@
  
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import FolderIcon from '@material-ui/icons/Folder';
 import { IoTicketOutline } from "react-icons/io5";
@@ -11,6 +11,7 @@ import { CgMore } from "react-icons/cg";
 import HomeIcon from '@material-ui/icons/Home'
 import Kyselyt from '../../pages/Kyselyt'
 import { Link } from 'react-router-dom';
+
 
 
 // Google Analytics
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
     bottom: 0,
     zIndex: 100,
     fontSize: 25,
-    textDecoration: 'none'
+    textDecoration: 'none',
   }
 });
 
@@ -49,7 +50,7 @@ export default function NavigationBottom() {
 
 
   return (
-    <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+    <BottomNavigation value={value} onChange={handleChange} className={classes.root} sx={{ boxShadow: 5 }}>
       <BottomNavigationAction label="Koti" value="home" component={Link}  to="/home" icon={<BiHome />} />
       <BottomNavigationAction label="Kyselyt" value="kyselyt" component={Link}  to="/kyselyt" icon={< BiBoltCircle />} />
       <BottomNavigationAction label="Lahjakortit" value="points" component={Link} to="/test" icon={< IoTicketOutline />} />

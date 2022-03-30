@@ -19,12 +19,16 @@ import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import AlertTitle from '@mui/material/AlertTitle';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles( theme => ({
     root: {
         maxWidth: 1500,
-        flexGrow: 2
+        flexGrow: 2,
+        [theme.breakpoints.down('600')]: {
+            backgroundColor: '#ffcf00',
+            height: '60px'
+        }
     },
-});
+}));
 
 
 

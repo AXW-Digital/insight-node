@@ -153,7 +153,7 @@ function KyselyFormBoost(props) {
             switch (renewSurvey) {
                 case false:
                     return (
-                        <div className='container'>
+                        <div className='container kysely-home'>
                             <div>
                                 <p>
                                     Olet jo vastannut tähän kysymykseen :(
@@ -164,7 +164,7 @@ function KyselyFormBoost(props) {
                 default:
                     return (
 
-                        <div>
+                        <div className='kysely-home'>
 
                             <FormFunction
                                 question={props.question}

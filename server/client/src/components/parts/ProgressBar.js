@@ -14,7 +14,7 @@ class StepProgressBar extends React.Component {
         percent={this.props.progress}
         filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
         stepPositions={this.props.stepPositions}
-        height={12}
+        height={8}
         hasStepZero={false}
       >
         <Step 

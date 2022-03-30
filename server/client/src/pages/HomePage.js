@@ -334,7 +334,7 @@ class HomePage extends Component {
             return (
               <div>
                 <div id="page-top"></div>
-                <section id="hero" className="d-flex align-items-center">
+                <div id="hero" className="d-flex align-items-center hero-container">
                   <div className="container">
                     <div className="row">
                       <div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-2">
@@ -349,7 +349,7 @@ class HomePage extends Component {
                       </div>
                     </div>
                   </div>
-                </section>
+                </div>
 
                 <div>
                   {this.props.data.socials !== undefined ?
@@ -375,7 +375,7 @@ class HomePage extends Component {
             return (
               <div>
                 <div id="page-top"></div>
-                <section id="hero" className="d-flex align-items-center">
+                <div id="hero" className="d-flex align-items-center hero-container">
                   <div className="container">
                     <div className="row">
                       <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-2">
@@ -395,6 +395,7 @@ class HomePage extends Component {
                                 <CircularProgressbarWithChildren
                                   value={value}
                                   text={`${roundedValue} / ${maxLevelPoints} p`}
+                                  circleRatio = {0.7}
                                   styles={buildStyles({
                                     pathTransition: "none",
                                     textSize: "10px",
@@ -402,7 +403,7 @@ class HomePage extends Component {
                                     textColor: "rgb(54, 58, 89)",
                                     trailColor: "#d6d6d6",
                                     fontFamily: "TT Norms",
-                                    strokeLinecap: 'butt',
+                                    rotation: 0.65,
                                   })}
                                 >
                                   <i
@@ -468,16 +469,7 @@ class HomePage extends Component {
 
 
                         </div>
-                        <div className="counts">
-                          <h4 className='mt-5'>Kertyneet kupongit</h4>
-                          <div className="row m-4">
-                            <RouletteModal
-                              count={this.props.data.profile.coupons}
-                              vouchers={this.state.vouchers}
-                            />
-                            <p style={{fontSize: '14px', color:'gray'}}>Käytä kuponki klikkaamalla kuvaketta. Pyöräytä arvontapyörää ja voita palkintoja!</p>
-                          </div>
-                        </div>
+                        
                       </div>
                       <div className="col-lg-6 order-1 order-lg-1 hero-img align-items-center">
                         <div className="img-fluid animated d-none d-lg-block">
@@ -488,7 +480,20 @@ class HomePage extends Component {
                   </div>
 
 
-                </section>
+                </div>
+
+                <div id = 'coupon-section' className="even-section  align-items-center">
+                <div className="counts">
+                          <h3 className='mt-5 mx-3 pt-3'>Kertyneet kupongit</h3>
+                          <div className="row m-3 justify-content-center">
+                            <RouletteModal
+                              count={this.props.data.profile.coupons}
+                              vouchers={this.state.vouchers}
+                            />
+                            <p style={{fontSize: '14px', color:'gray'}}>Käytä kuponki klikkaamalla kuvaketta. Pyöräytä arvontapyörää ja voita palkintoja!</p>
+                          </div>
+                        </div>
+                </div>
 
                 <div className='justify-content-center'>
 
@@ -526,7 +531,7 @@ class HomePage extends Component {
         return (
           <div>
             <div id="page-top"></div>
-            <section id="hero" className="d-flex align-items-center">
+            <div id="hero" className="d-flex align-items-center hero-container">
               <div className="container">
                 <div className="row">
                   <div className="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-2">
@@ -541,7 +546,7 @@ class HomePage extends Component {
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
 
             <div>
               {this.props.data.socials !== undefined ?

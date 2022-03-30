@@ -250,14 +250,14 @@ ul.linelist li:last-child:before {
   z-index: 997;
   transition: all 0.5s;
   padding: 16px 0;
-  background: white;
+  background: #363a59;
   box-shadow: 0px 2px 15px #363a59;
   font-weight: bold;
   font-family: 'TT Norms' !important;
 }
 
 #header .logo {
-  color: #363a59 !important;
+  color: #ffffff !important;
   font-weight: bold;
   margin-left: 2ex;
   font-size: 22px;
@@ -285,7 +285,7 @@ ul.linelist li:last-child:before {
 
 @media (max-width: 575px) {
   #header {
-    background: #ffd000ea;
+    background: #363a59;
   }
   #header .mylinks {
     font-weight: bold;
@@ -319,7 +319,7 @@ ul.linelist li:last-child:before {
   height: 70vh;
   background: white;
   border-bottom: 2px solid #fcebe3;
-  margin: 10rem 0 -72px 0;
+  margin: 0 0 -72px 0;
 }
 
 #hero .container {
@@ -409,7 +409,7 @@ ul.linelist li:last-child:before {
   #hero {
     min-height: calc(100vh - 72px);
     height: 100%;
-    margin-top: 150px
+    margin-top: 2rem
   }
   #hero .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
@@ -450,11 +450,14 @@ ul.linelist li:last-child:before {
 }
 
 @media (max-width: 575px) {
+  #hero .hero-container{
+    margin-top: 0rem !important;
+  }
   #hero .hero-img img {
     width: 80%;
   }
   #hero .container {
-    margin-bottom: 10rem;
+    margin-bottom: 2rem;
     text-align: center;
   }
   #hero .animated {
@@ -539,16 +542,34 @@ min-height: 10vh;
 
 .coupon-count{
   position: absolute;
-  top: 40%;
-  margin-left: 25px;
-  font-weight: bold;
-  color: white   
+  top: 32%;
+  margin-left: 48px;
+  /* font-weight: bold; */
+  color: white; 
+  font-family: 'TT Norms';
+  font-size: 18pt; 
 }
 
+/* .coupon-div{
 
+} */
+
+.coupon-icon{
+  filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0.5);
+  -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
+  -ms-transform: rotate(225deg);
+  -o-transform: rotate(225deg);
+  transform: rotate(225deg);
+  display: inline-block;
+}
 
 .coupon-icon:hover {
   cursor:pointer;
+}
+
+.kysely-home{
+  color: white;
 }
 
 /**
@@ -1622,6 +1643,10 @@ Activity Cards CSS
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
 }
 
+.coupon-box{
+  padding-bottom: 20px;
+}
+
 .counts .count-box i {
   font-size: 42px;
   line-height: 0;
@@ -1773,18 +1798,20 @@ Activity Cards CSS
 
 .indexedStep {
   color: white;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   font-size: 12px;
+  font-weight: bold;
   background-color: rgba(211, 211, 211, 0.8);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'TT Norms';
 }
 
 .indexedStep.accomplished {
-  background-color: rgba(0, 116, 217, 1);
+  background-color: #363a59
 }
 
 /* -----------------------------------------------
@@ -2057,7 +2084,7 @@ HomeQuestion CSS
 
 #home-question{
   height: 600px !important;
-  background-image: url('../images/knife_bg.jpg');
+  background-color: #363a59;
   background-size:cover;
 }
 
@@ -2067,10 +2094,15 @@ HomeQuestion CSS
 
 #home-question h2{
     font-size: 28px;
-    color: rgba(63, 61, 86, 1);
+    color: rgb(255, 255, 255);
     
 }
 
+#home-question p{
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  
+}
 
 
 
@@ -2406,8 +2438,9 @@ tawkto widget CSS
 .chatbutton-closed{
   padding: 2px 10px 2px 10px !important;
   margin-right: 10px !important;
-  background-color: #ad9d7548 !important;
-  color:rgba(0, 0, 0, 0.39) !important;
+  background-color: #363a59a4 !important;
+  color:#c7c7c7a4 !important;
+  border-color: #c7c7c7a4 !important;
 }
 
 .chatbutton-open{

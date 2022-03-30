@@ -20,7 +20,7 @@ class Coupon extends Component {
                                 className = 'coupon-icon'
                                 size={size}
                                 color = {'rgba(255, 215, 0, 0.3)'}/>
-                                <h5 className = 'coupon-count'> {couponCount} </h5>
+                                <div className = 'coupon-count'> {couponCount} </div>
                             </div>
                         )
                     case 'silver':
@@ -30,7 +30,7 @@ class Coupon extends Component {
                                 className = 'coupon-icon'
                                 size={size}
                                 color = {'rgba(192,192,192, 0.3)'}/>
-                                <h5 className = 'coupon-count'> {couponCount} </h5>
+                                <div className = 'coupon-count'> {couponCount} </div>
                             </div>
                         )
                     case 'bronze':
@@ -40,7 +40,7 @@ class Coupon extends Component {
                                 className = 'coupon-icon'
                                 size={size}
                                 color = {'rgba(205, 127, 50, 0.3)'}/>
-                                <h5 className = 'coupon-count'> {couponCount} </h5>
+                                <div className = 'coupon-count'> {couponCount} </div>
                             </div>
                         )
                 }
@@ -53,7 +53,7 @@ class Coupon extends Component {
                                 className = 'coupon-icon'
                                 size={size}
                                 color = {'gold'}/>
-                                <h5 className = 'coupon-count'> {couponCount} </h5>
+                                <div className = 'coupon-count'> {couponCount} </div>
                             </div>
                         )
                     case 'silver':
@@ -63,7 +63,7 @@ class Coupon extends Component {
                                 className = 'coupon-icon'
                                 size={size}
                                 color = {'#aaa9ad'}/>
-                                <h5 className = 'coupon-count'> {couponCount} </h5>
+                                <div className = 'coupon-count'> {couponCount} </div>
                             </div>
                         )
                     case 'bronze':
@@ -73,7 +73,7 @@ class Coupon extends Component {
                                 className = 'coupon-icon'
                                 size={size}
                                 color = {'#cd7f32'}/>
-                                <h5 className = 'coupon-count'> {couponCount} </h5>
+                                <div className = 'coupon-count'> {couponCount} </div>
                             </div>
                         )
                 }
