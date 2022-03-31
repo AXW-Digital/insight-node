@@ -225,14 +225,14 @@ class HomePage extends Component {
                 return (
                     <div>
                         <div id='page-top'></div>
-                        <section id='kyselyt' className="d-flex align-items-center justify-content-center kysely odd-section">
+                        <div id='kyselyt' className="d-flex align-items-center justify-content-center kysely odd-section">
                             <div className="container card-container" data-aos="fade-up">
                                 <header className="section-header">
                                     <h3 id='kysely-title mt-2'>Kerää pisteitä vastaamalla kyselyihin</h3>
                                 </header>
                                 {this.renderCards()}
                             </div>
-                        </section>
+                        </div>
 
                         <section className="d-flex align-items-center even-section">
                             <div className="container">

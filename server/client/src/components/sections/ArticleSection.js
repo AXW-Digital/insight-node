@@ -101,7 +101,7 @@ export default function ArticleSection(props) {
   }));
 
 
-  var color = randomMC.getColor();
+  var color =  '#363a59' //randomMC.getColor();
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState(false); //{ ...props.liked }

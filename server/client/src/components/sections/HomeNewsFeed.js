@@ -256,9 +256,9 @@ class Shuffle extends Component {
 							ssr={true} // means to render carousel on server-side.
 							infinite={true}
 							autoPlay={this.props.deviceType !== "mobile" ? true : false}
-							autoPlaySpeed={4000}
+							autoPlaySpeed={7000}
 							keyBoardControl={true}
-							transitionDuration={500}
+							transitionDuration={800}
 							containerClass="carousel-container"
 							removeArrowOnDeviceType={["tablet", "mobile"]}
 							deviceType={this.props.deviceType}

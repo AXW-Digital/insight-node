@@ -225,7 +225,7 @@ class Wallet extends Component {
                             {this.state.isLoaded ? 
 
                             <>
-                            {this.state.articles.length > 0 ? 
+                            {/* {this.state.articles.length > 0 ? 
                             <div className = 'row justify-content-center justify-content-xl-start ml-auto'>
                                 <Toggle
                                     clickHandler={this.toggleSort}
@@ -239,7 +239,7 @@ class Wallet extends Component {
                                     active={this.state.sortingMethod === 'shuffle'}
                                 />
                             </div>
-                            : null }
+                            : null } */}
 
 
                             <div className='row justify-content-center justify-content-xl-start '>

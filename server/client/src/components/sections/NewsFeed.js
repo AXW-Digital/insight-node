@@ -298,10 +298,10 @@ class NewsFeed extends Component {
         return (
 
             <section className="d-flex align-items-center even-section justify-content-center">
-                <div className="container">
-                    <h3> Newsfeed </h3>
+                {/* <div className="container"> */}
+                    {/* <h3> Newsfeed </h3> */}
                     <div id="shuffle" className={this.state.view}>
-                        <header>
+                        {/* <header>
                             <div className="abs-right">
                                 <Toggle
                                     clickHandler={this.toggleSort}
@@ -315,7 +315,7 @@ class NewsFeed extends Component {
                                     active={this.state.sortingMethod === 'shuffle'}
                                 />
                             </div>
-                        </header>
+                        </header> */}
                         <div className='container' style={{ padding: '0 5 0 5' }}>
                             <div className='row d-flex justify-content-center justify-content-xl-start'>
                                 <FlipMove className="flip-wrapper grid"
@@ -333,7 +333,7 @@ class NewsFeed extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                {/* </div> */}
             </section>
 
         );

@@ -88,7 +88,7 @@ export default function FeedCard(props) {
     },
   }));
 
-  var color = randomMC.getColor();
+  var color =  '#363a59' // randomMC.getColor();
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState({ ...props.liked });
@@ -208,7 +208,7 @@ export default function FeedCard(props) {
 
   return (
 
-    <div className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" key={props.key}>                { /* className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" */}
+    <div className="my-2 ml-lg-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" key={props.key}>                { /* className="my-2 ml-2 flip-wrapper col-xl-4 col-sm-6 kysely-col" */}
       <Card className={classes.root} >
         <CardActionArea href={`/article/${props.socialId}`}>
           <CardHeader
