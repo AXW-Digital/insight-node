@@ -43,7 +43,7 @@ class Footer extends Component {
                             <div className="row">
 
                                 <div className="col-lg-3 col-md-6 footer-contact" data-aos="fade-up" data-aos-delay="100">
-                                    <h3 className='footer-text'>Growflow <br /> Insights</h3>
+                                    <h3 className='footer-text'>Growsight</h3>
                                     <p>
                                         Verkkosaarenkatu 5 <br />
                                         00580 Helsinki<br />
@@ -97,11 +97,11 @@ class Footer extends Component {
                         </div>
                     </div>
 
-                    <div className="container py-4">
+                    {/* <div className="container py-4">
                         <div className="copyright">
                             &copy; Copyright <strong><span>AxwDigital</span></strong>. All Rights Reserved
                     </div>
-                    </div>
+                    </div> */}
 
                 </footer>
             </div>

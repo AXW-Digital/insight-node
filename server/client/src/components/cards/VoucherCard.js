@@ -42,10 +42,10 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '18px',
         top: '75px',
         left: '5%',
-        fontWeight: 1000,
+        fontWeight: 500,
         fontFamily: "'TT Norms' !important",
-        color: '#363a59', // theme.palette.getContrastText(yellow['A400'])
-        backgroundColor: '#FFE400' // yellow['A400']
+        color: '#ffffff', // theme.palette.getContrastText(yellow['A400'])
+        backgroundColor: '#363a59' // yellow['A400']
     },
     title: {
         color: 'rgba(63, 61, 86, 1) !important',

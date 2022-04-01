@@ -45,6 +45,7 @@ export default function getLevel(totalPoints, pointsIncrease) {
     
     var sidx, slen, currentPoints, maxLevelPoints, pointsDiffToMax
     var levelUp = false
+    var evenPoints = false
 
     for (sidx = 0, slen = levelThresholds.length; sidx < slen; ++sidx) {
         if (totalPoints < levelThresholds[sidx]) break;
@@ -52,8 +53,12 @@ export default function getLevel(totalPoints, pointsIncrease) {
 
     const level = sidx + 1
 
-    if ((totalPoints + pointsIncrease) > levelThresholds[sidx]) {
+    if ((totalPoints + pointsIncrease) >= levelThresholds[sidx]) {
         levelUp = true
+    }
+
+    if((totalPoints + pointsIncrease) === levelThresholds[sidx]) {
+        evenPoints = true
     }
 
 
@@ -70,12 +75,21 @@ export default function getLevel(totalPoints, pointsIncrease) {
         case true:
             if (sidx === 0) {
                 pointsDiffToMax = levelThresholds[0] - totalPoints
-                currentPoints = pointsIncrease - pointsDiffToMax
                 maxLevelPoints = levelThresholds[sidx + 1] - levelThresholds[sidx]
+                if(evenPoints){
+                    currentPoints = maxLevelPoints
+                } else {
+                    currentPoints = pointsIncrease - pointsDiffToMax
+                }
+                
             } else {
                 pointsDiffToMax = levelThresholds[sidx + 1] - totalPoints
-                currentPoints = pointsIncrease - pointsDiffToMax
                 maxLevelPoints = levelThresholds[sidx] - levelThresholds[sidx - 1]
+                if(evenPoints){
+                    currentPoints = maxLevelPoints
+                } else {
+                    currentPoints = pointsIncrease - pointsDiffToMax
+                }
             }
             return { currentPoints, maxLevelPoints, level, levelUp}
 

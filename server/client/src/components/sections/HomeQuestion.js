@@ -75,7 +75,7 @@ class HomeQuestion extends React.Component {
                         className="btn btn-lg btn-block text-uppercase btn-nosto"
                       >{this.state.boosts[2].kyselyTitle}</div>
                     </div>
-                    <div className='col-md-12 col-lg-12 my-3'>
+                    <div className='col-md-12 col-lg-12 my-3 mt-4'>
                       <p>Söitkö tai joitko hyvin, kävitkö ravintolassa? Löysitkö elämäsi annoksen, uuden ihanan juomatuttavuuden tai jäikö jotakin hampaan koloon lounaalla
                         tai illallisella?</p>
                       <p>Arvostele ruoka- juoma- tai ravintolakokemus ja kerro meille mistä pidit, mitä parantaisit tai mitä suosittelisit muille Vaikuttaville.
@@ -129,7 +129,7 @@ class HomeQuestion extends React.Component {
       <div>
         <div id="home-question" className="justify-content-center even-section ">
           <div className='row d-flex justify-content-center pt-4'>
-            <div className='text-centered'>
+            <div className='text-centered mb-4'>
               <h2>Oma arvostelu</h2>
             </div>
           </div>
