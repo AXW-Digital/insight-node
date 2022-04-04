@@ -65,8 +65,8 @@ class App extends Component {
     super(props)
 
     this.state = {
-      timeout: 15 * 60 * 1000,
-      logOut: 2 * 60 * 1000,
+      timeout: 2 * 60 * 60 * 1000,
+      logOut: 7 * 24 * 60 * 60 * 1000,
       showModal: false,
       userLoggedIn: false,
       isTimedOut: false

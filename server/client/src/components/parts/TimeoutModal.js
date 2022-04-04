@@ -34,7 +34,7 @@ export const IdleTimeOutModal = ({ showModal, handleClose, handleLogout, remaini
                         style={{margin: 0}}
                     >
                         <AlertTitle><strong>Huom</strong></AlertTitle>
-                        Hei! Olet ollut kauan inaktiivinen. Sinut kirjataan ulos automaattisesti hetken kuluttua. 
+                        Hei! Olet ollut kauan inaktiivinen. Haluatko jatkaa? 
 
 
                         <div className = 'row mr-auto mt-3'>

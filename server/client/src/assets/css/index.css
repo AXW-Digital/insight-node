@@ -19,7 +19,7 @@
 html {
   scroll-padding-top: var(--header-height);
   /* height of sticky header */
-  --header-height: 72px;
+  --header-height: 60pt;
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
   
@@ -249,7 +249,7 @@ ul.linelist li:last-child:before {
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
-  padding: 16px 0;
+  padding: 20px 0 0 0;
   background: #363a59;
   box-shadow: 0px 2px 15px #363a59;
   font-weight: bold;
