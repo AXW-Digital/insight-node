@@ -82,7 +82,10 @@ module.exports = app => {
             response => {
                 // console.log('sending voucher data to reg: ', req.body)
                 // console.log(response.status)
-                res.sendStatus(response)
+                if(res.status === 200){
+                    res.sendStatus(200)
+                }
+                
             }
         ).catch(err => {
             console.log(err)
