@@ -3,6 +3,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ChatBot from './ChatBot';
+import {ReactComponent as VaikuttavaLogo} from '../../assets/images/VaikuttavaLogo.svg'
 
 
 class Header extends React.Component {
@@ -40,7 +41,7 @@ class Header extends React.Component {
                     className="left logo"
                     style={{ color: '#363a59' }}
                 >
-                    Vaikuttava
+                    <VaikuttavaLogo/>
                 </Link>
                 <Navbar.Toggle className="text-danger" aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -56,7 +57,7 @@ class Header extends React.Component {
                     className="left logo"
                     style={{ color: '#363a59' }}
                 >
-                    Vaikuttava
+                   <VaikuttavaLogo height={'18pt'}/>
                 </Link>
                 <ChatBot
                 data = {this.props.data}

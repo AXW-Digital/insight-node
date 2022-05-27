@@ -259,7 +259,8 @@ ul.linelist li:last-child:before {
 #header .logo {
   color: #ffffff !important;
   font-weight: bold;
-  margin-left: 2ex;
+  margin-left: 1ex;
+  margin-bottom: 0.75ex;
   font-size: 22px;
 }
 

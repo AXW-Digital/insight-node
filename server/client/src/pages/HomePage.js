@@ -522,7 +522,7 @@ class HomePage extends Component {
                   </div>
                 </div>
 
-                <Footer />
+                {/* <Footer /> */}
               </div>
             );
         }

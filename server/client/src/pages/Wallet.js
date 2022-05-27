@@ -266,7 +266,7 @@ class Wallet extends Component {
                         </div>
 
                 </section>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         )
 
