@@ -12,7 +12,7 @@ class LandingSection3 extends React.Component {
                     <div className="row">
                         <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1">
                             <h3>MIKÄ ON VAIKUTTAVA.IO</h3>
-                            <p>Vaikuttava.io on Growflow Insightsin luoma kuluttajayhteisö, joka pyrkii luomaan meille kaikille parempaa ja elämyksellisempää tulevaisuutta.
+                            <p>Vaikuttava.io on Growsight Oy:n luoma kuluttajayhteisö, joka pyrkii luomaan meille kaikille parempaa ja elämyksellisempää tulevaisuutta.
                             </p>
 
                             <h2>Erilaisia tutkimuksia</h2>

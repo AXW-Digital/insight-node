@@ -10,7 +10,7 @@ class LandingSection5 extends Component {
                 <div className="container">
                 <div className="row">
                     <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1">
-                        <h3>GROWFLOW INSIGHTS</h3>
+                        <h3>GROWSIGHT Oy</h3>
                         <p>Intohimomme on auttaa yrittäjiä ymmärtämään asiakkaita ja toimintaympäristöä! Ymmärrys on paras pohja kehitykselle ja tulevaisuudelle. </p>
                         <p>Kaikki perustuu yhteisön ajatuksiin, joita rikastamme jo kerätyllä datalla. </p>
 

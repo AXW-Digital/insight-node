@@ -268,7 +268,7 @@ class HomePage extends Component {
                                         </p>
                                         <div className="icon-box">
                                             <Card className="description shadow-lg p-3 mb-5 bg-white rounded" data-aos="flip-up" data-aos-duration="200" data-aos-delay="300">
-                                                Syksyn kampanjassa jaamme yli 1000€ arvosta palkintoja ja lahjakortteja!
+                                                Syksyn kampanjassa jaamme yli 2000€ arvosta palkintoja ja lahjakortteja!
                                             </Card>
                                         </div>
                                     </div>
