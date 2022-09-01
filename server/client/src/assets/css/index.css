@@ -266,8 +266,8 @@ ul.linelist li:last-child:before {
 
 #header .mylinks {
   font-weight: bold;
-  color: #363a59a4 !important;
-  background-color: #ffffff;
+  color: #ffffff !important;
+  background-color: #363a59a4;
   padding-left: 23px;
 }
 

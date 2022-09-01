@@ -78,10 +78,10 @@ class Signin extends Component {
                                         <a href="/home"> <i  className="fab fa-linkedin btn-some align-items-center justify-content-center"/></a>
                                         <a href="/home"> <i  className="fab fa-twitter btn-some align-items-center justify-content-center"/></a>
                                         </div> */}
-                                        <FacebookLoginButton onClick={handleClick} className='my-2' />
-                                        <GoogleLoginButton onClick={handleGoogleClick} className='my-2'/>
-                                        <TwitterLoginButton onClick={handleClick} className='my-2'/>
-                                        <LinkedInLoginButton onClick={handleClick} className='my-2'/>
+                                        {/* <FacebookLoginButton onClick={handleClick} className='my-2' /> */}
+                                        <GoogleLoginButton onClick={handleGoogleClick} className='my-2' style={ {background: "#dedcde"}}/>
+                                        {/* <TwitterLoginButton onClick={handleClick} className='my-2'/> */}
+                                        {/* <LinkedInLoginButton onClick={handleClick} className='my-2'/> */}
                                         <hr className='my-4' />
                                         <div className='row mt-1'>
                                             <div className='col text-center text-nowrap'>Oletko jo käyttäjä?</div>
