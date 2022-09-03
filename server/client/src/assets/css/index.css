@@ -23,6 +23,7 @@ html {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
   
+  
   /* Font ligatures off */
   
 }
@@ -31,10 +32,12 @@ html {
 
 body>div {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 body {
   position: relative;
   font-variant-ligatures: none !important;
+  width: 100%;
 }
 
 

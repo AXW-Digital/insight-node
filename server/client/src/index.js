@@ -37,6 +37,11 @@ import reducers from './reducers';
 import ReactGA from 'react-ga';
 import keys from './config/keys';
 
+// Smoothen scrolling across devices
+import smoothscroll from 'smoothscroll-polyfill';
+ 
+smoothscroll.polyfill();
+// window.__forceSmoothScrollPolyfill__ = true;
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
