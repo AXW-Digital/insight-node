@@ -32,6 +32,7 @@ class Shuffle extends Component {
 			articles: [],
 			error: null,
 			isLoaded: false,
+			socials: []
 		};
 
 		this.sendClosed = this.sendClosed.bind(this);
@@ -52,14 +53,9 @@ class Shuffle extends Component {
                 (result) => {
 					// console.log('result for socials: ', result)
                     var articles = result.filter(x => x.tyyppi === 'Feed').sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
-                    var socialData = socials
-                    // const userArticles = articles.map(t1 => ({ ...t1, ...socialData.find(t2 => t2.voucherId === t1.voucherId) }))
-                    var merged = _.merge(_.keyBy(socialData, 'socialId'), _.keyBy(articles, '_id'));
-                    var values = _.values(merged);
-
                     this.setState({
                         isLoaded: true,
-                        articles: values 
+                        articles 
                     });  
                 },
                 (error) => {
@@ -72,7 +68,26 @@ class Shuffle extends Component {
 		}
 
 		getData();
+
+		if (this.props.data.socials !== null){
+			var socialData = this.props.data.socials.filter(s => 
+			this.state.articles.some(a => a._id === s.socialId));
+			// const userArticles = articles.map(t1 => ({ ...t1, ...socialData.find(t2 => t2.voucherId === t1.voucherId) }))
+			var merged = _.merge(_.keyBy(socialData, 'socialId'), _.keyBy(this.state.articles, '_id'));
+			var values = _.values(merged);
+			values = values.sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
+			this.setState({
+				articles: values 
+			});  
+
+		}
+
+
 	}
+
+	
+
+	
 
 	moveArticle(source, dest, id) {
 		const sourceArticles = this.state[source].slice();
@@ -243,11 +258,16 @@ class Shuffle extends Component {
 			}
 		};
 
+		
+		
+
+
 		return (
 
 			<div className="d-flex align-items-center even-section justify-content-center">
 				<div className="container mt-3">
 					<h3> Newsfeed </h3>
+					{this.props.data.socials !== null ?
 						<Carousel
 							swipeable={true}
 							draggable={true}
@@ -267,6 +287,7 @@ class Shuffle extends Component {
 						>
 							{this.renderArticles()}
 						</Carousel>
+					: null }
 				</div>
 			</div>
 
